@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="26 196 548 190" role="img" aria-labelledby="title-graphite-26_196_548_190">
+<title id="title-graphite-26_196_548_190">All sixteen pads with a four-to-the-floor pattern lit on steps one, five, nine and thirteen</title>
+<defs>
+<linearGradient id="panel-graphite-26_196_548_190" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#252524"/><stop offset="1" stop-color="#1a1a19"/></linearGradient>
+<radialGradient id="knob-graphite-26_196_548_190" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#3b3b39"/><stop offset="1" stop-color="#1d1d1c"/></radialGradient>
+</defs>
+<rect x="8" y="8" width="584" height="384" rx="28" fill="#141413" stroke="#2a2a28"/>
+<rect x="18" y="18" width="564" height="364" rx="20" fill="url(#panel-graphite-26_196_548_190)" stroke="#353533"/>
+<path d="M44 18.5H556" stroke="#4a4a47" stroke-opacity=".7"/>
+<rect x="40" y="40" width="300" height="72" rx="8" fill="#060606" stroke="#2b2b2a"/>
+<rect x="54" y="74" width="6" height="10" rx="1" fill="#31312f"/>
+<rect x="66" y="66" width="6" height="18" rx="1" fill="#31312f"/>
+<rect x="78" y="58" width="6" height="26" rx="1" fill="#31312f"/>
+<rect x="90" y="70" width="6" height="14" rx="1" fill="#31312f"/>
+<rect x="102" y="54" width="6" height="30" rx="1" fill="#31312f"/>
+<rect x="114" y="62" width="6" height="22" rx="1" fill="#31312f"/>
+<rect x="126" y="72" width="6" height="12" rx="1" fill="#31312f"/>
+<rect x="138" y="56" width="6" height="28" rx="1" fill="#31312f"/>
+<rect x="150" y="64" width="6" height="20" rx="1" fill="#31312f"/>
+<rect x="162" y="68" width="6" height="16" rx="1" fill="#31312f"/>
+<rect x="174" y="58" width="6" height="26" rx="1" fill="#31312f"/>
+<rect x="186" y="74" width="6" height="10" rx="1" fill="#31312f"/>
+<rect x="198" y="66" width="6" height="18" rx="1" fill="#31312f"/>
+<rect x="210" y="60" width="6" height="24" rx="1" fill="#31312f"/>
+<rect x="54.0" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="71.6" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="89.2" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="106.8" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="124.4" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="142.0" y="94" width="10" height="3" rx="1" fill="#e5a73f"/>
+<rect x="159.6" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="177.2" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="194.8" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="212.4" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="230.0" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="247.6" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="265.2" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="282.8" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="300.4" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="318.0" y="94" width="10" height="3" rx="1" fill="#3c3c3a"/>
+<rect x="256" y="52" width="46" height="5" rx="1.5" fill="#3c3c3a"/>
+<rect x="256" y="62" width="28" height="5" rx="1.5" fill="#3c3c3a"/>
+<rect x="292" y="62" width="10" height="5" rx="1.5" fill="#3c3c3a"/>
+<circle cx="380" cy="76" r="18" fill="#1e1e1d" stroke="#3c3c3a"/>
+<path d="M375 68v16l14-8z" fill="#e8e4dc"/>
+<rect x="418" y="58" width="36" height="36" rx="10" fill="#1e1e1d" stroke="#3c3c3a"/>
+<rect x="429" y="69" width="14" height="14" rx="2" fill="#e8e4dc"/>
+<circle cx="494" cy="76" r="18" fill="#1e1e1d" stroke="#3c3c3a"/>
+<circle cx="494" cy="76" r="6" fill="#e8e4dc"/>
+<rect x="530" y="58" width="36" height="16" rx="5" fill="#1e1e1d" stroke="#3c3c3a"/>
+<rect x="530" y="78" width="36" height="16" rx="5" fill="#1e1e1d" stroke="#3c3c3a"/>
+<circle cx="66.0" cy="158" r="24" fill="url(#knob-graphite-26_196_548_190)" stroke="#424240"/>
+<path d="M58.1 159.4L48.3 161.1" stroke="#e8e4dc" stroke-width="3" stroke-linecap="round"/>
+<circle cx="66.0" cy="191" r="1.6" fill="#5a5a57"/>
+<circle cx="132.8" cy="158" r="24" fill="url(#knob-graphite-26_196_548_190)" stroke="#424240"/>
+<path d="M127.7 151.9L121.2 144.2" stroke="#e8e4dc" stroke-width="3" stroke-linecap="round"/>
+<circle cx="132.8" cy="191" r="1.6" fill="#5a5a57"/>
+<circle cx="199.6" cy="158" r="24" fill="url(#knob-graphite-26_196_548_190)" stroke="#424240"/>
+<path d="M202.3 150.5L205.8 141.1" stroke="#e8e4dc" stroke-width="3" stroke-linecap="round"/>
+<circle cx="199.6" cy="191" r="1.6" fill="#5a5a57"/>
+<circle cx="266.4" cy="158" r="24" fill="url(#knob-graphite-26_196_548_190)" stroke="#424240"/>
+<path d="M273.3 154.0L282.0 149.0" stroke="#e8e4dc" stroke-width="3" stroke-linecap="round"/>
+<circle cx="266.4" cy="191" r="1.6" fill="#5a5a57"/>
+<circle cx="333.2" cy="158" r="24" fill="url(#knob-graphite-26_196_548_190)" stroke="#424240"/>
+<path d="M325.7 155.3L316.3 151.8" stroke="#e8e4dc" stroke-width="3" stroke-linecap="round"/>
+<circle cx="333.2" cy="191" r="1.6" fill="#5a5a57"/>
+<circle cx="400.0" cy="158" r="24" fill="url(#knob-graphite-26_196_548_190)" stroke="#424240"/>
+<path d="M407.5 160.7L416.9 164.2" stroke="#e8e4dc" stroke-width="3" stroke-linecap="round"/>
+<circle cx="400.0" cy="191" r="1.6" fill="#5a5a57"/>
+<circle cx="466.8" cy="158" r="24" fill="url(#knob-graphite-26_196_548_190)" stroke="#424240"/>
+<path d="M466.8 150.0L466.8 140.0" stroke="#e8e4dc" stroke-width="3" stroke-linecap="round"/>
+<circle cx="466.8" cy="191" r="1.6" fill="#5a5a57"/>
+<circle cx="533.6" cy="158" r="24" fill="url(#knob-graphite-26_196_548_190)" stroke="#424240"/>
+<path d="M530.9 150.5L527.4 141.1" stroke="#e8e4dc" stroke-width="3" stroke-linecap="round"/>
+<circle cx="533.6" cy="191" r="1.6" fill="#5a5a57"/>
+<rect x="36" y="206" width="58" height="72" rx="7" fill="#e5a73f" stroke="#b9862c"/>
+<path d="M45 207.5H85" stroke="#f2c46c" stroke-opacity=".9"/>
+<rect x="102" y="206" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M111 207.5H151" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="168" y="206" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M177 207.5H217" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="234" y="206" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M243 207.5H283" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="300" y="206" width="58" height="72" rx="7" fill="#e5a73f" stroke="#b9862c"/>
+<path d="M309 207.5H349" stroke="#f2c46c" stroke-opacity=".9"/>
+<rect x="366" y="206" width="58" height="72" rx="7" fill="#5c4420" stroke="#7a5b2a"/>
+<path d="M375 207.5H415" stroke="#7d5f2d" stroke-opacity=".9"/>
+<rect x="432" y="206" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M441 207.5H481" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="498" y="206" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M507 207.5H547" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="36" y="290" width="58" height="72" rx="7" fill="#e5a73f" stroke="#b9862c"/>
+<path d="M45 291.5H85" stroke="#f2c46c" stroke-opacity=".9"/>
+<rect x="102" y="290" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M111 291.5H151" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="168" y="290" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M177 291.5H217" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="234" y="290" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M243 291.5H283" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="300" y="290" width="58" height="72" rx="7" fill="#e5a73f" stroke="#b9862c"/>
+<path d="M309 291.5H349" stroke="#f2c46c" stroke-opacity=".9"/>
+<rect x="366" y="290" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M375 291.5H415" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="432" y="290" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M441 291.5H481" stroke="#3b3b39" stroke-opacity=".9"/>
+<rect x="498" y="290" width="58" height="72" rx="7" fill="#272726" stroke="#343432"/>
+<path d="M507 291.5H547" stroke="#3b3b39" stroke-opacity=".9"/>
+</svg>
