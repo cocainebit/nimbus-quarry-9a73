@@ -1,4 +1,4 @@
-# Commonplace — a Plotform studio adaptation
+# Commonplace: a Plotform studio adaptation
 
 This is an authored adaptation, not an unmodified upstream template and not an additional independently sourced repository.
 
