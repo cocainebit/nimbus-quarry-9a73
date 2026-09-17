@@ -83,6 +83,17 @@ export default function AppWorkspace({
   const nav = config.navigation as Nav[];
   const selected = nav.find((n) => n.collectionId === active);
   const collection = collections.find((c) => c.id === active);
+  // The overview's primary action follows the navigation the owner arranged, not the
+  // order collections happen to arrive in: a button that says "New project" has to
+  // create a project.
+  const primaryNav = nav.find((n) =>
+    collections.some((c) => c.id === n.collectionId),
+  );
+  const primary =
+    collections.find((c) => c.id === primaryNav?.collectionId) ||
+    collections[0];
+  const primaryLabel =
+    (primaryNav ?? nav[0])?.label.toLowerCase().replace(/s$/, "") || "record";
   const displayFields =
     collection?.fields.filter(
       (f) =>
@@ -472,21 +483,19 @@ export default function AppWorkspace({
                             <h1>{design.heading}</h1>
                             <p>{config.description}</p>
                           </div>
-                          {collections[0] && (
+                          {primary && (
                             <button
                               className="app-primary"
-                              disabled={preview}
+                              disabled={preview || !primary.member_create}
                               onClick={() =>
                                 setEditing({
-                                  collection: collections[0],
+                                  collection: primary,
                                   record: null,
                                 })
                               }
                             >
                               <Plus size={16} />
-                              New{" "}
-                              {nav[0]?.label.toLowerCase().replace(/s$/, "") ||
-                                "record"}
+                              New {primaryLabel}
                             </button>
                           )}
                         </div>
@@ -648,12 +657,10 @@ export default function AppWorkspace({
                                 here as you work.
                               </p>
                               <button
-                                disabled={
-                                  preview || !collections[0]?.member_create
-                                }
+                                disabled={preview || !primary?.member_create}
                                 onClick={() =>
                                   setEditing({
-                                    collection: collections[0],
+                                    collection: primary,
                                     record: null,
                                   })
                                 }

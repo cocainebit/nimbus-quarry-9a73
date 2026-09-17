@@ -2,7 +2,7 @@
 
 Plotform imports original HTML, CSS, JavaScript and assets rather than reconstructing these designs with generated block layouts. The source catalogue is distinct from Plotform's functional app starters and its palette library.
 
-The default contemporary collection now imports original Astro and React designs; simpler developer designs and motion experiments have separate tabs. See [the benchmark](DESIGN_REFERENCES.md) and [source review](MODERN_TEMPLATE_RESEARCH.md). These are stronger foundations, not a claim that20 free templates match the user’s bespoke references.
+The default contemporary collection now imports original Astro and React designs; simpler developer designs and motion experiments have separate tabs. See [the benchmark](DESIGN_REFERENCES.md) and [source review](MODERN_TEMPLATE_RESEARCH.md). These are stronger foundations, not a claim that 20 free templates match the user’s bespoke references.
 
 The classic archive includes ten Start Bootstrap templates from their official repositories (MIT) and ten HTML5 UP designs (Creative Commons Attribution 3.0). The HTML5 UP source mirror is pinned to a commit, with the original author and upstream URL recorded. Source links, pinned revisions, license files and full file inventories are stored in `shared/source-templates-*.json` and `public/templates/*`.
 

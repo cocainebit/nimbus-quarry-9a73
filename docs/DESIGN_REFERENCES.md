@@ -7,7 +7,7 @@ The user's references set the acceptance bar for generated website designs. They
 Source: https://www.jackandjill.ai/
 Evidence: `.firecrawl/reference-jackandjill.json`, `.firecrawl/reference-jackandjill.png` and page markdown.
 
-Observed: generous white space, compact navigation, a substantial editorial serif heading, two parallel product demonstrations for two audiences, muted paper panels, small pill actions, restrained separators, real product imagery and story photography. The rendered heading stack is Marist/Georgia; body is Diatype. Extracted sizes at capture: heading72px, secondary40px, body24px. These are viewport-specific observations, not universal tokens. Colors observed: white background, near-black #100F0F, off-white panels; limited colored accents.
+Observed: generous white space, compact navigation, a substantial editorial serif heading, two parallel product demonstrations for two audiences, muted paper panels, small pill actions, restrained separators, real product imagery and story photography. The rendered heading stack is Marist/Georgia; body is Diatype. Extracted sizes at capture: heading 72px, secondary 40px, body 24px. These are viewport-specific observations, not universal tokens. Colors observed: white background, near-black #100F0F, off-white panels; limited colored accents.
 
 Adopt: clear type hierarchy, product-led imagery, contrasting serif/sans roles, deliberate section pacing. Do not substitute fabricated dashboard screenshots or generic feature cards for actual product content. Do not bundle the site's commercial fonts or assets.
 
@@ -25,7 +25,7 @@ Adopt: imagery and editorial composition as the main identity, a limited palette
 Source: https://romemichal.pl/
 Evidence: `.firecrawl/reference-romemichal.json`, `.firecrawl/reference-romemichal.png`, page markdown.
 
-Observed: white page, large Geist typography, a headline broken around a changing product visual, numbered editorial sections, split text-and-image case studies, substantial vertical space, thin rules and an oversized ROME footer wordmark. Extracted sizes: headline100px, section68px, body15px. The branding extractor mislabeled the overall page dark; screenshot evidence takes precedence. Motion is visible in changing hero content; precise timing was not established by still screenshots.
+Observed: white page, large Geist typography, a headline broken around a changing product visual, numbered editorial sections, split text-and-image case studies, substantial vertical space, thin rules and an oversized ROME footer wordmark. Extracted sizes: headline 100px, section 68px, body 15px. The branding extractor mislabeled the overall page dark; screenshot evidence takes precedence. Motion is visible in changing hero content; precise timing was not established by still screenshots.
 
 Adopt: genuinely responsive typographic scale, varied case-study composition, real project assets and a designed ending. Avoid treating a small résumé list or interchangeable hero as equivalent.
 
@@ -37,4 +37,4 @@ Adopt: genuinely responsive typographic scale, varied case-study composition, re
 - Retain licenses and clearly distinguish original imports, adaptations and motion studies.
 - Verify content edits after client hydration and after export; inspect local asset paths and responsive images.
 - Include corresponding framework source for further development, including when the license requires it.
-- The contemporary selection is an improved starting library, not a claim of parity with these commissioned sites or20 benchmark-quality designs.
+- The contemporary selection is an improved starting library, not a claim of parity with these commissioned sites or 20 benchmark-quality designs.
