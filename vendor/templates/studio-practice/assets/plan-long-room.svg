@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Floor plan of the Long Room">
+  <rect width="1200" height="800" fill="#f0ece4"/>
+  <g fill="none" stroke="#3d5265" stroke-width="1.5" stroke-linecap="round">
+    <!-- window wall: long window drawn as triple line in the top wall -->
+    <path d="M260 302 H1040" stroke-width="1"/>
+    <path d="M260 306 H1040" stroke-width="1" opacity=".6"/>
+    <path d="M260 310 H1040" stroke-width="1"/>
+    <!-- thick service wall: hatched band along the bottom -->
+    <g stroke-width="1" opacity=".6">
+      <path d="M140 500 L160 480 M170 500 L190 480 M200 500 L220 480 M230 500 L250 480 M260 500 L280 480 M290 500 L310 480 M320 500 L340 480 M350 500 L370 480 M380 500 L400 480 M410 500 L430 480 M440 500 L460 480 M470 500 L490 480 M500 500 L520 480 M530 500 L550 480 M560 500 L580 480 M590 500 L610 480 M620 500 L640 480 M650 500 L670 480 M680 500 L700 480 M710 500 L730 480 M740 500 L760 480 M770 500 L790 480 M800 500 L820 480 M830 500 L850 480 M860 500 L880 480 M890 500 L910 480 M920 500 L940 480 M950 500 L970 480 M980 500 L1000 480 M1010 500 L1030 480 M1040 500 L1060 480"/>
+    </g>
+    <!-- pockets carved into the thick wall: stores, kitchen, washrooms -->
+    <rect x="330" y="460" width="120" height="40" fill="#f0ece4"/>
+    <rect x="560" y="460" width="160" height="40" fill="#f0ece4"/>
+    <rect x="800" y="460" width="70" height="40" fill="#f0ece4"/>
+    <rect x="880" y="460" width="70" height="40" fill="#f0ece4"/>
+    <path d="M568 470 H712" stroke-width="1"/>
+    <circle cx="835" cy="480" r="9" stroke-width="1"/>
+    <circle cx="915" cy="480" r="9" stroke-width="1"/>
+    <!-- door swings out of the pockets -->
+    <path d="M360 460 A30 30 0 0 1 390 430" stroke-width="1"/>
+    <path d="M600 460 A30 30 0 0 1 630 430" stroke-width="1"/>
+    <path d="M815 460 A30 30 0 0 1 845 430" stroke-width="1"/>
+    <path d="M895 460 A30 30 0 0 1 925 430" stroke-width="1"/>
+    <!-- stair at the left end -->
+    <rect x="150" y="320" width="90" height="140"/>
+    <path d="M150 336 H240 M150 352 H240 M150 368 H240 M150 384 H240 M150 400 H240 M150 416 H240 M150 432 H240 M150 448 H240" stroke-width="1"/>
+    <path d="M195 456 V326" stroke-width="1"/>
+    <path d="M195 326 L189 338 M195 326 L201 338" stroke-width="1"/>
+    <!-- workbenches along the window -->
+    <rect x="290" y="330" width="200" height="46" rx="2"/>
+    <rect x="520" y="330" width="200" height="46" rx="2"/>
+    <rect x="750" y="330" width="140" height="46" rx="2"/>
+    <!-- free-standing deep shelves -->
+    <rect x="300" y="410" width="180" height="20"/>
+    <rect x="530" y="410" width="180" height="20"/>
+    <path d="M300 420 H480 M530 420 H710" stroke-width="1" opacity=".6"/>
+    <!-- meeting room at the right end: glazed partition dashed -->
+    <path d="M930 312 V460" stroke-dasharray="8 6" stroke-width="2"/>
+    <circle cx="990" cy="392" r="38"/>
+    <circle cx="990" cy="342" r="9" stroke-width="1.2"/>
+    <circle cx="990" cy="442" r="9" stroke-width="1.2"/>
+    <circle cx="940" cy="392" r="9" stroke-width="1.2"/>
+    <circle cx="1040" cy="392" r="9" stroke-width="1.2"/>
+    <!-- entrance at the left end -->
+    <path d="M140 386 A40 40 0 0 1 180 426" stroke-width="1"/>
+    <!-- north arrow -->
+    <circle cx="1080" cy="120" r="22"/>
+    <path d="M1080 142 V98"/>
+    <path d="M1080 98 L1070 116 L1080 110 L1090 116 Z" fill="#3d5265" stroke="none"/>
+    <!-- scale bar -->
+    <path d="M140 600 H340"/>
+    <path d="M140 594 V606 M190 594 V606 M240 594 V606 M290 594 V606 M340 594 V606"/>
+  </g>
+  <!-- filled walls -->
+  <g fill="#1f1c18">
+    <rect x="130" y="300" width="130" height="12"/>
+    <rect x="1040" y="300" width="30" height="12"/>
+    <rect x="130" y="500" width="940" height="12"/>
+    <rect x="130" y="300" width="12" height="86"/>
+    <rect x="130" y="426" width="12" height="86"/>
+    <rect x="1058" y="300" width="12" height="212"/>
+    <rect x="140" y="600" width="50" height="6"/>
+    <rect x="240" y="600" width="50" height="6"/>
+  </g>
+</svg>

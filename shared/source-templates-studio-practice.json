@@ -1,0 +1,62 @@
+[
+  {
+    "id": "studio-practice",
+    "name": "Lintel",
+    "category": "Architecture / Studio",
+    "collection": "studio",
+    "framework": "HTML / CSS / JavaScript",
+    "description": "A Plotform adaptation for an architecture and interiors practice: image-led project index, numbered sections, plan drawings and a stone and bone palette.",
+    "sourceUrl": "https://github.com/onwidget/astrowind",
+    "commit": "14e1a691f80548dcc36370847b1a02c0d0b12821",
+    "license": "MIT + OFL fonts",
+    "entry": "index.html",
+    "pages": [
+      "index.html",
+      "two-walls-house.html",
+      "reading-room.html",
+      "long-room.html",
+      "studio.html"
+    ],
+    "files": [
+      "LICENSE",
+      "SOURCE.json",
+      "VENDOR-NOTES.md",
+      "assets/fine-lines.jpg",
+      "assets/green-tiles.jpg",
+      "assets/hall-light.jpg",
+      "assets/light-lines.jpg",
+      "assets/manrope.woff2",
+      "assets/newsreader-italic.woff2",
+      "assets/newsreader-normal.woff2",
+      "assets/plan-long-room.svg",
+      "assets/plan-reading-room.svg",
+      "assets/plan-two-walls.svg",
+      "assets/ribbed-surface.jpg",
+      "assets/road-valley.jpg",
+      "assets/stone-steps.jpg",
+      "assets/white-corridor.jpg",
+      "assets/window-room.jpg",
+      "index.html",
+      "licenses/IMAGE-SOURCES.md",
+      "licenses/astrowind-MIT.md",
+      "licenses/manrope-OFL.txt",
+      "licenses/newsreader-OFL.txt",
+      "long-room.html",
+      "plotform-preview.jpg",
+      "reading-room.html",
+      "script.js",
+      "source.zip",
+      "studio.html",
+      "style.css",
+      "two-walls-house.html"
+    ],
+    "adaptedFrom": "https://github.com/onwidget/astrowind",
+    "sourceArchive": "source.zip",
+    "designNotes": [
+      "Plotform adaptation of AstroWind's page structure and section widgets, not an unchanged upstream template.",
+      "Illustrative concept studies with Unsplash-sourced photography and original SVG plan drawings.",
+      "Working project type filter, photograph or drawing toggle on each project page, and a native accordion on the studio page."
+    ],
+    "adaptationLabel": "Adapted from AstroWind"
+  }
+]

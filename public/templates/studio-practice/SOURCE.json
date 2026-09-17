@@ -1,0 +1,107 @@
+{
+  "id": "studio-practice",
+  "name": "Lintel",
+  "kind": "Plotform-authored adaptation",
+  "collection": "studio",
+  "adaptedFrom": [
+    {
+      "url": "https://github.com/onwidget/astrowind",
+      "commit": "14e1a691f80548dcc36370847b1a02c0d0b12821",
+      "license": "MIT",
+      "reused": [
+        "Multi-page business-site information architecture (home, about, services, contact) recast as home, studio, projects and a mailto contact",
+        "Projects widget (image, tags, title, description, link) recast as the numbered project index",
+        "Steps and Timeline widgets (numbered sequence with a rule between items) recast as the four-step approach accordion",
+        "Content widget (split text and image, aspect-controlled crops) recast as the project brief and detail rows",
+        "Header and Footer navigation structure with a skip link and labelled nav landmarks"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "file": "assets/hall-light.jpg",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-6.jpg",
+      "source": "Dante theme demo photography, credited to Unsplash in the upstream README",
+      "license": "Unsplash license, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/window-room.jpg",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-1.jpg",
+      "source": "Dante theme demo photography, credited to Unsplash in the upstream README",
+      "license": "Unsplash license, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/light-lines.jpg",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-7.jpg",
+      "source": "Dante theme demo photography, credited to Unsplash in the upstream README",
+      "license": "Unsplash license, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/road-valley.jpg",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-11.jpg",
+      "source": "Dante theme demo photography, credited to Unsplash in the upstream README",
+      "license": "Unsplash license, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/ribbed-surface.jpg",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-14.jpg",
+      "source": "Dante theme demo photography, credited to Unsplash in the upstream README",
+      "license": "Unsplash license, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/fine-lines.jpg",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-8.jpg",
+      "source": "Dante theme demo photography, credited to Unsplash in the upstream README",
+      "license": "Unsplash license, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/white-corridor.jpg",
+      "origin": "public/templates/modern-astrowind/vendor-remote/2857e01362ad08f3.jpg",
+      "source": "https://images.unsplash.com/photo-1531973486364-5fa64260d75b (AstroWind demo, vendored with its original URL in vendor-remote/SOURCES.json)",
+      "license": "Unsplash license, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/stone-steps.jpg",
+      "origin": "public/templates/modern-astrowind/vendor-remote/abd83aebbc2067a3.jpg",
+      "source": "https://images.unsplash.com/photo-1502101872923-d48509bff386 (AstroWind demo, vendored with its original URL in vendor-remote/SOURCES.json)",
+      "license": "Unsplash license, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/green-tiles.jpg",
+      "origin": "public/templates/modern-astrowind/vendor-remote/a5efbbd9a6bfe565.jpg",
+      "source": "https://images.unsplash.com/photo-1620558138198-cfb9b4f3c294 (AstroWind demo, vendored with its original URL in vendor-remote/SOURCES.json)",
+      "license": "Unsplash license, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/plan-two-walls.svg",
+      "origin": "Authored for this template",
+      "source": "Original vector plan drawing by Plotform contributors, 2026-09-17",
+      "license": "MIT, with the adapted code"
+    },
+    {
+      "file": "assets/plan-reading-room.svg",
+      "origin": "Authored for this template",
+      "source": "Original vector plan drawing by Plotform contributors, 2026-09-17",
+      "license": "MIT, with the adapted code"
+    },
+    {
+      "file": "assets/plan-long-room.svg",
+      "origin": "Authored for this template",
+      "source": "Original vector plan drawing by Plotform contributors, 2026-09-17",
+      "license": "MIT, with the adapted code"
+    }
+  ],
+  "fonts": [
+    {
+      "family": "Newsreader",
+      "files": ["assets/newsreader-normal.woff2", "assets/newsreader-italic.woff2"],
+      "license": "SIL Open Font License 1.1, licenses/newsreader-OFL.txt"
+    },
+    {
+      "family": "Manrope",
+      "files": ["assets/manrope.woff2"],
+      "license": "SIL Open Font License 1.1, licenses/manrope-OFL.txt"
+    }
+  ],
+  "referenceDirection": "Image-led project index with numbered editorial sections, generous vertical pacing, a restrained serif and sans pairing, and an oversized closing wordmark. No reference site code, imagery, fonts or branding copied."
+}

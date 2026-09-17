@@ -1,6 +1,7 @@
 import studioEditorial from "./source-templates-studio-editorial.json" with { type: "json" };
 import studioAtelier from "./source-templates-studio-atelier.json" with { type: "json" };
 import studioPersonal from "./source-templates-studio-personal.json" with { type: "json" };
+import studioPractice from "./source-templates-studio-practice.json" with { type: "json" };
 import studioRetreat from "./source-templates-studio-retreat.json" with { type: "json" };
 import bootstrap from "./source-templates-bootstrap.json" with { type: "json" };
 import html5up from "./source-templates-html5up.json" with { type: "json" };
@@ -13,6 +14,7 @@ export const sourceTemplates = [
   ...studioEditorial,
   ...studioAtelier,
   ...studioPersonal,
+  ...studioPractice,
   ...studioRetreat,
   ...curated,
   ...react,

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Ground plan of Two Walls House">
+  <rect width="1200" height="800" fill="#f0ece4"/>
+  <g fill="none" stroke="#3d5265" stroke-width="1.5" stroke-linecap="round">
+    <!-- site boundary and street -->
+    <path d="M90 120 H1110" stroke-dasharray="10 8"/>
+    <path d="M90 700 H1110" stroke-dasharray="10 8"/>
+    <path d="M60 740 H1140" stroke-width="1"/>
+    <path d="M60 760 H1140" stroke-width="1"/>
+    <!-- garden walls continuing past the house -->
+    <path d="M1010 200 H1110 M1010 214 H1110 M1010 586 H1110 M1010 600 H1110"/>
+    <path d="M90 200 H180 M90 214 H180 M90 586 H180 M90 600 H180"/>
+    <!-- court hatch -->
+    <g stroke="#3d5265" stroke-width="1" opacity=".55">
+      <path d="M560 214 L560 214 M560 250 L596 214 M560 300 L646 214 M560 350 L696 214 M560 400 L746 214 M560 450 L760 250 M560 500 L760 300 M560 550 L760 350 M580 586 L760 406 M630 586 L760 456 M680 586 L760 506 M730 586 L760 556"/>
+    </g>
+    <!-- tree in the court -->
+    <circle cx="660" cy="400" r="46" stroke-dasharray="3 6"/>
+    <circle cx="660" cy="400" r="4" fill="#3d5265" stroke="none"/>
+    <!-- internal partitions -->
+    <path d="M300 214 V380 M300 440 V586" stroke-width="3"/>
+    <path d="M900 214 V330 M900 390 V586" stroke-width="3"/>
+    <!-- court glazing lines -->
+    <path d="M560 214 V586 M760 214 V586" stroke-width="1"/>
+    <path d="M566 214 V586 M754 214 V586" stroke-width="1" opacity=".5"/>
+    <!-- door swings -->
+    <path d="M300 380 A60 60 0 0 1 360 440"/>
+    <path d="M900 330 A60 60 0 0 0 840 390"/>
+    <path d="M230 586 A60 60 0 0 1 290 526" />
+    <path d="M230 586 V526" stroke-width="3"/>
+    <path d="M620 586 A60 60 0 0 0 560 526"/>
+    <!-- furniture: living -->
+    <rect x="340" y="250" width="180" height="60" rx="4"/>
+    <rect x="340" y="480" width="70" height="70" rx="4"/>
+    <rect x="430" y="480" width="70" height="70" rx="4"/>
+    <circle cx="470" cy="400" r="34"/>
+    <!-- furniture: kitchen wall run -->
+    <rect x="775" y="222" width="115" height="34"/>
+    <path d="M775 239 H890" stroke-width="1"/>
+    <rect x="800" y="300" width="70" height="140" rx="2"/>
+    <!-- furniture: bedroom -->
+    <rect x="915" y="410" width="90" height="150" rx="3"/>
+    <path d="M915 440 H1005" stroke-width="1"/>
+    <rect x="915" y="230" width="90" height="36"/>
+    <!-- furniture: entry -->
+    <rect x="200" y="230" width="80" height="26"/>
+    <!-- north arrow -->
+    <circle cx="1080" cy="60" r="22"/>
+    <path d="M1080 82 V38"/>
+    <path d="M1080 38 L1070 56 L1080 50 L1090 56 Z" fill="#3d5265" stroke="none"/>
+    <!-- scale bar -->
+    <path d="M120 660 H320"/>
+    <path d="M120 654 V666 M170 654 V666 M220 654 V666 M270 654 V666 M320 654 V666"/>
+  </g>
+  <!-- filled walls -->
+  <g fill="#1f1c18">
+    <rect x="180" y="200" width="830" height="14"/>
+    <rect x="180" y="586" width="830" height="14"/>
+    <rect x="180" y="200" width="14" height="400"/>
+    <rect x="996" y="200" width="14" height="400"/>
+    <rect x="120" y="660" width="50" height="6"/>
+    <rect x="220" y="660" width="50" height="6"/>
+  </g>
+</svg>
