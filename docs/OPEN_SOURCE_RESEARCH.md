@@ -31,7 +31,7 @@ Our assessment: the evaluated repositories solve different layers. None of the r
 
 The current optional generator uses a separately configured Ollama model via its local HTTP API. No existing user credentials are harvested or automatically used. Demo generation is deliberately identified as a fixed template and only honors the project name and comma-separated `Pages:` directive.
 
-## Implementation update — 2026-09-16
+## Implementation update, 2026-09-16
 
 The first product iteration now includes 12 section types, editable structured items, uploads, layout/tone/spacing variants, stable internal links, per-page metadata, section copying/moving, undo/redo, IndexedDB persistence and import. Whole-page and single-section model refinement use a review/apply step. Export includes a small Node contact backend; browser tests run the exported site and verify real inquiry storage. AI quality still needs evaluation with a connected model.
 

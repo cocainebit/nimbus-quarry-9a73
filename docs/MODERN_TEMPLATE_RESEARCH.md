@@ -1,4 +1,4 @@
-# Template source review — 17 September 2026
+# Template source review, 17 September 2026
 
 The user's actual benchmark is https://www.jackandjill.ai/, https://www.littleplains.com/, and https://romemichal.pl/: art direction, typography, distinctive composition, and deliberate motion. A modern framework or a recently updated dependency does not establish that design quality. Do not label the following research candidates as installed, production ready, or equal to those benchmarks without actual integration and visual acceptance.
 
@@ -50,7 +50,7 @@ The supplied reference screenshots were inspected locally. Jack & Jill pairs res
 
 One existing-source foundation was retained as a separate **motion** collection, not counted as a new complete business template:
 
-- **Kinetic Editorial** — [Codrops Kinetic Type Page Transition](https://github.com/codrops/KineticTypePageTransition), pinned `ebe926e2f1de42950c36ff8a678321155280c1af`. Original design year: **2021**, explicitly recorded. Its staggered image-led editorial stories and full-screen rotating type transition provide a genuinely different composition. This is a typography/motion foundation; it does not match the references wholesale or supply application functionality.
+- **Kinetic Editorial**: [Codrops Kinetic Type Page Transition](https://github.com/codrops/KineticTypePageTransition), pinned `ebe926e2f1de42950c36ff8a678321155280c1af`. Original design year: **2021**, explicitly recorded. Its staggered image-led editorial stories and full-screen rotating type transition provide a genuinely different composition. This is a typography/motion foundation; it does not match the references wholesale or supply application functionality.
 - Source: `vendor/templates/motion-kinetic-type`; static build: `public/templates/motion-kinetic-type`; manifest: `shared/source-templates-modern-other.json`. The public bundle includes full corresponding `template-source.zip`, MIT license, source pin, dependency notices and adaptation notes.
 - Changes: replaced Adobe Typekit with locally bundled OFL Inter and Playfair Display; keyboard activation, meaningful back-control label and focus restoration; transitions honor reduced-motion preference; actual original imagery and layout are retained.
 - **GSAP is not MIT.** Its [current Standard License](https://gsap.com/standard-license/) permits implementation in websites/apps but restricts competing visual animation builders. This foundation has fixed authored motion and content editing, not a visual animation editor. Future animation-authoring controls require a fresh dependency/license decision. Full fetched license text is included in the bundle.

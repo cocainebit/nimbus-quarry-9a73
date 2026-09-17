@@ -1,4 +1,4 @@
-# Plotform design benchmark — 17 September 2026
+# Plotform design benchmark, 17 September 2026
 
 The user's references set the acceptance bar for generated website designs. They are references, not source templates or permission to redistribute their branding, photography, fonts or code.
 

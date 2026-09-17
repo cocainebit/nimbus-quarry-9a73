@@ -26,4 +26,4 @@ Published widgets run through the existing member-scoped query/summary endpoints
 
 We use their theme data as inputs to the current renderer so the editor keeps its existing functional forms, records, relationships and workflows. No external theme service is called when editing or running an app. The imported data is pinned and generated offline; updates require an intentional re-import/review. See [source versions, licenses and adaptations](../vendor/README.md).
 
-These are adapted visual themes, not 81 separately authored application layouts. 32 overview structures are implemented. Upstream component-specific spacing/shadows and all upstream font families are not reproduced; fonts map to the local choices. Custom user colors can reduce contrast—the editor reports this but does not silently replace them.
+These are adapted visual themes, not 81 separately authored application layouts. 32 overview structures are implemented. Upstream component-specific spacing/shadows and all upstream font families are not reproduced; fonts map to the local choices. Custom user colors can reduce contrast; the editor reports this but does not silently replace them.

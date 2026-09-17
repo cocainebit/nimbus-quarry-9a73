@@ -2,6 +2,10 @@
 
 Updated 2026-09-16 (America/Montevideo).
 
+## 2026-09-17 re-baseline
+
+After the Codex session stopped on 2026-09-17 02:55, the tree was committed as-is and re-verified against the running dev server: 40 Node tests pass, `tsc -b` passes, and the full Chromium suite passed 27 of 29. The two failures were stale locators from the last-minute catalogue change (studio editions became the default tab) and were fixed: the typography spec now waits for the phone preview to resize before measuring, and the React template spec opens the contemporary tab before searching. `backend.spec.ts` failed once inside the full run and passed alone, so it is a suite-order flake rather than a product regression; it is still open. Running the browser suite rewrites the `docs/*.png` captures, which is expected.
+
 ## Automated checks
 
 - TypeScript and production Vite build pass. The main editor bundle remains large (~1 MB minified); production performance work remains.
@@ -35,7 +39,7 @@ The additional Chromium test passes against the live local backend: configure a 
 
 All 11 unit/API tests, the PostgreSQL integration test, all 7 browser tests, and the production build passed after these changes. Database/account runtime capabilities are delivered through Publish app; static ZIP export does not include them.
 
-## App-builder expansion — final integrated checks
+## App-builder expansion: final integrated checks
 
 Latest run: **19 unit/API tests, 8 backend integration/security/recovery tests, 9 Chromium browser tests, TypeScript and Vite production build all pass**. This supersedes counts in earlier milestone sections.
 
@@ -71,7 +75,7 @@ The existing catalogue browser regression also passes with the new gallery and e
 
 The product is now branded **Plotform**. Existing storage/account identifiers and the repository path stay compatible.
 
-32 unit/API tests and 13 PostgreSQL integration tests pass. The new responsive browser matrix passes all 32 production overview layouts at 1600, 1100, 768, 390 and 320px—160 layout/viewport combinations—with expected container grids, all content slots present, no overlapping slots and no page-level horizontal overflow. This matrix uses HTTP data fixtures; the separate published-app browser flow uses real PostgreSQL and verifies new-layout selection, account forms, record creation, relationships and preservation through theme changes. The production build passes (the existing editor bundle-size warning remains).
+32 unit/API tests and 13 PostgreSQL integration tests pass. The new responsive browser matrix passes all 32 production overview layouts at 1600, 1100, 768, 390 and 320px (160 layout/viewport combinations) with expected container grids, all content slots present, no overlapping slots and no page-level horizontal overflow. This matrix uses HTTP data fixtures; the separate published-app browser flow uses real PostgreSQL and verifies new-layout selection, account forms, record creation, relationships and preservation through theme changes. The production build passes (the existing editor bundle-size warning remains).
 
 See [responsive layout library](LAYOUT_LIBRARY.md), [layout picker](layout-library.png), and [journal arrangement](layout-journal.png).
 

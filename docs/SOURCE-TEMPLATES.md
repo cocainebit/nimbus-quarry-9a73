@@ -27,3 +27,18 @@ Rebuild catalogue images from the actual vendored websites with `node scripts/ca
 ## Framework templates
 
 New framework designs include pinned corresponding source archives. Static HTML edits apply to the built export; the included original framework source remains the upstream starting point, not an AST rewrite of every visual edit. React content edits are reapplied after hydration so client initialization does not silently restore the demo text. External services and demonstration claims remain upstream examples, not activated functionality or user business facts.
+
+## Studio editions
+
+Studio editions are the first tab of **Create a website** and the collection the user's design references are measured against (see [the benchmark](DESIGN_REFERENCES.md)). Each edition is a complete, multi-page website authored for Plotform on top of a licensed open-source foundation. Unlike the contemporary and classic collections, an edition is not an unchanged upstream template: its manifest carries `adaptationLabel` and `adaptedFrom` with a pinned commit, its folder keeps the upstream notice under `licenses/` and a `SOURCE.json` with per-image provenance, and the complete adapted source ships as a ZIP next to the built pages.
+
+Rules every edition follows:
+
+- Foundation licensed for redistribution. New editions use MIT or equally permissive upstreams; Atelier is the one GPL-3.0 edition (from Dante) and the catalogue says so in the dialog, because a website published from it must be distributed with its source and license.
+- Imagery only from documented sources (upstream repositories whose READMEs credit Unsplash, or CSS and SVG compositions). No generated images, no reference-site assets.
+- Fonts bundled locally with their OFL files. No remote scripts, fonts, trackers or forms; contact is a `mailto:` link with an example address.
+- Illustrative content only: no metrics, prices, awards, client names or testimonials presented as facts, and a visible demo note that says the studies are illustrative.
+- No em dashes in copy, and no monospace as a UI font.
+- Every visible text, link and image is a leaf element the source editor can select, and each edition has a browser spec covering overflow at 1440/768/390/320, its interaction, its navigation and its source archive.
+
+Editions as of 2026-09-17: Commonplace (product site, adapted from Launch UI), Atelier (design practice, adapted from Dante, GPL-3.0) and Independent (portfolio, adapted from Dillion Portfolio and Launch UI). Manifests live in `shared/source-templates-studio-*.json`; the loader in `shared/source-templates.mjs` lists studio editions first.
