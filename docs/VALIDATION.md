@@ -6,6 +6,8 @@ Updated 2026-09-16 (America/Montevideo).
 
 After the Codex session stopped on 2026-09-17 02:55, the tree was committed as-is and re-verified against the running dev server: 40 Node tests pass, `tsc -b` passes, and the full Chromium suite passed 27 of 29. The two failures were stale locators from the last-minute catalogue change (studio editions became the default tab) and were fixed: the typography spec now waits for the phone preview to resize before measuring, and the React template spec opens the contemporary tab before searching. `backend.spec.ts` failed once inside the full run and passed alone, so it is a suite-order flake rather than a product regression; it is still open. Running the browser suite rewrites the `docs/*.png` captures, which is expected.
 
+Later the same day, with six studio editions registered, the full Chromium suite is 35 of 35. One run showed five account-flow failures with "The server did not respond (500)": the API child under `node --watch` had exited and the watcher does not restart it until a file changes. A timestamp-only `touch server/index.mjs` brought it back and all five passed.
+
 ## Automated checks
 
 - TypeScript and production Vite build pass. The main editor bundle remains large (~1 MB minified); production performance work remains.

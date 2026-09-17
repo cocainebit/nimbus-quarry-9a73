@@ -26,6 +26,8 @@ write it.
 :1025/:8025. Playwright reuses :5173. Do not kill or restart them by pattern; kill
 by PID only after checking what the PID is.
 
+**If account flows fail with "The server did not respond (500)", check :3001 first.** `node --watch` does not restart a crashed server child until a file changes; `touch server/index.mjs` restarts it without editing anything. Editing `shared/*.mjs` or `server/*.mjs` while browser specs run restarts the API mid-test and fails them.
+
 **`.env` holds real local secrets** (DB password, auth secret, maybe provider keys).
 It is gitignored. Never print it or commit it.
 
