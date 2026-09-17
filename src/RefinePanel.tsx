@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Page, Project, Section } from "./model";
 import { sectionSchema } from "../shared/schema.mjs";
+import { readJson } from "./read-json";
 export default function RefinePanel({
   project,
   page,
@@ -57,7 +58,7 @@ export default function RefinePanel({
           instruction,
         }),
       });
-      const result = await response.json();
+      const result = await readJson(response);
       if (!response.ok) throw new Error(result.error);
       setDraft(
         result.sections.map((value: unknown) => {

@@ -1,4 +1,5 @@
 import { normalizeProject, type Project } from "./model";
+import { readJson } from "./read-json";
 type Snapshot = { document: Project; revision: number };
 const snapshots = new Map<string, Snapshot>();
 let queue: Promise<unknown> = Promise.resolve();
@@ -32,7 +33,7 @@ async function request<T>(
     },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
-  const result = await response.json();
+  const result = await readJson(response);
   guard(identity, version);
   if (!response.ok)
     throw Error(

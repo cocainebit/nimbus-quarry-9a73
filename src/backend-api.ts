@@ -1,3 +1,4 @@
+import { readJson } from "./read-json";
 export async function api<T = any>(
   path: string,
   body?: unknown,
@@ -9,7 +10,7 @@ export async function api<T = any>(
     headers: body === undefined ? {} : { "Content-Type": "application/json" },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
-  const data = await response.json();
+  const data = await readJson(response);
   if (!response.ok)
     throw new Error(
       data.error?.message || data.error || data.message || "Request failed.",

@@ -28,6 +28,7 @@ import {
   websiteStarters,
   inferWebsiteStarter,
 } from "../shared/website-starters.mjs";
+import { readJson } from "./read-json";
 type ProjectType = "website" | "portal" | "crm" | "tracker";
 function inferProjectType(value: string): ProjectType {
   const text = value.slice(0, 6000).toLowerCase();
@@ -211,7 +212,7 @@ export default function App() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, brief }),
         });
-        const result = await r.json();
+        const result = await readJson(r);
         if (!r.ok) throw new Error(result.error);
         p = result;
       }
