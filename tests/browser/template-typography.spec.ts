@@ -54,11 +54,15 @@ test("source typography uses real local fonts, scales for phone, exports assets 
       .evaluate(() => document.fonts.check('16px "Plotform Inter"')),
   ).toBe(true);
   await page.getByLabel("Preview width").selectOption("mobile");
-  const size = await frame
-    .locator("h1")
-    .evaluate((e) => parseFloat(getComputedStyle(e).fontSize));
-  expect(size).toBeGreaterThanOrEqual(24);
-  expect(size).toBeLessThan(40);
+  // The iframe viewport resizes on the next frame, not synchronously.
+  const phoneSize = () =>
+    frame
+      .locator("h1")
+      .evaluate((e) =>
+        innerWidth <= 390 ? parseFloat(getComputedStyle(e).fontSize) : NaN,
+      );
+  await expect.poll(phoneSize).toBeGreaterThanOrEqual(24);
+  expect(await phoneSize()).toBeLessThan(40);
   const downloading = page.waitForEvent("download");
   await page.getByRole("button", { name: "Export original website" }).click();
   const download = await downloading;
