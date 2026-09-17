@@ -82,10 +82,12 @@ export default function AccountForm({
             Continue with your account
           </button>
           <small>
-            The same sign-in as your other products: a wallet or an email
-            code. Credits are shared.
+            The same sign-in as your other products: a wallet or an email code.
+            Paid actions are paid for one at a time, on the same payment sheet.
           </small>
-          <span className="shared-account-divider">or use a Plotform password</span>
+          <span className="shared-account-divider">
+            or use a Plotform password
+          </span>
         </div>
       )}
       <h3>

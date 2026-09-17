@@ -22,14 +22,13 @@ import SourceTemplateCatalogue from "./SourceTemplateCatalogue";
 import { sourceTemplates } from "../shared/source-templates.mjs";
 import { useProjects } from "./storage";
 import AccountForm from "./AccountForm";
-import CreditsChip from "./CreditsChip";
+import AccountChip from "./AccountChip";
 import AppCatalogue from "./AppCatalogue";
 import { api } from "./backend-api";
 import {
   websiteStarters,
   inferWebsiteStarter,
 } from "../shared/website-starters.mjs";
-import { readJson } from "./read-json";
 type ProjectType = "website" | "portal" | "crm" | "tracker";
 function inferProjectType(value: string): ProjectType {
   const text = value.slice(0, 6000).toLowerCase();
@@ -216,16 +215,9 @@ export default function App() {
       let p: Project;
       if (mode === "demo")
         p = demoProject(name.trim(), brief.trim(), websiteStarter);
-      else {
-        const r = await fetch("/api/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, brief }),
-        });
-        const result = await readJson(r);
-        if (!r.ok) throw new Error(result.error);
-        p = result;
-      }
+      // Paid actions ask for their payment through api(), which opens the
+      // payment sheet and runs the request again once the charge is paid.
+      else p = await api<Project>("/api/generate", { name, brief });
       p = normalizeProject(p);
       setProjects((all) => [p, ...all]);
       setActive(p.id);
@@ -357,7 +349,7 @@ export default function App() {
             {view === "projects" ? "All projects" : "Starter templates"}
           </span>
           <span className="dash-top-right">
-            {workspace === "server" && <CreditsChip userId={user?.id} />}
+            {workspace === "server" && <AccountChip userId={user?.id} />}
             <span className="subtle">
               <span className="status-dot" />
               {connected

@@ -1761,7 +1761,7 @@ small {
   align-items: center;
   gap: 16px;
 }
-.credits-chip {
+.account-chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1774,14 +1774,68 @@ small {
   font-size: 11px;
   text-decoration: none;
   white-space: nowrap;
+  max-width: 280px;
 }
-.credits-chip strong {
+.account-chip strong {
   color: #161616;
   font-weight: 600;
-  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.credits-chip:hover {
+.account-chip:hover {
   border-color: #b7b3ac;
+}
+.payment-modal {
+  width: 460px;
+}
+.payment-modal .modal-close {
+  right: 20px;
+  top: 20px;
+}
+.payment-lines {
+  display: grid;
+  gap: 1px;
+  margin: 0 0 18px;
+  border: 1px solid #e5e3de;
+  border-radius: 10px;
+  background: #e5e3de;
+  overflow: hidden;
+}
+.payment-lines > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 13px 16px;
+  background: #fff;
+}
+.payment-lines dt {
+  color: #8b8379;
+  font-size: 11px;
+}
+.payment-lines dd {
+  margin: 0;
+  font-size: 13px;
+  color: #2b2823;
+  text-align: right;
+}
+.payment-lines dd strong {
+  font-weight: 600;
+  font-size: 15px;
+}
+.payment-state {
+  color: #5d5a54;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+.payment-state-warn {
+  color: #8a5326;
+}
+.payment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .shared-account {
   display: grid;

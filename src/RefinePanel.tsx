@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Page, Project, Section } from "./model";
 import { sectionSchema } from "../shared/schema.mjs";
-import { readJson } from "./read-json";
+import { api } from "./backend-api";
 export default function RefinePanel({
   project,
   page,
@@ -46,20 +46,16 @@ export default function RefinePanel({
           })),
         })),
       };
-      const response = await fetch("/api/refine", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: project.name,
-          brief: project.brief,
-          pages: project.pages.map((p) => ({ id: p.id, name: p.name })),
-          page: contextPage,
-          sectionId: section?.id,
-          instruction,
-        }),
+      // api() carries this request's payment: when refining is priced, it opens
+      // the payment sheet and runs the same request again once it is paid.
+      const result = await api<{ sections: unknown[] }>("/api/refine", {
+        name: project.name,
+        brief: project.brief,
+        pages: project.pages.map((p) => ({ id: p.id, name: p.name })),
+        page: contextPage,
+        sectionId: section?.id,
+        instruction,
       });
-      const result = await readJson(response);
-      if (!response.ok) throw new Error(result.error);
       setDraft(
         result.sections.map((value: unknown) => {
           const s = sectionSchema.parse(value);

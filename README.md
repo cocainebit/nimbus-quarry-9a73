@@ -58,6 +58,10 @@ The integration is tested with controlled model responses, but real model qualit
 
 Open **App backend**, sign in as the owner, save the project, create typed collections and publish. The published app has a **Data & account** screen where members can register and manage their own persistent records. Contact messages are stored in PostgreSQL and visible to the owner. See [setup, permissions, API and limitations](docs/APP_BACKENDS.md). The service runs locally; cloud hosting is not deployed yet.
 
+## Shared account and paying for an action
+
+With the four `PLATFORM_*` settings in `.env`, **Continue with your account** signs in with the account used across the other products, and the workspace header names that account. There is no balance and nothing is stored up: publishing, website generation, section development, app design and backend drafts are each paid for on their own. When one of them is priced, Plotform answers the request with the charge for it, the payment sheet opens in its own window, and the action runs by itself once that charge is paid. Paying again for the same publish or the same retried request is not possible, and an action whose price is not set is free, exactly as it is without the shared account. Prices belong to that service; Plotform never sets one.
+
 ## Export and run the actual website
 
 **Export → Download website (.zip)** produces:

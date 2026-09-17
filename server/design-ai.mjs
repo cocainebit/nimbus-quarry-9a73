@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { SKUS } from "./platform-billing.mjs";
+import { SKUS, requestKey, subjects } from "./platform-billing.mjs";
 import { z } from "zod";
 import { layoutIds } from "../shared/app-layouts.mjs";
 import { appSchema, projectSchema } from "../shared/schema.mjs";
@@ -67,7 +67,13 @@ export function mountDesignAI(app, { pool, owner, provider, billing }) {
       throw fail(503, "Configure an AI provider before generating a design.");
     if (pending.has(saved.owner_id))
       throw fail(429, "A design generation is already running.");
-    await billing?.ensureCanPay(saved.owner_id, SKUS.designApp);
+    // Paid before the model runs. The client's request id keys the payment, so
+    // retrying the same request continues on the payment already made.
+    await billing?.requirePaid(saved.owner_id, {
+      sku: SKUS.designApp,
+      subject: subjects.action("design-app", saved.id, requestKey(req)),
+      description: "Develop an app design",
+    });
     pending.add(saved.owner_id);
     try {
       const { rows } = await pool.query(
@@ -98,8 +104,6 @@ export function mountDesignAI(app, { pool, owner, provider, billing }) {
           "The model returned an invalid design. Try a more specific request.",
         );
       }
-      // Charged only after a valid design comes back.
-      await billing?.charge(saved.owner_id, SKUS.designApp);
       res.json({ ...plan, baseFingerprint: designFingerprint(project) });
     } finally {
       pending.delete(saved.owner_id);

@@ -3,7 +3,7 @@ import { mountPlatform, platformErrors } from "./platform.mjs";
 import { createProvider } from "./providers.mjs";
 import { randomUUID } from "node:crypto";
 import { fromNodeHeaders } from "better-auth/node";
-import { SKUS } from "./platform-billing.mjs";
+import { SKUS, requestKey, subjects } from "./platform-billing.mjs";
 import {
   briefSchema,
   generatedSchema,
@@ -37,17 +37,22 @@ export function createApp(options = {}) {
       );
     return parsed.data;
   }
-  // With the shared account connected, a priced AI action needs a signed-in owner
-  // who can pay. Unpriced actions stay open, as before.
-  async function billedOwner(req, sku) {
-    if (!options.billing) return null;
-    const session = await options.auth.studio.api.getSession({
+  // A priced AI action is paid for before the model runs, keyed by the request id
+  // the client sends, so a retry of the same request continues on the payment
+  // already made. An unpriced action is free and never reaches the platform.
+  async function requirePayment(req, sku, action, description) {
+    if (!options.billing) return;
+    const session = await options.auth?.studio.api.getSession({
       headers: fromNodeHeaders(req.headers),
     });
-    await options.billing.ensureCanPay(session?.user.id ?? null, sku);
-    return session?.user.id ?? null;
+    const ownerId = session?.user.id ?? null;
+    await options.billing.requirePaid(ownerId, {
+      sku,
+      subject: subjects.action(action, ownerId ?? "anonymous", requestKey(req)),
+      description,
+    });
   }
-  function route(path, schema, sku, handler) {
+  function route(path, schema, { sku, action, description }, handler) {
     app.post(path, async (req, res, next) => {
       const input = schema.safeParse(req.body);
       if (!input.success)
@@ -64,21 +69,14 @@ export function createApp(options = {}) {
         return res.status(429).json({
           error: "A generation is already running. Try again shortly.",
         });
-      let ownerId;
       try {
-        ownerId = await billedOwner(req, sku);
+        await requirePayment(req, sku, action, description);
       } catch (error) {
         return next(error);
       }
       busy = true;
       try {
         await handler(input.data, res);
-        // Charged only after a successful generation. A race that empties the
-        // balance meanwhile is logged, not billed twice or retried.
-        if (ownerId && res.statusCode < 400)
-          await options.billing
-            .charge(ownerId, sku)
-            .catch((error) => console.warn("AI charge not applied:", error.message));
       } catch (error) {
         res.status(502).json({
           error:
@@ -95,64 +93,82 @@ export function createApp(options = {}) {
       }
     });
   }
-  route("/api/generate", briefSchema, SKUS.generateSite, async (input, res) => {
-    const result = await generate(
-      `${contract} Return {pages:[{name,slug,seoTitle,description,sections:[]}]} with 1-8 pages and 1-20 sections per page. Give each page a distinct purpose and a valid URL slug. Populate useful structured items where relevant. Contact buttons can target #site-contact.`,
-      input,
-      generatedSchema,
-    );
-    const project = projectSchema.parse({
-      version: 2,
-      id: randomUUID(),
-      name: input.name,
-      brief: input.brief,
-      updated: new Date().toISOString(),
-      source: "ai",
-      theme: {
-        accent: "#bade89",
-        background: "#f6f5ef",
-        font: "sans-serif",
-        radius: 8,
-      },
-      pages: result.pages.map((p, i) => ({
-        ...p,
-        id: randomUUID(),
-        position: { x: i === 0 ? 380 : (i - 1) * 380, y: i === 0 ? 0 : 550 },
-        sections: p.sections.map((s) => ({ ...s, id: randomUUID() })),
-      })),
-    });
-    res.json(project);
-  });
-  route("/api/refine", refinementInput, SKUS.refineSection, async (input, res) => {
-    const original = input.sectionId
-      ? input.page.sections.find((s) => s.id === input.sectionId)
-      : null;
-    if (input.sectionId && !original)
-      return res
-        .status(400)
-        .json({ error: "The selected section no longer exists." });
-    const result = await generate(
-      `${contract} Return {sections:[...]} only. ${original ? "Revise ONLY the selected section. Return exactly one section, preserving its id and kind unless the instruction explicitly asks for a different component." : "Revise the selected page. Preserve IDs for existing sections; omit ids for new sections."} Follow the requested change. Preserve unmentioned content and assets. Uploaded images are omitted from the request and restored locally.`,
-      { ...input, selectedSection: original },
-      refinementOutput,
-    );
-    if (original && result.sections.length !== 1)
-      throw new Error(
-        "The model changed more than the selected section. Try again.",
+  route(
+    "/api/generate",
+    briefSchema,
+    {
+      sku: SKUS.generateSite,
+      action: "generate-site",
+      description: "Generate a website",
+    },
+    async (input, res) => {
+      const result = await generate(
+        `${contract} Return {pages:[{name,slug,seoTitle,description,sections:[]}]} with 1-8 pages and 1-20 sections per page. Give each page a distinct purpose and a valid URL slug. Populate useful structured items where relevant. Contact buttons can target #site-contact.`,
+        input,
+        generatedSchema,
       );
-    const used = new Set();
-    const ids = new Set(input.page.sections.map((s) => s.id));
-    const sections = result.sections.map((s) => {
-      const id = original
-        ? original.id
-        : s.id && ids.has(s.id) && !used.has(s.id)
-          ? s.id
-          : randomUUID();
-      used.add(id);
-      return { ...s, id };
-    });
-    res.json({ sections });
-  });
+      const project = projectSchema.parse({
+        version: 2,
+        id: randomUUID(),
+        name: input.name,
+        brief: input.brief,
+        updated: new Date().toISOString(),
+        source: "ai",
+        theme: {
+          accent: "#bade89",
+          background: "#f6f5ef",
+          font: "sans-serif",
+          radius: 8,
+        },
+        pages: result.pages.map((p, i) => ({
+          ...p,
+          id: randomUUID(),
+          position: { x: i === 0 ? 380 : (i - 1) * 380, y: i === 0 ? 0 : 550 },
+          sections: p.sections.map((s) => ({ ...s, id: randomUUID() })),
+        })),
+      });
+      res.json(project);
+    },
+  );
+  route(
+    "/api/refine",
+    refinementInput,
+    {
+      sku: SKUS.refineSection,
+      action: "refine",
+      description: "Refine a section",
+    },
+    async (input, res) => {
+      const original = input.sectionId
+        ? input.page.sections.find((s) => s.id === input.sectionId)
+        : null;
+      if (input.sectionId && !original)
+        return res
+          .status(400)
+          .json({ error: "The selected section no longer exists." });
+      const result = await generate(
+        `${contract} Return {sections:[...]} only. ${original ? "Revise ONLY the selected section. Return exactly one section, preserving its id and kind unless the instruction explicitly asks for a different component." : "Revise the selected page. Preserve IDs for existing sections; omit ids for new sections."} Follow the requested change. Preserve unmentioned content and assets. Uploaded images are omitted from the request and restored locally.`,
+        { ...input, selectedSection: original },
+        refinementOutput,
+      );
+      if (original && result.sections.length !== 1)
+        throw new Error(
+          "The model changed more than the selected section. Try again.",
+        );
+      const used = new Set();
+      const ids = new Set(input.page.sections.map((s) => s.id));
+      const sections = result.sections.map((s) => {
+        const id = original
+          ? original.id
+          : s.id && ids.has(s.id) && !used.has(s.id)
+            ? s.id
+            : randomUUID();
+        used.add(id);
+        return { ...s, id };
+      });
+      res.json({ sections });
+    },
+  );
   app.use(platformErrors);
   return app;
 }

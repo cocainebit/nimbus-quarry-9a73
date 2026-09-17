@@ -26,7 +26,12 @@ import {
 import { mountBackendAI } from "./backend-ai.mjs";
 import { mountAppCatalogue } from "./app-catalog.mjs";
 import { mountProjectClone } from "./project-clone.mjs";
-import { BillingError, SKUS } from "./platform-billing.mjs";
+import {
+  BillingError,
+  PaymentRequiredError,
+  SKUS,
+  subjects,
+} from "./platform-billing.mjs";
 export function mountPlatform(
   app,
   { pool, auth, origin, provider, secret, billing },
@@ -107,11 +112,20 @@ export function mountPlatform(
   app.get("/api/backend-status", (_req, res) =>
     res.json({ enabled: true, sharedAccount: Boolean(billing) }),
   );
-  // The signed-in owner's shared credit balance, read from the platform.
-  app.get("/api/credits", async (req, res) => {
+  // Whether this owner signed in with the shared account, for the header. There
+  // is no balance: every paid action is paid for on its own.
+  app.get("/api/shared-account", async (req, res) => {
     const user = await session(req);
     if (!billing) return res.json({ enabled: false });
-    res.json({ enabled: true, ...(await billing.summary(user.id)) });
+    res.json({ enabled: true, ...(await billing.account(user.id)) });
+  });
+  // The browser polls one charge while the platform's payment sheet is open.
+  app.get("/api/charges/:chargeId", async (req, res) => {
+    await session(req);
+    if (!billing) throw fail(404, "Payments are not connected.");
+    const charge = await billing.chargeStatus(req.params.chargeId);
+    if (!charge) throw fail(404, "That payment no longer exists.");
+    res.json(charge);
   });
   app.get("/api/projects", async (req, res) => {
     const user = await session(req);
@@ -329,17 +343,19 @@ export function mountPlatform(
         revision: z.number().int().positive(),
       })
       .parse(req.body);
-    await billing?.ensureCanPay(project.owner_id, SKUS.publish);
+    // Paid per published revision: publishing the same revision again finds the
+    // payment already made for it and is not charged twice.
+    await billing?.requirePaid(project.owner_id, {
+      sku: SKUS.publish,
+      subject: subjects.publish(project.id, revision),
+      description: `Publish ${slug}`,
+    });
     const { rows } = await pool.query(
       `INSERT INTO publications(project_id,slug,document,revision) SELECT id,$2,document,revision FROM projects WHERE id=$1 AND revision=$3 ON CONFLICT(project_id) DO UPDATE SET document=EXCLUDED.document,revision=EXCLUDED.revision,slug=EXCLUDED.slug,published_at=now() RETURNING slug,revision`,
       [req.params.id, slug, revision],
     );
     if (!rows[0])
       throw fail(409, "Save the current project before publishing.");
-    // Charged per published revision, so publishing the same revision again is free.
-    await billing?.charge(project.owner_id, SKUS.publish, {
-      idempotencyKey: `publish:${project.id}:${revision}`,
-    });
     res.json({ ...rows[0], url: `/sites/${slug}/` });
   });
   app.delete("/api/projects/:id/publish", async (req, res) => {
@@ -574,8 +590,17 @@ export function platformErrors(err, _req, res, _next) {
       status < 500 || err instanceof BillingError
         ? err.message
         : "Backend request failed. Please try again.",
-    ...(err instanceof BillingError && err.code
-      ? { code: err.code, accountUrl: err.accountUrl }
+    // A paid action answers with the charge, so the browser can open its payment
+    // sheet and retry once the charge is paid.
+    ...(err instanceof PaymentRequiredError
+      ? {
+          code: err.code,
+          payUrl: err.payUrl,
+          chargeId: err.chargeId,
+          amountMicro: err.amountMicro,
+          asset: err.asset,
+          description: err.description,
+        }
       : {}),
   });
 }

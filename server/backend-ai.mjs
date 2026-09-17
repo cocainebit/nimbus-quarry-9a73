@@ -1,4 +1,4 @@
-import { SKUS } from "./platform-billing.mjs";
+import { SKUS, requestKey, subjects } from "./platform-billing.mjs";
 import {
   createHash,
   createHmac,
@@ -184,7 +184,10 @@ export async function applyBackendPlan(
     db.release();
   }
 }
-export function mountBackendAI(app, { pool, owner, provider, secret, billing }) {
+export function mountBackendAI(
+  app,
+  { pool, owner, provider, secret, billing },
+) {
   const signer = createDraftSigner(secret);
   const active = new Set();
   app.post("/api/projects/:id/backend-ai/preview", async (req, res) => {
@@ -200,7 +203,13 @@ export function mountBackendAI(app, { pool, owner, provider, secret, billing }) 
       );
     if (active.has(project.owner_id))
       throw fail(429, "A backend generation is already running.");
-    await billing?.ensureCanPay(project.owner_id, SKUS.backendDraft);
+    // Paid before the model runs, keyed by the client's request id so a retry
+    // continues on the payment already made.
+    await billing?.requirePaid(project.owner_id, {
+      sku: SKUS.backendDraft,
+      subject: subjects.action("backend-draft", project.id, requestKey(req)),
+      description: "Draft an app backend",
+    });
     active.add(project.owner_id);
     try {
       const { rows } = await pool.query(
@@ -235,8 +244,6 @@ export function mountBackendAI(app, { pool, owner, provider, secret, billing }) 
         rows.map((c) => c.id),
       );
       const fingerprint = schemaFingerprint(rows);
-      // Charged only after a valid draft comes back.
-      await billing?.charge(project.owner_id, SKUS.backendDraft);
       res.json({
         plan,
         limits: backendLimits,
