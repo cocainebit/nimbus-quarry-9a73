@@ -19,6 +19,11 @@
   align-items: center;
   gap: 12px;
   flex: 1;
+  white-space: nowrap;
+}
+.native-editor header label input {
+  flex: 1;
+  min-width: 0;
 }
 .native-editor button,
 .native-editor select,

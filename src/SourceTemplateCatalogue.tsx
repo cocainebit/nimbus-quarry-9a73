@@ -250,7 +250,9 @@ export default function SourceTemplateCatalogue({
                   />
                 </label>
                 <small>
-                  {selected.adaptationLabel || "Original design preserved."}{" "}
+                  {selected.adaptationLabel
+                    ? selected.adaptationLabel.replace(/\.?$/, ".")
+                    : "Original design preserved."}{" "}
                   Required credits included.
                   {/^GPL/i.test(selected.license) &&
                     " GPL-3.0: a website published from this design must be distributed with its source and this license."}
