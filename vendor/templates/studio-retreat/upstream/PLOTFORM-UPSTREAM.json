@@ -1,0 +1,9 @@
+{
+  "repo": "arthelokyo/astrowind",
+  "formerRepo": "onwidget/astrowind",
+  "commit": "14e1a691f80548dcc36370847b1a02c0d0b12821",
+  "sourceUrl": "https://github.com/arthelokyo/astrowind/tree/14e1a691f80548dcc36370847b1a02c0d0b12821",
+  "license": "MIT",
+  "archive": "astrowind-14e1a691-source.zip",
+  "note": "Same pinned source as vendor/templates/modern-astrowind; archived here so the studio-retreat adaptation carries its own upstream copy."
+}

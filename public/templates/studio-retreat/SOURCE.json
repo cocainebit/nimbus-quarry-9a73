@@ -1,0 +1,105 @@
+{
+  "id": "studio-retreat",
+  "name": "Strand",
+  "kind": "Plotform-authored adaptation",
+  "adaptedFrom": {
+    "name": "AstroWind",
+    "url": "https://github.com/arthelokyo/astrowind",
+    "formerUrl": "https://github.com/onwidget/astrowind",
+    "commit": "14e1a691f80548dcc36370847b1a02c0d0b12821",
+    "license": "MIT",
+    "licenseFile": "licenses/astrowind-MIT.md",
+    "upstreamArchive": "vendor/templates/studio-retreat/upstream/astrowind-14e1a691-source.zip",
+    "reused": [
+      "Multi-page business-site information architecture (home, three content pages, contact by email)",
+      "Centred header with navigation links and one action, collapsing to a menu on small screens",
+      "Alternating text-and-image content rows (the Content widget)",
+      "Native details-based FAQ accordion with one item open at a time (the FAQs widget)",
+      "Footer with a primary line, link row and secondary note",
+      "Three Unsplash photographs that the upstream demo already vendored"
+    ]
+  },
+  "images": [
+    {
+      "file": "assets/season-spring.jpg",
+      "subject": "Wind turbine standing in sea fog",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-12.jpg",
+      "upstream": "https://github.com/JustGoodUI/dante-astro-theme (README: images for demo content from Unsplash)",
+      "license": "Unsplash License, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/season-summer.jpg",
+      "subject": "Surf meeting a dark sand shore, from above",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-3.jpg",
+      "upstream": "https://github.com/JustGoodUI/dante-astro-theme (README: images for demo content from Unsplash)",
+      "license": "Unsplash License, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/season-autumn.jpg",
+      "subject": "Empty road through an open valley under cloud",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-11.jpg",
+      "upstream": "https://github.com/JustGoodUI/dante-astro-theme (README: images for demo content from Unsplash)",
+      "license": "Unsplash License, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/season-winter.jpg",
+      "subject": "Road curving between snow-covered pines, from above",
+      "origin": "public/templates/modern-astrowind/vendor-remote/d2ec1aae3b279a82.jpg, resized to 1800px wide",
+      "sourceUrl": "https://images.unsplash.com/photo-1710170601257-242514895755",
+      "upstream": "https://github.com/arthelokyo/astrowind demo content",
+      "license": "Unsplash License, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/evening-window.jpg",
+      "subject": "Figure at a bright window in a dark room",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-1.jpg",
+      "upstream": "https://github.com/JustGoodUI/dante-astro-theme (README: images for demo content from Unsplash)",
+      "license": "Unsplash License, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/weather-spray.jpg",
+      "subject": "Sea spray in low light over a dark swell",
+      "origin": "vendor/templates/modern-dante/src/assets/images/post-13.jpg",
+      "upstream": "https://github.com/JustGoodUI/dante-astro-theme (README: images for demo content from Unsplash)",
+      "license": "Unsplash License, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/kitchen-eggs.jpg",
+      "subject": "Four brown eggs balanced in a column",
+      "origin": "public/templates/modern-astrowind/vendor-remote/805dcd1c43939ebf.jpg",
+      "sourceUrl": "https://images.unsplash.com/photo-1536816579748-4ecb3f03d72a",
+      "upstream": "https://github.com/arthelokyo/astrowind demo content",
+      "license": "Unsplash License, https://unsplash.com/license"
+    },
+    {
+      "file": "assets/journal-notebook.jpg",
+      "subject": "Open notebook with a pen and a pressed flower",
+      "origin": "public/templates/modern-astrowind/vendor-remote/6cf6b582938c3bb7.jpg",
+      "sourceUrl": "https://images.unsplash.com/photo-1616674282942-2835e62d612e",
+      "upstream": "https://github.com/arthelokyo/astrowind demo content",
+      "license": "Unsplash License, https://unsplash.com/license"
+    }
+  ],
+  "artwork": [
+    {
+      "file": "stay.html (inline SVG)",
+      "subject": "Three sketch floor plans, drawn for this edition",
+      "license": "MIT, Plotform contributors"
+    }
+  ],
+  "fonts": [
+    {
+      "family": "Playfair Display",
+      "files": ["assets/fonts/playfair-display-normal.woff2", "assets/fonts/playfair-display-italic.woff2"],
+      "source": "@fontsource-variable/playfair-display",
+      "license": "SIL OFL 1.1, licenses/playfair-display-OFL.txt"
+    },
+    {
+      "family": "DM Sans",
+      "files": ["assets/fonts/dm-sans-normal.woff2", "assets/fonts/dm-sans-italic.woff2"],
+      "source": "@fontsource-variable/dm-sans",
+      "license": "SIL OFL 1.1, licenses/dm-sans-OFL.txt"
+    }
+  ],
+  "referenceDirection": "Image-led hospitality composition: a full-bleed photograph, an inset bone panel with rounded corners, a centred floating navigation, a calligraphic serif headline with a clean sans, and a deep navy accent. No reference-site code, imagery, fonts or copy is included."
+}

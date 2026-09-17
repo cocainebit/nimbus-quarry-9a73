@@ -1,0 +1,58 @@
+[
+  {
+    "id": "studio-retreat",
+    "name": "Strand",
+    "category": "Hospitality",
+    "collection": "studio",
+    "framework": "HTML / CSS / JavaScript",
+    "description": "A Plotform hospitality adaptation: a full-bleed photograph under an inset bone panel, a calligraphic serif, a season switcher, rooms and a menu described in words.",
+    "sourceUrl": "https://github.com/arthelokyo/astrowind",
+    "license": "MIT + OFL fonts + Unsplash photographs",
+    "entry": "index.html",
+    "pages": [
+      "index.html",
+      "stay.html",
+      "table.html",
+      "surroundings.html",
+      "credits.html"
+    ],
+    "files": [
+      "LICENSE",
+      "SOURCE.json",
+      "VENDOR-NOTES.md",
+      "assets/evening-window.jpg",
+      "assets/fonts/dm-sans-italic.woff2",
+      "assets/fonts/dm-sans-normal.woff2",
+      "assets/fonts/playfair-display-italic.woff2",
+      "assets/fonts/playfair-display-normal.woff2",
+      "assets/journal-notebook.jpg",
+      "assets/kitchen-eggs.jpg",
+      "assets/season-autumn.jpg",
+      "assets/season-spring.jpg",
+      "assets/season-summer.jpg",
+      "assets/season-winter.jpg",
+      "assets/weather-spray.jpg",
+      "credits.html",
+      "index.html",
+      "licenses/astrowind-MIT.md",
+      "licenses/dm-sans-OFL.txt",
+      "licenses/playfair-display-OFL.txt",
+      "plotform-preview.jpg",
+      "script.js",
+      "source.zip",
+      "stay.html",
+      "style.css",
+      "surroundings.html",
+      "table.html"
+    ],
+    "adaptedFrom": "https://github.com/arthelokyo/astrowind",
+    "commit": "14e1a691f80548dcc36370847b1a02c0d0b12821",
+    "sourceArchive": "source.zip",
+    "designNotes": [
+      "Plotform adaptation, not an unchanged upstream template.",
+      "Licensed Unsplash photographs from vendored demo content, with per-image provenance in SOURCE.json and credits.html.",
+      "Working season switcher, small-screen menu, practical-details accordion and five linked pages; enquiries are mailto links."
+    ],
+    "adaptationLabel": "Adapted from AstroWind"
+  }
+]
