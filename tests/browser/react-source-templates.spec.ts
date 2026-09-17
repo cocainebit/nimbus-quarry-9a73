@@ -12,6 +12,8 @@ test("React template edits survive hydration, interactions and a standalone expo
   await page
     .getByRole("button", { name: "Create a website", exact: true })
     .click();
+  // Studio editions open first; Launch UI lives in the contemporary tab.
+  await page.getByRole("button", { name: "Contemporary", exact: true }).click();
   await page
     .getByRole("searchbox", { name: "Search original templates" })
     .fill("Launch UI");
