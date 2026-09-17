@@ -1,0 +1,46 @@
+[
+  {
+    "id": "studio-atelier",
+    "sourceUrl": "https://github.com/JustGoodUI/dante-astro-theme",
+    "commit": "38d0a347e5036d00e48262e03bb79e8210bed8a9",
+    "license": "GPL-3.0",
+    "adaptedFrom": "https://github.com/JustGoodUI/dante-astro-theme",
+    "adaptationLabel": "Adapted from Dante",
+    "collection": "studio",
+    "name": "Atelier",
+    "category": "Studio / Portfolio",
+    "description": "An editorial design-practice portfolio: oversized serif typography, asymmetric project stories, three full case studies and a considered service directory. A Plotform adaptation of Dante.",
+    "entry": "index.html",
+    "pages": [
+      "index.html",
+      "northstar.html",
+      "altitude.html",
+      "fieldwork.html",
+      "CREDITS.html"
+    ],
+    "framework": "Portable HTML / CSS",
+    "files": [
+      "CREDITS.html",
+      "LICENSE",
+      "README.md",
+      "SOURCE.json",
+      "altitude.html",
+      "assets/Geist-OFL.txt",
+      "assets/geist.woff2",
+      "assets/icon.svg",
+      "assets/inter-LICENSE",
+      "assets/newsreader-LICENSE",
+      "assets/newsreader-italic.woff2",
+      "assets/newsreader-normal.woff2",
+      "assets/project-1.jpg",
+      "assets/project-2.jpg",
+      "assets/project-4.jpg",
+      "fieldwork.html",
+      "index.html",
+      "northstar.html",
+      "plotform-preview.jpg",
+      "style.css",
+      "template-source.zip"
+    ]
+  }
+]

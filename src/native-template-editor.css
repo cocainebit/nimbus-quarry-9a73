@@ -1,0 +1,155 @@
+.native-editor {
+  height: 100vh;
+  background: #f3f2ee;
+  color: #272925;
+  font-family: var(--font-sans, sans-serif);
+  display: flex;
+  flex-direction: column;
+}
+.native-editor header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.native-editor header label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+.native-editor button,
+.native-editor select,
+.native-editor input,
+.native-editor textarea {
+  font: inherit;
+  border: 1px solid #d1d3cc;
+  border-radius: 7px;
+  padding: 10px;
+  background: #fff;
+  color: #272925;
+}
+.native-editor button {
+  cursor: pointer;
+}
+.native-editor button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.native-editor-body {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+.native-editor aside {
+  padding: 24px;
+  overflow: auto;
+  background: #fafaf7;
+  border-right: 1px solid #ddd;
+}
+.native-editor h1 {
+  font-size: 22px;
+  line-height: 1.2;
+}
+.native-editor p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.native-editor label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  margin: 18px 0;
+}
+.native-editor aside input,
+.native-editor aside select,
+.native-editor textarea {
+  width: 100%;
+  min-width: 0;
+}
+.native-editor textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+.native-editor a {
+  color: #5a408d;
+  font-size: 12px;
+}
+.native-editor .native-note {
+  border-top: 1px solid #ddd;
+  padding-top: 18px;
+  color: #65665f;
+}
+.native-editor main {
+  overflow: auto;
+  padding: 24px;
+  min-width: 0;
+}
+.native-editor .native-preview {
+  height: 100%;
+  min-height: 600px;
+  margin: auto;
+  background: #fff;
+  box-shadow: 0 8px 30px #0001;
+  transition: width 0.2s;
+}
+.native-editor .native-device-desktop {
+  width: 100%;
+}
+.native-editor .native-device-tablet {
+  width: 768px;
+  max-width: 100%;
+}
+.native-editor .native-device-mobile {
+  width: 390px;
+  max-width: 100%;
+}
+.native-editor iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  border: 0;
+  background: white;
+}
+.native-editor [role="alert"] {
+  background: #ffebe7;
+  padding: 12px;
+  color: #862d23;
+}
+.native-editor header [role="status"] {
+  font-size: 12px;
+}
+.native-editor :focus-visible {
+  outline: 2px solid #7053a3;
+  outline-offset: 2px;
+}
+@media (max-width: 800px) {
+  .native-editor {
+    height: auto;
+    min-height: 100vh;
+  }
+  .native-editor header {
+    flex-wrap: wrap;
+  }
+  .native-editor header label {
+    flex-basis: 100%;
+    order: 1;
+  }
+  .native-editor-body {
+    display: flex;
+    flex-direction: column;
+  }
+  .native-editor aside {
+    border-right: 0;
+  }
+  .native-editor main {
+    min-height: 700px;
+    padding: 12px;
+  }
+  .native-editor .native-preview {
+    height: 700px;
+  }
+}

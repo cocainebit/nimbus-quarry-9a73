@@ -1,0 +1,9 @@
+{
+  "id": "studio-atelier",
+  "sourceUrl": "https://github.com/JustGoodUI/dante-astro-theme",
+  "commit": "38d0a347e5036d00e48262e03bb79e8210bed8a9",
+  "license": "GPL-3.0",
+  "adaptedFrom": "https://github.com/JustGoodUI/dante-astro-theme",
+  "adaptationLabel": "Adapted from Dante",
+  "collection": "studio"
+}

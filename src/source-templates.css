@@ -1,0 +1,329 @@
+.source-collection {
+  margin: 48px 0 64px;
+  color: #242723;
+}
+.source-collection > header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.source-eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.source-collection h2 {
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 500;
+  letter-spacing: -2px;
+  margin: 12px 0;
+}
+.source-collection > header p {
+  font-size: 14px;
+  max-width: 580px;
+  line-height: 1.7;
+  color: #667064;
+}
+.source-total {
+  white-space: nowrap;
+  font-size: 12px;
+  border: 1px solid #d8dcd5;
+  padding: 10px 14px;
+  border-radius: 20px;
+}
+.source-toolbar {
+  display: flex;
+  gap: 14px;
+  margin: 28px 0;
+}
+.source-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  background: white;
+  border: 1px solid #d7dcd3;
+  padding: 0 15px;
+  border-radius: 8px;
+}
+.source-toolbar input {
+  width: 100%;
+  padding: 14px 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: inherit;
+}
+.source-toolbar select {
+  padding: 12px;
+  border: 1px solid #d7dcd3;
+  border-radius: 8px;
+  background: white;
+  color: inherit;
+}
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px 24px;
+}
+.source-card {
+  min-width: 0;
+}
+.source-cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.48;
+  border: 1px solid #d7ddd3;
+  background: #e7e9e3;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+}
+.source-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.35s;
+}
+.source-cover:hover img {
+  transform: scale(1.025);
+}
+.source-cover > span {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  padding: 10px 15px;
+  border-radius: 30px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #222;
+  font-size: 12px;
+  box-shadow: 0 3px 15px #0002;
+}
+.source-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+.source-card-meta small {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #63705f;
+}
+.source-card h3 {
+  font-size: 25px;
+  font-weight: 550;
+  letter-spacing: -0.8px;
+  margin: 5px 0;
+}
+.source-card-meta > span {
+  font-size: 11px;
+  color: #6a7465;
+}
+.source-card > p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #697263;
+  min-height: 44px;
+  margin: 5px 0 12px;
+}
+.source-card > footer {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  border-top: 1px solid #dfe3da;
+  padding-top: 10px;
+  font-size: 10px;
+  color: #64705f;
+}
+.source-card a {
+  color: inherit;
+}
+.source-note {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #687362;
+  margin-top: 30px;
+  max-width: 850px;
+}
+.source-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: #10180ede;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.source-dialog {
+  width: min(1500px, 100%);
+  height: 95vh;
+  background: #f1f2ec;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.source-dialog > header,
+.source-dialog > footer {
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: white;
+  flex-shrink: 0;
+}
+.source-dialog > header > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+.source-dialog > header span {
+  font-size: 11px;
+  color: #71796a;
+}
+.source-dialog button {
+  border: 1px solid #dce0d6;
+  padding: 9px 14px;
+  background: #fff;
+  border-radius: 7px;
+  cursor: pointer;
+  color: #252b22;
+}
+.source-dialog button[aria-pressed="true"] {
+  background: #283126;
+  color: white;
+}
+.source-preview-device {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  overflow: auto;
+}
+.source-preview-device iframe {
+  border: 0;
+  background: white;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+}
+.source-device-phone iframe {
+  max-width: 390px;
+}
+.source-dialog > footer label {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.source-dialog > footer input {
+  border: 1px solid #d4dacf;
+  padding: 9px;
+  border-radius: 6px;
+  color: inherit;
+  max-width: 240px;
+}
+.source-dialog > footer small {
+  display: block;
+  color: #737e6b;
+  font-size: 10px;
+  margin-top: 5px;
+}
+.source-dialog .source-use {
+  background: #25321f;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 13px 20px;
+}
+@media (min-width: 1700px) {
+  .source-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  .source-grid {
+    grid-template-columns: 1fr;
+  }
+  .source-collection > header {
+    display: block;
+  }
+  .source-total {
+    display: inline-block;
+  }
+  .source-toolbar {
+    flex-direction: column;
+  }
+  .source-dialog-backdrop {
+    padding: 4px;
+  }
+  .source-dialog > header,
+  .source-dialog > footer {
+    padding: 10px;
+    flex-wrap: wrap;
+  }
+  .source-dialog > footer input {
+    max-width: 180px;
+  }
+}
+.source-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+}
+.source-toolbar label {
+  min-width: 0;
+}
+.source-toolbar input {
+  min-width: 0;
+}
+.source-toolbar svg {
+  flex-shrink: 0;
+}
+.source-toolbar select {
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .source-toolbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.source-collection-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 26px 0 0;
+  border-bottom: 1px solid #d6dbd3;
+  padding-bottom: 12px;
+}
+.source-collection-tabs button {
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  padding: 11px 17px;
+  color: #66715f;
+  font-size: 12px;
+  cursor: pointer;
+}
+.source-collection-tabs button[aria-pressed="true"] {
+  color: white;
+  background: #252e21;
+}
+.source-collection-context {
+  color: #63705a;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 18px 0 0;
+}
+.source-adaptation{display:block;color:#687362;font-size:10px;margin:-3px 0 12px;letter-spacing:.02em}

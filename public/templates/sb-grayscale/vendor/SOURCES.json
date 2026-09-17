@@ -1,0 +1,20 @@
+{
+  "https://use.fontawesome.com/releases/v6.3.0/js/all.js": "vendor/bc2956d4cdaae7.js",
+  "https://fonts.googleapis.com/css?family=Varela+Round": "vendor/83d6cbc1f05f66.css",
+  "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfpcuPP9g.woff2": "vendor/edb20964405619.woff2",
+  "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfqMuPP9g.woff2": "vendor/325395f7d5d1e6.woff2",
+  "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfqcuPP9g.woff2": "vendor/29b731cb119f6e.woff2",
+  "https://fonts.gstatic.com/s/varelaround/v21/w8gdH283Tvk__Lua32TysjIfp8uP.woff2": "vendor/f779ac3d5724d6.woff2",
+  "https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i": "vendor/afdbaabf50fdf8.css",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaORs71cA.woff2": "vendor/5e139653d1d338.woff2",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaHRs71cA.woff2": "vendor/8c79f72a7aaf8c.woff2",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaMRs71cA.woff2": "vendor/7d9e1dcf9cc5b4.woff2",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaNRs71cA.woff2": "vendor/5a81f133ef681d.woff2",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXX3I6Li01BKofIMNaDRs4.woff2": "vendor/077ebeedfaa0e8.woff2",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIOOaBXso.woff2": "vendor/75ab0de1fa44d8.woff2",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIMeaBXso.woff2": "vendor/e27c36ebbec73d.woff2",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIOuaBXso.woff2": "vendor/e3bcd326fecf7a.woff2",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIO-aBXso.woff2": "vendor/eee3d959d289e9.woff2",
+  "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofINeaB.woff2": "vendor/fd8b8aea8febbc.woff2",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js": "vendor/01b2b3c394d1f4.js"
+}

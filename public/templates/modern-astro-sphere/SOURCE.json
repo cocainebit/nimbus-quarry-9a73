@@ -1,0 +1,13 @@
+{
+  "id": "modern-astro-sphere",
+  "name": "Astro Sphere",
+  "category": "Portfolio",
+  "description": "A restrained dark portfolio with soft ambient gradients, writing, experience and project pages.",
+  "sourceUrl": "https://github.com/markhorn-dev/astro-sphere",
+  "commit": "f7e3a40f20e1267d7fbbb7b6dd868df1845e1d82",
+  "license": "MIT",
+  "entry": "index.html",
+  "collection": "contemporary",
+  "framework": "Astro",
+  "sourceDirectory": "vendor/templates/modern-astro-sphere"
+}

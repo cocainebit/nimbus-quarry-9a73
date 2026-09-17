@@ -1,0 +1,1 @@
+Original source is pinned in PLOTFORM-UPSTREAM.json. Run npm install --ignore-scripts, npm run build, then python3 plotform-portable-build.py dist to make the generated static asset/page URLs relative. Plotform includes license files and this source archive beside the static output. Visual editor changes apply to exported HTML and are recorded in plotform-project.json.

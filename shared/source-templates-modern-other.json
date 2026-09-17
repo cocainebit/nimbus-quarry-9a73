@@ -1,0 +1,43 @@
+[
+  {
+    "sourceUrl": "https://github.com/codrops/KineticTypePageTransition",
+    "commit": "ebe926e2f1de42950c36ff8a678321155280c1af",
+    "license": "MIT",
+    "upstreamDesignYear": 2021,
+    "collection": "motion",
+    "id": "motion-kinetic-type",
+    "name": "Kinetic Editorial",
+    "category": "Motion / Editorial",
+    "description": "A Codrops editorial transition study: image-led stories revealed through oversized rotating typography. A motion foundation, not a complete business website.",
+    "entry": "index.html",
+    "pages": [
+      "index.html"
+    ],
+    "framework": "HTML / Parcel",
+    "demoUrl": "https://tympanus.net/Development/KineticTypePageTransition/",
+    "files": [
+      "1.07c8a42d.jpg",
+      "1.7920aa9c.jpg",
+      "2.32cac675.jpg",
+      "2.ba8e645f.jpg",
+      "3.7904856b.jpg",
+      "3.ad200cf1.jpg",
+      "4.c888b9aa.jpg",
+      "4.e376da92.jpg",
+      "LICENSE",
+      "SOURCE.json",
+      "VENDOR-NOTES.md",
+      "favicon.7ad4759e.ico",
+      "index.html",
+      "inter-latin-wght-normal.75cd7254.woff2",
+      "licenses/GSAP-standard-license.md",
+      "licenses/inter-LICENSE.txt",
+      "licenses/playfair-display-LICENSE.txt",
+      "motion-kinetic-type.3fe9af59.css",
+      "motion-kinetic-type.b5e1c923.js",
+      "playfair-display-latin-wght-normal.74f4b1bf.woff2",
+      "plotform-preview.jpg",
+      "template-source.zip"
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "id": "modern-astroship",
+  "name": "Astroship",
+  "category": "SaaS",
+  "description": "A clean product site with expressive Bricolage typography, geometric hero, pricing and editorial pages.",
+  "sourceUrl": "https://github.com/surjithctly/astroship",
+  "commit": "1a844c57df3a40d3264b68add519626f1d8f0bff",
+  "license": "GPL-3.0",
+  "entry": "index.html",
+  "collection": "contemporary",
+  "framework": "Astro",
+  "sourceDirectory": "vendor/templates/modern-astroship"
+}

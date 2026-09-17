@@ -1,0 +1,19 @@
+{
+  "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css": "vendor/95b3dbd57d855b.css",
+  "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/fonts/bootstrap-icons.woff2?856008caa5eb66df68595e734e59580d": "vendor/9ccdd239dc30a3.woff2",
+  "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/fonts/bootstrap-icons.woff?856008caa5eb66df68595e734e59580d": "vendor/e01c31a3015b58.woff",
+  "https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic": "vendor/40cd074a67a38b.css",
+  "https://fonts.gstatic.com/s/lato/v25/S6u_w4BMUTPHjxsI9w2_FQft1dw.woff2": "vendor/48e6a3ab618b06.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u_w4BMUTPHjxsI9w2_Gwft.woff2": "vendor/cf2b967a5a6a9b.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qJCY.woff2": "vendor/cd26d5167cf9a7.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAXC-q.woff2": "vendor/b7146d7fa8e37d.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u_w4BMUTPHjxsI5wq_FQft1dw.woff2": "vendor/98058aa6dc54a2.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u_w4BMUTPHjxsI5wq_Gwft.woff2": "vendor/b221d7051899bb.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh7USSwaPGR_p.woff2": "vendor/814ed0d1c7f0b2.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh7USSwiPGQ.woff2": "vendor/6ff4f03049d57c.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjxAwXjeu.woff2": "vendor/d83b9a23deb4f1.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjx4wXg.woff2": "vendor/14cbedebefa71c.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwaPGR_p.woff2": "vendor/0e0ce405d69fcc.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwiPGQ.woff2": "vendor/d19d4900858a98.woff2",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js": "vendor/01b2b3c394d1f4.js"
+}

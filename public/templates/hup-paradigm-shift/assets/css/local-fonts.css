@@ -1,0 +1,65 @@
+/* Matching local Fontsource fonts, added by Plotform for offline use. */
+/* source-sans-pro-latin-300-normal */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src: url(../fonts/source-sans-pro-latin-300-normal.woff2) format('woff2'), url(../fonts/source-sans-pro-latin-300-normal.woff) format('woff');
+}
+/* source-sans-pro-latin-600-normal */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(../fonts/source-sans-pro-latin-600-normal.woff2) format('woff2'), url(../fonts/source-sans-pro-latin-600-normal.woff) format('woff');
+}
+/* source-sans-pro-latin-700-normal */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(../fonts/source-sans-pro-latin-700-normal.woff2) format('woff2'), url(../fonts/source-sans-pro-latin-700-normal.woff) format('woff');
+}
+/* source-sans-pro-latin-300-italic */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 300;
+  src: url(../fonts/source-sans-pro-latin-300-italic.woff2) format('woff2'), url(../fonts/source-sans-pro-latin-300-italic.woff) format('woff');
+}
+/* source-sans-pro-latin-600-italic */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 600;
+  src: url(../fonts/source-sans-pro-latin-600-italic.woff2) format('woff2'), url(../fonts/source-sans-pro-latin-600-italic.woff) format('woff');
+}
+/* source-sans-pro-latin-700-italic */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url(../fonts/source-sans-pro-latin-700-italic.woff2) format('woff2'), url(../fonts/source-sans-pro-latin-700-italic.woff) format('woff');
+}
+/* raleway-latin-600-normal */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(../fonts/raleway-latin-600-normal.woff2) format('woff2'), url(../fonts/raleway-latin-600-normal.woff) format('woff');
+}
+/* raleway-latin-800-normal */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src: url(../fonts/raleway-latin-800-normal.woff2) format('woff2'), url(../fonts/raleway-latin-800-normal.woff) format('woff');
+}

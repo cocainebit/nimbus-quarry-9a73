@@ -1,0 +1,19 @@
+{
+  "https://use.fontawesome.com/releases/v6.3.0/js/all.js": "vendor/bc2956d4cdaae7.js",
+  "https://fonts.googleapis.com/css?family=Montserrat:400,700": "vendor/d738a9c8c0b322.css",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2": "vendor/146f3021cd2f29.woff2",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2": "vendor/d786a4e09dec8c.woff2",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2": "vendor/17446c0dad4ed8.woff2",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2": "vendor/e4fe21c0cb9523.woff2",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2": "vendor/3dac51d0c0ab81.woff2",
+  "https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic": "vendor/e0165446cc6cde.css",
+  "https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qJCY.woff2": "vendor/cd26d5167cf9a7.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAXC-q.woff2": "vendor/b7146d7fa8e37d.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u_w4BMUTPHjxsI5wq_FQft1dw.woff2": "vendor/98058aa6dc54a2.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u_w4BMUTPHjxsI5wq_Gwft.woff2": "vendor/b221d7051899bb.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjxAwXjeu.woff2": "vendor/d83b9a23deb4f1.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjx4wXg.woff2": "vendor/14cbedebefa71c.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwaPGR_p.woff2": "vendor/0e0ce405d69fcc.woff2",
+  "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwiPGQ.woff2": "vendor/d19d4900858a98.woff2",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js": "vendor/01b2b3c394d1f4.js"
+}

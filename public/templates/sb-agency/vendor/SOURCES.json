@@ -1,0 +1,18 @@
+{
+  "https://use.fontawesome.com/releases/v6.3.0/js/all.js": "vendor/bc2956d4cdaae7.js",
+  "https://fonts.googleapis.com/css?family=Montserrat:400,700": "vendor/d738a9c8c0b322.css",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2": "vendor/146f3021cd2f29.woff2",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2": "vendor/d786a4e09dec8c.woff2",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2": "vendor/17446c0dad4ed8.woff2",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2": "vendor/e4fe21c0cb9523.woff2",
+  "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2": "vendor/3dac51d0c0ab81.woff2",
+  "https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700": "vendor/c376abfad856b5.css",
+  "https://fonts.gstatic.com/s/robotoslab/v36/BngMUXZYTXPIvIBgJJSb6ufA5qW54A.woff2": "vendor/dc1cf3d20a78fa.woff2",
+  "https://fonts.gstatic.com/s/robotoslab/v36/BngMUXZYTXPIvIBgJJSb6ufJ5qW54A.woff2": "vendor/d4918cc0ffd8ec.woff2",
+  "https://fonts.gstatic.com/s/robotoslab/v36/BngMUXZYTXPIvIBgJJSb6ufB5qW54A.woff2": "vendor/781a3a3600b6d0.woff2",
+  "https://fonts.gstatic.com/s/robotoslab/v36/BngMUXZYTXPIvIBgJJSb6ufO5qW54A.woff2": "vendor/0f292467dd5667.woff2",
+  "https://fonts.gstatic.com/s/robotoslab/v36/BngMUXZYTXPIvIBgJJSb6ufC5qW54A.woff2": "vendor/92c9e622d5f868.woff2",
+  "https://fonts.gstatic.com/s/robotoslab/v36/BngMUXZYTXPIvIBgJJSb6ufD5qW54A.woff2": "vendor/5aeab3ebadffca.woff2",
+  "https://fonts.gstatic.com/s/robotoslab/v36/BngMUXZYTXPIvIBgJJSb6ufN5qU.woff2": "vendor/eb4a903836593f.woff2",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js": "vendor/01b2b3c394d1f4.js"
+}

@@ -1,0 +1,1 @@
+Built from pinned original source. Asset and page paths rewritten relative for preview and portable export. Original layout and content retained. Demo personal claims, projects and images are upstream examples, not your business facts. Forms/external service links are not connected by Plotform. Complete corresponding source and license included in upstream-source.zip.

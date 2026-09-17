@@ -1,0 +1,3 @@
+import {randomBytes} from 'node:crypto';
+import {writeFile,access} from 'node:fs/promises';
+try{await access('.env');console.log('.env already exists; it was not changed.');}catch{const password=randomBytes(24).toString('hex');await writeFile('.env',`POSTGRES_PASSWORD=${password}\nDATABASE_URL=postgresql://site_studio:${password}@127.0.0.1:55432/site_studio\nAUTH_SECRET=${randomBytes(32).toString('base64url')}\nAPP_ORIGIN=http://127.0.0.1:5173\nPORT=3001\nHOST=127.0.0.1\nSMTP_HOST=127.0.0.1\nSMTP_PORT=1025\nMAIL_FROM=Plotform <studio@localhost.test>\nMODEL_PROVIDER=ollama\nOLLAMA_BASE_URL=http://127.0.0.1:11434\nOLLAMA_MODEL=\n`,{mode:0o600,flag:'wx'});console.log('Created local .env with unique secrets. No credentials printed.');}

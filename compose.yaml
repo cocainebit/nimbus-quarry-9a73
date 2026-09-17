@@ -1,0 +1,26 @@
+name: site-studio
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: site_studio
+      POSTGRES_USER: site_studio
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run npm run setup:local first}
+    ports: ["127.0.0.1:55432:5432"]
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U site_studio -d site_studio"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  mail:
+    image: axllent/mailpit:v1.29
+    ports: ["127.0.0.1:1025:1025", "127.0.0.1:8025:8025"]
+  ollama:
+    image: ollama/ollama:0.13.5
+    profiles: ["ai"]
+    ports: ["127.0.0.1:11434:11434"]
+    volumes: ["ollama_data:/root/.ollama"]
+volumes:
+  postgres_data:
+  ollama_data:

@@ -1,0 +1,13 @@
+{
+  "id": "modern-astrowind",
+  "name": "AstroWind",
+  "category": "Business",
+  "description": "A contemporary multi-page business system with product, services, pricing and editorial pages.",
+  "sourceUrl": "https://github.com/onwidget/astrowind",
+  "commit": "14e1a691f80548dcc36370847b1a02c0d0b12821",
+  "license": "MIT",
+  "entry": "index.html",
+  "collection": "contemporary",
+  "framework": "Astro",
+  "sourceDirectory": "vendor/templates/modern-astrowind"
+}

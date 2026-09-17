@@ -1,0 +1,13 @@
+{
+  "id": "modern-moon",
+  "name": "Moon Landing",
+  "category": "Creative",
+  "description": "A cinematic lunar product launch with animated starfield, oversized type, motion and a project showcase.",
+  "sourceUrl": "https://github.com/mhyfritz/astro-landing-page",
+  "commit": "987617a50863d31bb865ee531391a191d74a878a",
+  "license": "MIT",
+  "entry": "index.html",
+  "collection": "contemporary",
+  "framework": "Astro",
+  "sourceDirectory": "vendor/templates/modern-moon"
+}

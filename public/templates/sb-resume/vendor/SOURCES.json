@@ -1,0 +1,18 @@
+{
+  "https://use.fontawesome.com/releases/v6.3.0/js/all.js": "vendor/bc2956d4cdaae7.js",
+  "https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700": "vendor/569233c4aa1f18.css",
+  "https://fonts.gstatic.com/s/sairaextracondensed/v15/-nFvOHYr-vcC7h8MklGBkrvmUG9rbpkisrTrG2vh1Aphim8.woff2": "vendor/a060134f17a150.woff2",
+  "https://fonts.gstatic.com/s/sairaextracondensed/v15/-nFvOHYr-vcC7h8MklGBkrvmUG9rbpkisrTrG2vh1Qphim8.woff2": "vendor/c3628f8714c9e6.woff2",
+  "https://fonts.gstatic.com/s/sairaextracondensed/v15/-nFvOHYr-vcC7h8MklGBkrvmUG9rbpkisrTrG2vh2wph.woff2": "vendor/f8816e2454d695.woff2",
+  "https://fonts.gstatic.com/s/sairaextracondensed/v15/-nFvOHYr-vcC7h8MklGBkrvmUG9rbpkisrTrU23h1Aphim8.woff2": "vendor/1faca1fac07fbe.woff2",
+  "https://fonts.gstatic.com/s/sairaextracondensed/v15/-nFvOHYr-vcC7h8MklGBkrvmUG9rbpkisrTrU23h1Qphim8.woff2": "vendor/17ed43c915aa4b.woff2",
+  "https://fonts.gstatic.com/s/sairaextracondensed/v15/-nFvOHYr-vcC7h8MklGBkrvmUG9rbpkisrTrU23h2wph.woff2": "vendor/dfd87a2319b5bd.woff2",
+  "https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i": "vendor/dbe7c03830c153.css",
+  "https://fonts.gstatic.com/s/muli/v34/7Au-p_0qiz-afTf2IALT8kU.woff2": "vendor/ae6d3ccc45a230.woff2",
+  "https://fonts.gstatic.com/s/muli/v34/7Au-p_0qiz-afTf2IQLT8kU.woff2": "vendor/b0ca6beffc963b.woff2",
+  "https://fonts.gstatic.com/s/muli/v34/7Au-p_0qiz-afTf2LwLT.woff2": "vendor/7e9c245a709ae8.woff2",
+  "https://fonts.gstatic.com/s/muli/v34/7Auwp_0qiz-afT3GLRrX.woff2": "vendor/c59c721a0acb2b.woff2",
+  "https://fonts.gstatic.com/s/muli/v34/7Auwp_0qiz-afTzGLRrX.woff2": "vendor/0b9d27d3403e7d.woff2",
+  "https://fonts.gstatic.com/s/muli/v34/7Auwp_0qiz-afTLGLQ.woff2": "vendor/6d99e374154af6.woff2",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js": "vendor/01b2b3c394d1f4.js"
+}

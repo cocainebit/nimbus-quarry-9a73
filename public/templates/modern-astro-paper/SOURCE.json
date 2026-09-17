@@ -1,0 +1,13 @@
+{
+  "id": "modern-astro-paper",
+  "name": "AstroPaper",
+  "category": "Editorial",
+  "description": "A typography-led developer publication with searchable articles, tags, archives and theme switching.",
+  "sourceUrl": "https://github.com/satnaing/astro-paper",
+  "commit": "35cfa7fbe0b897306d27670d3819e55d5205f3dd",
+  "license": "MIT",
+  "entry": "index.html",
+  "collection": "contemporary",
+  "framework": "Astro",
+  "sourceDirectory": "vendor/templates/modern-astro-paper"
+}

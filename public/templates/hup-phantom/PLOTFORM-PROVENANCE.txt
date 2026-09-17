@@ -1,0 +1,2 @@
+
+Plotform modified assets/css/main.css and assets/sass/main.scss to replace Google Fonts network imports with bundled matching Fontsource5.3.0 Latin webfonts. Original template layout/assets and HTML5 UP credits retained. Added assets/css/local-fonts.css and font/license files. See assets/fonts/licenses/FONTSOURCE-PROVENANCE.json for exact packages. Font Awesome 4.7 original icon fonts retained, with upstream README and OFL notice included.

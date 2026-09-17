@@ -1,0 +1,57 @@
+[
+  {
+    "id": "studio-editorial",
+    "name": "Commonplace",
+    "category": "Product & SaaS",
+    "description": "An editorial product website with expressive serif typography, two audience journeys, warm product panels and a complete interactive workspace preview.",
+    "collection": "studio",
+    "tier": "featured",
+    "adaptationLabel": "Adapted from Launch UI",
+    "adaptedFrom": "https://github.com/launch-ui/launch-ui",
+    "sourceUrl": "https://github.com/launch-ui/launch-ui",
+    "commit": "b0d4d5bce91d13523450416ce1797109076b2787",
+    "license": "MIT",
+    "framework": "HTML / CSS / JavaScript",
+    "sourceDirectory": "vendor/templates/studio-editorial",
+    "entry": "index.html",
+    "pages": [
+      "index.html"
+    ],
+    "provenance": {
+      "kind": "adaptation",
+      "upstream": "Launch UI",
+      "reused": [
+        "Original dashboard-light.png and dashboard-dark.png assets",
+        "MIT CSS surface, radius and shadow tokens"
+      ],
+      "adaptation": [
+        "Editorial composition and typography",
+        "Responsive audience journeys",
+        "Accessible tabs, mobile navigation, FAQ and illustrative pricing",
+        "Local interactive workspace demonstration"
+      ]
+    },
+    "files": [
+      "LICENSE.md",
+      "SOURCE.json",
+      "VENDOR-NOTES.md",
+      "assets/dashboard-dark.png",
+      "assets/dashboard-light.png",
+      "assets/favicon.svg",
+      "assets/inter.woff2",
+      "assets/launch-foundation.css",
+      "assets/newsreader-italic.woff2",
+      "assets/newsreader.woff2",
+      "assets/site.js",
+      "assets/style.css",
+      "index.html",
+      "licenses/INTER-OFL.txt",
+      "licenses/LAUNCH-UI-MIT.md",
+      "licenses/NEWSREADER-OFL.txt",
+      "plotform-mobile.jpg",
+      "plotform-preview.jpg",
+      "preview-320.jpg",
+      "upstream-source.zip"
+    ]
+  }
+]

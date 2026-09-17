@@ -1,0 +1,20 @@
+{
+  "kind": "Plotform-authored adaptation",
+  "adaptedFrom": [
+    {
+      "url": "https://github.com/dillionverma/portfolio",
+      "commit": "5ef12e4c8bd0de3e22e89c2181ee77a35925ec8b",
+      "license": "MIT"
+    },
+    {
+      "url": "https://github.com/launch-ui/launch-ui",
+      "commit": "b0d4d5bce91d13523450416ce1797109076b2787",
+      "license": "MIT",
+      "assets": [
+        "dashboard-dark.png",
+        "dashboard-light.png"
+      ]
+    }
+  ],
+  "referenceDirection": "Oversized editorial typography and numbered portfolio studies; no reference site code, imagery or branding copied."
+}
