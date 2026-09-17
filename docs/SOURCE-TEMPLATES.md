@@ -41,4 +41,15 @@ Rules every edition follows:
 - No em dashes in copy, and no monospace as a UI font.
 - Every visible text, link and image is a leaf element the source editor can select, and each edition has a browser spec covering overflow at 1440/768/390/320, its interaction, its navigation and its source archive.
 
-Editions as of 2026-09-17: Commonplace (product site, adapted from Launch UI), Atelier (design practice, adapted from Dante, GPL-3.0) and Independent (portfolio, adapted from Dillion Portfolio and Launch UI). Manifests live in `shared/source-templates-studio-*.json`; the loader in `shared/source-templates.mjs` lists studio editions first.
+Editions as of 2026-09-17, in catalogue order:
+
+| Edition | Direction | Adapted from | License of the adapted code |
+| --- | --- | --- | --- |
+| Commonplace | Editorial product site: serif headlines, two audience journeys, interactive workspace preview | Launch UI (MIT) | MIT |
+| Atelier | Design-practice portfolio: oversized serif, three photographed case studies, service directory | Dante (GPL-3.0) | GPL-3.0 |
+| Independent | Portfolio: oversized grotesk, numbered studies, working filters | Dillion Portfolio and Launch UI (MIT) | MIT |
+| Apogee | Dark product launch for an illustrative desktop sequencer: headline broken around an SVG product drawing, finish toggle, stepped how-it-works page, expandable changelog | Moon Landing (MIT) | MIT |
+| Lintel | Architecture and interiors practice: image-led project index, project type filter, photograph/drawing toggle, studio page with approach accordion | AstroWind (MIT) | MIT |
+| Strand | Hospitality place: full-bleed photograph under an inset rounded panel, floating navigation, season switcher, rooms with SVG floor plans, a menu without prices | AstroWind (MIT) | MIT |
+
+Manifests live in `shared/source-templates-studio-*.json`; the loader in `shared/source-templates.mjs` lists studio editions first. Photography comes from a small pool of Unsplash images vendored with Dante and AstroWind, so a few photographs appear in more than one edition; each edition documents its own image sources.
