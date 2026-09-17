@@ -1812,12 +1812,16 @@ small {
 .payment-lines dt {
   color: #8b8379;
   font-size: 11px;
+  flex: none;
 }
 .payment-lines dd {
   margin: 0;
+  min-width: 0;
   font-size: 13px;
   color: #2b2823;
   text-align: right;
+  /* Descriptions come from the charge and can be long; wrap them rather than clip. */
+  overflow-wrap: anywhere;
 }
 .payment-lines dd strong {
   font-weight: 600;

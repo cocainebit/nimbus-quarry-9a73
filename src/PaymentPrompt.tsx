@@ -35,14 +35,18 @@ type Stage =
   | "failed"
   | "expired";
 
-/** Amounts come from the charge. Without one, the prompt shows no amount at all. */
-function amountLabel(micro?: number, asset?: string) {
+/**
+ * Amounts come from the charge, in micro-USDC. Without one, the prompt shows no
+ * amount at all. The charge's `asset` is the token's contract address, not a
+ * symbol, so it is never shown here: every charge is priced in USDC.
+ */
+function amountLabel(micro?: number) {
   if (typeof micro !== "number" || !Number.isFinite(micro)) return "";
   const value = (micro / 1_000_000).toLocaleString("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  return asset ? `${value} ${asset}` : value;
+  return `${value} USDC`;
 }
 
 function PaymentSheet({
@@ -128,7 +132,6 @@ function PaymentSheet({
     charge?.description || request.description || "This action";
   const amount = amountLabel(
     charge?.amountMicro ?? request.amountMicro,
-    charge?.asset ?? request.asset,
   );
   const message: Record<Stage, string> = {
     waiting:
