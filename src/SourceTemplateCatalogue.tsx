@@ -252,6 +252,8 @@ export default function SourceTemplateCatalogue({
                 <small>
                   {selected.adaptationLabel || "Original design preserved."}{" "}
                   Required credits included.
+                  {/^GPL/i.test(selected.license) &&
+                    " GPL-3.0: a website published from this design must be distributed with its source and this license."}
                 </small>
               </div>
               <button className="source-use" onClick={() => create(selected)}>

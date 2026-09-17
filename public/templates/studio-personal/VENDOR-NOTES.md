@@ -1,4 +1,4 @@
-# Independent — Plotform adaptation
+# Independent: a Plotform adaptation
 
 This is a new Plotform-authored editorial adaptation, not the original upstream design and not a copy of romemichal.pl. It develops the project/profile/contact information architecture of Dillion Verma’s MIT portfolio into a wider, oversized-type portfolio with numbered case studies and native filtering/navigation.
 

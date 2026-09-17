@@ -14,6 +14,9 @@ write it.
 | instance | writes | mid-way through |
 |---|---|---|
 | _(claude: plotform continuation, 2026-09-17)_ | `src/Template*.tsx`, `src/template-typography.ts`, `src/source-template-html.ts`, `src/NativeTemplateEditor.tsx`, `src/SourceTemplateCatalogue.tsx`, `tests/browser/{template-typography,studio-*,contemporary-collection}.spec.ts`, `public/templates/studio-*`, `vendor/templates/studio-*`, this file | taking over from Codex: fixing the typography controls (spec failed 02:51, never re-run), re-verifying the studio templates, then continuing the template-quality and Base44-parity goal |
+| _(claude subagent A: studio-practice)_ | `public/templates/studio-practice/**`, `vendor/templates/studio-practice/**`, `shared/source-templates-studio-practice.json`, `tests/browser/studio-practice.spec.ts`, one import + spread line in `shared/source-templates.mjs` | new studio edition: architecture and interiors practice |
+| _(claude subagent B: studio-retreat)_ | `public/templates/studio-retreat/**`, `vendor/templates/studio-retreat/**`, `shared/source-templates-studio-retreat.json`, `tests/browser/studio-retreat.spec.ts`, one import + spread line in `shared/source-templates.mjs` | new studio edition: image-led hospitality place |
+| _(claude subagent C: studio-launch)_ | `public/templates/studio-launch/**`, `vendor/templates/studio-launch/**`, `shared/source-templates-studio-launch.json`, `tests/browser/studio-launch.spec.ts`, one import + spread line in `shared/source-templates.mjs` | new studio edition: dark product launch |
 | _(codex, paused)_ | everything, historically | stopped mid-typography on 2026-09-17 02:55. If resumed after the limit resets, it auto-continues its goal: read `git log` first |
 
 ## Rules

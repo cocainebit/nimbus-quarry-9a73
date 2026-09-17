@@ -1,8 +1,8 @@
-# Atelier — a Plotform adaptation of Dante
+# Atelier: a Plotform adaptation of Dante
 
-GPL-3.0, derived from Just Good UI/Dante at commit 38d0a347e5036d00e48262e03bb79e8210bed8a9. This is an authored adaptation, not a verbatim original upstream template or an independent original repository.
+GPL-3.0, derived from Just Good UI/Dante at commit 38d0a347e5036d00e48262e03bb79e8210bed8a9. This is an authored adaptation, not a verbatim original upstream template or an independent original repository. Modified by Plotform contributors on 2026-09-17: new page structure, copy, stylesheet and build script; the unmodified upstream is under upstream-dante/ (GPL-3.0 section 5).
 
-Run `python3 build.py` to build portable HTML/CSS in dist/. No package installation required. Change PROJECTS in build.py and style.css to customise; the resulting HTML is also directly editable.
+The served template folder holds the built HTML/CSS. To rebuild it, unpack template-source.zip and run `python3 build.py <output-dir>` (defaults to dist/). No package installation required. Change PROJECTS in build.py and style.css to customise; the resulting HTML is also directly editable.
 
 The adaptation uses Dante’s editorial/project content structure and original project artwork. The image collection is credited to Unsplash in the upstream README. Project examples are illustrative concept studies, not commissioned-client claims. The original complete Dante source is included under upstream-dante/.
 
