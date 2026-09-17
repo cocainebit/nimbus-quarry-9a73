@@ -22,6 +22,7 @@ import SourceTemplateCatalogue from "./SourceTemplateCatalogue";
 import { sourceTemplates } from "../shared/source-templates.mjs";
 import { useProjects } from "./storage";
 import AccountForm from "./AccountForm";
+import CreditsChip from "./CreditsChip";
 import AppCatalogue from "./AppCatalogue";
 import { api } from "./backend-api";
 import {
@@ -157,6 +158,15 @@ export default function App() {
     setModal(false);
     setPendingCreation(null);
   }
+  // Returning from the shared account sign-in: open the server workspace for the new session.
+  useEffect(() => {
+    if (!ready) return;
+    const url = new URL(location.href);
+    if (url.searchParams.get("shared-account") !== "1") return;
+    url.searchParams.delete("shared-account");
+    history.replaceState(null, "", url);
+    void finishAccount();
+  }, [ready]);
   async function finishAccount() {
     if (connecting.current) return;
     connecting.current = true;
@@ -346,13 +356,16 @@ export default function App() {
             Workspace <span className="slash">/</span>{" "}
             {view === "projects" ? "All projects" : "Starter templates"}
           </span>
-          <span className="subtle">
-            <span className="status-dot" />
-            {connected
-              ? "AI connected"
-              : workspace === "server"
-                ? "Server workspace"
-                : "Local workspace"}
+          <span className="dash-top-right">
+            {workspace === "server" && <CreditsChip userId={user?.id} />}
+            <span className="subtle">
+              <span className="status-dot" />
+              {connected
+                ? "AI connected"
+                : workspace === "server"
+                  ? "Server workspace"
+                  : "Local workspace"}
+            </span>
           </span>
         </header>
         <div className="dashboard-content">

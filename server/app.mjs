@@ -2,6 +2,8 @@ import express from "express";
 import { mountPlatform, platformErrors } from "./platform.mjs";
 import { createProvider } from "./providers.mjs";
 import { randomUUID } from "node:crypto";
+import { fromNodeHeaders } from "better-auth/node";
+import { SKUS } from "./platform-billing.mjs";
 import {
   briefSchema,
   generatedSchema,
@@ -35,8 +37,18 @@ export function createApp(options = {}) {
       );
     return parsed.data;
   }
-  function route(path, schema, handler) {
-    app.post(path, async (req, res) => {
+  // With the shared account connected, a priced AI action needs a signed-in owner
+  // who can pay. Unpriced actions stay open, as before.
+  async function billedOwner(req, sku) {
+    if (!options.billing) return null;
+    const session = await options.auth.studio.api.getSession({
+      headers: fromNodeHeaders(req.headers),
+    });
+    await options.billing.ensureCanPay(session?.user.id ?? null, sku);
+    return session?.user.id ?? null;
+  }
+  function route(path, schema, sku, handler) {
+    app.post(path, async (req, res, next) => {
       const input = schema.safeParse(req.body);
       if (!input.success)
         return res.status(400).json({
@@ -52,9 +64,21 @@ export function createApp(options = {}) {
         return res.status(429).json({
           error: "A generation is already running. Try again shortly.",
         });
+      let ownerId;
+      try {
+        ownerId = await billedOwner(req, sku);
+      } catch (error) {
+        return next(error);
+      }
       busy = true;
       try {
         await handler(input.data, res);
+        // Charged only after a successful generation. A race that empties the
+        // balance meanwhile is logged, not billed twice or retried.
+        if (ownerId && res.statusCode < 400)
+          await options.billing
+            .charge(ownerId, sku)
+            .catch((error) => console.warn("AI charge not applied:", error.message));
       } catch (error) {
         res.status(502).json({
           error:
@@ -71,7 +95,7 @@ export function createApp(options = {}) {
       }
     });
   }
-  route("/api/generate", briefSchema, async (input, res) => {
+  route("/api/generate", briefSchema, SKUS.generateSite, async (input, res) => {
     const result = await generate(
       `${contract} Return {pages:[{name,slug,seoTitle,description,sections:[]}]} with 1-8 pages and 1-20 sections per page. Give each page a distinct purpose and a valid URL slug. Populate useful structured items where relevant. Contact buttons can target #site-contact.`,
       input,
@@ -99,7 +123,7 @@ export function createApp(options = {}) {
     });
     res.json(project);
   });
-  route("/api/refine", refinementInput, async (input, res) => {
+  route("/api/refine", refinementInput, SKUS.refineSection, async (input, res) => {
     const original = input.sectionId
       ? input.page.sections.find((s) => s.id === input.sectionId)
       : null;

@@ -4,11 +4,24 @@ import { startJobWorker } from "./automation.mjs";
 import { createApp } from "./app.mjs";
 import { createAuth } from "./auth.mjs";
 import { connectDatabase, migrate } from "./db.mjs";
+import {
+  createBilling,
+  createPlatformClient,
+  platformConfig,
+} from "./platform-billing.mjs";
 const pool = connectDatabase();
 const auth = createAuth(pool);
 await migrate(pool, auth);
 const stopWorker = startJobWorker(pool);
-const app = createApp({ pool, auth, origin: process.env.APP_ORIGIN });
+const platform = platformConfig();
+const billing = platform
+  ? createBilling({
+      pool,
+      client: createPlatformClient(platform),
+      accountUrl: `${platform.url}/account`,
+    })
+  : null;
+const app = createApp({ pool, auth, billing, origin: process.env.APP_ORIGIN });
 app.get("/healthz", async (_req, res) => {
   try {
     await pool.query("SELECT 1");

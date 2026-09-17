@@ -26,7 +26,11 @@ import {
 import { mountBackendAI } from "./backend-ai.mjs";
 import { mountAppCatalogue } from "./app-catalog.mjs";
 import { mountProjectClone } from "./project-clone.mjs";
-export function mountPlatform(app, { pool, auth, origin, provider, secret }) {
+import { BillingError, SKUS } from "./platform-billing.mjs";
+export function mountPlatform(
+  app,
+  { pool, auth, origin, provider, secret, billing },
+) {
   app.use("/api", (req, _res, next) => {
     req.headers["x-studio-client-ip"] = req.ip || req.socket.remoteAddress;
     next();
@@ -100,7 +104,15 @@ export function mountPlatform(app, { pool, auth, origin, provider, secret }) {
     if (!rows[0]) throw fail(403, "Join this app before accessing its data.");
     return { ...user, role: rows[0].role };
   };
-  app.get("/api/backend-status", (_req, res) => res.json({ enabled: true }));
+  app.get("/api/backend-status", (_req, res) =>
+    res.json({ enabled: true, sharedAccount: Boolean(billing) }),
+  );
+  // The signed-in owner's shared credit balance, read from the platform.
+  app.get("/api/credits", async (req, res) => {
+    const user = await session(req);
+    if (!billing) return res.json({ enabled: false });
+    res.json({ enabled: true, ...(await billing.summary(user.id)) });
+  });
   app.get("/api/projects", async (req, res) => {
     const user = await session(req);
     res.json(
@@ -306,7 +318,7 @@ export function mountPlatform(app, { pool, auth, origin, provider, secret }) {
     },
   );
   app.post("/api/projects/:id/publish", async (req, res) => {
-    await owner(req);
+    const project = await owner(req);
     const { slug, revision } = z
       .object({
         slug: z
@@ -317,12 +329,17 @@ export function mountPlatform(app, { pool, auth, origin, provider, secret }) {
         revision: z.number().int().positive(),
       })
       .parse(req.body);
+    await billing?.ensureCanPay(project.owner_id, SKUS.publish);
     const { rows } = await pool.query(
       `INSERT INTO publications(project_id,slug,document,revision) SELECT id,$2,document,revision FROM projects WHERE id=$1 AND revision=$3 ON CONFLICT(project_id) DO UPDATE SET document=EXCLUDED.document,revision=EXCLUDED.revision,slug=EXCLUDED.slug,published_at=now() RETURNING slug,revision`,
       [req.params.id, slug, revision],
     );
     if (!rows[0])
       throw fail(409, "Save the current project before publishing.");
+    // Charged per published revision, so publishing the same revision again is free.
+    await billing?.charge(project.owner_id, SKUS.publish, {
+      idempotencyKey: `publish:${project.id}:${revision}`,
+    });
     res.json({ ...rows[0], url: `/sites/${slug}/` });
   });
   app.delete("/api/projects/:id/publish", async (req, res) => {
@@ -530,8 +547,8 @@ export function mountPlatform(app, { pool, auth, origin, provider, secret }) {
   });
   mountAutomation(app, { pool, owner, publication, member });
   mountFiles(app, { pool, owner, publication, member });
-  mountBackendAI(app, { pool, owner, provider, secret });
-  mountDesignAI(app, { pool, owner, provider });
+  mountBackendAI(app, { pool, owner, provider, secret, billing });
+  mountDesignAI(app, { pool, owner, provider, billing });
   mountRecordQueries(app, { pool, publication, member, auth });
   mountProjectHistory(app, { pool, session });
   mountAppCatalogue(app, { pool, session });
@@ -554,6 +571,11 @@ export function platformErrors(err, _req, res, _next) {
   const status = err.status || 500;
   res.status(status).json({
     error:
-      status < 500 ? err.message : "Backend request failed. Please try again.",
+      status < 500 || err instanceof BillingError
+        ? err.message
+        : "Backend request failed. Please try again.",
+    ...(err instanceof BillingError && err.code
+      ? { code: err.code, accountUrl: err.accountUrl }
+      : {}),
   });
 }

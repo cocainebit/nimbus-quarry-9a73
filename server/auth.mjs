@@ -1,4 +1,6 @@
 import { betterAuth } from "better-auth";
+import { genericOAuth } from "better-auth/plugins";
+import { platformConfig } from "./platform-billing.mjs";
 import nodemailer from "nodemailer";
 export function createAuth(
   pool,
@@ -41,8 +43,28 @@ export function createAuth(
       text: `${subject}\n\n${url}\n\nIf you did not request this, ignore this email.`,
     });
   };
+  // Owners can sign in with their shared account (~/platform), the same account
+  // they use in the other products. Published-app members keep their own accounts.
+  const platform = platformConfig();
   const make = (runtime) =>
     betterAuth({
+      plugins:
+        !runtime && platform
+          ? [
+              genericOAuth({
+                config: [
+                  {
+                    providerId: "platform",
+                    discoveryUrl: `${platform.url}/api/auth/.well-known/openid-configuration`,
+                    clientId: platform.clientId,
+                    clientSecret: platform.clientSecret,
+                    scopes: ["openid", "profile", "email"],
+                    pkce: true,
+                  },
+                ],
+              }),
+            ]
+          : [],
       database: pool,
       secret: runtime ? `${secret}-runtime` : secret,
       baseURL: origin,

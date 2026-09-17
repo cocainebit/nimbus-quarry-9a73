@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "./backend-api";
 export default function AccountForm({
   member = false,
@@ -11,6 +11,31 @@ export default function AccountForm({
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const prefix = member ? "/api/member-auth" : "/api/auth";
+  // Owners can use the account they already have in the other products.
+  const [sharedAccount, setSharedAccount] = useState(false);
+  useEffect(() => {
+    if (member) return;
+    api<{ sharedAccount?: boolean }>("/api/backend-status")
+      .then((status) => setSharedAccount(Boolean(status.sharedAccount)))
+      .catch(() => setSharedAccount(false));
+  }, [member]);
+  async function continueWithSharedAccount() {
+    setBusy(true);
+    setError("");
+    try {
+      // The marker tells the dashboard to open the server workspace on return.
+      const back = new URL(location.href);
+      back.searchParams.set("shared-account", "1");
+      const { url } = await api<{ url: string }>("/api/auth/sign-in/social", {
+        provider: "platform",
+        callbackURL: back.toString(),
+      });
+      location.assign(url);
+    } catch (e) {
+      setError((e as Error).message);
+      setBusy(false);
+    }
+  }
   return (
     <form
       className="backend-form"
@@ -46,6 +71,23 @@ export default function AccountForm({
         }
       }}
     >
+      {sharedAccount && mode !== "reset" && (
+        <div className="shared-account">
+          <button
+            type="button"
+            className="dark-button"
+            disabled={busy}
+            onClick={() => void continueWithSharedAccount()}
+          >
+            Continue with your account
+          </button>
+          <small>
+            The same sign-in as your other products: a wallet or an email
+            code. Credits are shared.
+          </small>
+          <span className="shared-account-divider">or use a Plotform password</span>
+        </div>
+      )}
       <h3>
         {mode === "sign-up"
           ? "Create an account"
