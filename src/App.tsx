@@ -13,6 +13,7 @@ import {
   X,
   Folder,
   LayoutTemplate,
+  SlidersHorizontal,
 } from "lucide-react";
 import { demoProject, normalizeProject, type Project } from "./model";
 import { SitePage } from "./blocks";
@@ -23,6 +24,7 @@ import { sourceTemplates } from "../shared/source-templates.mjs";
 import { useProjects } from "./storage";
 import AccountForm from "./AccountForm";
 import AccountChip from "./AccountChip";
+const SettingsPage = lazy(() => import("./Settings"));
 import AppCatalogue from "./AppCatalogue";
 import { api } from "./backend-api";
 import {
@@ -320,6 +322,13 @@ export default function App() {
         <button className="nav-item" onClick={() => setAccountOpen(true)}>
           Account & server projects
         </button>
+        <button
+          className={view === "settings" ? "nav-item selected" : "nav-item"}
+          onClick={() => setView("settings")}
+        >
+          <SlidersHorizontal size={17} />
+          Settings
+        </button>
         <div className="sidebar-bottom">
           <div className="local-note">
             <span className="status-dot" /> Your ideas, your workspace
@@ -346,7 +355,11 @@ export default function App() {
         <header className="dash-top">
           <span>
             Workspace <span className="slash">/</span>{" "}
-            {view === "projects" ? "All projects" : "Starter templates"}
+            {view === "projects"
+              ? "All projects"
+              : view === "settings"
+                ? "Settings"
+                : "Starter templates"}
           </span>
           <span className="dash-top-right">
             {workspace === "server" && <AccountChip userId={user?.id} />}
@@ -361,63 +374,74 @@ export default function App() {
           </span>
         </header>
         <div className="dashboard-content">
-          <div className="heading-row">
-            <div className="eyebrow">
-              A LITTLE STRUCTURE. A LOT OF POSSIBILITY.
-            </div>
-            <span className="mini-label">
-              YOUR NEXT APP OR WEBSITE STARTS HERE ↗
-            </span>
-          </div>
-          <h1>
-            Build a working app.
-            <br />
-            Design a distinctive website.
-          </h1>
-          <p className="intro">
-            Build portals, CRMs, and workspaces with real databases. For
-            websites, choose from {sourceTemplates.length} original open-source
-            designs and edit their actual source.
-          </p>
-          <div className="brief-composer">
-            <div className="composer-label">
-              <Sparkles size={17} /> What are we creating?
-            </div>
-            <textarea
-              aria-label="Website brief"
-              value={brief}
-              onChange={(e) => setBrief(e.target.value)}
-              placeholder="A website for an architecture studio that designs thoughtful, sustainable spaces…"
-              maxLength={6000}
-            />
-            <div className="composer-footer">
-              <span>Start with a brief. Shape every detail.</span>
-              <button className="secondary" onClick={browseOriginals}>
-                Create a website <ArrowUp size={16} />
-              </button>
-              <button
-                className="primary"
-                onClick={() =>
-                  start(
-                    brief,
-                    inferProjectType(brief) === "website"
-                      ? "tracker"
-                      : inferProjectType(brief),
-                  )
-                }
-              >
-                Build an app <ArrowUp size={16} />
-              </button>
-            </div>
-          </div>
-          <div className="starter-row">
-            <button onClick={browseOriginals}>
-              Browse original source templates <ArrowUpRight size={13} />
-            </button>
-            <button onClick={() => start(brief, "website")}>
-              Build with editable blocks
-            </button>
-          </div>
+          {view === "settings" && (
+            <Suspense
+              fallback={<p className="settings-loading">Loading settings…</p>}
+            >
+              <SettingsPage onOpenAccount={() => setAccountOpen(true)} />
+            </Suspense>
+          )}
+          {view !== "settings" && (
+            <>
+              <div className="heading-row">
+                <div className="eyebrow">
+                  A LITTLE STRUCTURE. A LOT OF POSSIBILITY.
+                </div>
+                <span className="mini-label">
+                  YOUR NEXT APP OR WEBSITE STARTS HERE ↗
+                </span>
+              </div>
+              <h1>
+                Build a working app.
+                <br />
+                Design a distinctive website.
+              </h1>
+              <p className="intro">
+                Build portals, CRMs, and workspaces with real databases. For
+                websites, choose from {sourceTemplates.length} original
+                open-source designs and edit their actual source.
+              </p>
+              <div className="brief-composer">
+                <div className="composer-label">
+                  <Sparkles size={17} /> What are we creating?
+                </div>
+                <textarea
+                  aria-label="Website brief"
+                  value={brief}
+                  onChange={(e) => setBrief(e.target.value)}
+                  placeholder="A website for an architecture studio that designs thoughtful, sustainable spaces…"
+                  maxLength={6000}
+                />
+                <div className="composer-footer">
+                  <span>Start with a brief. Shape every detail.</span>
+                  <button className="secondary" onClick={browseOriginals}>
+                    Create a website <ArrowUp size={16} />
+                  </button>
+                  <button
+                    className="primary"
+                    onClick={() =>
+                      start(
+                        brief,
+                        inferProjectType(brief) === "website"
+                          ? "tracker"
+                          : inferProjectType(brief),
+                      )
+                    }
+                  >
+                    Build an app <ArrowUp size={16} />
+                  </button>
+                </div>
+              </div>
+              <div className="starter-row">
+                <button onClick={browseOriginals}>
+                  Browse original source templates <ArrowUpRight size={13} />
+                </button>
+                <button onClick={() => start(brief, "website")}>
+                  Build with editable blocks
+                </button>
+              </div>
+            </>
+          )}
           {view === "templates" && (
             <>
               <SourceTemplateCatalogue

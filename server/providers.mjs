@@ -1,25 +1,36 @@
-const definitions = {
-  ollama: { label: "Ollama", baseUrl: "http://127.0.0.1:11434" },
-  venice: { label: "Venice AI", baseUrl: "https://api.venice.ai/api/v1" },
-  chutes: { label: "Chutes (Bittensor)", baseUrl: "https://llm.chutes.ai/v1" },
-};
+import { activeProvider, providerCatalogue } from "./settings.mjs";
+
+const definitions = Object.fromEntries(
+  providerCatalogue.map((entry) => [
+    entry.id,
+    { label: entry.label, baseUrl: entry.baseUrl },
+  ]),
+);
 
 export function createProvider({
-  provider = process.env.MODEL_PROVIDER || "ollama",
+  provider,
   model,
   baseUrl,
   apiKey,
   fetchImpl = fetch,
   timeoutMs = 120000,
 } = {}) {
+  // Settings chosen in the interface win; the environment is the fallback, so an
+  // installation configured only by .env keeps working untouched.
+  const chosen = activeProvider();
+  provider ??= chosen.provider;
   const definition = definitions[provider];
   if (!definition)
-    throw new Error("MODEL_PROVIDER must be ollama, venice or chutes.");
+    throw new Error(
+      `MODEL_PROVIDER must be one of ${providerCatalogue.map((entry) => entry.id).join(", ")}.`,
+    );
   const prefix = provider.toUpperCase();
-  model ??= process.env[`${prefix}_MODEL`] || "";
-  apiKey ??= process.env[`${prefix}_API_KEY`] || "";
+  const fromSettings = provider === chosen.provider ? chosen : null;
+  model ??= fromSettings?.model || process.env[`${prefix}_MODEL`] || "";
+  apiKey ??= fromSettings?.apiKey || process.env[`${prefix}_API_KEY`] || "";
   const endpoint = (
     baseUrl ||
+    fromSettings?.baseUrl ||
     process.env[`${prefix}_BASE_URL`] ||
     definition.baseUrl
   ).replace(/\/+$/, "");
@@ -30,10 +41,53 @@ export function createProvider({
   const configured = Boolean(model && (local || apiKey));
   const headers = {
     "Content-Type": "application/json",
-    ...(!local ? { Authorization: `Bearer ${apiKey}` } : {}),
+    ...(!local && apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
+    // OpenRouter attributes requests to an app when these are present, and shows the
+    // name on its activity page. Both are optional there and carry no personal data.
+    ...(provider === "openrouter"
+      ? { "HTTP-Referer": "http://127.0.0.1:5173", "X-Title": "Plotform" }
+      : {}),
   };
   return {
     configured,
+    provider,
+    model,
+    /** The models this provider will actually accept, for the picker in Settings. */
+    async models() {
+      // Some providers publish their catalogue without a key, which lets someone browse
+      // models before deciding to paste one.
+      const response = await fetchImpl(
+        `${endpoint}${local ? "/api/tags" : "/models"}`,
+        {
+          headers,
+          redirect: "error",
+          signal: AbortSignal.timeout(15000),
+        },
+      );
+      if (!response.ok) {
+        await response.body?.cancel();
+        throw new Error(
+          response.status === 401
+            ? "That key was refused. Check it and try again."
+            : "The provider did not return its model list.",
+        );
+      }
+      const data = await response.json();
+      const list = local ? data.models : data.data;
+      if (!Array.isArray(list)) return [];
+      return list
+        .map((entry) =>
+          local
+            ? { id: entry.name, label: entry.name }
+            : {
+                id: entry.id,
+                label: entry.name || entry.id,
+                context: Number(entry.context_length) || null,
+              },
+        )
+        .filter((entry) => typeof entry.id === "string" && entry.id)
+        .sort((a, b) => a.id.localeCompare(b.id));
+    },
     async status() {
       const result = {
         configured,
