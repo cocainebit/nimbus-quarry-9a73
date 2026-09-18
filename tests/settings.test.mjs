@@ -40,13 +40,20 @@ test("with nothing chosen and nothing in the environment, the local provider is 
 });
 
 test("the environment still configures the app when the interface has not been used", () => {
-  withEnv({ MODEL_PROVIDER: "venice", VENICE_MODEL: "from-env", VENICE_API_KEY: "env-key-value" }, () => {
-    const active = activeProvider();
-    assert.equal(active.provider, "venice");
-    assert.equal(active.model, "from-env");
-    assert.equal(active.apiKey, "env-key-value");
-    assert.equal(active.chosenHere, false);
-  });
+  withEnv(
+    {
+      MODEL_PROVIDER: "venice",
+      VENICE_MODEL: "from-env",
+      VENICE_API_KEY: "env-key-value",
+    },
+    () => {
+      const active = activeProvider();
+      assert.equal(active.provider, "venice");
+      assert.equal(active.model, "from-env");
+      assert.equal(active.apiKey, "env-key-value");
+      assert.equal(active.chosenHere, false);
+    },
+  );
 });
 
 test("a provider chosen in the interface outranks the environment, and survives a reload", () => {
@@ -81,7 +88,9 @@ test("the file holding the keys is readable only by the account running the serv
 
 test("a key from the environment is reported as such, so nobody hunts for it in the interface", () => {
   withEnv({ CHUTES_API_KEY: "env-only-key" }, () => {
-    const chutes = publicSettings().providers.find((entry) => entry.id === "chutes");
+    const chutes = publicSettings().providers.find(
+      (entry) => entry.id === "chutes",
+    );
     assert.equal(chutes.keySet, true);
     assert.equal(chutes.keyFromEnvironment, true);
   });
@@ -103,9 +112,18 @@ test("clearing a key removes it", () => {
 });
 
 test("nonsense is refused rather than stored", () => {
-  assert.throws(() => chooseProvider("not-a-provider", "x"), /Unknown provider/);
-  assert.throws(() => setKey("ollama", "a-long-enough-key"), /does not take a key/);
-  assert.throws(() => setKey("openrouter", "short"), /does not look like an API key/);
+  assert.throws(
+    () => chooseProvider("not-a-provider", "x"),
+    /Unknown provider/,
+  );
+  assert.throws(
+    () => setKey("ollama", "a-long-enough-key"),
+    /does not take a key/,
+  );
+  assert.throws(
+    () => setKey("openrouter", "short"),
+    /does not look like an API key/,
+  );
 });
 
 test("the provider the app builds follows the choice, including OpenRouter's attribution headers", async () => {
@@ -115,10 +133,13 @@ test("the provider the app builds follows the choice, including OpenRouter's att
   const provider = createProvider({
     fetchImpl: async (url, init) => {
       calls.push({ url, init });
-      return new Response(JSON.stringify({ data: [{ id: "one" }, { id: "two" }] }), {
-        status: 200,
-        headers: { "content-type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ data: [{ id: "one" }, { id: "two" }] }),
+        {
+          status: 200,
+          headers: { "content-type": "application/json" },
+        },
+      );
     },
   });
   assert.equal(provider.configured, true);
@@ -129,13 +150,61 @@ test("the provider the app builds follows the choice, including OpenRouter's att
     ["one", "two"],
   );
   assert.equal(calls[0].url, "https://openrouter.ai/api/v1/models");
-  assert.equal(calls[0].init.headers.Authorization, "Bearer sk-or-not-a-real-key-000000");
+  assert.equal(
+    calls[0].init.headers.Authorization,
+    "Bearer sk-or-not-a-real-key-000000",
+  );
   assert.equal(calls[0].init.headers["X-Title"], "Plotform");
+});
+
+test('an unreachable provider says which one, where, and what to do, not "fetch failed"', async () => {
+  const dead = async () => {
+    throw new TypeError("fetch failed");
+  };
+  const ollama = createProvider({
+    provider: "ollama",
+    model: "any",
+    fetchImpl: dead,
+  });
+  await assert.rejects(
+    () => ollama.models(),
+    /Ollama is not answering at http:\/\/127\.0\.0\.1:11434.*ollama serve/s,
+  );
+  await assert.rejects(
+    () => ollama.complete("s", "u"),
+    /Ollama is not answering/,
+  );
+
+  const hosted = createProvider({
+    provider: "openrouter",
+    model: "any",
+    apiKey: "sk-or-not-a-real-key-000000",
+    fetchImpl: dead,
+  });
+  await assert.rejects(
+    () => hosted.models(),
+    /Could not reach OpenRouter at https:\/\/openrouter\.ai/,
+  );
+
+  const slow = createProvider({
+    provider: "ollama",
+    model: "any",
+    fetchImpl: async () => {
+      const error = new Error("timed out");
+      error.name = "TimeoutError";
+      throw error;
+    },
+  });
+  await assert.rejects(() => slow.models(), /did not answer in time/);
 });
 
 test("a hosted provider is never talked to over plain http", () => {
   assert.throws(
-    () => createProvider({ provider: "openrouter", baseUrl: "http://openrouter.ai/api/v1" }),
+    () =>
+      createProvider({
+        provider: "openrouter",
+        baseUrl: "http://openrouter.ai/api/v1",
+      }),
     /HTTPS/,
   );
 });

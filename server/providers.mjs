@@ -39,6 +39,30 @@ export function createProvider({
     throw new Error("Hosted model providers require an HTTPS endpoint.");
   }
   const configured = Boolean(model && (local || apiKey));
+  /**
+   * Node reports every connection problem as "fetch failed", which tells nobody
+   * anything. Say which provider, where it was asked, and what to do about it.
+   */
+  const reach = async (url, init) => {
+    try {
+      return await fetchImpl(url, init);
+    } catch (error) {
+      const slow =
+        error?.name === "TimeoutError" || error?.name === "AbortError";
+      if (local) {
+        throw new Error(
+          slow
+            ? `Ollama did not answer in time at ${endpoint}.`
+            : `Ollama is not answering at ${endpoint}. Start it with "ollama serve", or pick a hosted provider above.`,
+        );
+      }
+      throw new Error(
+        slow
+          ? `${definition.label} did not answer in time.`
+          : `Could not reach ${definition.label} at ${endpoint}. Check this machine's connection.`,
+      );
+    }
+  };
   const headers = {
     "Content-Type": "application/json",
     ...(!local && apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
@@ -56,7 +80,7 @@ export function createProvider({
     async models() {
       // Some providers publish their catalogue without a key, which lets someone browse
       // models before deciding to paste one.
-      const response = await fetchImpl(
+      const response = await reach(
         `${endpoint}${local ? "/api/tags" : "/models"}`,
         {
           headers,
@@ -129,7 +153,7 @@ export function createProvider({
         throw new Error(
           `Configure ${prefix}_MODEL${local ? "" : ` and ${prefix}_API_KEY`} before generating.`,
         );
-      const response = await fetchImpl(
+      const response = await reach(
         `${endpoint}${local ? "/api/chat" : "/chat/completions"}`,
         {
           method: "POST",
