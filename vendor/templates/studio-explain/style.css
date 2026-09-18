@@ -1,0 +1,1176 @@
+/* Threshold, a Plotform studio edition.
+
+   Ground, measure and chart manners adapted from roadtolarissa by Adam Pearce
+   (MIT): a newsprint page, one 750 pixel column, figures drawn as SVG from the
+   numbers rather than pasted in as pictures, faint axes with no y domain line,
+   labels carrying a paper coloured halo so they stay legible over the marks,
+   and hand drawn annotation arrows.
+
+   The chaptered reading and the one widget per step are adapted from
+   ncase/trust by Nicky Case (CC0).
+
+   Two typefaces, both under the SIL Open Font License: Fraunces for display
+   and Newsreader for reading. No monospace anywhere. No remote anything. */
+
+@font-face {
+  font-family: "Fraunces Variable";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("assets/fraunces-variable.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Newsreader Variable";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("assets/newsreader-variable.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Newsreader Variable";
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("assets/newsreader-variable-italic.woff2") format("woff2-variations");
+}
+
+:root {
+  --paper: #f4f1e8;
+  --paper-sunk: #eae5d7;
+  --paper-raised: #fbf9f3;
+  --ink: #17150f;
+  --ink-2: #4b463b;
+  --ink-3: #7b7466;
+  --rule: #d8d1bf;
+  --rule-strong: #a49c89;
+  --mark: #a63c22;
+  --mark-soft: #e5c7bc;
+  --keep: #1d5b52;
+  --keep-soft: #bdd6d0;
+  --focus: #17150f;
+
+  --text: 1.125rem;
+  --leading: 1.62;
+  --measure: 46.875rem; /* the 750 pixel column roadtolarissa reads at */
+  --wide: 61rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --band: clamp(2.5rem, 6vw, 5rem);
+  --rail-height: 3.6rem;
+
+  --display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --reading: "Newsreader Variable", Georgia, "Times New Roman", serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--paper);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--reading);
+  font-size: var(--text);
+  line-height: var(--leading);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+svg {
+  max-width: 100%;
+}
+
+/* The figures hide and show drawn people by setting the hidden attribute,
+   so it has to beat the display rules below it. */
+[hidden] {
+  display: none !important;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 60;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule-strong);
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+}
+.skip:focus {
+  left: 0.75rem;
+  top: 0.75rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Shared type ---------- */
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-variation-settings: "SOFT" 28, "WONK" 1, "opsz" 72;
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 7.2vw, 4.1rem);
+  font-variation-settings: "SOFT" 34, "WONK" 1, "opsz" 120;
+}
+h2 {
+  font-size: clamp(1.6rem, 3.6vw, 2.35rem);
+}
+h3 {
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  line-height: 1.2;
+}
+
+p {
+  margin: 0 0 1.15em;
+}
+
+.eyebrow {
+  font-family: var(--reading);
+  font-size: 0.775rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 0.85rem;
+  line-height: 1.4;
+}
+
+.lede {
+  font-size: clamp(1.2rem, 2.3vw, 1.4rem);
+  line-height: 1.45;
+  color: var(--ink-2);
+  max-width: 34em;
+}
+
+.text-link {
+  color: var(--mark);
+  text-decoration: underline;
+}
+.text-link:hover {
+  color: var(--ink);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ---------- Page furniture ---------- */
+
+.shell {
+  width: min(100% - (var(--gutter) * 2), var(--measure));
+  margin-inline: auto;
+}
+.shell-wide {
+  width: min(100% - (var(--gutter) * 2), var(--wide));
+  margin-inline: auto;
+}
+
+.bar {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+.bar-inner {
+  width: min(100% - (var(--gutter) * 2), var(--wide));
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 1.1rem;
+  padding: 0.85rem 0;
+}
+.wordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 48;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  line-height: 1;
+}
+.bar-line {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.85rem;
+  flex: 1 1 8rem;
+  line-height: 1.3;
+}
+.bar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  font-size: 0.925rem;
+}
+.bar-nav a {
+  text-decoration: none;
+  color: var(--ink-2);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+.bar-nav a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--rule-strong);
+}
+.bar-nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--mark);
+}
+
+main {
+  display: block;
+  padding-bottom: var(--band);
+}
+
+.section {
+  padding-top: var(--band);
+}
+
+.section-head {
+  margin-bottom: 1.6rem;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: var(--band) auto;
+  width: min(100% - (var(--gutter) * 2), var(--wide));
+}
+
+.demo-note {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  background: var(--paper-sunk);
+  border-left: 3px solid var(--mark);
+  padding: 0.85rem 1rem;
+  margin: 1.5rem 0 0;
+}
+
+.foot {
+  border-top: 1px solid var(--rule);
+  padding: var(--band) 0 2.5rem;
+  background: var(--paper-sunk);
+}
+.foot-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.foot-note {
+  margin: 0 0 0.6rem;
+  max-width: 30em;
+  color: var(--ink-2);
+}
+.foot-mail {
+  font-family: var(--display);
+  font-size: 1.25rem;
+  font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 48;
+  color: var(--mark);
+}
+.foot-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2rem;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 2.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+.foot-bottom nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+}
+.foot-bottom a {
+  color: var(--ink-2);
+}
+
+/* ---------- Front page ---------- */
+
+.hero {
+  padding-top: clamp(2.5rem, 7vw, 5.5rem);
+}
+.hero h1 {
+  margin-bottom: 1.1rem;
+}
+.hero .lede {
+  margin-bottom: 1.6rem;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+}
+
+.button {
+  display: inline-block;
+  font-family: var(--reading);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper-raised);
+  text-decoration: none;
+}
+.button:hover {
+  background: var(--mark);
+  border-color: var(--mark);
+  color: var(--paper-raised);
+}
+.button-quiet {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule-strong);
+}
+.button-quiet:hover {
+  background: var(--paper-raised);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.promise {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+.promise li {
+  border-top: 2px solid var(--ink);
+  padding-top: 0.8rem;
+}
+.promise-number {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 48;
+  margin: 0 0 0.25rem;
+  line-height: 1;
+}
+.promise-body {
+  margin: 0;
+  font-size: 0.975rem;
+  color: var(--ink-2);
+}
+
+.contents {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.contents li {
+  border-bottom: 1px solid var(--rule);
+}
+.contents a {
+  display: flex;
+  gap: 0.75rem 1.25rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+  padding: 0.95rem 0;
+  text-decoration: none;
+}
+.contents a:hover .contents-title {
+  color: var(--mark);
+}
+.contents-number {
+  font-family: var(--display);
+  color: var(--ink-3);
+  font-size: 0.95rem;
+  flex: 0 0 1.75rem;
+}
+.contents-title {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 36;
+  flex: 1 1 10rem;
+}
+.contents-note {
+  color: var(--ink-3);
+  font-size: 0.925rem;
+  flex: 1 1 100%;
+  margin: 0;
+}
+
+/* ---------- The essay ---------- */
+
+.essay-head {
+  padding-top: clamp(2rem, 6vw, 4rem);
+}
+.essay-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--ink-3);
+  margin: 1.4rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+}
+.essay-meta p {
+  margin: 0;
+}
+
+/* The chapter rail only sticks where there is room for it on one line.
+   On a narrow screen a wrapped rail would cover the figure it points at, so
+   there it is an ordinary block at the top of the essay. */
+.rail {
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
+  margin-top: var(--band);
+}
+@media (min-width: 900px) {
+  .rail {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-top: 0;
+  }
+}
+.rail-inner {
+  width: min(100% - (var(--gutter) * 2), var(--wide));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.9rem;
+  padding: 0.6rem 0;
+}
+.rail-label {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.rail-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+.rail-list a {
+  display: inline-block;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  padding: 0.3rem 0.55rem;
+  text-decoration: none;
+  color: var(--ink-2);
+  border: 1px solid transparent;
+}
+.rail-list a:hover {
+  border-color: var(--rule-strong);
+}
+.rail-list a[aria-current="true"] {
+  color: var(--ink);
+  border-color: var(--ink);
+  background: var(--paper-raised);
+}
+
+.chapter {
+  padding-top: var(--band);
+  scroll-margin-top: calc(var(--rail-height) + 1rem);
+}
+.chapter-number {
+  font-family: var(--reading);
+  font-size: 0.775rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--mark);
+  margin: 0 0 0.7rem;
+}
+.chapter h2 {
+  margin-bottom: 1rem;
+}
+.chapter p {
+  max-width: 100%;
+}
+
+.pull {
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  font-variation-settings: "SOFT" 34, "WONK" 1, "opsz" 60;
+  line-height: 1.22;
+  color: var(--ink);
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.1rem 0;
+  margin: 2rem 0;
+}
+
+.aside-note {
+  font-style: italic;
+  color: var(--ink-2);
+  border-left: 2px solid var(--rule-strong);
+  padding-left: 1rem;
+  margin: 1.6rem 0;
+}
+
+/* ---------- The scroll driven pair ---------- */
+
+.scrolly {
+  padding-top: var(--band);
+  scroll-margin-top: calc(var(--rail-height) + 1rem);
+}
+.scrolly-steps {
+  width: min(100% - (var(--gutter) * 2), var(--measure));
+  margin-inline: auto;
+}
+.scrolly-step {
+  padding: 1.5rem 0;
+}
+.scrolly-step p {
+  color: var(--ink-2);
+}
+.scrolly-step[data-active="true"] p {
+  color: var(--ink);
+}
+
+@media (min-width: 900px) {
+  .scrolly-grid {
+    width: min(100% - (var(--gutter) * 2), var(--wide));
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .scrolly-grid .scrolly-figure {
+    position: sticky;
+    top: calc(var(--rail-height) + 0.75rem);
+  }
+  .scrolly-grid .scrolly-steps {
+    width: auto;
+  }
+  .scrolly-step {
+    padding: 4.5rem 0;
+    border-left: 2px solid var(--rule);
+    padding-left: 1.1rem;
+  }
+  .scrolly-step[data-active="true"] {
+    border-left-color: var(--mark);
+  }
+  .scrolly-step:first-child {
+    padding-top: 1rem;
+  }
+  .scrolly-step:last-child {
+    padding-bottom: 6rem;
+  }
+}
+
+/* ---------- Figures ---------- */
+
+.figure {
+  width: min(100% - (var(--gutter) * 2), var(--wide));
+  margin: 0 auto;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  padding: clamp(0.9rem, 2.5vw, 1.5rem);
+}
+.scrolly-figure .figure {
+  width: auto;
+  margin: 0;
+}
+.figure-head {
+  margin-bottom: 1rem;
+}
+.figure-kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 0.35rem;
+}
+.figure-title {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 36;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Both drawings fill their box exactly, in both directions, so that the
+   labels placed over them as ordinary paragraphs land where they should at
+   every width. The minimum height keeps a narrow phone from squashing the
+   drawing into a strip. Strokes are told not to scale, so nothing thins out
+   when the box is stretched. */
+.plot {
+  position: relative;
+  aspect-ratio: 760 / 360;
+  margin-bottom: 0.4rem;
+}
+.plot svg,
+.timeline svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.plot svg *,
+.timeline svg * {
+  vector-effect: non-scaling-stroke;
+}
+.plot-grid line {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.plot-axis {
+  stroke: var(--rule-strong);
+  stroke-width: 1.5;
+}
+.plot-curve {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.plot-curve-soft {
+  fill: none;
+  stroke: var(--rule-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 4;
+}
+.plot-marker line {
+  stroke: var(--mark);
+  stroke-width: 1.5;
+}
+.plot-marker rect {
+  fill: var(--mark);
+  stroke: var(--paper-raised);
+  stroke-width: 2.5;
+}
+.plot-arrow {
+  fill: none;
+  stroke: var(--mark);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+.plot-arrow-head {
+  fill: var(--mark);
+}
+
+.plot-label {
+  position: absolute;
+  margin: 0;
+  font-size: clamp(0.66rem, 1.9vw, 0.8rem);
+  line-height: 1.25;
+  color: var(--ink-3);
+  white-space: nowrap;
+  pointer-events: none;
+  text-shadow:
+    0 1px 0 var(--paper-raised),
+    1px 0 0 var(--paper-raised),
+    0 -1px 0 var(--paper-raised),
+    -1px 0 0 var(--paper-raised);
+}
+.plot-label-y {
+  transform: translateY(-115%);
+}
+.plot-label-x {
+  transform: translate(-50%, 0.2rem);
+}
+.plot-label-x.plot-label-first {
+  transform: translate(0, 0.2rem);
+}
+.plot-label-x.plot-label-last {
+  transform: translate(-100%, 0.2rem);
+}
+.plot-note {
+  position: absolute;
+  margin: 0;
+  width: max-content;
+  max-width: min(11rem, 44%);
+  transform: translateX(-100%);
+  text-align: right;
+  font-size: clamp(0.68rem, 1.9vw, 0.8rem);
+  line-height: 1.3;
+  color: var(--mark);
+  font-style: italic;
+  white-space: normal;
+  pointer-events: none;
+}
+.plot-annotation {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.figure[data-annotation="on"] .plot-annotation {
+  opacity: 1;
+}
+
+.queue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem 1.1rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.9rem;
+  margin-top: 0.9rem;
+}
+.queue-desk {
+  flex: 0 0 auto;
+  border-right: 1px solid var(--rule);
+  padding-right: 1.1rem;
+}
+.queue-line {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+.queue-people {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.15rem;
+  min-height: 3.2rem;
+}
+.peep {
+  width: clamp(1.4rem, 4.4vw, 2.1rem);
+  height: auto;
+  display: block;
+}
+.queue-caption {
+  margin: 0.45rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+.controls {
+  border-top: 1px solid var(--rule);
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+}
+.control-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.control-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--mark);
+  background: transparent;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.control {
+  font-family: var(--reading);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  padding: 0.45rem 0.8rem;
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.control:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.control[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper-raised);
+}
+.control[disabled] {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.2rem;
+  margin: 0.9rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+}
+.stat {
+  flex: 1 1 6rem;
+  min-width: 0;
+}
+.stat-label {
+  margin: 0 0 0.1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.stat-value {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 2.6vw, 1.45rem);
+  font-variation-settings: "SOFT" 30, "WONK" 0, "opsz" 48;
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.stat-keep .stat-value {
+  color: var(--keep);
+}
+.stat-packed .stat-value {
+  color: var(--mark);
+}
+
+.figure-summary {
+  margin: 0.9rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.975rem;
+  line-height: 1.45;
+}
+.figure-note {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+/* The morning timeline */
+
+.timeline {
+  position: relative;
+  aspect-ratio: 760 / 172;
+  margin-bottom: 1.4rem;
+}
+
+/* On a narrow screen the drawn ratio would squash both figures into a strip,
+   so below this width they take a fixed height instead and the drawing
+   stretches to fill it. The labels are placed as percentages of the same box,
+   so they stay where they belong. */
+@media (max-width: 560px) {
+  .plot {
+    aspect-ratio: auto;
+    height: 215px;
+  }
+  .timeline {
+    aspect-ratio: auto;
+    height: 185px;
+  }
+}
+.timeline:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+.lane-planned rect {
+  fill: var(--paper-sunk);
+  stroke: var(--rule-strong);
+  stroke-width: 1;
+}
+.lane-actual rect {
+  fill: var(--mark-soft);
+  stroke: var(--mark);
+  stroke-width: 1;
+}
+.lane-actual rect[data-free="true"] {
+  fill: none;
+  stroke: var(--rule-strong);
+  stroke-dasharray: 3 3;
+}
+.lane-actual rect[data-state="future"],
+.lane-planned rect[data-state="future"] {
+  opacity: 0.45;
+}
+.lane-actual rect[data-state="current"] {
+  fill: var(--mark);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.timeline[data-mode="keep"] .lane-actual rect {
+  fill: var(--keep-soft);
+  stroke: var(--keep);
+}
+.timeline[data-mode="keep"] .lane-actual rect[data-state="current"] {
+  fill: var(--keep);
+  stroke: var(--ink);
+}
+.timeline[data-mode="keep"] .lane-actual rect[data-free="true"] {
+  fill: none;
+  stroke: var(--rule-strong);
+}
+.timeline-hour line {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.timeline-drop {
+  stroke: var(--ink-3);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.bars {
+  display: grid;
+  gap: 1.1rem;
+  margin: 1.4rem 0 0;
+}
+.bar-item {
+  display: grid;
+  gap: 0.3rem;
+}
+.bar-label {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.bar-track {
+  height: 1.6rem;
+  background: var(--paper-sunk);
+  border: 1px solid var(--rule);
+  position: relative;
+}
+.bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--mark);
+}
+.bar-item-keep .bar-fill {
+  background: var(--keep);
+}
+.bar-value {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ---------- Lists used by the notes, model and about pages ---------- */
+
+.rows {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+}
+.rows > div {
+  display: grid;
+  gap: 0.15rem 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+@media (min-width: 720px) {
+  .rows > div {
+    grid-template-columns: minmax(0, 14rem) 6rem minmax(0, 1fr);
+    align-items: baseline;
+  }
+}
+.rows dt {
+  font-weight: 600;
+  margin: 0;
+}
+.rows dd {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+.rows .value {
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--mark);
+  font-weight: 600;
+}
+
+.note-list {
+  list-style: none;
+  counter-reset: note;
+  margin: 0;
+  padding: 0;
+}
+.note-list > li {
+  counter-increment: note;
+  border-top: 1px solid var(--rule);
+  padding: 1.1rem 0;
+}
+.note-list > li::before {
+  content: counter(note);
+  display: block;
+  font-family: var(--display);
+  font-size: 0.9rem;
+  color: var(--mark);
+  margin-bottom: 0.3rem;
+}
+.note-title {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+}
+.note-body {
+  margin: 0;
+  color: var(--ink-2);
+}
+.note-body + .note-body {
+  margin-top: 0.6rem;
+}
+
+.people {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+.people li {
+  border-top: 2px solid var(--ink);
+  padding-top: 0.8rem;
+}
+.person-name {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 36;
+  margin: 0 0 0.1rem;
+}
+.person-role {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.person-body {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+
+.credit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+}
+.credit-art {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+  flex: 0 0 auto;
+}
+.credit-art img {
+  width: 3rem;
+}
+.credit-body {
+  flex: 1 1 15rem;
+  min-width: 0;
+}
+.credit-body p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+.credit-body p:last-child {
+  margin-bottom: 0;
+}
+
+.archive {
+  display: inline-block;
+  font-weight: 600;
+  border: 1px solid var(--ink);
+  padding: 0.5rem 0.95rem;
+  text-decoration: none;
+}
+.archive:hover {
+  background: var(--ink);
+  color: var(--paper-raised);
+}
+
+.plain-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--ink-2);
+}
+.plain-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Readers who ask for less motion ----------
+   Scroll driven changes are switched off entirely: the figure stops
+   following the text, the sticky column becomes an ordinary block, and
+   every annotation is drawn straight away. Both figures still work, and
+   every step of the argument still carries its number in the sentence. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .scrolly-grid .scrolly-figure {
+    position: static;
+  }
+  .plot-annotation {
+    opacity: 1;
+    transition: none;
+  }
+  .scrolly-step p {
+    color: var(--ink);
+  }
+}

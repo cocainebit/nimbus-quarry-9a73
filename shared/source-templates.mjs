@@ -11,6 +11,7 @@ import studioWorkshop from "./source-templates-studio-workshop.json" with { type
 import studioCongress from "./source-templates-studio-congress.json" with { type: "json" };
 import studioTerminal from "./source-templates-studio-terminal.json" with { type: "json" };
 import studioCounter from "./source-templates-studio-counter.json" with { type: "json" };
+import studioExplain from "./source-templates-studio-explain.json" with { type: "json" };
 import cloudcannon from "./source-templates-cloudcannon.json" with { type: "json" };
 import bootstrap from "./source-templates-bootstrap.json" with { type: "json" };
 import html5up from "./source-templates-html5up.json" with { type: "json" };
@@ -33,6 +34,7 @@ export const sourceTemplates = [
   ...studioCongress,
   ...studioTerminal,
   ...studioCounter,
+  ...studioExplain,
   ...curated,
   ...react,
   ...astro,

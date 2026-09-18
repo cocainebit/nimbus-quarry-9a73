@@ -1,0 +1,103 @@
+{
+  "id": "studio-explain",
+  "name": "Threshold",
+  "kind": "Plotform-authored adaptation",
+  "adaptationLabel": "Adapted from ncase/trust and roadtolarissa",
+  "adaptedFrom": [
+    {
+      "name": "The Evolution of Trust",
+      "author": "Nicky Case",
+      "url": "https://github.com/ncase/trust",
+      "commit": "6ec45d73befdb922bd40654dd1c1c903a953562f",
+      "license": "CC0 1.0 Universal",
+      "copyright": "Dedicated to the public domain by Nicky Case, no rights reserved",
+      "licenseFile": "licenses/ncase-trust-CC0.txt",
+      "archivedAt": "source.zip under upstream/trust-6ec45d73/",
+      "reused": [
+        "The shape of an explorable explanation: one idea chaptered across a scroll, with a small interactive widget swapped in at each step in place of another paragraph",
+        "The chapter list as a rail of marks that shows which chapter the reader is in, from js/core/SlideSelect.js, rewritten here as ordinary links whose aria-current follows an IntersectionObserver",
+        "The slide state machine in js/core/Slideshow.js, rewritten here as a declarative list of chapters that each name the state they want the figure to be in",
+        "The stance that the reader should be able to take the model off the rails and play with it, which is why the slider stops following the text the moment the reader touches it",
+        "Two drawings of a person, cut as frames 0000 and 0001 out of assets/splash/splash_peep.png and reduced in size. See the images list below."
+      ],
+      "notReused": [
+        "All audio. The repository's README lists its sound effects under several different licences, at least one of them Creative Commons Attribution NonCommercial and one Creative Commons Sampling Plus, so no sound from this project is bundled here and this edition has no audio at all",
+        "Futura Handwritten by Bill Snyder (css/FuturaHandwritten.ttf), a third party font from dafont that the CC0 dedication does not cover",
+        "PIXI.js, Howler.js, Tween.js, Balloon.css, Q, MinPubSub and Pegasus, the third party libraries vendored under js/lib, each under its own licence. This edition has no dependencies at all",
+        "The game itself: the prisoner's dilemma, the tournament, the payoff matrices and every line of its copy. The subject of this edition is a different one",
+        "The rest of the artwork, which is Adobe Animate texture atlases for a PIXI canvas renderer rather than pictures a static page can use"
+      ]
+    },
+    {
+      "name": "roadtolarissa",
+      "author": "Adam Pearce",
+      "url": "https://github.com/1wheel/roadtolarissa",
+      "commit": "3e28b8aace38d09984a4714ea0c21669081f5dee",
+      "license": "MIT",
+      "copyright": "2012 to 2018 Adam Pearce",
+      "licenseFile": "licenses/roadtolarissa-MIT.txt",
+      "archivedAt": "source.zip under upstream/roadtolarissa-3e28b8aa/",
+      "reused": [
+        "How a data essay is set: a newsprint ground, one centred column of about 750 pixels, a serif at a generous line height, and figures allowed to break wider than the text (source/style.css)",
+        "How its charts are drawn: SVG generated from the numbers rather than pasted in as pictures, so that changing the data changes the drawing",
+        "Its chart manners, from the per post stylesheets such as source/regression-discontinuity/style.css: a faint axis, no domain line on the value axis, value labels sitting on their gridlines rather than in a reserved gutter, and a paper coloured halo behind label text so it stays legible over the marks",
+        "Hand drawn annotation arrows curving in from the side of a chart to the point being talked about",
+        "The scroll driven chart state, from the graph-scroll library vendored at source/msi-4096/graph-scroll.js: a container of steps where the step in the middle of the window is the active one and sets what the figure shows. Rewritten here with an IntersectionObserver and no d3"
+      ],
+      "notReused": [
+        "d3, the graph-scroll library itself, simple-stats and every other script in source/shared and source/javascripts",
+        "swoopyArrows.js, which the repository vendors from bizweekgraphics under its own terms. The annotation arrow here is written for this edition as a quadratic curve with a head aimed along its tangent",
+        "Jekyll, the post archive, all of the writing and every dataset",
+        "The site's images, which are screenshots and photographs belonging to its posts"
+      ]
+    }
+  ],
+  "images": [
+    {
+      "file": "assets/trust-peep-waiting.png",
+      "description": "A hand drawn figure with a round head, standing and waiting. Used once per person in the queue drawing of figure one.",
+      "source": "The Evolution of Trust by Nicky Case, assets/splash/splash_peep.png, frame splash_peep0000 at x 10, y 10, 302 by 402 pixels",
+      "license": "CC0 1.0 Universal",
+      "licenseFile": "licenses/ncase-trust-CC0.txt",
+      "changes": "Cut out of the texture atlas, trimmed to the drawing and reduced to 99 by 176 pixels. Nothing was redrawn, recoloured or added."
+    },
+    {
+      "file": "assets/trust-peep-served.png",
+      "description": "The same figure, smiling, with pink cheeks. Stands at the counter in figure one and appears again on the about page.",
+      "source": "The Evolution of Trust by Nicky Case, assets/splash/splash_peep.png, frame splash_peep0001 at x 10, y 422, 302 by 402 pixels",
+      "license": "CC0 1.0 Universal",
+      "licenseFile": "licenses/ncase-trust-CC0.txt",
+      "changes": "Cut out of the texture atlas, trimmed to the drawing and reduced to 99 by 176 pixels. Nothing was redrawn, recoloured or added."
+    }
+  ],
+  "imagePolicy": "Two bitmaps, both of them Creative Commons Zero artwork from ncase/trust, recorded above with the exact frame they were cut from. There are no photographs and no generated images anywhere in this edition. Every other drawing on the site, including both charts, the timeline, the annotation arrow and the comparison bars, is SVG or CSS written for this template and generated from the numbers in model.js. The only other bitmap in the published folder is plotform-preview.jpg, the catalogue screenshot of this template's own front page.",
+  "fonts": [
+    {
+      "family": "Fraunces",
+      "files": ["assets/fraunces-variable.woff2"],
+      "designer": "Undercase Type",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/fraunces-OFL.txt",
+      "copyright": "Copyright 2020 The Fraunces Project Authors",
+      "origin": "@fontsource-variable/fraunces 5.3.0, the latin subset of the full variable build carrying the weight, optical size, SOFT and WONK axes",
+      "note": "Headings only. The SOFT and WONK axes are what give the headings their character, and they are set in the stylesheet rather than baked into a static cut."
+    },
+    {
+      "family": "Newsreader",
+      "files": [
+        "assets/newsreader-variable.woff2",
+        "assets/newsreader-variable-italic.woff2"
+      ],
+      "designer": "Production Type",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/newsreader-OFL.txt",
+      "copyright": "Copyright 2020 The Newsreader Project Authors",
+      "origin": "@fontsource-variable/newsreader 5.3.0, the latin subset of the weight axis build, roman and italic",
+      "note": "Everything that is read: body text, figure labels, readouts and controls. Figure readouts use its lining tabular figures. There is no monospace anywhere in this edition."
+    }
+  ],
+  "referenceDirection": "An explorable explanation: a course, an exhibit or a small research group explaining one idea properly, where the argument is carried by small interactive figures rather than by paragraphs alone. Two figures written in plain JavaScript against hand written SVG, both keyboard operable, both announcing their state, both carrying a visible sentence saying what they currently show. No reference site code, imagery or branding copied.",
+  "interaction": "Figure one is a slider over a drawn curve: it moves the marker, redraws the queue of people and rewrites its own summary, and it follows the reading position on a wide screen until the reader takes it over. Figure two steps through a morning of appointments with buttons or with the arrow, Home and End keys, and a two button group switches between a fully booked morning and one with an empty slot in every few. The chapter rail follows the reading position. Everything is driven by the numbers in model.js, which the page builder reads too, so the drawings, the readouts and the numbers written into the sentences cannot disagree.",
+  "reducedMotion": "prefers-reduced-motion switches off every scroll driven change: the figure stops following the text, the sticky column becomes an ordinary block, smooth scrolling and all transitions stop, and the annotation on the chart is drawn immediately instead of fading in. Both figures remain fully usable, and every step of the argument carries its number in the running text, so the essay reads straight through.",
+  "demoContent": "Threshold does not exist. The group, the people, the counter, the surgery, the morning and every number in both figures were invented for this template. No study, dataset, institution or person named on this site is real, nothing here was measured, and every page carries a visible note saying so. The arithmetic behind the figures is standard textbook queue arithmetic, written out in words on the notes page, and it is presented as arithmetic rather than as a finding."
+}

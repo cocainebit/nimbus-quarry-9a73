@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" id="top">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Every illustrative number the two figures use, what it means, and how to change it without touching the code.">
+<meta name="theme-color" content="#f4f1e8">
+<title>The numbers behind the figures: Threshold</title>
+<link rel="preload" href="assets/newsreader-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to the explanation</a>
+<header class="bar">
+<div class="bar-inner">
+<a class="wordmark" href="index.html">Threshold</a>
+<p class="bar-line">One idea at a time, explained with figures you can move</p>
+<nav class="bar-nav" aria-label="Main navigation"><a href="index.html">The question</a><a href="explainer.html">The explainer</a><a href="model.html" aria-current="page">The numbers</a><a href="notes.html">Notes and sources</a><a href="about.html">About</a></nav>
+</div>
+</header>
+<main id="main">
+<section class="hero shell">
+<p class="eyebrow">The numbers</p>
+<h1>Everything the figures are made of</h1>
+<p class="lede">Both figures on this site are driven by one short file of numbers called model.js. Nothing is hidden in the code. If you disagree with a value, change it, and the drawings, the readouts and the sentences will follow.</p>
+<p class="demo-note">None of these numbers were measured. They were invented for this template so that the figures have something to draw. If you publish a version of this explainer, replace them with your own and rewrite the notes page to say where yours came from.</p>
+</section>
+
+<section class="section shell">
+<div class="section-head">
+<h2>Figure one: one counter</h2>
+</div>
+<dl class="rows">
+<div>
+<dt>minutesPerVisit</dt>
+<dd class="value tabular">12</dd>
+<dd>How long one person takes once they reach the counter. Raise it and every wait on the chart rises in proportion.</dd>
+</div>
+<div>
+<dt>lowestLoad</dt>
+<dd class="value tabular">40</dd>
+<dd>The left hand end of the slider and of the chart, in minutes booked out of 100.</dd>
+</div>
+<div>
+<dt>highestLoad</dt>
+<dd class="value tabular">99</dd>
+<dd>The right hand end of the slider. It stops short of 100 because at exactly 100 the arithmetic has no answer.</dd>
+</div>
+<div>
+<dt>startingLoad</dt>
+<dd class="value tabular">70</dd>
+<dd>Where the slider sits when the page opens, and the load the first step of chapter two talks about.</dd>
+</div>
+<div>
+<dt>chartTopMinutes</dt>
+<dd class="value tabular">240</dd>
+<dd>The top of the drawn chart, in minutes. The curve leaves the top of the frame rather than being squashed into it.</dd>
+</div>
+<div>
+<dt>mostPeopleDrawn</dt>
+<dd class="value tabular">18</dd>
+<dd>How many little figures the queue drawing can hold. Past this the caption gives the number in words instead.</dd>
+</div>
+<div>
+<dt>kneeLoad</dt>
+<dd class="value tabular">95</dd>
+<dd>The load the third step of chapter two points the annotation arrow at.</dd>
+</div>
+</dl>
+</section>
+
+<section class="section shell">
+<div class="section-head">
+<h2>Figure two: one morning</h2>
+</div>
+<dl class="rows">
+<div>
+<dt>firstAppointmentMinute</dt>
+<dd class="value tabular">480</dd>
+<dd>Minutes past midnight for the first appointment, so 08:00.</dd>
+</div>
+<div>
+<dt>minutesPerAppointment</dt>
+<dd class="value tabular">20</dd>
+<dd>How long each appointment is meant to take.</dd>
+</div>
+<div>
+<dt>appointmentsPerHour</dt>
+<dd class="value tabular">3</dd>
+<dd>How many slots fill an hour when nothing is left empty.</dd>
+</div>
+<div>
+<dt>freeSlotMinutes</dt>
+<dd class="value tabular">20</dd>
+<dd>How much lateness an empty slot can swallow before the next person is affected.</dd>
+</div>
+<div>
+<dt>keepFreeEvery</dt>
+<dd class="value tabular">3</dd>
+<dd>In the kinder morning, one slot in this many is left empty on purpose.</dd>
+</div>
+<div>
+<dt>overrunMinutes</dt>
+<dd class="value tabular">0, 5, 0, 10, 5, 0, 15, 0, 5, 10, 0, 5</dd>
+<dd>Minutes each visit ran over, in order. This list is the whole story of the morning, and every number in it was made up.</dd>
+</div>
+<div>
+<dt>chartEndMinute</dt>
+<dd class="value tabular">780</dd>
+<dd>The right hand end of the drawn timeline, so 13:00.</dd>
+</div>
+</dl>
+</section>
+
+<section class="section shell">
+<div class="section-head">
+<h2>The two rules, in words</h2>
+</div>
+<p>There are only two pieces of arithmetic on this site, and both of them live at the bottom of the same file.</p>
+<ol class="note-list">
+<li>
+<p class="note-title">The wait</p>
+<p class="note-body">Take how booked the day is as a fraction of one. Divide it by what is left over. Multiply by the minutes one visit takes. At 70 booked out of 100 that is 0.7 divided by 0.3, times 12 minutes, which gives 28 minutes.</p>
+</li>
+<li>
+<p class="note-title">The queue</p>
+<p class="note-body">Take how booked the day is, square it, and divide by what is left over. At 70 out of 100 that gives about 2 people standing in line.</p>
+</li>
+<li>
+<p class="note-title">The morning</p>
+<p class="note-body">Walk the slots in order, carrying a running lateness. A booked slot waits whatever lateness has been carried in, then adds its own overrun to it. An empty slot subtracts up to 20 minutes of lateness and passes on what is left.</p>
+</li>
+</ol>
+<p style="margin-top:1.5rem">Both of the first two are textbook arithmetic for the simplest queue anyone models, the one where arrivals are as unpredictable as they can be. They are not a finding, and they are not ours. What is ours, and what is invented, are the numbers we put into them.</p>
+</section>
+
+<section class="section shell">
+<div class="section-head">
+<h2>How to change them</h2>
+</div>
+<ul class="plain-list">
+<li>Open model.js. It is the file with nothing in it but numbers and two short pieces of arithmetic.</li>
+<li>Change a value and reload the page. Both figures redraw from the new numbers, including the curve, the queue and the whole timeline.</li>
+<li>The numbers written into the sentences are a separate matter. They are put there by the page builder so that a reader with JavaScript switched off still gets the argument, so run the builder again to refresh them, or edit the sentences by hand.</li>
+<li>Then rewrite the notes page. An explainer whose numbers have changed and whose notes have not is worse than one with no notes at all.</li>
+</ul>
+</section>
+</main>
+<footer class="foot">
+<div class="shell-wide">
+<div class="foot-top">
+<div>
+<p class="foot-note">Threshold is an invented group and every number on this site is illustrative, made up to show how a figure behaves. Nothing here was measured, and no study, dataset or institution is cited.</p>
+<a class="foot-mail" href="mailto:hello@example.com">hello@example.com</a>
+</div>
+<div>
+<p class="foot-note">Corrections are welcome and are published on the notes page with the date they were made.</p>
+<a class="text-link" href="notes.html">Read the notes and sources</a>
+</div>
+</div>
+<div class="foot-bottom">
+<span>Threshold, a Plotform studio edition. Replace the example address before publishing.</span>
+<nav aria-label="Foot of the page">
+<a href="notes.html">Notes and sources</a>
+<a href="model.html">The numbers</a>
+<a href="about.html">About</a>
+<a href="#top">Back to the top</a>
+</nav>
+</div>
+</div>
+</footer>
+</body>
+</html>

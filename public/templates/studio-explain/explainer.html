@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en" id="top">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A scroll driven explainer with two interactive figures about why waiting grows so fast as a shared counter fills up. Every number is illustrative.">
+<meta name="theme-color" content="#f4f1e8">
+<title>The last ten percent: an illustrative explainer from Threshold</title>
+<link rel="preload" href="assets/newsreader-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="model.js" defer></script>
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the explanation</a>
+<header class="bar">
+<div class="bar-inner">
+<a class="wordmark" href="index.html">Threshold</a>
+<p class="bar-line">One idea at a time, explained with figures you can move</p>
+<nav class="bar-nav" aria-label="Main navigation"><a href="index.html">The question</a><a href="explainer.html" aria-current="page">The explainer</a><a href="model.html">The numbers</a><a href="notes.html">Notes and sources</a><a href="about.html">About</a></nav>
+</div>
+</header>
+<main id="main">
+<article>
+<header class="essay-head shell">
+<p class="eyebrow">Chapter zero, before anything else</p>
+<h1>The last ten percent</h1>
+<p class="lede">Waiting does not grow in step with how busy a place is. It grows much faster than that, and almost all of the growth is hiding in the last stretch before full. This is a short explanation of why, with two figures you can move.</p>
+<div class="essay-meta">
+<p>About eight minutes to read</p>
+<p>Two figures you can move</p>
+<p>Every number illustrative</p>
+</div>
+<p class="demo-note">Read this first. The numbers in these figures are invented for the template. They are not measurements, they do not describe any real counter, surgery, kitchen or call centre, and no study is cited anywhere here. What is real is the arithmetic, which is written out in words on the notes page, and the shape it produces. Put your own numbers in model.js and the figures will follow them.</p>
+</header>
+
+<nav class="rail" aria-label="Chapters">
+<div class="rail-inner">
+<p class="rail-label">Chapters</p>
+<ol class="rail-list">
+<li><a href="#c1" data-rail-for="c1">1. One counter, one morning</a></li>
+<li><a href="#c2" data-rail-for="c2">2. Busy is not the same as full</a></li>
+<li><a href="#c3" data-rail-for="c3">3. A morning, slot by slot</a></li>
+<li><a href="#c4" data-rail-for="c4">4. What an empty slot buys</a></li>
+<li><a href="#c5" data-rail-for="c5">5. What would change our mind</a></li>
+</ol>
+</div>
+</nav>
+
+<section class="chapter shell" id="c1" aria-labelledby="c1-title">
+<p class="chapter-number">Chapter one</p>
+<h2 id="c1-title">One counter, one morning</h2>
+<p>Picture one counter with one person behind it. People turn up through the day, wait their turn, take a few minutes each and leave. The only number we need to start with is how much of the day is already spoken for: if the counter can handle a hundred minutes of work in a hundred minutes, and 70 minutes of work turns up, then the counter is 70 percent booked.</p>
+<p>That number is usually the one on the dashboard. It is the one a manager is asked to push up, because a counter standing idle looks like money left on the table. Three days, drawn as the same hundred minutes:</p>
+<div class="bars">
+<div class="bar-item">
+<p class="bar-label">A quiet day, 40 booked out of 100</p>
+<div class="bar-track"><span class="bar-fill" style="width:40%"></span></div>
+<p class="bar-value">60 minutes of the day are not spoken for</p>
+</div>
+<div class="bar-item">
+<p class="bar-label">A normal day, 70 booked out of 100</p>
+<div class="bar-track"><span class="bar-fill" style="width:70%"></span></div>
+<p class="bar-value">30 minutes of the day are not spoken for</p>
+</div>
+<div class="bar-item">
+<p class="bar-label">A day the dashboard is pleased with, 90 booked out of 100</p>
+<div class="bar-track"><span class="bar-fill" style="width:90%"></span></div>
+<p class="bar-value">10 minutes of the day are not spoken for</p>
+</div>
+</div>
+<p class="aside-note">Nothing about those three bars suggests that the third one is dangerous. They step up in even tens. The trouble is that the thing a person actually experiences, the wait, does not step up in even tens at all.</p>
+</section>
+
+<section class="scrolly" id="c2" aria-labelledby="c2-title">
+<div class="shell">
+<p class="chapter-number">Chapter two</p>
+<h2 id="c2-title">Busy is not the same as full</h2>
+<p>Here is the same counter with the wait drawn against how booked it is. Move the slider, or read the three steps beside it, which move it for you.</p>
+</div>
+<div class="scrolly-grid">
+<div class="scrolly-figure">
+<figure class="figure" id="figure-counter" data-annotation="off">
+<div class="figure-head">
+<p class="figure-kicker">Figure one, move it yourself</p>
+<p class="figure-title">One counter, and the queue behind it</p>
+</div>
+<div class="plot" id="counter-plot">
+<svg viewBox="0 0 760 360" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<g class="plot-grid"><line x1="22" y1="300" x2="738" y2="300"></line><line x1="22" y1="236" x2="738" y2="236"></line><line x1="22" y1="172" x2="738" y2="172"></line><line x1="22" y1="108" x2="738" y2="108"></line><line x1="22" y1="44" x2="738" y2="44"></line></g>
+<line class="plot-axis" x1="22" y1="300" x2="738" y2="300"></line>
+<path class="plot-curve" id="counter-curve" d="M 22,291.47 L 24.98,291.38 L 27.97,291.29 L 30.95,291.2 L 33.93,291.11 L 36.92,291.01 L 39.9,290.92 L 42.88,290.83 L 45.87,290.73 L 48.85,290.64 L 51.83,290.54 L 54.82,290.44 L 57.8,290.34 L 60.78,290.24 L 63.77,290.15 L 66.75,290.04 L 69.73,289.94 L 72.72,289.84 L 75.7,289.74 L 78.68,289.63 L 81.67,289.53 L 84.65,289.42 L 87.63,289.31 L 90.62,289.21 L 93.6,289.1 L 96.58,288.99 L 99.57,288.87 L 102.55,288.76 L 105.53,288.65 L 108.52,288.53 L 111.5,288.42 L 114.48,288.3 L 117.47,288.18 L 120.45,288.07 L 123.43,287.95 L 126.42,287.82 L 129.4,287.7 L 132.38,287.58 L 135.37,287.45 L 138.35,287.33 L 141.33,287.2 L 144.32,287.07 L 147.3,286.94 L 150.28,286.81 L 153.27,286.68 L 156.25,286.54 L 159.23,286.41 L 162.22,286.27 L 165.2,286.13 L 168.18,285.99 L 171.17,285.85 L 174.15,285.71 L 177.13,285.57 L 180.12,285.42 L 183.1,285.27 L 186.08,285.12 L 189.07,284.97 L 192.05,284.82 L 195.03,284.67 L 198.02,284.51 L 201,284.36 L 203.98,284.2 L 206.97,284.04 L 209.95,283.87 L 212.93,283.71 L 215.92,283.54 L 218.9,283.37 L 221.88,283.2 L 224.87,283.03 L 227.85,282.86 L 230.83,282.68 L 233.82,282.5 L 236.8,282.32 L 239.78,282.14 L 242.77,281.96 L 245.75,281.77 L 248.73,281.58 L 251.72,281.39 L 254.7,281.2 L 257.68,281 L 260.67,280.8 L 263.65,280.6 L 266.63,280.39 L 269.62,280.19 L 272.6,279.98 L 275.58,279.77 L 278.57,279.55 L 281.55,279.34 L 284.53,279.12 L 287.52,278.89 L 290.5,278.67 L 293.48,278.44 L 296.47,278.21 L 299.45,277.97 L 302.43,277.73 L 305.42,277.49 L 308.4,277.24 L 311.38,277 L 314.37,276.74 L 317.35,276.49 L 320.33,276.23 L 323.32,275.97 L 326.3,275.7 L 329.28,275.43 L 332.27,275.15 L 335.25,274.87 L 338.23,274.59 L 341.22,274.3 L 344.2,274.01 L 347.18,273.72 L 350.17,273.42 L 353.15,273.11 L 356.13,272.8 L 359.12,272.49 L 362.1,272.17 L 365.08,271.84 L 368.07,271.51 L 371.05,271.17 L 374.03,270.83 L 377.02,270.49 L 380,270.13 L 382.98,269.77 L 385.97,269.41 L 388.95,269.04 L 391.93,268.66 L 394.92,268.28 L 397.9,267.89 L 400.88,267.49 L 403.87,267.09 L 406.85,266.67 L 409.83,266.25 L 412.82,265.83 L 415.8,265.39 L 418.78,264.95 L 421.77,264.5 L 424.75,264.04 L 427.73,263.57 L 430.72,263.09 L 433.7,262.6 L 436.68,262.11 L 439.67,261.6 L 442.65,261.08 L 445.63,260.56 L 448.62,260.02 L 451.6,259.47 L 454.58,258.91 L 457.57,258.33 L 460.55,257.75 L 463.53,257.15 L 466.52,256.54 L 469.5,255.91 L 472.48,255.27 L 475.47,254.62 L 478.45,253.95 L 481.43,253.27 L 484.42,252.56 L 487.4,251.85 L 490.38,251.11 L 493.37,250.36 L 496.35,249.59 L 499.33,248.8 L 502.32,247.99 L 505.3,247.16 L 508.28,246.31 L 511.27,245.43 L 514.25,244.53 L 517.23,243.61 L 520.22,242.66 L 523.2,241.69 L 526.18,240.69 L 529.17,239.66 L 532.15,238.6 L 535.13,237.51 L 538.12,236.38 L 541.1,235.22 L 544.08,234.03 L 547.07,232.8 L 550.05,231.53 L 553.03,230.22 L 556.02,228.87 L 559,227.47 L 561.98,226.02 L 564.97,224.52 L 567.95,222.98 L 570.93,221.37 L 573.92,219.71 L 576.9,217.99 L 579.88,216.2 L 582.87,214.34 L 585.85,212.41 L 588.83,210.4 L 591.82,208.31 L 594.8,206.13 L 597.78,203.86 L 600.77,201.5 L 603.75,199.02 L 606.73,196.44 L 609.72,193.73 L 612.7,190.9 L 615.68,187.92 L 618.67,184.8 L 621.65,181.52 L 624.63,178.06 L 627.62,174.42 L 630.6,170.58 L 633.58,166.51 L 636.57,162.21 L 639.55,157.65 L 642.53,152.8 L 645.52,147.64 L 648.5,142.13 L 651.48,136.25 L 654.47,129.94 L 657.45,123.17 L 660.43,115.88 L 663.42,108 L 666.4,99.47 L 669.38,90.19 L 672.37,80.07 L 675.35,68.99 L 678.33,56.8"></path>
+<g class="plot-marker" id="counter-marker">
+<line id="counter-marker-line" x1="380" y1="270.13" x2="380" y2="300"></line>
+<rect id="counter-marker-dot" x="373.5" y="263.63" width="13" height="13"></rect>
+</g>
+<g class="plot-annotation">
+<path class="plot-arrow" id="counter-arrow" d="M 508.33,182.24 Q 560.17,83.88 669.33,62.8"></path>
+<polygon class="plot-arrow-head" id="counter-arrow-head" points="669.33,62.8 659.41,69.42 657.66,60.35"></polygon>
+</g>
+</svg>
+<p class="plot-label plot-label-y" style="left:2.89%;top:83.33%">0</p>
+<p class="plot-label plot-label-y" style="left:2.89%;top:65.56%">60</p>
+<p class="plot-label plot-label-y" style="left:2.89%;top:47.78%">120</p>
+<p class="plot-label plot-label-y" style="left:2.89%;top:30%">180</p>
+<p class="plot-label plot-label-y" style="left:2.89%;top:12.22%">240</p>
+<p class="plot-label plot-label-x plot-label-first" style="left:2.89%;top:83.33%">40</p>
+<p class="plot-label plot-label-x" style="left:18.6%;top:83.33%">50</p>
+<p class="plot-label plot-label-x" style="left:34.3%;top:83.33%">60</p>
+<p class="plot-label plot-label-x" style="left:50%;top:83.33%">70</p>
+<p class="plot-label plot-label-x" style="left:65.7%;top:83.33%">80</p>
+<p class="plot-label plot-label-x" style="left:81.4%;top:83.33%">90</p>
+<p class="plot-label plot-label-x plot-label-last" style="left:97.11%;top:83.33%">100</p>
+<p class="plot-note plot-annotation" style="left:66.89%;top:36.18%">Past here the line stops being a slope and starts being a wall.</p>
+</div>
+<p class="figure-note">Across the bottom: how many minutes of every hundred are already booked. Up the side: minutes the average person waits before reaching the counter.</p>
+<div class="queue">
+<div class="queue-desk">
+<img class="peep" src="assets/trust-peep-served.png" alt="A drawing of the person who has reached the counter" width="99" height="176">
+<p class="queue-caption">At the counter</p>
+</div>
+<div class="queue-line">
+<div class="queue-people" role="img" aria-label="The queue, drawn as one small figure per waiting person">
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176">
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176">
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+<img class="peep" data-peep src="assets/trust-peep-waiting.png" alt="" width="99" height="176" hidden>
+</div>
+<p class="queue-caption" id="queue-caption">Waiting: about 2 people</p>
+</div>
+</div>
+<div class="controls">
+<p class="control-label" id="counter-label">How much of the day is already booked, out of 100</p>
+<input type="range" id="counter-input" min="40" max="99" step="1" value="70" aria-labelledby="counter-label" aria-describedby="counter-summary" aria-valuetext="70 out of 100 booked. Average wait 28 minutes, about 2 people waiting.">
+<p class="control-hint">Drag it, or give it the keyboard focus and use the arrow keys. While you are reading on a wide screen the text moves the slider for you, until you move it yourself.</p>
+</div>
+<div class="stat-row">
+<div class="stat">
+<p class="stat-label">Booked</p>
+<p class="stat-value tabular" id="counter-load">70 of 100</p>
+</div>
+<div class="stat">
+<p class="stat-label">Average wait</p>
+<p class="stat-value tabular" id="counter-wait">28 minutes</p>
+</div>
+<div class="stat">
+<p class="stat-label">People waiting</p>
+<p class="stat-value tabular" id="counter-queue">2</p>
+</div>
+</div>
+<figcaption>
+<p class="figure-summary" id="counter-summary">With 70 minutes of every 100 already booked, the average person waits 28 minutes and about 2 people are in the queue. One visit takes 12 minutes.</p>
+<p class="figure-note">Illustrative. The counter takes 12 minutes per visit and never closes, which is why the right hand end of the slider gives a wait no real place would ever reach. The arithmetic is on the notes page and the numbers are in model.js.</p>
+</figcaption>
+</figure>
+</div>
+<div class="scrolly-steps">
+<div class="scrolly-step" data-step-load="70" data-step-annotation="off" data-active="true">
+<h3>Start where most places think they are</h3>
+<p>At 70 booked out of 100 the average person waits 28 minutes and there are about 2 people in front of them. This feels fine. Nobody writes a letter about it. There are 30 minutes in every hundred with nothing booked into them, and that spare time is quietly doing the work of swallowing every visit that runs long.</p>
+</div>
+<div class="scrolly-step" data-step-load="90" data-step-annotation="off">
+<h3>Now book nine tenths of it</h3>
+<p>At 90 the wait is 108 minutes and about 8 people are standing in line. The counter is working twenty percent harder than before. The person at the back of the queue is waiting nearly four times as long. Going from 80 to 90 alone adds 60 minutes to the average wait, which is more than the whole wait at 70.</p>
+</div>
+<div class="scrolly-step" data-step-load="95" data-step-annotation="on">
+<h3>The line stops being a slope</h3>
+<p>At 95 the wait is 228 minutes, off the top of the chart, with about 18 people waiting. The last five points of booking cost 120 minutes, which is more than the previous fifty points cost put together. Nothing broke. Nobody made a mistake. The arithmetic simply stopped being forgiving.</p>
+</div>
+</div>
+</div>
+<div class="shell">
+<p class="pull">The counter did not get worse. It got fuller. Those are different things, and only one of them is visible on a dashboard.</p>
+<p>The reason is easier to feel than to prove. Every time a visit runs long, the time has to come from somewhere. In a day with room in it, the overrun lands in an empty minute and disappears. In a day with no room in it, the overrun lands on the next person, who passes it to the person after them. The spare capacity was not waste. It was the thing that was absorbing your mistakes.</p>
+</div>
+</section>
+
+<section class="chapter shell-wide" id="c3" aria-labelledby="c3-title">
+<div class="shell">
+<p class="chapter-number">Chapter three</p>
+<h2 id="c3-title">A morning, slot by slot</h2>
+<p>The curve is a summary of many mornings. Here is one of them, drawn twice: once as it was planned, and once as it happened. There are 12 appointments of 20 minutes each, 3 to the hour, starting at 08:00. A few of them run over by a handful of minutes, which is the most ordinary thing in the world.</p>
+<p>Step forward through the morning and watch where the lateness goes.</p>
+</div>
+<figure class="figure" id="figure-morning">
+<div class="figure-head">
+<p class="figure-kicker">Figure two, step through it</p>
+<p class="figure-title">One morning, slot by slot</p>
+</div>
+<div class="timeline" id="morning-timeline" data-mode="packed" tabindex="0" role="img" aria-label="A morning of 12 slots drawn twice, as planned and as it happened.">
+<svg viewBox="0 0 760 172" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<g class="timeline-hour"><line x1="22" y1="16" x2="22" y2="138"></line><line x1="165.2" y1="16" x2="165.2" y2="138"></line><line x1="308.4" y1="16" x2="308.4" y2="138"></line><line x1="451.6" y1="16" x2="451.6" y2="138"></line><line x1="594.8" y1="16" x2="594.8" y2="138"></line><line x1="738" y1="16" x2="738" y2="138"></line></g>
+<g class="lane-planned">
+<rect data-planned-slot="0" data-state="current" x="22" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="1" data-state="future" x="69.73" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="2" data-state="future" x="117.47" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="3" data-state="future" x="165.2" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="4" data-state="future" x="212.93" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="5" data-state="future" x="260.67" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="6" data-state="future" x="308.4" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="7" data-state="future" x="356.13" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="8" data-state="future" x="403.87" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="9" data-state="future" x="451.6" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="10" data-state="future" x="499.33" y="20" width="47.73" height="34"></rect>
+<rect data-planned-slot="11" data-state="future" x="547.07" y="20" width="47.73" height="34"></rect>
+</g>
+<g class="lane-actual">
+<rect data-actual-slot="0" data-free="false" data-state="current" x="22" y="80" width="47.73" height="34"></rect>
+<rect data-actual-slot="1" data-free="false" data-state="future" x="69.73" y="80" width="59.67" height="34"></rect>
+<rect data-actual-slot="2" data-free="false" data-state="future" x="129.4" y="80" width="47.73" height="34"></rect>
+<rect data-actual-slot="3" data-free="false" data-state="future" x="177.13" y="80" width="71.6" height="34"></rect>
+<rect data-actual-slot="4" data-free="false" data-state="future" x="248.73" y="80" width="59.67" height="34"></rect>
+<rect data-actual-slot="5" data-free="false" data-state="future" x="308.4" y="80" width="47.73" height="34"></rect>
+<rect data-actual-slot="6" data-free="false" data-state="future" x="356.13" y="80" width="83.53" height="34"></rect>
+<rect data-actual-slot="7" data-free="false" data-state="future" x="439.67" y="80" width="47.73" height="34"></rect>
+<rect data-actual-slot="8" data-free="false" data-state="future" x="487.4" y="80" width="59.67" height="34"></rect>
+<rect data-actual-slot="9" data-free="false" data-state="future" x="547.07" y="80" width="71.6" height="34"></rect>
+<rect data-actual-slot="10" data-free="false" data-state="future" x="618.67" y="80" width="47.73" height="34"></rect>
+<rect data-actual-slot="11" data-free="false" data-state="future" x="666.4" y="80" width="59.67" height="34"></rect>
+</g>
+<line class="timeline-drop" id="morning-drop" x1="45.87" y1="54" x2="45.87" y2="80"></line>
+<line class="plot-axis" x1="22" y1="138" x2="738" y2="138"></line>
+</svg>
+<p class="plot-label" style="left:0;top:0">As the day was planned</p>
+<p class="plot-label" style="left:0;top:37.21%">What actually happened</p>
+<p class="plot-label plot-label-x plot-label-first" style="left:2.89%;top:80.23%">08:00</p>
+<p class="plot-label plot-label-x" style="left:21.74%;top:80.23%">09:00</p>
+<p class="plot-label plot-label-x" style="left:40.58%;top:80.23%">10:00</p>
+<p class="plot-label plot-label-x" style="left:59.42%;top:80.23%">11:00</p>
+<p class="plot-label plot-label-x" style="left:78.26%;top:80.23%">12:00</p>
+<p class="plot-label plot-label-x plot-label-last" style="left:97.11%;top:80.23%">13:00</p>
+</div>
+<div class="controls">
+<p class="control-label">Step through the morning</p>
+<div class="button-row">
+<button class="control" type="button" data-step-move="-1">Back one slot</button>
+<button class="control" type="button" data-step-move="1">Forward one slot</button>
+</div>
+<p class="control-hint">The buttons work with the mouse and with the keyboard. With the figure focused, the left and right arrow keys move a slot at a time and the Home and End keys jump to the start and the end of the morning.</p>
+</div>
+<div class="controls">
+<p class="control-label">How the morning is booked</p>
+<div class="button-row" role="group" aria-label="How the morning is booked">
+<button class="control" type="button" data-mode-value="packed" aria-pressed="true">Every slot booked</button>
+<button class="control" type="button" data-mode-value="keep" aria-pressed="false">One slot in 3 kept empty</button>
+</div>
+</div>
+<div class="stat-row">
+<div class="stat">
+<p class="stat-label">Seen so far</p>
+<p class="stat-value tabular" id="morning-people">1</p>
+</div>
+<div class="stat">
+<p class="stat-label">Waiting so far</p>
+<p class="stat-value tabular" id="morning-waited">0 minutes</p>
+</div>
+<div class="stat">
+<p class="stat-label">Longest wait yet</p>
+<p class="stat-value tabular" id="morning-longest">0 minutes</p>
+</div>
+</div>
+<figcaption>
+<p class="figure-summary" id="morning-summary" role="status" aria-live="polite">Slot 1 of 12, planned for 08:00, seen at 08:00 after waiting 0 minutes. This visit ran over by 0 minutes. So far 1 person has been seen and 0 minutes of waiting has been spent.</p>
+<p class="figure-note">Illustrative. The overruns are a list of made up numbers in model.js, not a record of anything. Booked end to end, this morning costs 275 minutes of waiting across 12 people, and the longest wait is 50 minutes. With one slot in 3 left empty, it costs 35 minutes across 8 people, and the longest wait is 15 minutes.</p>
+</figcaption>
+</figure>
+<div class="shell">
+<p>Booked end to end, the last person of the morning is seen 50 minutes late, and the morning costs 275 minutes of waiting spread across 12 people. No single overrun in the list is longer than 15 minutes. Nobody was careless. The delay is not a thing that happened once, it is a thing that was passed along.</p>
+<p>Now press the second button and keep one slot in every 3 empty. The empty slot has no patient in it, so the lateness carried into it has nothing to be passed to, and the morning starts again on time at the top of the hour. The longest wait falls from 50 minutes to 15.</p>
+<p class="aside-note">This is the part an explainer has to be honest about. The empty slots are not free. Keeping one in every 3 means 8 people are seen instead of 12.</p>
+</div>
+</section>
+
+<section class="chapter shell-wide" id="c4" aria-labelledby="c4-title">
+<div class="shell">
+<p class="chapter-number">Chapter four</p>
+<h2 id="c4-title">What an empty slot buys</h2>
+<p>Both sides of the trade, from the same made up morning:</p>
+</div>
+<figure class="figure">
+<div class="figure-head">
+<p class="figure-kicker">Figure three, the whole morning at once</p>
+<p class="figure-title">What the empty slot costs, and what it buys</p>
+</div>
+<h3>Minutes of waiting, added up across everyone</h3>
+<div class="bars">
+<div class="bar-item">
+<p class="bar-label">Every slot booked</p>
+<div class="bar-track"><span class="bar-fill" style="width:100%"></span></div>
+<p class="bar-value">275 minutes</p>
+</div>
+<div class="bar-item bar-item-keep">
+<p class="bar-label">One slot in 3 kept empty</p>
+<div class="bar-track"><span class="bar-fill" style="width:12.73%"></span></div>
+<p class="bar-value">35 minutes</p>
+</div>
+</div>
+<h3>People seen</h3>
+<div class="bars">
+<div class="bar-item">
+<p class="bar-label">Every slot booked</p>
+<div class="bar-track"><span class="bar-fill" style="width:100%"></span></div>
+<p class="bar-value">12 people</p>
+</div>
+<div class="bar-item bar-item-keep">
+<p class="bar-label">One slot in 3 kept empty</p>
+<div class="bar-track"><span class="bar-fill" style="width:66.67%"></span></div>
+<p class="bar-value">8 people</p>
+</div>
+</div>
+<figcaption>
+<p class="figure-summary">Keeping one slot in 3 empty costs 4 of the 12 appointments and saves 240 minutes of other people's mornings. Whether that is a good trade is a decision about who the morning is for, and no figure can make it for you.</p>
+<p class="figure-note">Illustrative, drawn from the same made up overruns as figure two. This one does not move, because there is nothing left to vary.</p>
+</figcaption>
+</figure>
+<div class="shell">
+<p style="margin-top:2rem">4 fewer appointments, and 240 minutes of other people's mornings handed back. Whether that is a good deal depends on something no figure can tell you: what the morning is for, and who is paying for the waiting. If the people waiting are paid to wait, the packed morning is cheap. If they took a day off work to be there, it is not.</p>
+<p class="pull">Slack is not the opposite of efficiency. It is the price of a promise about time.</p>
+<p>The useful thing about seeing it drawn is that the argument stops being about attitude. Nobody has to be accused of being lazy or of being a martinet. There is a curve, it bends where it bends, and the question is simply which side of the bend you would like to run your week on.</p>
+</div>
+</section>
+
+<section class="chapter shell" id="c5" aria-labelledby="c5-title">
+<p class="chapter-number">Chapter five</p>
+<h2 id="c5-title">What would change our mind</h2>
+<p>This is a toy. It is a useful toy, because the shape it produces is the shape real queues have, but it is a toy, and here is the list of ways it is wrong.</p>
+<ul class="plain-list">
+<li>The counter in figure one never closes. That is why the far end of the slider produces a wait of 1188 minutes, which no real place would ever reach, because in a real place the day ends and the queue goes home.</li>
+<li>Nobody in this model gives up and leaves, and nobody is seen out of turn. Both of those things happen constantly, and both of them flatten the curve.</li>
+<li>Arrivals here are as unpredictable as they can possibly be. A place that can smooth its arrivals, with appointments that people keep, sits on a much kinder curve than this one.</li>
+<li>The morning in figure two has one room and one queue. Two rooms sharing one queue behave very differently, and better, than two rooms with a queue each.</li>
+<li>Every number in both figures was invented for this template. If you have real numbers, put them in model.js. The drawings will follow them, and then the argument will be about your place rather than about ours.</li>
+</ul>
+<p style="margin-top:1.5rem">The notes give the arithmetic in words and say plainly which parts are invented. The numbers page lets you change them.</p>
+<p><a class="text-link" href="notes.html">Read the notes and sources</a></p>
+<p><a class="text-link" href="model.html">Open the numbers</a></p>
+</section>
+</article>
+</main>
+<footer class="foot">
+<div class="shell-wide">
+<div class="foot-top">
+<div>
+<p class="foot-note">Threshold is an invented group and every number on this site is illustrative, made up to show how a figure behaves. Nothing here was measured, and no study, dataset or institution is cited.</p>
+<a class="foot-mail" href="mailto:hello@example.com">hello@example.com</a>
+</div>
+<div>
+<p class="foot-note">Corrections are welcome and are published on the notes page with the date they were made.</p>
+<a class="text-link" href="notes.html">Read the notes and sources</a>
+</div>
+</div>
+<div class="foot-bottom">
+<span>Threshold, a Plotform studio edition. Replace the example address before publishing.</span>
+<nav aria-label="Foot of the page">
+<a href="notes.html">Notes and sources</a>
+<a href="model.html">The numbers</a>
+<a href="about.html">About</a>
+<a href="#top">Back to the top</a>
+</nav>
+</div>
+</div>
+</footer>
+</body>
+</html>

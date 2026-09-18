@@ -1,0 +1,56 @@
+[
+  {
+    "id": "studio-explain",
+    "name": "Threshold",
+    "category": "Explainer",
+    "collection": "studio",
+    "framework": "HTML / CSS / JavaScript",
+    "description": "An explorable explanation: a scroll driven essay carried by two interactive figures you write yourself, a slider over a drawn curve and a morning you step through, both keyboard operable and both driven by one small file of numbers.",
+    "sourceUrl": "https://github.com/ncase/trust",
+    "license": "CC0 + MIT + OFL fonts",
+    "entry": "index.html",
+    "pages": [
+      "index.html",
+      "explainer.html",
+      "model.html",
+      "notes.html",
+      "about.html"
+    ],
+    "files": [
+      "LICENSE",
+      "SOURCE.json",
+      "VENDOR-NOTES.md",
+      "about.html",
+      "assets/fraunces-variable.woff2",
+      "assets/newsreader-variable-italic.woff2",
+      "assets/newsreader-variable.woff2",
+      "assets/trust-peep-served.png",
+      "assets/trust-peep-waiting.png",
+      "explainer.html",
+      "index.html",
+      "licenses/fraunces-OFL.txt",
+      "licenses/ncase-trust-CC0.txt",
+      "licenses/newsreader-OFL.txt",
+      "licenses/roadtolarissa-MIT.txt",
+      "model.html",
+      "model.js",
+      "notes.html",
+      "plotform-preview.jpg",
+      "script.js",
+      "source.zip",
+      "style.css"
+    ],
+    "adaptedFrom": "https://github.com/ncase/trust",
+    "sourceArchive": "source.zip",
+    "designNotes": [
+      "Plotform adaptation of ncase/trust and roadtolarissa, not an unchanged upstream template.",
+      "The genre no builder ships: one idea chaptered across a scroll, with a small figure the reader can operate standing in place of another paragraph.",
+      "Two figures written in plain JavaScript against hand written SVG, with no chart library and no dependencies. A slider over a drawn curve, and a morning of appointments stepped through a slot at a time.",
+      "Both figures work from the keyboard, announce their state, and carry a visible sentence saying what they currently show, so the argument survives with JavaScript off or motion switched off.",
+      "Every number lives in model.js, which the page builder reads too, so the drawings, the readouts and the numbers written into the sentences cannot disagree. Change the model by editing values, not code.",
+      "The only two bitmaps are CC0 drawings from ncase/trust, credited on the about page with the atlas frame they were cut from. No photography and no generated images.",
+      "Every figure, person, group and number is invented for the template, no study is cited and no institution is named, and each page says so."
+    ],
+    "adaptationLabel": "Adapted from ncase/trust and roadtolarissa"
+  }
+]

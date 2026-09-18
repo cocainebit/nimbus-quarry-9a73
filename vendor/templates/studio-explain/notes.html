@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" id="top">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Where every number in the explainer comes from, what the model leaves out, and why no real study is cited.">
+<meta name="theme-color" content="#f4f1e8">
+<title>Notes and sources: Threshold</title>
+<link rel="preload" href="assets/newsreader-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to the explanation</a>
+<header class="bar">
+<div class="bar-inner">
+<a class="wordmark" href="index.html">Threshold</a>
+<p class="bar-line">One idea at a time, explained with figures you can move</p>
+<nav class="bar-nav" aria-label="Main navigation"><a href="index.html">The question</a><a href="explainer.html">The explainer</a><a href="model.html">The numbers</a><a href="notes.html" aria-current="page">Notes and sources</a><a href="about.html">About</a></nav>
+</div>
+</header>
+<main id="main">
+<section class="hero shell">
+<p class="eyebrow">Notes and sources</p>
+<h1>Showing the working</h1>
+<p class="lede">An explainer that will not show its working is a poster. This page lists every number the figures use, says which of them are invented, and sets out what the model leaves out before anyone has to ask.</p>
+<p class="demo-note">The short version: all of it is invented. The arithmetic is standard and the numbers are ours, chosen to make the figures legible. Nothing on this site is a measurement of anything.</p>
+</section>
+
+<section class="section shell">
+<div class="section-head">
+<h2>Notes</h2>
+</div>
+<ol class="note-list">
+<li>
+<p class="note-title">Nothing here was measured</p>
+<p class="note-body">Threshold is an invented group, the counter is an invented counter, and the morning in figure two is an invented morning. Every number on this site was chosen to make a figure behave, not to describe anything that happened. Nothing on this site should be quoted as evidence about a real place.</p>
+</li>
+<li>
+<p class="note-title">The wait curve</p>
+<p class="note-body">The curve in figure one is a single piece of arithmetic: how booked the day is, divided by what is left over, times the 12 minutes a visit takes. It is the standard result for the simplest queue in the textbooks, the one with a single server and arrivals that are as unpredictable as they can be. It is arithmetic rather than a finding, so there is no study behind it to cite, and we have deliberately not dressed it up as one.</p>
+</li>
+<li>
+<p class="note-title">Why the curve leaves the top of the chart</p>
+<p class="note-body">At 95 booked out of 100 the average wait in this model is 228 minutes, which is above the 240 minute top of the frame. We let the line leave the chart rather than rescaling, because rescaling is how a chart hides exactly the thing this page is about.</p>
+</li>
+<li>
+<p class="note-title">The twelve minute visit</p>
+<p class="note-body">The 12 minutes a visit takes is a made up number chosen so the arithmetic lands on readable values. Change it in model.js and every wait on the chart changes in proportion to it. The shape of the curve does not change at all, which is the point worth taking away.</p>
+</li>
+<li>
+<p class="note-title">The morning's overruns</p>
+<p class="note-body">The list of overruns is 0, 5, 0, 10, 5, 0, 15, 0, 5, 10, 0, 5 minutes, in order. We made it up. It has no long overruns in it on purpose, because the argument is more interesting when nothing has gone badly wrong: the longest single overrun is 15 minutes and the morning still ends 50 minutes late.</p>
+</li>
+<li>
+<p class="note-title">What the empty slot does</p>
+<p class="note-body">An empty slot absorbs up to 20 minutes of lateness, which is simply how long the slot is. That is the whole mechanism. It is not a scheduling technique we are recommending by name, and we have not tested it anywhere.</p>
+</li>
+<li>
+<p class="note-title">Why the sentences do not move when you drag</p>
+<p class="note-body">The numbers inside the running text are written into the page when it is built, not while you read. A reader with JavaScript switched off, or with the figures still loading, gets the whole argument with its numbers intact. The figures themselves recompute live from the same file, so the two can only disagree if someone edits the page without rebuilding it.</p>
+</li>
+<li>
+<p class="note-title">What this model leaves out</p>
+<p class="note-body">No closing time, so the queue never goes home. Nobody gives up and leaves. Nobody is seen out of turn. Arrivals are as unpredictable as they can be, which is the least kind assumption available. One counter, one queue. Each of these makes the real world gentler than this page, and none of them changes the direction of the argument.</p>
+</li>
+<li>
+<p class="note-title">No study is cited here, on purpose</p>
+<p class="note-body">It would be easy to make this page look more authoritative by attaching a reference to a real paper or naming a real institution. That would be dishonest, because the numbers are ours and they are invented. If you fork this template, cite the work you actually did, and leave this note in place until you have done it.</p>
+</li>
+<li>
+<p class="note-title">Corrections</p>
+<p class="note-body">Corrections are published here with the date they were made and a line saying what was wrong. There are none yet, because this page has never claimed anything about the world.</p>
+</li>
+</ol>
+</section>
+
+<section class="section shell">
+<div class="section-head">
+<h2>What would change our mind</h2>
+</div>
+<ul class="plain-list">
+<li>A place with real arrival records whose waits stayed flat as it filled past ninety. That would mean its arrivals are far smoother than this model assumes, and we would want to say so loudly.</li>
+<li>A morning where the empty slot did not absorb the lateness, because the lateness arrived in one lump bigger than the slot. Our figure quietly assumes that overruns come in small pieces.</li>
+<li>Any case where the people waiting are also the people being paid, which turns the whole trade in chapter four upside down.</li>
+</ul>
+</section>
+
+<section class="section shell">
+<div class="section-head">
+<h2>How this page was made</h2>
+</div>
+<p>Threshold is a Plotform studio edition, written on top of two openly licensed pieces of work. Their licence texts are kept beside these pages in the licences folder, and the full adapted source, including both upstream projects, is packaged as a download.</p>
+<ol class="note-list">
+<li>
+<p class="note-title">The Evolution of Trust, by Nicky Case, under Creative Commons Zero</p>
+<p class="note-body">A public domain dedication, so it can be used and changed by anybody for anything. We took the way it chapters a scroll and swaps one small widget in per step instead of writing another paragraph. The two hand drawn people in the first figure are its artwork, cut from its opening spritesheet and made smaller. Its sound and music are a mixture of licences, including one effect that is not free for commercial use, so we took no audio at all. Its lettering comes from a third party font that is not covered by the dedication, so we took none of that either.</p>
+<p class="note-body"><a class="text-link" href="licenses/ncase-trust-CC0.txt">The dedication, as shipped with this template</a></p>
+</li>
+<li>
+<p class="note-title">roadtolarissa, by Adam Pearce, under the MIT licence</p>
+<p class="note-body">How a data essay is actually built: a newsprint ground, one narrow column of text, charts drawn as SVG from the numbers rather than pasted in as pictures, faint axes with the labels sitting on the gridlines under a paper coloured halo, and a hand drawn annotation arrow curving in from the side. The arrow helper it vendors belongs to somebody else, so we did not copy it; the one on this page is written here from the same geometry.</p>
+<p class="note-body"><a class="text-link" href="licenses/roadtolarissa-MIT.txt">The MIT licence, as shipped with this template</a></p>
+</li>
+<li>
+<p class="note-title">Fraunces and Newsreader, under the SIL Open Font License 1.1</p>
+<p class="note-body">Fraunces by Undercase Type sets the headings. Newsreader by Production Type sets the reading. Both are bundled with these pages as files rather than loaded from a font service, and both licence texts travel with them.</p>
+<p class="note-body"><a class="text-link" href="licenses/fraunces-OFL.txt">The Fraunces licence</a></p>
+<p class="note-body"><a class="text-link" href="licenses/newsreader-OFL.txt">The Newsreader licence</a></p>
+</li>
+<li>
+<p class="note-title">Everything else</p>
+<p class="note-body">Both figures, the stylesheet, the page builder and all of the writing were made for this edition and are licensed MIT.</p>
+</li>
+</ol>
+<p style="margin-top:1.5rem"><a class="archive" href="source.zip" download>Download the complete source</a></p>
+<p class="figure-note">There are no remote scripts, fonts, trackers, maps or form services anywhere on this site. The only address on it is an example one.</p>
+</section>
+</main>
+<footer class="foot">
+<div class="shell-wide">
+<div class="foot-top">
+<div>
+<p class="foot-note">Threshold is an invented group and every number on this site is illustrative, made up to show how a figure behaves. Nothing here was measured, and no study, dataset or institution is cited.</p>
+<a class="foot-mail" href="mailto:hello@example.com">hello@example.com</a>
+</div>
+<div>
+<p class="foot-note">Corrections are welcome and are published on the notes page with the date they were made.</p>
+<a class="text-link" href="notes.html">Read the notes and sources</a>
+</div>
+</div>
+<div class="foot-bottom">
+<span>Threshold, a Plotform studio edition. Replace the example address before publishing.</span>
+<nav aria-label="Foot of the page">
+<a href="notes.html">Notes and sources</a>
+<a href="model.html">The numbers</a>
+<a href="about.html">About</a>
+<a href="#top">Back to the top</a>
+</nav>
+</div>
+</div>
+</footer>
+</body>
+</html>
