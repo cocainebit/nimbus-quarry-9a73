@@ -1,0 +1,48 @@
+[
+  {
+    "id": "studio-press",
+    "name": "Quire",
+    "category": "Publication",
+    "collection": "studio",
+    "framework": "HTML / CSS / JavaScript",
+    "description": "An essay publication set entirely in type: a dense index of pieces, a printed contents list, a reading room with a drop cap and marginal notes, and reading settings that persist.",
+    "sourceUrl": "https://github.com/satnaing/astro-paper",
+    "license": "MIT + OFL font",
+    "entry": "index.html",
+    "pages": [
+      "index.html",
+      "issue.html",
+      "essay.html",
+      "masthead.html",
+      "colophon.html"
+    ],
+    "files": [
+      "LICENSE",
+      "SOURCE.json",
+      "VENDOR-NOTES.md",
+      "assets/source-serif-4-italic.woff2",
+      "assets/source-serif-4-normal.woff2",
+      "colophon.html",
+      "essay.html",
+      "index.html",
+      "issue.html",
+      "licenses/astropaper-MIT.txt",
+      "licenses/source-serif-4-OFL.txt",
+      "masthead.html",
+      "plotform-preview.jpg",
+      "script.js",
+      "source.zip",
+      "style.css"
+    ],
+    "adaptedFrom": "https://github.com/satnaing/astro-paper",
+    "sourceArchive": "source.zip",
+    "designNotes": [
+      "Plotform adaptation of AstroPaper, not an unchanged upstream template.",
+      "No images anywhere: the identity is the type system, the measure, the rules and the margins. Every ornament is CSS or inline SVG written for this edition.",
+      "Set in one family, Source Serif 4, in three registers: display, text and capitals set small.",
+      "Reading settings persist in the browser: day or night, and three type sizes that carry the measure with them. The index filters by issue.",
+      "Every piece, contributor and issue is invented for the template and each page says so."
+    ],
+    "adaptationLabel": "Adapted from AstroPaper"
+  }
+]

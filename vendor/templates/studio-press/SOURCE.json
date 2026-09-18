@@ -1,0 +1,47 @@
+{
+  "id": "studio-press",
+  "name": "Quire",
+  "kind": "Plotform-authored adaptation",
+  "adaptationLabel": "Adapted from AstroPaper",
+  "adaptedFrom": {
+    "name": "AstroPaper",
+    "url": "https://github.com/satnaing/astro-paper",
+    "commit": "35cfa7fbe0b897306d27670d3819e55d5205f3dd",
+    "license": "MIT",
+    "copyright": "2023 Sat Naing",
+    "licenseFile": "licenses/astropaper-MIT.txt",
+    "vendoredAt": "vendor/templates/modern-astro-paper",
+    "reused": [
+      "The publication architecture: an index of pieces, a grouped listing, a single piece page with adjacent-piece navigation, an about page and a colophon",
+      "The token pair held on a data attribute on the root element (src/styles/theme.css), rewritten as the :root and [data-reading-mode=\"night\"] token sets in style.css",
+      "The persisted theme switch (src/scripts/theme.ts): a value written to localStorage, an inline script that applies it before paint, aria-label reflection on the control and the meta theme-color update. Reworked here as two axes, the reading mode and the type size",
+      "The skip link to #main-content and the dashed focus outline on links and buttons"
+    ],
+    "notReused": [
+      "Astro, Tailwind v4, the typography plugin and the npm toolchain",
+      "Search, the RSS feed, the generated Open Graph images, the archive pagination and the social links",
+      "The upstream fonts, the lighthouse score badge and the AstroPaper logo",
+      "All upstream copy, post content and configuration"
+    ]
+  },
+  "images": [],
+  "imagePolicy": "This edition carries no images of any kind: no photographs, no generated pictures and no bitmap ornament. The printer's device in the masthead bar and at the foot of every page is inline SVG written for this edition, and every rule, lozenge, leader and drop cap is drawn by style.css. The only bitmap in the folder is plotform-preview.jpg, the catalogue screenshot of this template's own front page.",
+  "fonts": [
+    {
+      "family": "Source Serif 4",
+      "files": [
+        "assets/source-serif-4-normal.woff2",
+        "assets/source-serif-4-italic.woff2"
+      ],
+      "designer": "Frank Griesshammer for Adobe",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/source-serif-4-OFL.txt",
+      "copyright": "Copyright 2014 to 2023 Adobe, with Reserved Font Name Source",
+      "origin": "@fontsource-variable/source-serif-4 5.3.0, the latin subset of the standard variable build carrying the weight and optical size axes",
+      "note": "One family, three registers: display, text and capitals set small. No second family and no monospace anywhere."
+    }
+  ],
+  "referenceDirection": "A serious online journal: a dense index of pieces, a printed contents list with leaders and folios, and a reading room with a comfortable measure, a drop cap, marginal notes, keyed end notes and a hanging pull quote. The identity is the type system, the measure, the rules and the margins. No reference site code, imagery or branding copied.",
+  "interaction": "Reading settings kept in localStorage under quire-reading-mode and quire-type-size: day or night, and three type sizes. Both are applied before paint and carried between pages. The front page index also filters by issue.",
+  "demoContent": "Quire does not exist. The essays, contributors, editors, issues, folio numbers and reader letters were invented for this template, and the prose was written for it. No metric, price, award, byline or endorsement here refers to anything real."
+}
