@@ -130,9 +130,7 @@ function PaymentSheet({
 
   const description =
     charge?.description || request.description || "This action";
-  const amount = amountLabel(
-    charge?.amountMicro ?? request.amountMicro,
-  );
+  const amount = amountLabel(charge?.amountMicro ?? request.amountMicro);
   const message: Record<Stage, string> = {
     waiting:
       "The payment window is open. Complete the payment there and this action continues on its own.",
@@ -153,7 +151,7 @@ function PaymentSheet({
   return (
     <div className="modal-backdrop">
       <div
-        className="modal payment-modal"
+        className={`modal payment-modal payment-${stage}`}
         role="dialog"
         aria-modal="true"
         aria-label="Pay for this action"

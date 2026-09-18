@@ -2375,3 +2375,258 @@ small {
     flex-basis: 100%;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Motion.
+
+   One easing and three durations, so everything on screen moves like it belongs
+   to the same object. Movement is small on purpose: 1px to 6px, never a bounce,
+   and nothing that delays a click. Anything decorative is switched off entirely
+   for people who ask for reduced motion at the end of this block.
+   --------------------------------------------------------------------------- */
+:root {
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --fast: 0.14s;
+  --base: 0.24s;
+  --slow: 0.38s;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes sweep {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Each dashboard view arrives rather than appearing. */
+.settings-page,
+.project-section,
+.source-collection {
+  animation: rise var(--base) var(--ease) both;
+}
+
+/* The project grid deals itself out. Only the first rows are staggered: past
+   that the delay would be noticed as slowness rather than read as sequence. */
+.project-card {
+  animation: pop var(--base) var(--ease) both;
+  transition:
+    transform var(--base) var(--ease),
+    box-shadow var(--base) var(--ease),
+    border-color var(--fast) var(--ease);
+}
+.project-card:nth-child(2) {
+  animation-delay: 0.04s;
+}
+.project-card:nth-child(3) {
+  animation-delay: 0.08s;
+}
+.project-card:nth-child(4) {
+  animation-delay: 0.12s;
+}
+.project-card:nth-child(5) {
+  animation-delay: 0.16s;
+}
+.project-card:nth-child(n + 6) {
+  animation-delay: 0.2s;
+}
+.project-card:hover {
+  transform: translateY(-3px);
+  border-color: #d2cec7;
+  box-shadow: 0 10px 30px #19171410;
+}
+.project-card .mini-site {
+  transition: transform var(--slow) var(--ease);
+}
+.project-card:hover .mini-site {
+  transform: scale(0.245) translateY(-6px);
+}
+
+/* The selected navigation item grows a rule rather than blinking into place. */
+.nav-item {
+  position: relative;
+  transition:
+    background var(--fast) var(--ease),
+    color var(--fast) var(--ease);
+}
+.nav-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+  width: 2px;
+  border-radius: 2px;
+  background: #2b2823;
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform var(--base) var(--ease);
+}
+.nav-item.selected::before {
+  transform: scaleY(1);
+}
+
+/* Provider and service cards: a small lift, and a ring that draws itself. */
+.provider-card,
+.service-card,
+.catalog-card {
+  transition:
+    transform var(--fast) var(--ease),
+    border-color var(--fast) var(--ease),
+    box-shadow var(--base) var(--ease),
+    background var(--fast) var(--ease);
+}
+.provider-card:hover,
+.catalog-card:hover {
+  transform: translateY(-2px);
+}
+.provider-card:active {
+  transform: translateY(0);
+}
+.provider-name em {
+  animation: pop var(--base) var(--ease) both;
+}
+
+/* The model list opens, and its rows arrive in order. */
+.model-list {
+  animation: rise var(--base) var(--ease) both;
+}
+.model-list li {
+  animation: fade var(--base) var(--ease) both;
+}
+.model-list li:nth-child(1) {
+  animation-delay: 0.02s;
+}
+.model-list li:nth-child(2) {
+  animation-delay: 0.04s;
+}
+.model-list li:nth-child(3) {
+  animation-delay: 0.06s;
+}
+.model-list li:nth-child(4) {
+  animation-delay: 0.08s;
+}
+.model-list li:nth-child(5) {
+  animation-delay: 0.1s;
+}
+.model-list li:nth-child(n + 6) {
+  animation-delay: 0.12s;
+}
+.model-list li button {
+  transition:
+    background var(--fast) var(--ease),
+    color var(--fast) var(--ease),
+    padding-left var(--fast) var(--ease);
+}
+.model-list li button:hover {
+  padding-left: 17px;
+}
+
+/* Status, saved and error lines are the smallest movements on the page. */
+.settings-state,
+.settings-saved,
+.settings-error {
+  animation: fade var(--base) var(--ease) both;
+}
+.settings-state {
+  transition:
+    border-color var(--slow) var(--ease),
+    background var(--slow) var(--ease),
+    color var(--slow) var(--ease);
+}
+.settings-state .status-dot {
+  transition: background var(--slow) var(--ease);
+}
+.provider-detail {
+  animation: rise var(--base) var(--ease) both;
+}
+
+/* Dialogs: the backdrop fades, the panel rises into it. */
+.modal-backdrop {
+  animation: fade var(--fast) var(--ease) both;
+}
+.modal,
+.payment-modal,
+.app-record-modal {
+  animation: pop var(--base) var(--ease) both;
+}
+
+/* Buttons acknowledge the press. Disabled controls stay still. */
+button:not(:disabled):active {
+  transform: translateY(1px);
+}
+.button,
+button {
+  transition:
+    transform var(--fast) var(--ease),
+    background var(--fast) var(--ease),
+    border-color var(--fast) var(--ease),
+    opacity var(--fast) var(--ease);
+}
+
+/* A payment that completes gets one confirmation sweep under the amount, and only
+   then: a line that draws itself on arrival would promise something it cannot know. */
+.payment-lines {
+  position: relative;
+}
+.payment-paid .payment-lines::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #2f6b3a;
+  transform-origin: left;
+  animation: sweep var(--slow) var(--ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .project-card:hover,
+  .provider-card:hover,
+  .catalog-card:hover {
+    transform: none;
+  }
+  .project-card:hover .mini-site {
+    transform: scale(0.24);
+  }
+  .model-list li button:hover {
+    padding-left: 13px;
+  }
+}
