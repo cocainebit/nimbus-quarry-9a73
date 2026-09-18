@@ -1,0 +1,95 @@
+{
+  "id": "studio-counter",
+  "name": "Carafe",
+  "kind": "Plotform-authored adaptation",
+  "adaptationLabel": "Adapted from AstroWind",
+  "adaptedFrom": {
+    "name": "AstroWind",
+    "url": "https://github.com/onwidget/astrowind",
+    "commit": "14e1a691f80548dcc36370847b1a02c0d0b12821",
+    "license": "MIT",
+    "copyright": "2023 onWidget",
+    "licenseFile": "licenses/astrowind-MIT.md",
+    "vendoredAt": "vendor/templates/modern-astrowind",
+    "upstreamArchive": "vendor/templates/studio-counter/upstream/astrowind-14e1a691-source.zip",
+    "reused": [
+      "The multi page static business site architecture: one shared head, one header, one footer, a front page, content pages and a contact page whose form reaches no service",
+      "The single custom property token block that src/components/CustomStyles.astro sets on the root element, rewritten as the :root token block at the top of style.css",
+      "The header pattern in src/components/widgets/Header.astro: brand, link list and one action, with a button that flips aria-expanded and an open class on the header for narrow screens",
+      "The native details accordion in src/components/widgets/FAQs.astro, used here for the questions on the visit page",
+      "The footer in src/components/widgets/Footer.astro: link columns above a secondary line",
+      "The shape of src/components/ui/Form.astro: labelled inputs, a textarea, a disclaimer and a description line on a form element that carries no action, so nothing is ever sent"
+    ],
+    "notReused": [
+      "Astro, Tailwind v4, the typography plugin, the shadcn token layer and the npm toolchain",
+      "The blog, the search, the feed, the generated Open Graph images and the icon set",
+      "The dark mode switch and the intersection animation utilities",
+      "The Netlify, Vercel, Cloudflare and Docker deployment configuration",
+      "Every upstream photograph, including the Unsplash demonstration images",
+      "All upstream copy and configuration"
+    ]
+  },
+  "images": [],
+  "imagePolicy": "This edition carries no photographs and no generated images. A restaurant template that leans on stock food photography is useless to the person who has not yet paid a photographer, so the identity here is carried by type, colour, rules, a CSS paper texture and five drawings made for this edition. The only bitmap in the published folder is plotform-preview.jpg, the catalogue screenshot of this template's own front page.",
+  "artwork": [
+    {
+      "file": "assets/drawing-counter.svg",
+      "subject": "The counter seen from the door: three pendant lamps, two shelves of bottles, a carafe, a glass and a plate on the counter top, four stools in front",
+      "license": "MIT, Plotform contributors"
+    },
+    {
+      "file": "assets/drawing-dish.svg",
+      "subject": "A plate seen from above: folded slices, sprigs of herb, capers, a thread of oil and a spoon on the rim",
+      "license": "MIT, Plotform contributors"
+    },
+    {
+      "file": "assets/drawing-carafe.svg",
+      "subject": "A carafe half full of red wine, a filled wine glass and an empty tumbler",
+      "license": "MIT, Plotform contributors"
+    },
+    {
+      "file": "assets/plan-room.svg",
+      "subject": "Plan of the room: counter and nine stools, four tables, the hatched kitchen behind a red pass, the washroom, the cellar stair, the window band and the door",
+      "license": "MIT, Plotform contributors"
+    },
+    {
+      "file": "assets/map-corner.svg",
+      "subject": "Drawn map of an invented corner: Fell Street crossing Bower Lane, the restaurant marked as a filled plot, the railway and station, a bus stop and a park. Not a map of anywhere real and not traced from any mapping service",
+      "license": "MIT, Plotform contributors"
+    },
+    {
+      "file": "style.css (paper texture) and the sprig rule drawn inline in the pages",
+      "subject": "The laid paper ground is three CSS gradients; the sprig between sections is inline SVG",
+      "license": "MIT, Plotform contributors"
+    }
+  ],
+  "fonts": [
+    {
+      "family": "Playfair Display",
+      "files": ["assets/playfair-display-normal.woff2"],
+      "designer": "The Playfair Display project authors, led by Claus Eggers Sørensen",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/playfair-display-OFL.txt",
+      "copyright": "Copyright 2017 The Playfair Display Project Authors, with Reserved Font Name Playfair Display",
+      "origin": "@fontsource-variable/playfair-display, the latin subset of the standard variable build, already vendored in this repository for studio-retreat",
+      "note": "Display only: the wordmark, the headings and the pull quote."
+    },
+    {
+      "family": "Source Serif 4",
+      "files": [
+        "assets/source-serif-4-normal.woff2",
+        "assets/source-serif-4-italic.woff2"
+      ],
+      "designer": "Frank Griesshammer for Adobe",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/source-serif-4-OFL.txt",
+      "copyright": "Copyright 2014 to 2023 Adobe, with Reserved Font Name Source",
+      "origin": "@fontsource-variable/source-serif-4 5.3.0, the latin subset of the standard variable build, already vendored in this repository for studio-press",
+      "note": "Everything that has to be read, including every price and every time. Its figures are one width, so the price and hour columns line up. No monospace anywhere."
+    }
+  ],
+  "referenceDirection": "A neighbourhood counter restaurant and wine bar, set like a printed menu card: warm laid paper made from CSS gradients, a claret accent, hairline and dotted rules, small caps furniture, a high contrast display serif over a sturdy text serif, and drawings in place of photographs. No reference site code, imagery, fonts or copy is included.",
+  "interaction": "Three plain behaviours, all keyboard operable and none of them talking to a service: the navigation toggle on narrow screens, a today marker in the hours block that reads the day numbers written on each row and says what is printed there for today, and a menu filter for vegetarian and vegan dishes with a live count.",
+  "booking": "There is no reservation service. Booking is a mailto: link to an example address, beside a form with no action that says plainly it is not connected and, on submit, says that nothing was sent.",
+  "demoContent": "Carafe does not exist. The dishes, the wines, the people, the street, the telephone number and the email address were invented for this template. The prices are illustrative sample values, which exist so the menu can be designed properly with leaders and aligned columns; the menu page, the wine page, the credits page and the foot of every page say so."
+}

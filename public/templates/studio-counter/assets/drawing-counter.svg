@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620">
+  <title>The counter seen from the door</title>
+  <!-- Carafe, a Plotform studio edition. Drawn for this template, not traced from
+       any photograph or reference site. Line work in ink with one claret accent. -->
+  <g fill="none" stroke="#241e17" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Light falling from the three pendants onto the counter -->
+    <g stroke="none">
+      <path d="M195 158 L305 158 L395 330 L105 330 Z" fill="#7c2436" opacity="0.055"/>
+      <path d="M445 158 L555 158 L645 330 L355 330 Z" fill="#7c2436" opacity="0.055"/>
+      <path d="M695 158 L805 158 L895 330 L605 330 Z" fill="#7c2436" opacity="0.055"/>
+    </g>
+
+    <!-- Back wall, with a serving hatch through to the kitchen -->
+    <path d="M30 40 L30 585 M970 40 L970 585 M30 585 L970 585"/>
+    <path d="M690 60 L930 60 L930 250 L690 250 Z" stroke="#9a8e73" stroke-width="2"/>
+    <path d="M690 250 L930 250" stroke="#241e17" stroke-width="4"/>
+    <path d="M718 250 L718 60 M810 250 L810 60" stroke="#9a8e73" stroke-width="1.4"/>
+
+    <!-- Two shelves of bottles and glasses behind the counter -->
+    <path d="M70 130 L640 130 M70 232 L640 232" stroke-width="3"/>
+    <path d="M118 130 L118 232 M592 130 L592 232" stroke="#9a8e73" stroke-width="1.6"/>
+
+    <g stroke-width="2">
+      <path d="M150 130 L150 96 Q150 86 158 80 L158 58 L172 58 L172 80 Q180 86 180 96 L180 130"/>
+      <path d="M198 130 L198 92 Q198 82 206 76 L206 52 L220 52 L220 76 Q228 82 228 92 L228 130"/>
+      <path d="M248 130 L248 100 Q248 90 256 85 L256 64 L270 64 L270 85 Q278 90 278 100 L278 130"/>
+      <path d="M300 130 L300 90 Q300 80 308 74 L308 48 L322 48 L322 74 Q330 80 330 90 L330 130"/>
+      <path d="M352 130 L352 104 L382 104 L382 130"/>
+      <path d="M352 104 L358 78 L376 78 L382 104"/>
+      <path d="M408 130 L408 94 Q408 84 416 78 L416 56 L430 56 L430 78 Q438 84 438 94 L438 130"/>
+      <path d="M458 130 L458 98 Q458 88 466 82 L466 60 L480 60 L480 82 Q488 88 488 98 L488 130"/>
+      <path d="M510 130 L510 92 Q510 82 518 76 L518 50 L532 50 L532 76 Q540 82 540 92 L540 130"/>
+      <path d="M560 130 L560 102 L590 102 L590 130"/>
+
+      <path d="M152 232 L152 198 Q152 188 160 182 L160 160 L174 160 L174 182 Q182 188 182 198 L182 232"/>
+      <path d="M204 232 L204 204 L232 204 L232 232"/>
+      <path d="M204 204 L210 178 L226 178 L232 204"/>
+      <path d="M256 232 L256 194 Q256 184 264 178 L264 154 L278 154 L278 178 Q286 184 286 194 L286 232"/>
+      <path d="M306 232 L306 200 Q306 190 314 184 L314 162 L328 162 L328 184 Q336 190 336 200 L336 232"/>
+      <path d="M358 232 L358 196 Q358 186 366 180 L366 156 L380 156 L380 180 Q388 186 388 196 L388 232"/>
+      <path d="M412 232 L412 206 L440 206 L440 232"/>
+      <path d="M412 206 L418 180 L434 180 L440 206"/>
+      <path d="M464 232 L464 192 Q464 182 472 176 L472 152 L486 152 L486 176 Q494 182 494 192 L494 232"/>
+      <path d="M516 232 L516 200 Q516 190 524 184 L524 158 L538 158 L538 184 Q546 190 546 200 L546 232"/>
+    </g>
+
+    <!-- Three pendant lamps -->
+    <g>
+      <path d="M250 0 L250 96 M500 0 L500 96 M750 0 L750 96" stroke-width="1.6"/>
+      <path d="M195 158 L232 100 L268 100 L305 158 Z"/>
+      <path d="M445 158 L482 100 L518 100 L555 158 Z"/>
+      <path d="M695 158 L732 100 L768 100 L805 158 Z"/>
+      <path d="M195 158 L305 158 M445 158 L555 158 M695 158 L805 158" stroke="#7c2436" stroke-width="3"/>
+    </g>
+
+    <!-- The counter itself -->
+    <path d="M60 330 L940 330 L940 356 L60 356 Z" fill="#fbf7ef"/>
+    <path d="M84 356 L916 356 L916 512 L84 512 Z" fill="#fbf7ef"/>
+    <path d="M84 512 L916 512 L916 528 L84 528 Z" fill="#e9e0cd" stroke="#9a8e73" stroke-width="1.8"/>
+    <g stroke="#9a8e73" stroke-width="1.4">
+      <path d="M144 356 L144 512 M204 356 L204 512 M264 356 L264 512 M324 356 L324 512 M384 356 L384 512 M444 356 L444 512 M504 356 L504 512 M564 356 L564 512 M624 356 L624 512 M684 356 L684 512 M744 356 L744 512 M804 356 L804 512 M864 356 L864 512"/>
+    </g>
+
+    <!-- What is standing on the counter -->
+    <g stroke-width="2.2">
+      <path d="M176 330 L176 306 Q176 288 190 282 Q198 279 198 268 L198 238 Q198 228 206 226 L226 226 Q234 228 234 238 L234 268 Q234 279 242 282 Q256 288 256 306 L256 330"/>
+      <path d="M198 258 L234 258" stroke="#7c2436" stroke-width="2"/>
+      <path d="M380 330 Q380 306 396 296 L396 268 L390 258 L390 248 L430 248 L430 258 L424 258 L424 296 Q440 306 440 330"/>
+      <path d="M396 286 L424 286" stroke="#7c2436" stroke-width="2"/>
+      <ellipse cx="596" cy="322" rx="62" ry="15"/>
+      <ellipse cx="596" cy="318" rx="40" ry="9" stroke="#9a8e73" stroke-width="1.6"/>
+      <path d="M700 330 L700 296 Q700 286 712 284 L736 284 Q748 286 748 296 L748 330"/>
+      <path d="M714 284 Q706 250 720 226 M724 284 Q736 254 748 240" stroke="#45543a" stroke-width="2"/>
+      <path d="M720 226 L712 236 M720 226 L730 232 M748 240 L740 246 M748 240 L754 250" stroke="#45543a" stroke-width="2"/>
+    </g>
+
+    <!-- Four stools drawn in front of the counter -->
+    <g stroke-width="2.4">
+      <ellipse cx="210" cy="470" rx="46" ry="13" fill="#e9e0cd"/>
+      <path d="M168 474 L150 585 M252 474 L270 585 M158 540 L262 540"/>
+      <ellipse cx="410" cy="470" rx="46" ry="13" fill="#e9e0cd"/>
+      <path d="M368 474 L350 585 M452 474 L470 585 M358 540 L462 540"/>
+      <ellipse cx="610" cy="470" rx="46" ry="13" fill="#e9e0cd"/>
+      <path d="M568 474 L550 585 M652 474 L670 585 M558 540 L662 540"/>
+      <ellipse cx="810" cy="470" rx="46" ry="13" fill="#e9e0cd"/>
+      <path d="M768 474 L750 585 M852 474 L870 585 M758 540 L862 540"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <title>A plate seen from above</title>
+  <!-- Carafe, a Plotform studio edition. Drawn for this template. -->
+  <g fill="none" stroke="#241e17" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="300" cy="300" r="238" fill="#fbf7ef"/>
+    <circle cx="300" cy="300" r="196" stroke="#9a8e73" stroke-width="1.8"/>
+
+    <!-- A wash under the food -->
+    <path d="M196 336 Q232 284 300 280 Q374 276 408 330 Q380 386 300 392 Q220 388 196 336 Z" fill="#7c2436" opacity="0.07" stroke="none"/>
+
+    <!-- Three folded slices laid across the plate -->
+    <path d="M186 330 Q214 268 268 262 Q300 260 304 292 Q308 330 266 350 Q216 368 186 330 Z" fill="#fbf7ef"/>
+    <path d="M214 316 Q240 286 272 288" stroke="#9a8e73" stroke-width="1.8"/>
+    <path d="M254 352 Q290 290 344 292 Q374 294 372 326 Q368 364 322 376 Q276 384 254 352 Z" fill="#fbf7ef"/>
+    <path d="M286 344 Q310 312 342 314" stroke="#9a8e73" stroke-width="1.8"/>
+    <path d="M330 344 Q356 288 404 296 Q428 302 420 332 Q408 368 366 372 Q338 372 330 344 Z" fill="#fbf7ef"/>
+    <path d="M356 350 Q378 320 406 322" stroke="#9a8e73" stroke-width="1.8"/>
+
+    <!-- Two sprigs of herb -->
+    <g stroke="#45543a" stroke-width="2.4">
+      <path d="M214 250 Q248 214 300 206"/>
+      <path d="M236 232 Q232 214 246 204 Q254 218 244 234"/>
+      <path d="M266 218 Q264 200 280 192 Q286 206 274 220"/>
+      <path d="M368 402 Q392 382 420 380"/>
+      <path d="M386 392 Q384 376 398 370 Q404 382 394 394"/>
+    </g>
+
+    <!-- A scatter of capers and a thread of oil -->
+    <g stroke="none" fill="#241e17">
+      <circle cx="238" cy="382" r="6"/>
+      <circle cx="292" cy="404" r="5"/>
+      <circle cx="342" cy="392" r="6.5"/>
+      <circle cx="398" cy="270" r="5.5"/>
+      <circle cx="330" cy="248" r="5"/>
+    </g>
+    <path d="M204 366 Q268 420 344 408 Q404 398 424 352" stroke="#7c2436" stroke-width="2.2" opacity="0.85"/>
+
+    <!-- A spoon resting on the rim -->
+    <g stroke-width="2.4">
+      <path d="M432 452 L520 526" stroke="#9a8e73"/>
+      <path d="M404 420 Q432 408 444 432 Q456 456 434 464 Q408 470 398 448 Q392 430 404 420 Z" fill="#fbf7ef"/>
+    </g>
+  </g>
+</svg>

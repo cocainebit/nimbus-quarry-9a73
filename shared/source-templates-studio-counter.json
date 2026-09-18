@@ -1,0 +1,59 @@
+[
+  {
+    "id": "studio-counter",
+    "name": "Carafe",
+    "category": "Restaurant",
+    "collection": "studio",
+    "framework": "HTML / CSS / JavaScript",
+    "description": "A counter restaurant and wine bar set like a printed menu card: a real menu with leaders and aligned prices, kitchen and bar hours kept apart, and a booking enquiry that says it is not connected.",
+    "sourceUrl": "https://github.com/onwidget/astrowind",
+    "license": "MIT + OFL fonts",
+    "entry": "index.html",
+    "pages": [
+      "index.html",
+      "menu.html",
+      "wine.html",
+      "room.html",
+      "visit.html",
+      "credits.html"
+    ],
+    "files": [
+      "LICENSE",
+      "SOURCE.json",
+      "VENDOR-NOTES.md",
+      "assets/drawing-carafe.svg",
+      "assets/drawing-counter.svg",
+      "assets/drawing-dish.svg",
+      "assets/map-corner.svg",
+      "assets/plan-room.svg",
+      "assets/playfair-display-normal.woff2",
+      "assets/source-serif-4-italic.woff2",
+      "assets/source-serif-4-normal.woff2",
+      "credits.html",
+      "index.html",
+      "licenses/astrowind-MIT.md",
+      "licenses/playfair-display-OFL.txt",
+      "licenses/source-serif-4-OFL.txt",
+      "menu.html",
+      "plotform-preview.jpg",
+      "room.html",
+      "script.js",
+      "source.zip",
+      "style.css",
+      "visit.html",
+      "wine.html"
+    ],
+    "adaptedFrom": "https://github.com/onwidget/astrowind",
+    "sourceArchive": "source.zip",
+    "designNotes": [
+      "Plotform adaptation of AstroWind, not an unchanged upstream template.",
+      "No photographs anywhere: the identity is the type, a claret accent, hairline and dotted rules, a paper ground made of CSS gradients, and five drawings written as SVG for this edition.",
+      "The menu is the point: sections, a one line description for every item, leaders, and a price column that keeps one right edge from 1440 down to 320, in tabular figures.",
+      "Prices are illustrative sample values invented for the template, and the menu, the wine list, the credits and the foot of every page say so.",
+      "Kitchen and bar hours are separate lists, Monday is closed in both, and a note covers public holidays. Today's row is marked from the day numbers on the rows themselves.",
+      "Booking is a mailto link beside a form with no action that says plainly that nothing is sent.",
+      "Set in Playfair Display for display and Source Serif 4 for reading, both bundled locally with their OFL files. No monospace."
+    ],
+    "adaptationLabel": "Adapted from AstroWind"
+  }
+]

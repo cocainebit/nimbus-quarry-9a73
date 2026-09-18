@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" width="1000" height="660">
+  <title>Plan of the room, numbered one to six</title>
+  <!-- Carafe, a Plotform studio edition. Drawn for this template. The key to the
+       numbers is set as text on the page, so it can be edited. -->
+  <defs>
+    <pattern id="kitchen-hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="14" stroke="#9a8e73" stroke-width="1.4"/>
+    </pattern>
+  </defs>
+  <g fill="none" stroke="#241e17" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Walls -->
+    <rect x="40" y="40" width="920" height="580" fill="#fbf7ef" stroke="#241e17" stroke-width="7"/>
+
+    <!-- The window band and the door on the street side -->
+    <path d="M140 620 L600 620" stroke="#fbf7ef" stroke-width="9"/>
+    <path d="M140 616 L600 616 M140 624 L600 624" stroke="#241e17" stroke-width="2.4"/>
+    <path d="M690 620 L800 620" stroke="#fbf7ef" stroke-width="11"/>
+    <path d="M690 620 L690 510" stroke="#241e17" stroke-width="3"/>
+    <path d="M690 510 A110 110 0 0 1 800 620" stroke="#9a8e73" stroke-width="2" stroke-dasharray="7 7"/>
+
+    <!-- The kitchen behind the pass -->
+    <rect x="662" y="40" width="298" height="300" fill="url(#kitchen-hatch)" stroke="none"/>
+    <rect x="662" y="40" width="298" height="300" stroke="#241e17" stroke-width="3"/>
+    <path d="M662 120 L662 250" stroke="#fbf7ef" stroke-width="7"/>
+    <path d="M662 120 L662 250" stroke="#7c2436" stroke-width="4"/>
+    <rect x="700" y="80" width="90" height="120" fill="#fbf7ef" stroke="#9a8e73" stroke-width="2"/>
+    <rect x="830" y="80" width="100" height="60" fill="#fbf7ef" stroke="#9a8e73" stroke-width="2"/>
+    <rect x="830" y="180" width="100" height="120" fill="#fbf7ef" stroke="#9a8e73" stroke-width="2"/>
+
+    <!-- The counter -->
+    <rect x="120" y="150" width="500" height="64" rx="32" fill="#e9e0cd" stroke="#241e17" stroke-width="3"/>
+    <path d="M150 182 L590 182" stroke="#9a8e73" stroke-width="2"/>
+
+    <!-- Nine stools along the counter -->
+    <g stroke="#241e17" stroke-width="2.6" fill="#fbf7ef">
+      <circle cx="160" cy="268" r="21"/>
+      <circle cx="218" cy="268" r="21"/>
+      <circle cx="276" cy="268" r="21"/>
+      <circle cx="334" cy="268" r="21"/>
+      <circle cx="392" cy="268" r="21"/>
+      <circle cx="450" cy="268" r="21"/>
+      <circle cx="508" cy="268" r="21"/>
+      <circle cx="566" cy="268" r="21"/>
+      <circle cx="620" cy="182" r="21"/>
+    </g>
+
+    <!-- Four tables with their chairs -->
+    <g stroke="#241e17" stroke-width="2.6" fill="#fbf7ef">
+      <rect x="120" y="390" width="86" height="86" rx="4"/>
+      <rect x="140" y="352" width="46" height="24" rx="6"/>
+      <rect x="140" y="490" width="46" height="24" rx="6"/>
+      <rect x="268" y="390" width="86" height="86" rx="4"/>
+      <rect x="288" y="352" width="46" height="24" rx="6"/>
+      <rect x="288" y="490" width="46" height="24" rx="6"/>
+      <rect x="416" y="390" width="86" height="86" rx="4"/>
+      <rect x="436" y="352" width="46" height="24" rx="6"/>
+      <rect x="436" y="490" width="46" height="24" rx="6"/>
+      <circle cx="600" cy="433" r="52"/>
+      <rect x="577" y="352" width="46" height="24" rx="6"/>
+      <rect x="577" y="490" width="46" height="24" rx="6"/>
+      <rect x="500" y="410" width="24" height="46" rx="6"/>
+      <rect x="676" y="410" width="24" height="46" rx="6"/>
+    </g>
+
+    <!-- The washroom and the stair down to the cellar -->
+    <rect x="790" y="400" width="170" height="220" fill="#fbf7ef" stroke="#241e17" stroke-width="3"/>
+    <path d="M790 470 L790 540" stroke="#fbf7ef" stroke-width="6"/>
+    <path d="M790 470 L790 540" stroke="#9a8e73" stroke-width="2.4"/>
+    <g stroke="#9a8e73" stroke-width="2">
+      <path d="M662 400 L760 400 L760 620 L662 620 Z"/>
+      <path d="M662 428 L760 428 M662 456 L760 456 M662 484 L760 484 M662 512 L760 512 M662 540 L760 540 M662 568 L760 568 M662 596 L760 596"/>
+    </g>
+
+    <!-- The numbered key -->
+    <g font-family="Georgia, 'Times New Roman', serif" font-size="26" text-anchor="middle">
+      <g fill="#fbf7ef" stroke="#7c2436" stroke-width="2.6">
+        <circle cx="372" cy="182" r="22"/>
+        <circle cx="620" cy="268" r="22"/>
+        <circle cx="812" cy="250" r="22"/>
+        <circle cx="312" cy="433" r="22"/>
+        <circle cx="875" cy="510" r="22"/>
+        <circle cx="745" cy="560" r="22"/>
+      </g>
+      <g fill="#7c2436" stroke="none">
+        <text x="372" y="191">1</text>
+        <text x="620" y="277">2</text>
+        <text x="812" y="259">3</text>
+        <text x="312" y="442">4</text>
+        <text x="875" y="519">5</text>
+        <text x="745" y="569">6</text>
+      </g>
+    </g>
+  </g>
+</svg>

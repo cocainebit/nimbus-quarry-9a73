@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 690" width="1000" height="690">
+  <title>Drawn map of the corner, numbered one to four</title>
+  <!-- Carafe, a Plotform studio edition. Drawn for this template. It is not a
+       map of anywhere real and it is not traced from any mapping service. The
+       key to the numbers is set as text on the page, so it can be edited. -->
+  <defs>
+    <pattern id="park-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#45543a" stroke-width="1.2" opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="690" fill="#fbf7ef"/>
+
+  <!-- The four blocks, with their plot divisions -->
+  <g stroke="#9a8e73" stroke-width="2" fill="#e9e0cd">
+    <rect x="30" y="110" width="390" height="180"/>
+    <rect x="30" y="350" width="330" height="240"/>
+    <rect x="470" y="110" width="230" height="180"/>
+    <rect x="740" y="110" width="230" height="180"/>
+    <rect x="470" y="350" width="500" height="240"/>
+  </g>
+  <g stroke="#cdc2a8" stroke-width="1.6" fill="none">
+    <path d="M262 350 L262 590 M120 350 L120 590 M190 350 L190 590 M30 470 L360 470"/>
+    <path d="M540 110 L540 290 M610 110 L610 290"/>
+    <path d="M810 190 L810 290 M890 190 L890 290"/>
+    <path d="M560 350 L560 590 M650 350 L650 590 M740 350 L740 590 M830 350 L830 590 M900 350 L900 590 M470 480 L970 480"/>
+    <path d="M300 110 L300 290"/>
+  </g>
+
+  <!-- The park -->
+  <rect x="52" y="132" width="180" height="136" fill="url(#park-hatch)" stroke="#45543a" stroke-width="2"/>
+  <g fill="none" stroke="#45543a" stroke-width="2.4">
+    <circle cx="96" cy="176" r="15"/>
+    <circle cx="150" cy="222" r="13"/>
+    <circle cx="196" cy="166" r="17"/>
+  </g>
+
+  <!-- The railway along the top, with the station platform -->
+  <g stroke="#241e17" fill="none">
+    <path d="M0 52 L1000 52 M0 78 L1000 78" stroke-width="2.6"/>
+    <g stroke-width="1.6" stroke="#9a8e73">
+      <path d="M40 52 L40 78 M100 52 L100 78 M160 52 L160 78 M220 52 L220 78 M280 52 L280 78 M340 52 L340 78 M400 52 L400 78 M460 52 L460 78 M520 52 L520 78 M580 52 L580 78 M640 52 L640 78 M700 52 L700 78 M760 52 L760 78 M820 52 L820 78 M880 52 L880 78 M940 52 L940 78"/>
+    </g>
+  </g>
+  <rect x="742" y="112" width="180" height="76" fill="#fbf7ef" stroke="#241e17" stroke-width="3"/>
+  <path d="M742 96 L922 96" stroke="#241e17" stroke-width="4"/>
+
+  <!-- The corner site: the restaurant, filled -->
+  <rect x="262" y="350" width="98" height="86" fill="#7c2436" stroke="#7c2436" stroke-width="2"/>
+
+  <!-- Street names -->
+  <g font-family="Georgia, 'Times New Roman', serif" font-size="21" fill="#7b715d" letter-spacing="3">
+    <text x="60" y="326">FELL STREET</text>
+    <text x="640" y="326">FELL STREET</text>
+    <text x="446" y="560" transform="rotate(-90 446 560)">BOWER LANE</text>
+    <text x="446" y="250" transform="rotate(-90 446 250)">BOWER LANE</text>
+    <text x="722" y="250" transform="rotate(-90 722 250)">MILL ROW</text>
+  </g>
+
+  <!-- Numbered markers -->
+  <g font-family="Georgia, 'Times New Roman', serif" font-size="24" text-anchor="middle">
+    <g fill="#fbf7ef" stroke="#7c2436" stroke-width="2.6">
+      <circle cx="311" cy="393" r="21"/>
+      <circle cx="832" cy="150" r="21"/>
+      <circle cx="560" cy="318" r="21"/>
+      <circle cx="142" cy="200" r="21"/>
+    </g>
+    <g stroke="none" fill="#7c2436">
+      <text x="311" y="401">1</text>
+      <text x="832" y="158">2</text>
+      <text x="560" y="326">3</text>
+      <text x="142" y="208">4</text>
+    </g>
+  </g>
+
+  <!-- The north point and a scale bar, kept in the margin below the blocks -->
+  <g stroke="#241e17" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 648 L180 648 M40 640 L40 656 M180 640 L180 656 M110 644 L110 652"/>
+    <path d="M940 670 L940 622 M940 622 L932 636 M940 622 L948 636"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#241e17" text-anchor="middle">
+    <text x="905" y="652">N</text>
+  </g>
+</svg>

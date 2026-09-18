@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" id="top">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The Carafe menu: small plates, plates, sides, desserts and wine by the glass, each item with a description and an illustrative sample price.">
+<meta name="theme-color" content="#f3ecde">
+<title>The menu, Carafe</title>
+<link rel="preload" href="assets/source-serif-4-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/playfair-display-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the page</a>
+<header class="shopfront" data-shopfront>
+<div class="shell">
+<div class="shopfront-top">
+<p class="caps shopfront-note">Fell Street at Bower Lane, Tuesday to Sunday</p>
+<div class="shopfront-actions">
+<button class="control nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="shopfront-nav">Pages</button>
+<a class="button button-solid" href="visit.html#book">Book a table</a>
+</div>
+</div>
+</div>
+<div class="shopfront-plate">
+<a class="wordmark" href="index.html">Carafe</a>
+<p class="wordmark-line">A counter restaurant and wine bar</p>
+</div>
+<div id="shopfront-nav">
+<nav class="shopfront-nav" aria-label="Main navigation"><ul><li><a href="index.html">Home</a></li><li><a href="menu.html" aria-current="page">Menu</a></li><li><a href="wine.html">Wine</a></li><li><a href="room.html">The room</a></li><li><a href="visit.html">Visit</a></li></ul></nav>
+</div>
+</header>
+<main id="main">
+<section class="shell band opening">
+<div>
+<p class="caps claret">Written each afternoon</p>
+<h1>The menu</h1>
+<p class="lede">Short, because the kitchen is small and the fish comes once a day. Half of it changes every week and the rest has been there since we opened.</p>
+<div class="menu-note">
+<p>Prices are shown in pounds and are illustrative sample values invented for this template. They are not a price list and no figure on this page refers to anything a real kitchen charges.</p>
+<p>Everything is cooked to order. If you tell us about an allergy when you sit down, the kitchen will tell you honestly what it can and cannot do.</p>
+</div>
+</div>
+<figure class="opening-figure">
+<img src="assets/drawing-dish.svg" width="600" height="600" alt="Line drawing of a plate seen from above: three folded slices, two sprigs of herb, a scatter of capers, a thread of oil and a spoon resting on the rim">
+<figcaption class="caps">Drawn for this template. We would rather draw a plate than borrow a photograph of somebody else's.</figcaption>
+</figure>
+</section>
+
+<section class="shell" aria-label="Filter the menu">
+<div class="menu-card menu-bar">
+<div class="filter" data-filter role="group" aria-label="Filter the dishes">
+<p class="caps">Show</p>
+<button class="control" type="button" data-filter-value="all" aria-pressed="true">All dishes</button>
+<button class="control" type="button" data-filter-value="vegetarian" aria-pressed="false">Vegetarian</button>
+<button class="control" type="button" data-filter-value="vegan" aria-pressed="false">Vegan</button>
+</div>
+<ul class="key">
+<li>veg, made without meat or fish</li>
+<li>vegan, made without animal products</li>
+<li>125ml is the glass pour</li>
+</ul>
+<p class="status" id="menu-status" role="status" aria-live="polite"></p>
+</div>
+</section>
+
+<section class="shell band">
+<div class="sheet sheet-framed menu-card">
+<section class="course" data-course="small" aria-labelledby="course-small">
+<div class="course-head">
+<h2 class="course-title" id="course-small">Small plates</h2>
+<p class="course-note">To begin with, or four of them instead of a plate.</p>
+</div>
+<ul class="dishes">
+<li class="dish" data-diet="vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Grilled bread, cultured butter</span><span class="dish-mark">veg</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">4.50</span></p>
+<p class="dish-note">Sourdough from the bakery on Mill Row, butter churned here on Mondays and salted at the last minute.</p>
+</li>
+<li class="dish" data-diet="vegan vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Olives, fennel and orange peel</span><span class="dish-mark">vegan</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">5.00</span></p>
+<p class="dish-note">Warmed in oil with a strip of peel until the whole bar can smell the pan.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Anchovies, butter, sea salt</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">7.50</span></p>
+<p class="dish-note">Six of them, a cold slab of butter and bread to put them on. Nothing is cooked.</p>
+</li>
+<li class="dish" data-diet="vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Fried artichokes, aioli</span><span class="dish-mark">veg</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">8.00</span></p>
+<p class="dish-note">Trimmed in the morning, held in lemon water, fried twice and salted hard.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Whipped cod's roe, radishes</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">8.50</span></p>
+<p class="dish-note">Smoked roe beaten with potato and lemon until it is pale, with radishes to dig it out.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Pickled mussels on toast</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">9.00</span></p>
+<p class="dish-note">Cooked in cider, dressed with their own liquor, eaten with your fingers.</p>
+</li>
+<li class="dish" data-diet="vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Chicory, walnut and blue cheese</span><span class="dish-mark">veg</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">9.50</span></p>
+<p class="dish-note">Bitter leaves, a sharp dressing and enough cheese to argue with both.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Potted beef, cornichons</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">10.00</span></p>
+<p class="dish-note">Slow shin under a lid of butter, sharpened with mustard and left in the cold room for a week.</p>
+</li>
+</ul>
+</section>
+
+<section class="course" data-course="plates" aria-labelledby="course-plates">
+<div class="course-head">
+<h2 class="course-title" id="course-plates">Plates</h2>
+<p class="course-note">One each, or two in the middle for three people who like sharing.</p>
+</div>
+<ul class="dishes">
+<li class="dish" data-diet="vegan vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Squash, lentils, burnt onion</span><span class="dish-mark">vegan</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">18.50</span></p>
+<p class="dish-note">Roasted until it collapses, on lentils cooked in the same tray, with onion taken further than most kitchens dare.</p>
+</li>
+<li class="dish" data-diet="vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Gnocchi, greens, aged cheese</span><span class="dish-mark">veg</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">19.00</span></p>
+<p class="dish-note">Rolled at four in the afternoon, cooked at seven, with whatever green is best that week.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Cured trout, cucumber, dill</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">21.00</span></p>
+<p class="dish-note">Cured for two days with salt and sugar, sliced to order, dressed with cucumber and its own oil.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Whole plaice, brown butter, capers</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">24.00</span></p>
+<p class="dish-note">One fish, one pan, brown butter and a spoon of capers. It takes twenty minutes and it is worth the wait.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Hogget shoulder, beans, salsa verde</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">26.00</span></p>
+<p class="dish-note">Cooked overnight, pulled into the beans, cut through with a green sauce made in the afternoon.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Skirt steak, bone marrow, watercress</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">27.00</span></p>
+<p class="dish-note">Hung five weeks, cooked over a high flame, rested longer than it was cooked.</p>
+</li>
+</ul>
+</section>
+
+<section class="course" data-course="sides" aria-labelledby="course-sides">
+<div class="course-head">
+<h2 class="course-title" id="course-sides">Sides</h2>
+<p class="course-note">Not strictly necessary. Order them anyway.</p>
+</div>
+<ul class="dishes">
+<li class="dish" data-diet="vegan vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Green salad, shallot dressing</span><span class="dish-mark">vegan</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">5.50</span></p>
+<p class="dish-note">Three leaves, a sharp dressing, made in the bowl it comes in.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Potatoes in dripping</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">6.00</span></p>
+<p class="dish-note">Boiled, crushed, roasted hard in beef dripping and salted twice.</p>
+</li>
+<li class="dish" data-diet="vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Buttered greens</span><span class="dish-mark">veg</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">6.50</span></p>
+<p class="dish-note">Whatever came from the grower on Thursday, with more butter than you would use at home.</p>
+</li>
+</ul>
+</section>
+
+<section class="course" data-course="puddings" aria-labelledby="course-puddings">
+<div class="course-head">
+<h2 class="course-title" id="course-puddings">Desserts</h2>
+<p class="course-note">Three that never change and one that does.</p>
+</div>
+<ul class="dishes">
+<li class="dish" data-diet="vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Burnt custard</span><span class="dish-mark">veg</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">8.00</span></p>
+<p class="dish-note">Set in the morning, burnt to order, eaten with a teaspoon while it is still warm on top.</p>
+</li>
+<li class="dish" data-diet="vegan vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Pear poached in red wine</span><span class="dish-mark">vegan</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">8.50</span></p>
+<p class="dish-note">Poached in the end of a bottle with a strip of peel and a bay leaf.</p>
+</li>
+<li class="dish" data-diet="vegetarian">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Chocolate and olive oil</span><span class="dish-mark">veg</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">9.00</span></p>
+<p class="dish-note">Dark, loose, salted, and finished at the table with a spoon of oil.</p>
+</li>
+<li class="dish" data-diet="">
+<p class="dish-line"><span class="dish-head"><span class="dish-name">Cheese from the counter, oatcakes</span></span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">11.00</span></p>
+<p class="dish-note">Two pieces cut to order, kept at room temperature since lunchtime.</p>
+</li>
+</ul>
+</section>
+
+<section class="course" data-course="glass" aria-labelledby="course-glass">
+<div class="course-head">
+<h2 class="course-title" id="course-glass">Wine by the glass</h2>
+<p class="course-note">A short version of the list. The whole of it, by the glass and the bottle, is on the wine page.</p>
+</div>
+<p class="course-note">Glass pours are 125ml. Prices below are illustrative sample values.</p>
+<ul class="dishes">
+<li class="dish">
+<p class="dish-line"><span class="dish-name">Fino en rama, Jerez</span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">7.00</span></p>
+<p class="dish-note">Straight from the barrel, unfiltered, cold enough to hurt your teeth.</p>
+</li>
+<li class="dish">
+<p class="dish-line"><span class="dish-name">Xarel-lo, Penedes 2022</span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">8.50</span></p>
+<p class="dish-note">Chalky and dry, the glass to start with while you read the rest.</p>
+</li>
+<li class="dish">
+<p class="dish-line"><span class="dish-name">Aligote, Burgundy 2022</span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">9.00</span></p>
+<p class="dish-note">Lean, high and a little salty. It goes with the cod's roe.</p>
+</li>
+<li class="dish">
+<p class="dish-line"><span class="dish-name">Gamay, Loire 2023</span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">9.50</span></p>
+<p class="dish-note">Served cold, drunk quickly, the house red in all but name.</p>
+</li>
+<li class="dish">
+<p class="dish-line"><span class="dish-name">Riesling, Mosel 2021</span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">10.00</span></p>
+<p class="dish-note">Off dry, low in alcohol, and the answer when the table cannot agree.</p>
+</li>
+<li class="dish">
+<p class="dish-line"><span class="dish-name">Trousseau, Jura 2021</span><span class="dish-leader" aria-hidden="true"></span><span class="dish-price">11.00</span></p>
+<p class="dish-note">Pale, savoury and stubborn. Ask for it with the hogget.</p>
+</li>
+</ul>
+</section>
+</div>
+<p class="demo-note">This page is set to print: the browser's print command gives a clean copy with the navigation and the filters left off.</p>
+</section>
+</main>
+<footer class="foot">
+<div class="shell">
+<div class="foot-grid">
+<div>
+<span class="foot-mark">Carafe</span>
+<p class="caps">Where to find us</p>
+<address class="address">
+<p>41 Fell Street</p>
+<p>at the corner of Bower Lane</p>
+<p>01632 960 114</p>
+</address>
+<p><a class="text-link" href="mailto:bookings@example.com">bookings@example.com</a></p>
+</div>
+<div>
+<h3>Kitchen hours</h3>
+<ul class="foot-list">
+<li>Tuesday to Thursday, 18.00 to 22.00</li>
+<li>Friday and Saturday, lunch and dinner</li>
+<li>Sunday, 12.00 to 16.00</li>
+<li>Closed all day on Monday</li>
+</ul>
+</div>
+<div>
+<h3>Pages</h3>
+<ul class="foot-list">
+<li><a href="menu.html">The menu</a></li>
+<li><a href="wine.html">Wine and drinks</a></li>
+<li><a href="room.html">The room</a></li>
+<li><a href="visit.html">Visit and hours</a></li>
+<li><a href="credits.html">Credits and source</a></li>
+</ul>
+</div>
+</div>
+<div class="foot-bottom">
+<p class="caps">Carafe, a Plotform studio edition</p>
+<p class="caps"><a href="#top">Back to the top</a></p>
+</div>
+<p class="demo-note">The content of this template is illustrative. Carafe is not a real restaurant. The dishes, the wines, the people, the address, the telephone number and the email address were invented for this template, and every price shown is an invented sample value rather than a price anyone charges.</p>
+</div>
+</footer>
+</body>
+</html>

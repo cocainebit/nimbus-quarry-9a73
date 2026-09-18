@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" width="640" height="560">
+  <title>A carafe, a wine glass and a tumbler</title>
+  <!-- Carafe, a Plotform studio edition. Drawn for this template. -->
+  <g fill="none" stroke="#241e17" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- The carafe -->
+    <path d="M228 68 L228 176 Q228 196 214 212 Q168 262 168 336 L168 446 Q168 478 200 478 L318 478 Q350 478 350 446 L350 336 Q350 262 304 212 Q290 196 290 176 L290 68 Z" fill="#fbf7ef"/>
+    <path d="M222 68 L296 68" stroke-width="3.4"/>
+    <!-- Wine held in the carafe -->
+    <path d="M176 300 Q186 274 202 254 L286 254 Q302 274 312 300 L340 300 L340 446 Q340 468 318 468 L200 468 Q178 468 178 446 L178 300 Z" fill="#7c2436" opacity="0.2" stroke="none"/>
+    <path d="M176 300 L340 300" stroke="#7c2436" stroke-width="2.4"/>
+    <path d="M196 330 Q198 396 214 448" stroke="#9a8e73" stroke-width="1.8"/>
+
+    <!-- The wine glass -->
+    <path d="M396 88 L396 186 Q396 260 452 276 L452 372 L412 386 L412 396 L516 396 L516 386 L476 372 L476 276 Q532 260 532 186 L532 88 Z" fill="#fbf7ef"/>
+    <path d="M396 208 Q400 258 452 272 L476 272 Q528 258 532 208 Z" fill="#7c2436" opacity="0.2" stroke="none"/>
+    <path d="M396 208 L532 208" stroke="#7c2436" stroke-width="2.4"/>
+    <path d="M414 110 Q410 168 426 206" stroke="#9a8e73" stroke-width="1.8"/>
+
+    <!-- The tumbler -->
+    <path d="M62 300 L84 484 Q86 500 104 500 L156 500 Q174 500 176 484 L198 300 Z" fill="#fbf7ef"/>
+    <path d="M74 396 L186 396" stroke="#9a8e73" stroke-width="1.8"/>
+    <path d="M78 336 Q84 420 96 480" stroke="#9a8e73" stroke-width="1.8"/>
+
+    <!-- The table line and a drop -->
+    <path d="M24 512 L616 512" stroke="#9a8e73" stroke-width="2.4"/>
+    <circle cx="576" cy="490" r="9" fill="#7c2436" stroke="none" opacity="0.55"/>
+  </g>
+</svg>
