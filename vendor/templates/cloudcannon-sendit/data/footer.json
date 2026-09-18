@@ -1,0 +1,51 @@
+{
+  "logo": "/images/footer-logo.svg",
+  "logo_alt": "MyCompany Logo",
+  "logo_url": "/",
+  "copyright": "MyCompany. All rights reserved.",
+  "sections": [
+    {
+      "title": "Main Pages",
+      "links": [
+        {
+          "text": "Home",
+          "link": "/"
+        },
+        {
+          "text": "Features",
+          "link": "/features/"
+        },
+        {
+          "text": "Price",
+          "link": "/pricing/"
+        },
+        {
+          "text": "About",
+          "link": "/about/"
+        }
+      ]
+    },
+    {
+      "title": "Community",
+      "links": [
+        {
+          "text": "Blog",
+          "link": "/blog/"
+        },
+        {
+          "text": "RSS Feed",
+          "link": "/feed.xml"
+        }
+      ]
+    },
+    {
+      "title": "Company",
+      "links": [
+        {
+          "text": "Contact",
+          "link": "/contact/"
+        }
+      ]
+    }
+  ]
+}

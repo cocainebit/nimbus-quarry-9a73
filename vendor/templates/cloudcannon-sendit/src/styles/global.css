@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+@plugin "@tailwindcss/typography";
+
+.prose a {
+  @apply underline decoration-link;
+}
+
+/* Global stylesheet */
+html.vt-off {
+  view-transition-name: none; /* prevent automatic matching */
+}
+html.vt-off * {
+  animation: none !important;
+  transition: none !important;
+}
+
+[data-hide-controls] editable-component-controls {
+  display: none !important;
+}

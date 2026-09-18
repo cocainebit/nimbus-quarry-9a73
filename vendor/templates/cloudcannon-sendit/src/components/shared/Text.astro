@@ -1,0 +1,57 @@
+---
+import MarkdownIt from "markdown-it";
+
+// Base props that are common to all variants
+interface Props {
+  size?: "sm" | "base" | "lg" | "xl" | "2xl";
+  class?: string;
+  markdown?: boolean;
+  text?: string;
+  [key: string]: any;
+}
+
+const {
+  size = "base",
+  text,
+  markdown = false,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+// Runtime check to ensure proper usage
+const hasSlotContent = Astro.slots.has("default");
+if (text && hasSlotContent) {
+  throw new Error(
+    'Text component: Cannot use both "text" prop and slot content. Use either text prop or slot, not both.',
+  );
+}
+
+const md = new MarkdownIt({ html: true });
+
+// Text size styles
+const sizeStyles = {
+  sm: "text-sm",
+  base: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+};
+
+const classes = `text-gray-600 prose ${sizeStyles[size]} ${className}`;
+---
+
+{
+  text ? (
+    markdown ? (
+      <div class={classes} set:html={md.render(text)} {...rest} />
+    ) : (
+      <p class={classes} {...rest}>
+        {text}
+      </p>
+    )
+  ) : (
+    <div class={classes} {...rest}>
+      <slot />
+    </div>
+  )
+}

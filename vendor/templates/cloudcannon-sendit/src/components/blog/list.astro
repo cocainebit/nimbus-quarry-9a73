@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+import PostSummary from "../../components/blog/summary.astro";
+import SimpleHero from "../global/simple-hero/simple-hero.astro";
+
+// Define TypeScript interfaces
+interface Page {
+  title: string;
+  description?: string;
+  [key: string]: any; // Allow additional properties
+}
+
+interface Props {
+  page: Page;
+  posts: CollectionEntry<"blog">[];
+}
+
+// Receive props
+const { page, posts } = Astro.props satisfies Props;
+---
+
+<SimpleHero title={page.title} description={page.description || ""} />
+
+<section class="py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-8 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
+      {posts && posts.map((post) => <PostSummary post={post} />)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,87 @@
+{
+  "id": "cloudcannon-cause",
+  "name": "Cause",
+  "repository": "https://github.com/CloudCannon/cause-jekyll-template",
+  "commit": "a1ceffe73093a4eafc4d0613d141494b58e95fcf",
+  "license": "MIT",
+  "licenseFirstLine": "MIT License",
+  "framework": "Jekyll 3",
+  "sourceDirectory": "vendor/templates/cloudcannon-cause",
+  "photography": "None. Every photograph bundled upstream was removed before vendoring and replaced with placeholder artwork drawn in this repository, so no third-party photograph is redistributed.",
+  "changes": [
+    "Google Analytics block removed from the layout.",
+    "Disqus comment embed removed.",
+    "Google Fonts stylesheet replaced with self-hosted woff2 files.",
+    "Remote demo photographs (source.unsplash.com, unsplash.it, placehold.it, placekitten.com, placebear.com, fillmurray.com) replaced with placeholder artwork drawn for this repository.",
+    "Bundled photographs removed and replaced with placeholder artwork drawn for this repository: images/sheep.jpg, images/sheep2.jpg, images/wooly.jpg",
+    "A visible note marks the demonstration content as illustrative.",
+    "The Donorbox donation embed was replaced with an unconnected note, and the population figures on the front page were replaced with a prompt."
+  ],
+  "images": [
+    {
+      "file": "apple-touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/cause-jekyll-template at a1ceffe73093a4eafc4d0613d141494b58e95fcf. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "favicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/cause-jekyll-template at a1ceffe73093a4eafc4d0613d141494b58e95fcf. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/heart.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/cause-jekyll-template at a1ceffe73093a4eafc4d0613d141494b58e95fcf. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/logo.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/cause-jekyll-template at a1ceffe73093a4eafc4d0613d141494b58e95fcf. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/people.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/cause-jekyll-template at a1ceffe73093a4eafc4d0613d141494b58e95fcf. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/placeholders/field-1880x1240.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/field-570x400.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/sheep.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/sheep2.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/trend.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/cause-jekyll-template at a1ceffe73093a4eafc4d0613d141494b58e95fcf. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/wooly.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "siteicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/cause-jekyll-template at a1ceffe73093a4eafc4d0613d141494b58e95fcf. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/cause-jekyll-template at a1ceffe73093a4eafc4d0613d141494b58e95fcf. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+---
+import BlogList from "@components/blog/list.astro";
+import BlogPagination from "@components/blog/pagination.astro";
+import Layout from "@layouts/Layout.astro";
+import type { Page } from "astro";
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const tags: Record<string, any> = {};
+  const page = await getEntry("pages", "blog");
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  posts.forEach(({ data }) => data.tags.forEach((tag: string) => (tags[tag] = true)));
+
+  return Object.keys(tags).flatMap((tag) => {
+    const filteredPosts = posts.filter(({ data }) => data.tags.includes(tag));
+    return paginate(filteredPosts, {
+      params: { tag },
+      pageSize: page?.data.page_size,
+    });
+  });
+}
+
+interface Props {
+  page: Page;
+  posts: CollectionEntry<"blog">[];
+}
+
+const tag = Astro.params.tag ?? "";
+const page = (await getEntry("pages", "blog"))?.data;
+
+if (!page) {
+  throw new Error(`Failed to find blog index page info for tag: ${tag}`);
+}
+
+page.title = tag[0].toUpperCase() + tag.slice(1);
+page.description = "";
+
+const pagination = Astro.props.page;
+const filteredPosts = pagination.data;
+---
+
+<Layout title={page.title} seo={page.seo}>
+  <BlogList posts={filteredPosts} page={page} />
+  <BlogPagination pagination={pagination} />
+</Layout>

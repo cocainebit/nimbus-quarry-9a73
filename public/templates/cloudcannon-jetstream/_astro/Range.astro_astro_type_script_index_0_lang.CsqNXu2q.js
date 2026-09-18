@@ -1,0 +1,1 @@
+import{o as c}from"./onPageLoad.CNaGZlpK.js";c(()=>{const t=document.querySelectorAll(".range");t.length&&t.forEach(n=>{const e=n.querySelector(".range-input"),r=n.querySelector(".range-value");e&&e.addEventListener("input",()=>{const o=Number(e.min)||0,u=Number(e.max)||100,a=(Number(e.value)-o)/(u-o)*100;e.style.setProperty("--range-pct",`${a}%`),r&&(r.value=e.value)})})});

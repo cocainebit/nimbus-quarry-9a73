@@ -1,0 +1,227 @@
+---
+import { Image } from "astro:assets";
+import Button from "../../shared/Button.astro";
+
+// Define TypeScript interfaces
+interface ContactInfo {
+  heading: string;
+  address?: string;
+  cell?: string;
+  email?: string;
+  image?: string;
+  image_alt?: string;
+}
+
+interface FormField {
+  heading: string;
+  placeholder: string;
+}
+
+interface SubmitButton {
+  text: string;
+}
+
+interface ContactForm {
+  heading: string;
+  fullname: FormField;
+  phone_number: FormField;
+  email: FormField;
+  message: FormField;
+  submit_button: SubmitButton;
+}
+
+interface Props {
+  address?: ContactInfo;
+  phone?: ContactInfo;
+  email?: ContactInfo;
+  form?: ContactForm;
+}
+
+
+const { address, phone, email, form } = Astro.props;
+---
+
+<section class="mb-20">
+  <div class="bg-primary/10 bg-linear-to-b from-cyan-primary/10 to-white lg:h-60 -z-30 relative "></div>
+  <div class="max-w-7xl pt-10 mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-16">
+      <!-- Contact Information -->
+      <div class="lg:col-span-5 order-1 lg:-mt-30">
+        <div class="space-y-8">
+          {address && (
+            <div class="space-y-2">
+              <h3 class="text-xl font-semibold text-gray-900">
+                <editable-text data-prop="address.heading">{address.heading}</editable-text>
+              </h3>
+              <p 
+                class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <Image
+                  data-editable="image"
+                  data-prop-src="address.image"
+                  data-prop-alt="address.image_alt"
+                  src={address.image || "/images/default-address.png"}
+                  alt={address.image_alt || "Address icon"}
+                  loading="lazy"
+                  width={24}
+                  height={24}
+                  class="w-6 h-6"
+                />
+                <editable-text data-prop="address.address">{address.address}</editable-text>
+              </p>
+            </div>
+          )}
+          
+          {phone && (
+            <div class="space-y-2">
+              <h3 class="text-xl font-semibold text-gray-900">
+                <editable-text data-prop="phone.heading">{phone.heading}</editable-text>
+              </h3>
+              <a 
+                href={`tel:${phone.cell}`}
+                class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <Image
+                  data-editable="image"
+                  data-prop-src="phone.image"
+                  data-prop-alt="phone.image_alt"
+                  src={phone.image || "/images/default-phone.png"}
+                  alt={phone.image_alt || "Phone icon"}
+                  loading="lazy"
+                  width={24}
+                  height={24}
+                  class="w-6 h-6"
+                />
+                <editable-text data-prop="phone.cell">{phone.cell}</editable-text>
+              </a>
+            </div>
+          )}
+          
+          {email && (
+            <div class="space-y-2">
+              <h3 class="text-xl font-semibold text-gray-900">
+                <editable-text data-prop="email.heading">{email.heading}</editable-text>
+              </h3>
+              <a 
+                href={`mailto:${email.email}`}
+                class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <Image
+                  data-editable="image"
+                  data-prop-src="email.image"
+                  data-prop-alt="email.image_alt"
+                  src={email.image || "/images/default-email.png"}
+                  alt={email.image_alt || "Email icon"}
+                  loading="lazy"
+                  width={24}
+                  height={24}
+                  class="w-6 h-6"
+                />
+                <editable-text data-prop="email.email">{email.email}</editable-text>
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="lg:col-span-7 order-1 lg:order-2 lg:-mt-50">
+        {form && (
+          <div class="relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+            <div 
+              class="absolute -top-[10%] -z-10 -left-[14%] w-[115%] h-full bg-primary/30"
+              style="mask-image: url(/images/contact/effects.png); -webkit-mask-image: url(/images/contact/effects.png); mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat; mask-size: contain; -webkit-mask-size: contain;"
+            ></div>
+            <form method="post" class="space-y-6">
+              <h3 class="text-2xl font-bold text-gray-900 mb-8">
+                <editable-text data-prop="form.heading">{form.heading}</editable-text>
+              </h3>
+              
+              {form.fullname && (
+                <div class="space-y-2">
+                  <label for="Name" class="block text-sm font-medium text-gray-700">
+                    <editable-text data-prop="form.fullname.heading">{form.fullname.heading}</editable-text>
+                  </label>
+                  <input 
+                    type="text" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" 
+                    id="Name" 
+                    name="name" 
+                    placeholder={form.fullname.placeholder} 
+                    required 
+                  />
+                </div>
+              )}
+
+              {form.phone_number && (
+                <div class="space-y-2">
+                  <label for="phone-number" class="block text-sm font-medium text-gray-700">
+                    <editable-text data-prop="form.phone_number.heading">{form.phone_number.heading}</editable-text>
+                  </label>
+                  <input
+                    type="tel"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                    id="phone-number"
+                    name="phone-number"
+                    placeholder={form.phone_number.placeholder}
+                    required
+                  />
+                </div>
+              )}
+
+              {form.email && (
+                <div class="space-y-2">
+                  <label for="email" class="block text-sm font-medium text-gray-700">
+                    <editable-text data-prop="form.email.heading">{form.email.heading}</editable-text>
+                  </label>
+                  <input 
+                    type="email" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" 
+                    id="email" 
+                    name="_replyto" 
+                    placeholder={form.email.placeholder} 
+                    required 
+                  />
+                </div>
+              )}
+
+              {form.message && (
+                <div class="space-y-2">
+                  <label for="message" class="block text-sm font-medium text-gray-700">
+                    <editable-text data-prop="form.message.heading">{form.message.heading}</editable-text>
+                  </label>
+                  <textarea
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors resize-vertical"
+                    id="floatingTextarea2"
+                    name="message"
+                    placeholder={form.message.placeholder}
+                    rows="6"
+                    spellcheck="false"
+                  ></textarea>
+                </div>
+              )}
+
+              <!-- Honeypot field -->
+              <input type="text" name="_gotcha" class="hidden" />
+
+              {form.submit_button && (
+                <div class="pt-4">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="lg"
+                    text={form.submit_button.text}
+                    data-prop="form.submit_button.text"
+                    data-editable="text"
+                    class="w-full sm:w-auto"
+                  />
+                </div>
+              )}
+            </form>
+            
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

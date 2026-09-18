@@ -1,0 +1,139 @@
+---
+import Button from "@core-elements/button/Button.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import List from "@core-elements/list/List.astro";
+import Text from "@core-elements/text/Text.astro";
+import BentoBoxItem from "@wrappers/bento-box/BentoBoxItem.astro";
+import Card from "@wrappers/card/Card.astro";
+
+const {
+  title = "",
+  price = {
+    prefix: "",
+    amount: "",
+    suffix: "",
+  },
+  subtext = "",
+  list = [],
+  button = {},
+  columnSpan,
+  rowSpan,
+  class: className,
+  _component,
+  useDefaultEditableBinding = false,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<BentoBoxItem
+  columnSpan={columnSpan}
+  rowSpan={rowSpan}
+  data-prop-columnSpan="columnSpan"
+  data-prop-rowSpan="rowSpan"
+  {...htmlAttributes}
+>
+  <Card
+    class:list={["pricing-item", className]}
+    paddingHorizontal="lg"
+    paddingVertical="lg"
+    rounded
+    border
+    backgroundColor="base"
+  >
+    <Heading
+      class="feature-title"
+      level="h3"
+      size="lg"
+      alignmentHorizontal="start"
+      data-prop="title"
+    >
+      {title}
+    </Heading>
+    <Heading
+      class="feature-price"
+      level="h4"
+      size="xl"
+      alignmentHorizontal="start"
+    >
+      {
+        price?.prefix && (
+          <span
+            data-editable="text"
+            data-prop="price.prefix"
+          >
+            {price?.prefix}
+          </span>
+        )
+      }
+      {
+        price?.amount && (
+          <span
+            data-editable="text"
+            data-prop="price.amount"
+          >
+            {price?.amount}
+          </span>
+        )
+      }
+      {
+        price?.suffix && (
+          <span
+            data-editable="text"
+            data-prop="price.suffix"
+            class="feature-price-suffix"
+          >
+            {price?.suffix}
+          </span>
+        )
+      }
+    </Heading>
+    <Text
+      class="feature-subtext"
+      alignmentHorizontal="start"
+      data-prop="subtext"
+      text={subtext}
+    />
+    <List
+      {...list}
+      data-children-prop="list.items"
+    />
+    <Button
+      {...button}
+      data-prop="button.text"
+    />
+  </Card>
+</BentoBoxItem>
+
+<style is:global>
+  @layer page-sections {
+    .pricing-item {
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .feature-price .heading-text {
+        display: flex;
+      }
+      .feature-price-suffix {
+        font-size: var(--font-size-heading-md);
+        line-height: 1.75;
+        align-self: flex-end;
+      }
+      .feature-title,
+      .feature-price,
+      .feature-subtext,
+      .feature-subtext p {
+        font-weight: var(--font-weight-bold);
+        margin: 0;
+      }
+      .list {
+        margin: 0;
+      }
+      .button-inner {
+        align-self: flex-start;
+      }
+    }
+  }
+</style>

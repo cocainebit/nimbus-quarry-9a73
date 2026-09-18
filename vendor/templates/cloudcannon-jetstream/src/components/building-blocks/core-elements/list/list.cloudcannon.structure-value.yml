@@ -1,0 +1,37 @@
+label: List
+icon: list
+description: Lists items with icons, bullets, or numbers as markers.
+value:
+  _component: building-blocks/core-elements/list
+  items:
+    - text: List item 1
+      iconName: check
+      iconColor: default
+      link:
+    - text: List item 2
+      iconName: lock-closed
+      iconColor: default
+      link:
+    - text: List item 3
+      iconName: briefcase
+      iconColor: default
+      link:
+  direction: vertical
+  alignmentHorizontal: start
+  size: md
+  listType: icon
+preview:
+  text:
+    - List
+  icon: list
+  gallery:
+    image: public/component-previews/building-blocks/core-elements/list.svg
+    fit: cover
+picker_preview:
+  text: List
+  subtext: Lists items with icons, bullets, or numbers as markers.
+  gallery:
+    image: public/component-previews/building-blocks/core-elements/list.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/building-blocks/core-elements/list/list.cloudcannon.inputs.yml

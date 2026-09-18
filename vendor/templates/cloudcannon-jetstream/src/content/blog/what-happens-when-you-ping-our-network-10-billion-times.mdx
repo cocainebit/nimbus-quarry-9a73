@@ -1,0 +1,148 @@
+---
+_schema: default
+permalink:
+title: What happens when you ping our network 10 billion times
+description: >-
+  A security researcher tested our rate limiting, and we learned some
+  interesting things about our own infrastructure.
+date: 2026-02-11T00:00:00Z
+author: abd48cd0-7d1e-43e4-ba1c-5921e60cc87a
+image: /src/assets/images/blog-ping.png
+image_alt: Earth at night from space, with blue arcs fanning out across the globe from a single bright point
+tag: Performance
+counters: []
+---
+
+Last month, a security researcher emailed us asking permission to stress test our rate limiting. Specifically, they wanted to send 10 billion ICMP echo requests, pings, to our edge nodes to see what would happen.
+
+We said yes. The results were educational for everyone involved.
+
+## The proposal
+
+The researcher explained their goal: test whether our rate limiting could distinguish between legitimate high-volume traffic and potential abuse. They wanted to understand how our systems responded to sustained, extreme traffic patterns that resembled attacks but came from a known, non-malicious source.
+
+Ten billion pings over 48 hours. Distributed across multiple source addresses. Targeting different edge nodes. Varying request rates from hundreds per second to tens of thousands per second.
+
+Our security team reviewed the proposal. Our operations team verified our monitoring could handle the data volume. Our CTO approved it as a learning opportunity.
+
+We scheduled the test for a weekend with light traffic and warned our on-call engineers something unusual would appear in the logs.
+
+## What we expected
+
+Our rate limiting operates at multiple layers. We expected:
+
+- **Layer one:** Edge node rate limiting would throttle extreme ping rates from individual IPs
+- **Layer two:** Our DDoS detection would identify the pattern as anomalous
+- **Layer three:** Automated mitigation would kick in after crossing threat thresholds
+- **Layer four:** The researcher's traffic would be heavily filtered but not blocked entirely
+
+We were mostly correct.
+
+## What actually happened
+
+The test began Saturday at 06:00 UTC. Within 30 seconds, our monitoring dashboards lit up with alerts.
+
+**06:00:30**, Edge nodes registered unusual ping volume. Per-IP rate limiting activated, capping each source at 1,000 pings per second. Most sources stayed under this limit anyway.
+
+**06:01:15**, Our DDoS detection system flagged the traffic as anomalous. Threat score elevated but didn't cross automatic mitigation threshold because traffic pattern was unusual but not overtly malicious.
+
+**06:03:00**, Our on-call engineer received an alert: "Unusual ICMP traffic pattern detected across 40 edge nodes." They checked the calendar, saw "authorized security test" noted, and continued monitoring.
+
+**06:15:00**, Traffic continued steadily. Our systems adapted, treating the pings as high-volume but legitimate traffic. Rate limiting prevented any single source from overwhelming edge nodes.
+
+Over the next 48 hours, our network processed 10,347,392,847 ping requests. Approximately 10.3 billion.
+
+## The unexpected bottleneck
+
+The pings themselves weren't problematic. Our edge nodes handled them easily. The unexpected bottleneck was logging.
+
+We log every rate limiting decision for security analysis. Ten billion pings generated approximately 800 million rate limiting events, which our logging infrastructure dutifully recorded.
+
+This created 47 terabytes of logs over 48 hours.
+
+Our log aggregation systems, designed to handle typical traffic loads, struggled. Processing latency increased from milliseconds to seconds. Some log analysis queries that normally completed instantly took minutes.
+
+The researcher's test successfully stressed our systems, just not where we expected. Our network infrastructure handled extreme traffic fine. Our observability infrastructure experienced indigestion.
+
+## What our rate limiting revealed
+
+Analyzing the test data afterward, we learned several things about our rate limiting implementation:
+
+### **Geographic rate limiting varies more than we realized**
+
+Our rate limiting policies adapt based on typical traffic patterns per region. Edge nodes in high-traffic regions have higher default thresholds than nodes in low-traffic areas.
+
+During the test, edge nodes in North America and Europe tolerated higher ping rates before throttling than nodes in less-trafficked regions. This was intentional design, but seeing it demonstrated at scale made us question whether the thresholds were set correctly.
+
+We adjusted several regional thresholds after the test based on observed behavior.
+
+### **Protocol-specific rate limiting needs refinement**
+
+ICMP (ping) traffic is handled differently than HTTP or DNS traffic. Our systems were more aggressive about throttling pings than equivalent volumes of HTTP requests, because ping floods are common attack vectors while legitimate services rarely generate extreme ping volume.
+
+The test revealed our ICMP rate limiting was perhaps too aggressive for certain legitimate monitoring use cases. We're considering more nuanced policies.
+
+### **Rate limiting logging is expensive**
+
+This was the most actionable finding. Logging every rate limiting decision made sense when rate limiting was relatively rare. At scale, it generates enormous data volumes.
+
+We've since implemented sampling: we log 100% of rate limiting events that actually block traffic, but only 1% of events that throttle without blocking. This maintains visibility into blocking decisions while reducing log volume by ~90%.
+
+## The adaptive response
+
+One fascinating behavior: our systems adapted to the test traffic over time.
+
+Initially, our threat detection classified the unusual ping volume as moderately suspicious. After six hours of consistent, non-escalating traffic, our machine learning models adjusted their baseline expectations.
+
+By hour 12, the ping traffic was no longer flagged as anomalous. Our systems had learned this was the new normal for this test period. When the test ended and ping volume dropped to typical levels, the sudden decrease triggered a brief alert before systems readjusted.
+
+This adaptive behavior is intentional, our threat detection must handle both sudden spikes and gradual trend changes without constant manual intervention. Watching it work during a controlled test validated that the adaptation logic performs as designed.
+
+## What the researcher learned
+
+The security researcher published their findings with our permission. Key takeaways from their perspective:
+
+**Our rate limiting is consistent:** The same behavior was observed across all edge nodes. No regional variations in policy enforcement, no nodes that were configured differently. This makes sense, we use centralized configuration, but it's good validation.
+
+**Throttling is progressive:** Our systems don't immediately block traffic that exceeds thresholds. They throttle gradually, allowing legitimate bursts while preventing sustained abuse. The researcher appreciated this nuance.
+
+**Response time is fast:** Rate limiting activated within seconds of traffic beginning. No warmup period, no delay while systems detected patterns. Edge nodes respond immediately to threshold violations.
+
+**The system is hard to fool:** The researcher attempted various techniques to bypass rate limiting, distributed sources, varying request rates, intermittent traffic. Nothing succeeded in evading detection. Our systems consistently identified and throttled abuse regardless of how it was distributed.
+
+## The logging crisis resolution
+
+The 47 terabytes of logs created a genuine problem. Our log storage infrastructure isn't infinite, and we suddenly consumed a month's worth of capacity in one weekend.
+
+Our solution involved three changes:
+
+**Immediate:** Implemented aggressive log compression on the test data. Compressed logs to approximately 12TB. Still large, but manageable.
+
+**Short-term:** Deployed additional log storage capacity to prevent future capacity crunches. We'd been planning this expansion anyway; the test accelerated our timeline.
+
+**Long-term:** Implemented the sampling strategy mentioned earlier. This prevents similar log explosions in the future without losing visibility into actual blocking events.
+
+## Would we do it again?
+
+Yes. Controlled security testing provides valuable insights impossible to gain from normal operations.
+
+We learned:
+
+- Our rate limiting works as designed under extreme load
+- Our logging infrastructure needed improvement
+- Our threat detection adapts appropriately to traffic pattern changes
+- Regional rate limiting thresholds needed adjustment
+
+None of these insights would have emerged without real-world testing at this scale.
+
+We're now actively encouraging security researchers to test our systems. We've published a security research policy that explicitly permits traffic generation for testing, with reasonable advance notice and coordination.
+
+If you want to send 10 billion requests to our infrastructure, email us first. We'll probably say yes, and we'll both learn something.
+
+## The broader lesson
+
+Infrastructure performance under extreme conditions reveals truths hidden during normal operations. You can theoretically model how systems behave under stress, but actual testing finds the gaps between theory and practice.
+
+Our rate limiting worked well. Our logging didn't. Both are valuable findings.
+
+Building resilient infrastructure means actively seeking out these lessons rather than waiting for production incidents to reveal them. Controlled testing, even when it generates 47TB of logs, is cheaper than learning the same lessons during an actual attack.

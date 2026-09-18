@@ -1,0 +1,408 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Counter from "@components/building-blocks/core-elements/counter/Counter.astro";
+import Card from "@components/building-blocks/wrappers/card/Card.astro";
+import Split from "@components/building-blocks/wrappers/split/Split.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import Image from "@core-elements/image/Image.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+import ButtonGroup from "@wrappers/button-group/ButtonGroup.astro";
+import { getCollection } from "astro:content";
+
+const {
+  id = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  subtext = "",
+  card = {
+    eyebrowText: "",
+    heading: "",
+    subtext: "",
+    metaText: "",
+    buttonSections: [],
+    image: {},
+    counters: [],
+    usePost: false,
+    post: "",
+  },
+  maxContentWidth = "2xl",
+  paddingVertical = "4xl",
+  backgroundColor = "base",
+  colorScheme = "light",
+  background,
+  verticalOffset = {},
+  rounded = false,
+  class: className,
+  useDefaultEditableBinding = false,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+
+let finalCard = { ...card };
+
+// If usePost is true, fetch the post and override card fields
+if (card.usePost && card.post) {
+  const blogPosts = await getCollection("blog");
+
+  // Extract slug from the post path (handle both full paths and slugs)
+  let postSlug = card.post;
+
+  if (postSlug.includes("/")) {
+    // Extract filename from path and remove extension
+    postSlug =
+      postSlug
+        .split("/")
+        .pop()
+        ?.replace(/\.mdx?$/, "") || postSlug;
+  }
+
+  const post = blogPosts.find((p: any) => {
+    const slug = p.id?.replace(/\.mdx?$/, "") || p.slug;
+
+    return slug === postSlug;
+  });
+
+  if (post) {
+    const team = await getCollection("team");
+    const author = team.find((m: any) => m.data.uuid === post.data.author);
+
+    // Convert date to Date object if it's a string
+    const dateObj = post.data.date instanceof Date ? post.data.date : new Date(post.data.date);
+    const date = dateObj.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    finalCard = {
+      ...card,
+      eyebrowText: post.data.tag || card.eyebrowText,
+      heading: post.data.title || card.heading,
+      subtext: post.data.description || card.subtext,
+      metaText: `By ${author?.data.name || "Anonymous"} | ${date}`,
+      image: post.data.image
+        ? { source: post.data.image, alt: post.data.title, rounded: true }
+        : card.image,
+      counters: card.usePost ? post.data.counters || [] : card.counters || [],
+    };
+  }
+}
+
+const snakePath =
+  "M0 2H111.297C122.342 2 131.297 10.9543 131.297 22V79.0561V160.321V169.5C131.297 180.546 140.251 189.5 151.297 189.5L185.059 189.5C196.104 189.5 205.059 198.454 205.059 209.5V364.043C205.059 375.088 196.104 384.043 185.059 384.043H175.392C164.346 384.043 155.392 392.997 155.392 404.043V467C155.392 478.046 164.346 487 175.392 487H1519.17C1530.21 487 1539.17 478.046 1539.17 467V419.583C1539.17 408.538 1548.12 399.583 1559.17 399.583H1608.67C1619.71 399.583 1628.67 390.629 1628.67 379.583V310.224V190.358C1628.67 179.312 1619.71 170.358 1608.67 170.358H1571.95C1560.91 170.358 1551.95 161.404 1551.95 150.358V100.425V37.5407C1551.95 26.495 1560.91 17.5407 1571.95 17.5407H1685.71H1728";
+---
+
+<CustomSection
+  class:list={["hero-card", className]}
+  maxContentWidth=""
+  paddingHorizontal="lg"
+  paddingVertical=""
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  background={background}
+  contentBackground={false}
+  verticalOffset={verticalOffset}
+  rounded={rounded}
+  id={id}
+  {...htmlAttributes}
+>
+  <div class="background-decoration-container">
+    <div class="snake-container snake-container-desktop">
+      <svg
+        class="snake snake-pink"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        viewBox="0 0 1728 753"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <defs>
+          <linearGradient id="gradient">
+            <stop
+              offset="0%"
+              stop-color="var(--color-bg-brand)"
+              stop-opacity="0"
+            ></stop>
+            <stop
+              offset="50%"
+              stop-color="var(--color-bg-inverse)"
+              stop-opacity="1"
+            ></stop>
+            <stop
+              offset="100%"
+              stop-color="var(--color-bg-brand)"
+              stop-opacity="0"
+            ></stop>
+          </linearGradient>
+          <mask
+            id="gradient-mask"
+            mask-type="alpha"
+          >
+            <rect
+              class="mask-rect"
+              x="0"
+              y="0"
+              width="50%"
+              height="100%"
+              fill="url(#gradient)"
+            ></rect>
+          </mask>
+        </defs>
+        <path
+          mask="url(#gradient-mask)"
+          d={snakePath}
+          stroke="var(--color-bg-inverse)"
+          stroke-width="4"
+        ></path>
+      </svg>
+      <svg
+        class="snake snake-purple"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        viewBox="0 0 1728 753"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <path
+          d={snakePath}
+          stroke="var(--color-bg-brand)"
+          stroke-width="4"
+        ></path>
+      </svg>
+    </div>
+  </div>
+  <CustomSection
+    class:list={["hero-card-section", className]}
+    maxContentWidth={maxContentWidth}
+    paddingHorizontal="lg"
+    paddingVertical={paddingVertical}
+    colorScheme={colorScheme}
+    backgroundColor=""
+    contentBackground={false}
+  >
+    <div class="horizontal-heading">
+      <Icon
+        class="icon"
+        {...eyebrowIcon}
+      />
+      <div class="heading-group">
+        <SimpleText
+          class="eyebrow"
+          alignmentHorizontal="left"
+          data-prop="eyebrowText"
+          text={eyebrowText}
+        />
+        <Heading
+          level="h1"
+          size="xl"
+          alignmentHorizontal="left"
+          class="heading"
+          data-prop="heading"
+          text={heading}
+        />
+      </div>
+      <Text
+        text={subtext}
+        alignmentHorizontal="left"
+        data-prop="subtext"
+        class="subtext"
+      />
+    </div>
+    <Card
+      backgroundColor="base"
+      rounded={true}
+      border={true}
+      paddingHorizontal="lg"
+      paddingVertical="lg"
+      class="card"
+    >
+      <Split
+        distributionMode="two-thirds-third"
+        gap="lg"
+      >
+        <Fragment slot="first">
+          <Text
+            text={finalCard.eyebrowText}
+            alignmentHorizontal="left"
+            {...!card.usePost && { "data-prop": "card.eyebrowText" }}
+            class="eyebrow-title"
+          />
+          <Heading
+            level="h2"
+            size="2xl"
+            text={finalCard.heading}
+            alignmentHorizontal="left"
+            {...!card.usePost && { "data-prop": "card.heading" }}
+          />
+          <Text
+            text={finalCard.subtext}
+            alignmentHorizontal="left"
+            {...!card.usePost && { "data-prop": "card.subtext" }}
+          />
+          <SimpleText
+            text={finalCard.metaText}
+            alignmentHorizontal="left"
+            class="meta-text"
+            {...!card.usePost && { "data-prop": "card.metaText" }}
+          />
+          <ButtonGroup
+            buttonSections={finalCard.buttonSections}
+            data-children-prop={!card.usePost ? "card.buttonSections" : undefined}
+          />
+        </Fragment>
+        <Fragment slot="second">
+          <Image
+            {...finalCard.image}
+            {...!card.usePost && {
+              "data-prop-src": "card.image.source",
+              "data-prop-alt": "card.image.alt",
+            }}
+          />
+        </Fragment>
+      </Split>
+      <div
+        class="counters"
+        {...!card.usePost && { "data-editable": "array", "data-prop": "card.counters" }}
+      >
+        {
+          finalCard.counters.map((counter: any, index: number) => (
+            <div
+              class="counter-container"
+              {...(!card.usePost && { "data-editable": "array-item" })}
+            >
+              <Counter
+                {...counter.counter}
+                alignmentHorizontal="left"
+                size="2xl"
+              />
+              <Text
+                text={counter.subtext}
+                alignmentHorizontal="left"
+                {...(!card.usePost && { "data-prop": `subtext` })}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </Card>
+  </CustomSection>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .hero-card {
+      align-items: center;
+
+      .horizontal-heading {
+        display: flex;
+        gap: var(--spacing-md);
+        flex-wrap: wrap;
+
+        .heading-group {
+          flex: 0 1 700px;
+        }
+
+        .eyebrow {
+          margin-bottom: var(--spacing-xs);
+          margin-top: 0;
+        }
+
+        .heading {
+          margin: 0;
+        }
+        .subtext {
+          font-weight: var(--font-weight-bold);
+          flex: 1 1 300px;
+          margin: 0;
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+      .card {
+        .eyebrow-title,
+        .eyebrow-title p {
+          margin: 0;
+          color: var(--color-text-brand);
+          font-weight: var(--font-weight-bold);
+        }
+
+        .meta-text p {
+          font-weight: var(--font-weight-bold);
+          color: var(--color-text-muted);
+        }
+
+        .counters {
+          display: flex;
+          gap: var(--spacing-lg);
+          flex-wrap: wrap;
+
+          .counter {
+            color: var(--color-text);
+          }
+
+          .counter-container {
+            flex: 1 1 150px;
+
+            .text {
+              font-weight: var(--font-weight-bold);
+              margin: 0;
+
+              p {
+                margin: 0;
+                text-wrap: wrap;
+              }
+            }
+          }
+        }
+      }
+
+      .background-decoration-container {
+        display: none;
+      }
+      @container (min-width: 1650px) {
+        .background-decoration-container {
+          display: block;
+          position: absolute;
+          inset: 0;
+          z-index: var(--layer-1);
+          pointer-events: none;
+          overflow: clip visible;
+
+          .snake-container {
+            position: sticky;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            height: 100%;
+          }
+
+          .snake-container-desktop {
+            display: block;
+          }
+          .snake-container-mobile {
+            display: none;
+          }
+
+          .snake {
+            position: absolute;
+            height: 100%;
+          }
+
+          .snake-pink {
+            z-index: var(--layer-1);
+          }
+
+          .mask-rect {
+            animation: slide-mask var(--animation-extra-slow) linear infinite;
+          }
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,69 @@
+label: Form
+icon: check_box
+tags: []
+
+value:
+  _name: global/form
+  address:
+    heading: Office Address
+    address: 1421 San Pedro St, Los Angeles, CA 90015
+    image: /images/contact/corporate-fare.svg
+    image_alt: Work icon
+  phone:
+    heading: Phone
+    cell: (546) 232 - 9872
+    image: /images/contact/call-add.svg
+    image_alt: call-add
+  email:
+    heading: Email
+    email: hello@example.com
+    image: /images/contact/directbox-send.svg
+    image_alt: send-box
+  form:
+    heading: Say Hello
+    fullname:
+      heading: Full Name
+      placeholder: Enter First Name
+    phone_number:
+      heading: Phone number
+      placeholder: Enter Phone Number
+    email:
+      heading: Email Address
+      placeholder: Enter Email Address
+    message:
+      heading: Your Messages
+      placeholder: Any Message
+    submit_button:
+      text: Send message
+  
+_inputs:
+  placeholder:
+    comment: The placeholder text inside the input before a value has been entered. Does not live update.
+  form:
+    options:
+      preview:
+        icon: contact_mail
+  fullname:
+    options:
+      preview:
+        icon: person
+  phone:
+    options:
+      preview:
+        icon: phone
+  phone_number:
+    options:
+      preview:
+        icon: phone
+  email:
+    options:
+      preview:
+        icon: email
+  message:
+    options:
+      preview:
+        icon: drive_file_rename_outline
+  submit_button:
+    options:
+      preview:
+        icon: send

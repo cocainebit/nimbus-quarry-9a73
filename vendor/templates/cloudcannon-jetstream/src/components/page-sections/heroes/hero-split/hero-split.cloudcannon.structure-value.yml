@@ -1,0 +1,57 @@
+label: Hero Split
+icon: title
+description: Prominent section block for landing pages.
+value:
+  _component: page-sections/heroes/hero-split
+  id:
+  title: Our approach
+  eyebrowIcon: {}
+  eyebrowText: Eyebrow text
+  heading: Heading text
+  subtext: Subtitle placeholder text that will be replaced with actual content.
+  buttonSections:
+    - _component: building-blocks/core-elements/button
+      text: My Button
+      hideText: false
+      link: ""
+      iconName: ""
+      iconColor: default
+      iconPosition: before
+      variant: primary
+      size: md
+  image:
+    source: /src/assets/images/component-docs/website-hero.svg
+    alt: Hero image
+  reverse: false
+  paddingVertical: 4xl
+  colorScheme: inherit
+  backgroundColor: base
+  contentBackground: false
+  background:
+    type: image
+    positionVertical: top
+    positionHorizontal: center
+    priority: false
+    imageSource: ""
+    imageAlt: ""
+    videoSource: null
+    overlay: 0
+  verticalOffset: {}
+  rounded: false
+preview:
+  text:
+    - Hero Split
+  subtext:
+    - key: heading
+  icon: title
+  gallery:
+    image: public/component-previews/page-sections/heroes/hero-split.svg
+    fit: cover
+picker_preview:
+  text: Hero Split
+  subtext: Prominent section block for landing pages.
+  gallery:
+    image: public/component-previews/page-sections/heroes/hero-split.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/page-sections/heroes/hero-split/hero-split.cloudcannon.inputs.yml

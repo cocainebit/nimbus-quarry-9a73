@@ -1,0 +1,229 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+import FeatureCarouselSlide from "@features/feature-carousel-grid/FeatureCarouselSlide.astro";
+import Carousel from "@wrappers/carousel/Carousel.astro";
+
+const {
+  id = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  subtext = "",
+  slides = [],
+  maxContentWidth = "3xl",
+  paddingVertical = "4xl",
+  colorScheme = "inherit",
+  backgroundColor,
+  backgroundColorHeight = "header",
+  background,
+  contentBackground = false,
+  verticalOffset = {},
+  rounded = false,
+  class: className,
+  _component,
+  useDefaultEditableBinding = false,
+  ...htmlAttributes
+} = Astro.props;
+
+// Create mobile slides: flatten all non-decorative cards from all slides
+const mobileSlides = slides.flatMap(
+  (slide: any) =>
+    slide.cards
+      ?.filter((card: any) => !card.decorative)
+      .map((card: any) => ({
+        cards: [card],
+      })) || []
+);
+---
+
+<CustomSection
+  class:list={["feature-carousel-grid", className]}
+  maxContentWidth=""
+  paddingHorizontal=""
+  paddingVertical=""
+  rounded={rounded}
+  colorScheme={colorScheme}
+  contentBackground={contentBackground}
+  rounded={rounded}
+  verticalOffset={verticalOffset}
+  id={id}
+  backgroundColor={backgroundColorHeight === "full" ? backgroundColor : ""}
+  background={backgroundColorHeight === "full" ? background : undefined}
+  {...htmlAttributes}
+>
+  <CustomSection
+    class:list={["feature-carousel-grid-content", className]}
+    maxContentWidth="lg"
+    paddingHorizontal=""
+    paddingVertical={paddingVertical}
+    rounded={rounded}
+    colorScheme={colorScheme}
+    verticalOffset={verticalOffset}
+    contentBackground={backgroundColorHeight === "header" ? contentBackground : false}
+    backgroundColor={backgroundColorHeight === "header" ? backgroundColor : ""}
+    background={backgroundColorHeight === "header" ? background : undefined}
+  >
+    <Icon
+      {...eyebrowIcon}
+      alignmentHorizontal="center"
+    />
+    <SimpleText
+      alignmentHorizontal="center"
+      class="eyebrow"
+      data-prop="eyebrowText"
+    >
+      {eyebrowText}
+    </SimpleText>
+    <Heading
+      level="h2"
+      size="lg"
+      alignmentHorizontal="center"
+      data-prop="heading"
+      text={heading}
+    />
+    <Text
+      class="feature-carousel-grid-subtext"
+      alignmentHorizontal="center"
+      data-prop="subtext"
+      text={subtext}
+    />
+  </CustomSection>
+
+  <CustomSection
+    class:list={["feature-carousel-grid-container"]}
+    maxContentWidth={maxContentWidth}
+    paddingHorizontal="3xl"
+    paddingVertical={paddingVertical}
+    rounded={false}
+    colorScheme={colorScheme}
+    backgroundColor=""
+  >
+    {/* Desktop carousel - show full grid slides */}
+    <Carousel
+      label="Feature carousel grid"
+      slideWidthPercent={100}
+      minSlideWidth={0}
+      autoPlay={false}
+      autoScroll={false}
+      data-children-prop="slides"
+      class="desktop-carousel"
+    >
+      {
+        slides.map((slide: any, index: number) => (
+          <FeatureCarouselSlide
+            aria-label={`Slide ${index + 1} of ${slides.length}`}
+            data-editable="array-item"
+            data-id="page-sections/features/feature-carousel-grid/feature-carousel-slide"
+            {...slide}
+            editable={true}
+            class="feature-carousel-grid-slide"
+          />
+        ))
+      }
+    </Carousel>
+
+    {/* Mobile carousel - show one card per slide, no decorative */}
+    <Carousel
+      label="Feature carousel grid"
+      slideWidthPercent={100}
+      minSlideWidth={0}
+      autoPlay={false}
+      autoScroll={false}
+      class="mobile-carousel"
+    >
+      {
+        mobileSlides.map((slide: any, index: number) => (
+          <FeatureCarouselSlide
+            {...slide}
+            class="feature-carousel-grid-slide-mobile"
+          />
+        ))
+      }
+    </Carousel>
+  </CustomSection>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .feature-carousel-grid {
+      /* The desktop slides spill past the container to reveal the previous and
+         next slides, so clip them at the section rather than the page. */
+      overflow-x: clip;
+
+      /*
+        `CustomSection` puts `.content` on `--layer-1`, which makes it a stacking
+        context. With `backgroundColorHeight: header` the background lives on the
+        nested header section *inside* that `.content`, so it was pinned above the
+        previous section and a `verticalOffset` of "back" had nothing to slide
+        behind. The outer section paints no background of its own in that mode, so
+        letting `.content` stack in document order costs nothing here and frees the
+        header background to sit behind the previous component.
+      */
+      > .outer-content > .content {
+        z-index: var(--layer-auto);
+      }
+    }
+
+    .feature-carousel-grid-content .content {
+      padding-bottom: var(--spacing-md);
+    }
+    .feature-carousel-grid-container {
+      .content {
+        padding-top: 0;
+      }
+      .desktop-carousel {
+        /* Embla only moves the looping slide to the other end when the viewport
+           has room beside the active slide, so the viewport is stretched past
+           the container by this much on each side. Without it, the last slide
+           is never placed before the first one and nothing peeks in on the left
+           while the first slide is selected. */
+        --carousel-peek: var(--spacing-md);
+
+        display: none;
+
+        @media (width >= 768px) {
+          display: block;
+        }
+
+        /* Two slides can never fill both sides of the active one, so Embla
+           turns looping off entirely if we ask for room on both sides. */
+        > .carousel-inner:not(:has(.slide:nth-child(3))) {
+          --carousel-peek: 0px;
+        }
+
+        /* Slides stay at the container width; letting the viewport overflow is
+           what makes the previous/next slides peek in from either side. */
+        > .carousel-inner > .viewport {
+          margin-inline: calc(var(--carousel-peek) * -1);
+          overflow: visible;
+          /* Auto, so the negative margins widen the viewport rather than
+             shifting it sideways against the base `width: 100%`. */
+          width: auto;
+        }
+
+        .slide {
+          /* Cancels out the widened viewport above. */
+          --slide-width: calc(100% - var(--carousel-peek) * 2);
+
+          transition: opacity var(--animation-normal) ease;
+        }
+
+        .slide[data-selected="false"] {
+          opacity: 0.35;
+        }
+      }
+
+      .mobile-carousel {
+        display: block;
+
+        @media (width >= 768px) {
+          display: none;
+        }
+      }
+    }
+  }
+</style>

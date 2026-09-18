@@ -1,0 +1,72 @@
+{
+  "id": "cloudcannon-justice",
+  "name": "Justice",
+  "repository": "https://github.com/CloudCannon/justice-jekyll-template",
+  "commit": "3bc0b76056622f8a66eaad153a3bddadc6ff8a89",
+  "license": "MIT",
+  "licenseFirstLine": "The MIT License (MIT)",
+  "framework": "Jekyll 4",
+  "sourceDirectory": "vendor/templates/cloudcannon-justice",
+  "photography": "None. Every photograph bundled upstream was removed before vendoring and replaced with placeholder artwork drawn in this repository, so no third-party photograph is redistributed.",
+  "changes": [
+    "Google Analytics block removed from the layout.",
+    "Disqus comment embed removed.",
+    "Google Maps embed replaced with a drawn map panel; the address text is kept.",
+    "Google Fonts stylesheet replaced with self-hosted woff2 files.",
+    "Remote demo photographs (source.unsplash.com, unsplash.it, placehold.it, placekitten.com, placebear.com, fillmurray.com) replaced with placeholder artwork drawn for this repository.",
+    "Bundled photographs removed and replaced with placeholder artwork drawn for this repository: uploads/building.jpg",
+    "A visible note marks the demonstration content as illustrative."
+  ],
+  "images": [
+    {
+      "file": "apple-touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/justice-jekyll-template at 3bc0b76056622f8a66eaad153a3bddadc6ff8a89. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/favicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/justice-jekyll-template at 3bc0b76056622f8a66eaad153a3bddadc6ff8a89. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/placeholders/field-600x450.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/field-960x350.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/map-1600x520.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-440x440.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-60x60.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "siteicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/justice-jekyll-template at 3bc0b76056622f8a66eaad153a3bddadc6ff8a89. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/justice-jekyll-template at 3bc0b76056622f8a66eaad153a3bddadc6ff8a89. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "uploads/building.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    }
+  ]
+}

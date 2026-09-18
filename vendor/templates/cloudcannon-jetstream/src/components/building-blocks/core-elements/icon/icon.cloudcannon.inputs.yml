@@ -1,0 +1,63 @@
+name:
+  type: select
+  comment: The name of the icon to display. Sourced from [Heroicons](https://heroicons.com/).
+  options:
+    values: _select_data.icons
+    preview:
+      text:
+        - key: name
+      image:
+        - template: src/icons/{id}.svg
+size:
+  type: select
+  comment: The size of the icon.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl Large
+      - id: 3xl
+        name: 3xl Large
+color:
+  type: select
+  comment: The color of the icon.
+  options:
+    values:
+      - id: default
+        name: Default (inherit)
+      - id: brand
+        name: Brand
+      - id: brand-inverse
+        name: Brand Inverse
+      - id: brand-gradient
+        name: Brand Gradient
+background:
+  type: switch
+  comment: Show a background behind the icon.
+iconOffset:
+  type: switch
+  comment: Offset the icon from the background.
+  hidden: "!background"
+inline:
+  type: switch
+  comment: Display the icon inline instead of block.
+alignmentHorizontal:
+  type: select
+  comment: Horizontal alignment of the icon.
+  options:
+    values:
+      - id: start
+        name: Start
+      - id: center
+        name: Center
+      - id: end
+        name: End

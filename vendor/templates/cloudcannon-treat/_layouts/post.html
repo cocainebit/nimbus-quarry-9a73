@@ -1,0 +1,60 @@
+---
+layout: default
+---
+<article class="post">
+	{% include post-heading.html post=page post_page=true %}
+	<div class="image">
+		<img src="{{ page.featured_image }}" alt="{{ page.title }}">
+	</div>
+
+	<div class="recipe-body">
+		{{ content }}
+	</div>
+
+	<ul id="recipe" class="recipe-overview">
+		<li title="Servings">{% include recipe-icon.html icon="quantity" %}<span>{{ page.recipe.servings }}</span></li>
+		<li title="Prep Time">{% include recipe-icon.html icon="time" %}<span>{{ page.recipe.prep }}</span></li>
+		<li title="Cook Time">{% include recipe-icon.html icon="cook" %}<span>{{ page.recipe.cook }}</span></li>
+	</ul>
+
+	<div class="recipe-contents">
+		<div class="ingredients">
+			<h2>Ingredients</h2>
+			{{ page.recipe.ingredients_markdown | markdownify }}
+		</div>
+
+		<div class="directions">
+			<h2>Directions</h2>
+			{{ page.recipe.directions_markdown | markdownify }}
+		</div>
+	</div>
+
+	<div class="sharing">
+		{% assign share_url = page.url | absolute_url | cgi_escape %}
+		<a class="facebook" href="https://facebook.example.com/your-account?u={{ share_url }}">{% include social-icon.html icon="Facebook" %}</a>
+		<a class="twitter" href="https://twitter.example.com/your-account?url={{ share_url }}&amp;text=I'm%20going%20to%20this%20event!">{% include social-icon.html icon="Twitter" %}</a>
+		<a class="instagram" href="https://instagram.example.com">{% include social-icon.html icon="Instagram" %}</a>
+		<a class="pinterest" href="//pinterest.com/pin/create/link/?url={{ share_url }}&amp;description={{ page.description }}">{% include social-icon.html icon="Pinterest" %}</a>
+		<a class="email" href="mailto:?subject=I've%20found%20a%20great%20recipe&amp;body=Check%20it%20out%20-%20{{ share_url }}">{% include social-icon.html icon="Email" %}</a>
+	</div>
+
+	<div class="cta">
+		<h2>More delicious recipes</h2>
+		<p>This is one of the many fantastic recipes available on this blog</p>
+		<div class="button"><a href="{{ site.baseurl }}/recipes">Check out more recipes</a></div>
+	</div>
+</article>
+
+<script>
+	$(function() {
+		
+
+		$('a[href*=\\#]').on('click', function(event){
+			var el = $(this.hash);
+			if (el.length > 0) {
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top - 50}, 500);
+			}
+		});
+	});
+</script>

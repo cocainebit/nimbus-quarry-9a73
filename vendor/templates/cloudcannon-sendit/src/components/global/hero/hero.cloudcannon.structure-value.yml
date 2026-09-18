@@ -1,0 +1,71 @@
+label: Hero
+icon: apps
+tags: []
+
+value:
+  _name: global/hero
+  title: One mission to make the better marketing
+  description: We believe that a good email marketing strategy is the key to growth. So we’re helping you grow your business with tools and resources that make email marketing easy.
+  hero_images:
+    - image: /images/about/aboutfeature-two.jpg
+      image_alt: People working
+      placement: front_bottom
+    - image: /images/about/aboutfeature-three.jpg
+      image_alt: Group of people looking at a computer
+      placement: back_top_right
+    - image: /images/about/aboutfeature-four.jpg
+      image_alt: Staff group photo
+      placement: back_top_left
+  button:
+    text: See more
+    link: "#counter-up"
+
+_inputs:
+  hero_images:
+    type: array
+    comment: Add up to three images.
+    options:
+      structures: _structures.hero_image
+      max_items: 3
+      max_items_message: This component can use a maximum of three images.
+  description:
+    type: markdown
+  
+_structures:
+  hero_image:
+    values:
+      - value:
+          image:
+          image_alt:
+          placement:
+        _inputs:
+          placement:
+            type: select
+            options:
+              values:
+                - name: Front - Bottom
+                  id: front_bottom
+                - name: Back - Top Right
+                  id: back_top_right
+                - name: Back - Top Left
+                  id: back_top_left
+          image:
+            type: image
+            options:
+              resize_style: crop
+              prevent_resize_existing_files: true
+              expandable: true
+        preview:
+          icon: image
+          image:
+            - key: image
+          text:
+            - key: image_alt
+            - 'Hero Image'
+          subtext:
+            - key: placement
+
+preview:
+  text: Hero
+  subtext:
+    - key: title

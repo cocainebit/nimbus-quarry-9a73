@@ -1,0 +1,381 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Text from "@core-elements/text/Text.astro";
+import Card from "@wrappers/card/Card.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import ButtonGroup from "@wrappers/button-group/ButtonGroup.astro";
+import Button from "@core-elements/button/Button.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+
+const {
+  id = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  subtext = "",
+  items = [],
+  maxContentWidth = "2xl",
+  backgroundColor = "base",
+  colorScheme = "light",
+  contentBackground = false,
+  paddingVertical = "4xl",
+  background,
+  verticalOffset = {},
+  rounded = false,
+  class: className,
+  _component,
+  useDefaultEditableBinding = false,
+  ...htmlAttributes
+} = Astro.props;
+
+// Distance from the section's content edge to the edge of the viewport, so the
+// carousel can bleed past the container without exceeding the screen width.
+const timelineContentWidth =
+  maxContentWidth && maxContentWidth !== "none"
+    ? `var(--content-width-${maxContentWidth})`
+    : "100vw";
+const timelineBleed = `calc((100vw - min(${timelineContentWidth}, 100vw)) / 2 + var(--spacing-lg))`;
+---
+
+<CustomSection
+  class:list={["timeline", className]}
+  maxContentWidth={maxContentWidth}
+  paddingHorizontal="lg"
+  paddingVertical={paddingVertical}
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  background={background}
+  contentBackground={contentBackground}
+  verticalOffset={verticalOffset}
+  rounded={rounded}
+  id={id}
+  {...htmlAttributes}
+>
+  <Icon {...eyebrowIcon} />
+  <SimpleText
+    alignmentHorizontal="start"
+    class="eyebrow"
+    data-prop="eyebrowText"
+  >
+    {eyebrowText}
+  </SimpleText>
+  <Heading
+    level="h2"
+    size="xl"
+    alignmentHorizontal="start"
+    data-prop="heading"
+    text={heading}
+  />
+  <Text
+    class="feature-carousel-grid-subtext"
+    alignmentHorizontal="start"
+    data-prop="subtext"
+    text={subtext}
+  />
+
+  <div
+    class="timeline-wrapper"
+    style={`--timeline-bleed: ${timelineBleed}`}
+  >
+    <div
+      class="timeline-carousel-container"
+      data-prop="items"
+    >
+      <div class="timeline-carousel">
+        <div class="timeline-line"></div>
+
+        {
+          items.map((item: any, index: number) => (
+            <div
+              class="timeline-item"
+              data-index={index}
+            >
+              <div class="timeline-marker">
+                <Icon
+                  name={item.icon.name}
+                  size="md"
+                  color={item.icon.color}
+                  background={true}
+                  iconOffset={true}
+                />
+              </div>
+              <Card
+                class="timeline-card"
+                paddingHorizontal="lg"
+                paddingVertical="xs"
+                rounded={false}
+                border={false}
+                backgroundColor=""
+              >
+                <div class="timeline-content">
+                  {item.date && (
+                    <Text
+                      class="timeline-date"
+                      data-prop={`items.${index}.date`}
+                    >
+                      {item.date}
+                    </Text>
+                  )}
+                  {item.heading && (
+                    <Heading
+                      level="h3"
+                      size="md"
+                      alignmentHorizontal="start"
+                      data-prop={`items.${index}.heading`}
+                    >
+                      {item.heading}
+                    </Heading>
+                  )}
+                  {item.text && (
+                    <Text
+                      text={item.text}
+                      alignmentHorizontal="start"
+                      data-prop={`items.${index}.text`}
+                    />
+                  )}
+                </div>
+              </Card>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="timeline-navigation">
+      <ButtonGroup
+        alignmentHorizontal="end"
+        class="timeline-navigation-button-group"
+      >
+        <Button
+          text="Previous"
+          hideText={true}
+          iconName="arrow-left"
+          size="md"
+          variant="primary"
+          class="timeline-nav-button prev"
+        />
+        <Button
+          text="Next"
+          hideText={true}
+          iconName="arrow-right"
+          size="md"
+          variant="primary"
+          class="timeline-nav-button next"
+        />
+      </ButtonGroup>
+    </div>
+  </div>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .feature-carousel-grid-subtext {
+      font-weight: var(--font-weight-bold);
+    }
+
+    .timeline {
+      position: relative;
+
+      .timeline-carousel-container {
+        position: relative;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: thin;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        margin-inline: calc(var(--timeline-bleed) * -1);
+        padding-inline: var(--timeline-bleed);
+        scroll-padding-inline-start: var(--timeline-bleed);
+      }
+
+      .timeline-carousel {
+        position: relative;
+        display: flex;
+        gap: var(--spacing-xl);
+        width: fit-content;
+      }
+
+      .timeline-item {
+        flex: 0 0 auto;
+        width: 350px;
+        max-width: 90vw;
+        position: relative;
+        scroll-snap-align: start;
+
+        @media (width >= 768px) {
+          width: 450px;
+        }
+      }
+
+      .timeline-line {
+        position: absolute;
+        top: 30px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--color-bg-surface);
+        z-index: var(--layer-below);
+        pointer-events: none;
+      }
+
+      .timeline-marker {
+        position: relative;
+        margin-top: var(--spacing-md);
+        height: 60px;
+        display: flex;
+        margin-left: var(--spacing-lg);
+      }
+
+      .timeline-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+
+        .timeline-date {
+          margin: 0;
+          font-weight: var(--font-weight-bold);
+          font-size: var(--font-size-sm);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        h3 {
+          margin: 0;
+        }
+
+        p:not(.timeline-date) {
+          margin: 0;
+        }
+      }
+
+      .timeline-navigation-button-group {
+        gap: var(--spacing-xl);
+
+        .button[disabled] .button-inner {
+          background-color: var(--color-disabled-bg);
+          color: var(--color-text-on-brand);
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  function initTimeline(root) {
+    const scroller = root.querySelector(".timeline-carousel-container");
+    const prevBtn = root.querySelector(".timeline-nav-button.prev");
+    const nextBtn = root.querySelector(".timeline-nav-button.next");
+    const carousel = root.querySelector(".timeline-carousel");
+    const items = Array.from(root.querySelectorAll(".timeline-item"));
+
+    if (!scroller || !prevBtn || !nextBtn || !carousel || items.length === 0) return;
+    if (root.dataset.timelineInit === "true") return;
+    root.dataset.timelineInit = "true";
+
+    const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+    let rafId = 0;
+
+    // The scroller bleeds past the container, so its content edge is inset by its padding.
+    function getScrollPaddingStart() {
+      return parseFloat(getComputedStyle(scroller).paddingInlineStart) || 0;
+    }
+
+    // Prev/next pages by however many whole cards are on screen, rather than
+    // nudging the carousel along one card at a time.
+    function getStep() {
+      const itemWidth = items[0]?.getBoundingClientRect().width || 0;
+      if (!itemWidth) return 1;
+
+      const gap = parseFloat(getComputedStyle(carousel).columnGap) || 0;
+      const visible = scroller.clientWidth - getScrollPaddingStart();
+
+      return Math.max(1, Math.floor((visible + gap) / (itemWidth + gap)));
+    }
+
+    // Find the card that is "current" by comparing left edges relative to the scroller viewport.
+    // This aligns with scroll-snap-align: start, so paging always lands on a card boundary.
+    function getCurrentIndex() {
+      const viewportLeft = scroller.getBoundingClientRect().left + getScrollPaddingStart();
+
+      let best = 0;
+      let bestDist = Infinity;
+
+      items.forEach((el, i) => {
+        const left = el.getBoundingClientRect().left;
+        const dist = Math.abs(left - viewportLeft);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+
+      return best;
+    }
+
+    function updateButtons() {
+      const atStart = scroller.scrollLeft <= 2;
+      const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2;
+
+      atStart ? prevBtn.setAttribute("disabled", "true") : prevBtn.removeAttribute("disabled");
+      atEnd ? nextBtn.setAttribute("disabled", "true") : nextBtn.removeAttribute("disabled");
+
+      prevBtn.setAttribute("aria-disabled", String(atStart));
+      nextBtn.setAttribute("aria-disabled", String(atEnd));
+    }
+
+    function scrollToIndex(i) {
+      const idx = clamp(i, 0, items.length - 1);
+      const target = items[idx];
+      if (!target) return;
+
+      // Calculate the scroll position relative to the scroller
+      const scrollerRect = scroller.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const scrollOffset =
+        targetRect.left - scrollerRect.left + scroller.scrollLeft - getScrollPaddingStart();
+
+      scroller.scrollTo({
+        left: scrollOffset,
+        behavior: "smooth",
+      });
+    }
+
+    prevBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const current = getCurrentIndex();
+      scrollToIndex(current - getStep());
+    });
+
+    nextBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const current = getCurrentIndex();
+      scrollToIndex(current + getStep());
+    });
+
+    function onScroll() {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateButtons);
+    }
+
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+
+    const ro = new ResizeObserver(() => updateButtons());
+    ro.observe(scroller);
+
+    updateButtons();
+  }
+
+  function initAllTimelines() {
+    document.querySelectorAll(".timeline").forEach(initTimeline);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAllTimelines, { once: true });
+  } else {
+    initAllTimelines();
+  }
+
+  document.addEventListener("astro:page-load", initAllTimelines);
+</script>

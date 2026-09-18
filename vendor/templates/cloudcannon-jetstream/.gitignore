@@ -1,0 +1,41 @@
+# build output
+dist/
+
+_docs/
+/docGen.js
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# vscode settings
+.vscode/
+
+# temporary files
+*.tmp
+*.temp
+
+# component preview authoring aids (regenerated on demand)
+.preview-screenshots/
+.preview-montage.png
+
+# agent tooling
+.agents
+skills-lock.json

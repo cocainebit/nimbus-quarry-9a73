@@ -1,0 +1,134 @@
+images:
+  type: array
+  comment: Images to display in the logo strip.
+  options:
+    structures:
+      values:
+        - label: Image
+          icon: image
+          value:
+            source: ""
+            alt: ""
+            link: ""
+          _inputs:
+            source:
+              type: image
+              comment: The URL or path to the image.
+              options:
+                paths:
+                  uploads: src/assets/images
+                  static: ""
+            alt:
+              type: text
+              comment: The alt text for the image.
+            link:
+              type: url
+              comment: Optional URL to link when the logo is clicked.
+
+id:
+  type: text
+  comment: Unique identifier for the section which can be used as an anchor link.
+heading:
+  type: html
+  comment: Main heading text for the section.
+  options:
+    styles: .cloudcannon/styles/editor.css
+maxContentWidth:
+  type: select
+  comment: Maximum width constraint for the content.
+  options:
+    values:
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl
+      - id: 3xl
+        name: 3xl
+paddingVertical:
+  type: select
+  comment: Vertical padding applied to the custom section content.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl
+      - id: 3xl
+        name: 3xl
+colorScheme:
+  type: select
+  comment: Color scheme theme for the hero.
+  options:
+    values:
+      - id: inherit
+        name: Inherit
+      - id: light
+        name: Light
+      - id: dark
+        name: Dark
+backgroundColor:
+  type: select
+  comment: Background color for the section.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: base
+        name: Base
+      - id: surface
+        name: Surface
+      - id: accent
+        name: Accent
+      - id: highlight
+        name: Highlight
+      - id: highlight-grid
+        name: Highlight Grid
+      - id: surface-linear-gradient
+        name: Surface Linear Gradient
+      - id: brand-linear-gradient-reverse
+        name: Brand Linear Gradient Reverse
+      - id: brand-linear-gradient
+        name: Brand Linear Gradient
+      - id: brand-linear-gradient-muted
+        name: Brand Linear Gradient Muted
+      - id: highlight-linear-gradient
+        name: Highlight Linear Gradient
+      - id: highlight-radial-gradient
+        name: Highlight Radial Gradient
+      - id: highlight-radial-gradient-animated
+        name: Highlight Radial Gradient Animated
+contentBackground:
+  type: switch
+  comment: Add a radial background in the base color behind the content.
+verticalOffset:
+  type: object
+  comment: Offset section up above or below the previous section.
+  options:
+    empty_type: object
+    preview:
+      icon: arrow_upward
+    structures: _structures.vertical_offset
+rounded:
+  type: switch
+  comment: Whether to apply rounded corners to the section.
+lockColorScheme:
+  type: switch
+  comment: Keep the selected color scheme from flipping when the visitor toggles the site theme.

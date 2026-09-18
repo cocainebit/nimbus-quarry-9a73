@@ -1,0 +1,774 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import Image from "@core-elements/image/Image.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+import ButtonGroup from "@wrappers/button-group/ButtonGroup.astro";
+
+const {
+  id = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  headingSize = "4xl",
+  subtext = "",
+  buttonSections = [],
+  image = { source: "", alt: "" },
+  icons = [],
+  backgroundDecoration = true,
+  sectionHeight = "full",
+  maxContentWidth = "xl",
+  paddingVertical = "4xl",
+  colorScheme = "inherit",
+  backgroundColor,
+  contentBackground,
+  verticalOffset = {
+    size: "",
+    direction: "",
+  },
+  rounded = false,
+  class: className,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+
+const snakePath =
+  "M0 2H113.5C124.546 2 133.5 10.9543 133.5 22V121V246.5V476C133.5 487.046 142.454 496 153.5 496H188.5C199.546 496 208.5 504.954 208.5 516V572C208.5 583.046 199.546 592 188.5 592H178C166.954 592 158 600.954 158 612V731C158 742.046 166.954 751 178 751H1545C1556.05 751 1565 742.046 1565 731V636C1565 624.954 1573.95 616 1585 616H1636C1647.05 616 1656 607.046 1656 596V498C1656 486.954 1647.05 478 1636 478H1598C1586.95 478 1578 469.046 1578 458V154V46C1578 34.9543 1586.95 26 1598 26H1714H1757";
+---
+
+<CustomSection
+  class:list={["hero-center", className]}
+  id={id}
+  label={id}
+  maxContentWidth=""
+  paddingHorizontal=""
+  paddingVertical=""
+  colorScheme={colorScheme}
+  contentBackground={false}
+  backgroundColor={backgroundColor}
+  verticalOffset={verticalOffset}
+  contentClass={`section-height-${sectionHeight}`}
+  useDefaultEditableBinding={true}
+  {...htmlAttributes}
+>
+  <CustomSection
+    class:list={["hero-center-content", className]}
+    maxContentWidth={maxContentWidth}
+    paddingHorizontal="lg"
+    paddingVertical={paddingVertical}
+    colorScheme={colorScheme}
+    backgroundColor={backgroundColor}
+    contentBackground={contentBackground}
+    verticalOffset={verticalOffset}
+    rounded={rounded}
+  >
+    <Icon {...eyebrowIcon} />
+    <SimpleText
+      alignmentHorizontal="center"
+      class="eyebrow"
+      data-prop="eyebrowText"
+    >
+      {eyebrowText}
+    </SimpleText>
+    <Heading
+      level="h1"
+      size={headingSize}
+      alignmentHorizontal="center"
+      text={heading}
+      data-prop="heading"
+    />
+    <Text
+      alignmentHorizontal="center"
+      class="subtext"
+      data-prop="subtext"
+      text={subtext}
+    />
+    <ButtonGroup
+      class="buttons"
+      buttonSections={buttonSections}
+      alignmentHorizontal="center"
+      data-children-prop="buttonSections"
+    />
+  </CustomSection>
+
+  {
+    backgroundDecoration && (
+      <div class="background-decoration-container">
+        <div class="snake-container snake-container-desktop">
+          <svg
+            class="snake snake-pink"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            viewBox="0 0 1728 753"
+            preserveAspectRatio="none"
+            fill="none"
+          >
+            <defs>
+              <linearGradient id="gradient">
+                <stop
+                  offset="0%"
+                  stop-color="var(--color-bg-brand)"
+                  stop-opacity="0"
+                />
+                <stop
+                  offset="50%"
+                  stop-color="var(--color-bg-inverse)"
+                  stop-opacity="1"
+                />
+                <stop
+                  offset="100%"
+                  stop-color="var(--color-bg-brand)"
+                  stop-opacity="0"
+                />
+              </linearGradient>
+              <mask
+                id="gradient-mask"
+                mask-type="alpha"
+              >
+                <rect
+                  class="mask-rect"
+                  x="0"
+                  y="0"
+                  width="50%"
+                  height="100%"
+                  fill="url(#gradient)"
+                />
+              </mask>
+            </defs>
+            <path
+              mask="url(#gradient-mask)"
+              d={snakePath}
+              stroke="var(--color-bg-inverse)"
+              stroke-width="4"
+            />
+          </svg>
+          <svg
+            class="snake snake-purple"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            viewBox="0 0 1728 753"
+            preserveAspectRatio="none"
+            fill="none"
+          >
+            <path
+              d={snakePath}
+              stroke="var(--color-bg-brand)"
+              stroke-width="4"
+            />
+          </svg>
+          <div class="icon-layer">
+            <Icon
+              {...icons[0]}
+              data-prop="icons.0"
+              class="icon icon-left"
+            />
+            <Icon
+              {...icons[1]}
+              data-prop="icons.1"
+              class="icon icon-right"
+            />
+          </div>
+        </div>
+
+        <div class="snake-container snake-container-mobile">
+          <svg
+            class="snake snake-brand"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100vw"
+            height="4"
+            viewBox="0 0 100 4"
+            preserveAspectRatio="none"
+            fill="none"
+          >
+            <path
+              d="M0 2H100"
+              stroke="var(--color-bg-brand)"
+              stroke-width="4"
+            />
+          </svg>
+          <svg
+            class="snake snake-inverse"
+            xmlns="http://www.w3.org/2000/svg"
+            width="100vw"
+            height="4"
+            viewBox="0 0 100 4"
+            preserveAspectRatio="none"
+            fill="none"
+          >
+            <defs>
+              <linearGradient id="gradient-mobile">
+                <stop
+                  offset="0%"
+                  stop-color="var(--color-bg-brand)"
+                  stop-opacity="0"
+                />
+                <stop
+                  offset="50%"
+                  stop-color="var(--color-bg-inverse)"
+                  stop-opacity="1"
+                />
+                <stop
+                  offset="100%"
+                  stop-color="var(--color-bg-brand)"
+                  stop-opacity="0"
+                />
+              </linearGradient>
+              <mask
+                id="gradient-mask-mobile"
+                maskUnits="userSpaceOnUse"
+                mask-type="alpha"
+              >
+                <rect
+                  class="mask-rect"
+                  x="0"
+                  y="0"
+                  width="100%"
+                  height="4"
+                  fill="url(#gradient-mobile)"
+                />
+              </mask>
+            </defs>
+            <path
+              d="M0 2H100"
+              mask="url(#gradient-mask-mobile)"
+              stroke="var(--color-bg-inverse)"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+          </svg>
+          <div class="icon-layer-mobile">
+            <Icon
+              {...icons[0]}
+              data-prop="icons.0"
+              class="icon icon-left"
+              style="left: -10%;"
+            />
+            <Icon
+              {...icons[1]}
+              data-prop="icons.1"
+              class="icon icon-right"
+              style="left: 80%;"
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    image?.source && (
+      <CustomSection
+        class:list={["hero-center-image"]}
+        maxContentWidth=""
+        paddingHorizontal="sm"
+        paddingVertical=""
+        colorScheme={colorScheme}
+        backgroundColor={backgroundColor}
+        contentBackground={false}
+      >
+        <Image
+          {...image}
+          data-prop-src="image.source"
+          data-prop-alt="image.alt"
+        />
+      </CustomSection>
+    )
+  }
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .hero-center {
+      overflow-x: clip;
+      width: 100vw;
+
+      &:has(.hero-center-content > .outer-content.rounded) > .outer-content > .background {
+        border-radius: var(--radius-3xl);
+        overflow: hidden;
+      }
+
+      .snake-container-desktop {
+        display: none;
+      }
+
+      .snake-container-mobile {
+        display: block;
+        position: relative;
+
+        .snake {
+          position: absolute;
+        }
+      }
+
+      .hero-center-content > .outer-content,
+      .hero-center-image > .outer-content {
+        position: relative;
+        z-index: 0;
+      }
+
+      .hero-center-content > .outer-content > .background,
+      .hero-center-image > .outer-content > .background {
+        display: none;
+      }
+
+      .hero-center-image > .outer-content {
+        margin-bottom: var(--spacing-4xl);
+      }
+
+      .image {
+        position: relative;
+        width: fit-content;
+
+        img {
+          width: 100vw;
+        }
+      }
+
+      .background-decoration-container {
+        --animation-extra-fast: 250ms;
+        --animation-normal: 2000ms;
+        --animation-slow: 4000ms;
+        padding: var(--spacing-3xl) 0;
+      }
+
+      .mask-rect {
+        animation: slide-mask var(--animation-slow) linear infinite;
+      }
+
+      .icon-layer-mobile {
+        position: relative;
+        width: 110vw;
+
+        .icon {
+          border-radius: var(--radius-full);
+          box-shadow: var(--shadow-raised);
+          cursor: pointer;
+          pointer-events: auto;
+          position: absolute;
+          transform: translateY(-50%) translateX(-50%);
+          transition: left var(--animation-normal) cubic-bezier(0.2, 0.7, 0.2, 1);
+          will-change: left;
+
+          &.no-transition {
+            transition: none;
+          }
+        }
+      }
+
+      @media (width >= 1280px) and (min-height: 750px) {
+        overflow-x: clip;
+
+        .hero-center-content > .outer-content,
+        .hero-center-image > .outer-content {
+          position: relative;
+          z-index: var(--layer-2);
+        }
+
+        .hero-center-content > .outer-content > .background,
+        .hero-center-image > .outer-content > .background {
+          display: none;
+        }
+
+        .hero-center-content {
+          .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .text,
+            .text > * {
+              margin: 0;
+            }
+          }
+        }
+
+        .image {
+          margin: 0 auto;
+          max-height: calc(100vh - var(--spacing-nav-height));
+          max-width: 100%;
+          position: relative;
+          transform: perspective(500px) rotateX(15deg);
+          z-index: var(--layer-2);
+          animation-name: flatten;
+          animation-duration: auto;
+          animation-timing-function: linear;
+          animation-fill-mode: both;
+          animation-timeline: view();
+          animation-range: entry 0% cover 40%;
+
+          /* Firefox fallback */
+          @supports not (animation-timeline: view()) {
+            top: 0;
+          }
+
+          picture,
+          img {
+            display: block;
+            height: 100%;
+            max-height: calc(100vh - var(--spacing-nav-height));
+          }
+
+          img {
+            object-fit: cover;
+            object-position: center top;
+          }
+        }
+
+        .background-decoration-container {
+          inset: 0;
+          bottom: var(--spacing-4xl);
+          overflow: clip visible;
+          padding-top: calc(var(--font-size-4xl) * 2);
+          pointer-events: none;
+          position: absolute;
+          z-index: var(--layer-1);
+
+          .icon-layer {
+            inset: 0;
+            pointer-events: none;
+            position: absolute;
+            transform: scaleX(var(--sx, 1)) scaleY(var(--sy, 1));
+            transform-origin: 0 0;
+            width: 100vw;
+            z-index: var(--layer-2);
+          }
+
+          .icon {
+            --path: path(
+              "M0 2H113.5C124.546 2 133.5 10.9543 133.5 22V121V246.5V476C133.5 487.046 142.454 496 153.5 496H188.5C199.546 496 208.5 504.954 208.5 516V572C208.5 583.046 199.546 592 188.5 592H178C166.954 592 158 600.954 158 612V731C158 742.046 166.954 751 178 751H1545C1556.05 751 1565 742.046 1565 731V636C1565 624.954 1573.95 616 1585 616H1636C1647.05 616 1656 607.046 1656 596V498C1656 486.954 1647.05 478 1636 478H1598C1586.95 478 1578 469.046 1578 458V154V46C1578 34.9543 1586.95 26 1598 26H1714H1757"
+            );
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-raised);
+            pointer-events: auto;
+            position: absolute;
+            transform: scale(calc(1 / var(--sx, 1)), calc(1 / var(--sy, 1)));
+            transition:
+              offset-distance var(--animation-normal) cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform var(--animation-extra-fast) cubic-bezier(0.2, 0.7, 0.2, 1),
+              left var(--animation-normal) cubic-bezier(0.2, 0.7, 0.2, 1),
+              right var(--animation-normal) cubic-bezier(0.2, 0.7, 0.2, 1),
+              top var(--animation-normal) cubic-bezier(0.2, 0.7, 0.2, 1);
+
+            /* CSS fallback: simple left/right positioning */
+            transform-origin: center;
+
+            &.no-transition {
+              transition: none;
+            }
+
+            &.off-screen-start {
+              margin-left: -90px;
+            }
+
+            &.icon-left {
+              --p: 15%;
+              left: 6vw;
+              top: 30%;
+            }
+
+            &.icon-right {
+              --p: 90%;
+              right: 6.5vw;
+              top: 20%;
+            }
+
+            /* When JS initializes, switch to offset-path positioning */
+            &[data-path-positioned="true"] {
+              top: auto;
+              left: auto;
+              right: auto;
+              offset-anchor: center;
+              offset-distance: var(--p);
+              offset-path: var(--path);
+              offset-rotate: 0deg;
+            }
+          }
+
+          .snake-container {
+            left: 0;
+            position: sticky;
+            right: 0;
+            width: 100vw;
+          }
+
+          .snake-container-desktop {
+            display: block;
+            height: calc(100% + var(--spacing-nav-height));
+          }
+
+          .snake-container-mobile {
+            display: none;
+          }
+
+          .snake {
+            height: 100%;
+            position: absolute;
+          }
+
+          .snake-pink {
+            z-index: var(--layer-1);
+          }
+        }
+
+        .section-height-full {
+          > .background {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            margin-top: calc(var(--pull-up, 0px) * -1);
+            margin-bottom: -100vh;
+          }
+
+          .radial-background-wrapper {
+            height: calc(100vh - var(--spacing-nav-height));
+          }
+          .hero-center-content {
+            bottom: var(--spacing-nav-height);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+
+            .content {
+              height: calc(90vh - var(--spacing-nav-height));
+            }
+          }
+
+          .hero-center-image > .outer-content {
+            margin-top: 5vh;
+
+            @media (min-height: 820px) {
+              margin-top: 0;
+            }
+
+            @media (min-height: 950px) {
+              margin-top: -10vh;
+            }
+          }
+
+          .background-decoration-container {
+            bottom: calc(var(--spacing-4xl) * 1.5);
+
+            .icon-layer {
+              height: 100vh;
+            }
+          }
+
+          .image {
+            bottom: var(--spacing-2xl);
+            img {
+              height: calc(95vh - var(--spacing-nav-height));
+              width: auto;
+            }
+          }
+
+          .snake-container-desktop {
+            display: block;
+            height: calc(calc(90vh - var(--spacing-nav-height)) - calc(var(--font-size-4xl) * 2));
+            top: calc(var(--spacing-nav-height) + calc(var(--font-size-4xl) * 2));
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const container = document.querySelector(".background-decoration-container");
+    const svg = container?.querySelector("svg.snake") as HTMLElement | null;
+    const layer = container?.querySelector(".icon-layer") as HTMLElement | null;
+
+    if (svg && layer) {
+      const syncScale = () => {
+        const rect = svg.getBoundingClientRect();
+        layer.style.setProperty("--sx", (rect.width / 1728).toFixed(6));
+        layer.style.setProperty("--sy", (rect.height / 753).toFixed(6));
+      };
+
+      syncScale();
+      new ResizeObserver(syncScale).observe(svg);
+      window.addEventListener("resize", syncScale, { passive: true });
+
+      const icons = [
+        document.querySelector(".icon-left") as HTMLElement | null,
+        document.querySelector(".icon-right") as HTMLElement | null,
+      ];
+
+      if (icons[0] && icons[1]) {
+        // Disable transitions for initial positioning
+        icons[0].classList.add("no-transition");
+        icons[1].classList.add("no-transition");
+
+        // Enable path-based positioning
+        icons[0].setAttribute("data-path-positioned", "true");
+        icons[1].setAttribute("data-path-positioned", "true");
+
+        // Force a reflow to ensure no-transition is applied
+        void icons[0].offsetWidth;
+
+        // Re-enable transitions after initial positioning
+        requestAnimationFrame(() => {
+          icons[0]?.classList.remove("no-transition");
+          icons[1]?.classList.remove("no-transition");
+        });
+
+        let positions = icons.map(
+          (icon) => parseFloat(getComputedStyle(icon!).getPropertyValue("--p")) || 0
+        );
+
+        const getAnimationDuration = () => {
+          const transition = getComputedStyle(icons[0]!).transition;
+          const match = transition.match(/offset-distance\s+([\d.]+)(s|ms)/);
+          if (match) {
+            const value = parseFloat(match[1]);
+            return match[2] === "s" ? value * 1000 : value;
+          }
+
+          return 1400;
+        };
+
+        const duration = getAnimationDuration();
+        const cooldown = 200;
+        let locked = false;
+        let hoverTimeouts: (ReturnType<typeof setTimeout> | null)[] = [null, null];
+
+        function swapForward(fromIndex: number) {
+          if (locked || !icons[0] || !icons[1]) return;
+          locked = true;
+
+          const toIndex = fromIndex === 0 ? 1 : 0;
+          const [a, b] = [positions[fromIndex], positions[toIndex]];
+          const [targetA, targetB] = [b > a ? b : b + 100, a > b ? a : a + 100];
+          const [needsWrapA, needsWrapB] = [targetA >= 100, targetB >= 100];
+          const [finalA, finalB] = [
+            needsWrapA ? targetA - 100 : targetA,
+            needsWrapB ? targetB - 100 : targetB,
+          ];
+
+          icons[fromIndex]!.style.setProperty("--p", `${targetA}%`);
+          icons[toIndex]!.style.setProperty("--p", `${targetB}%`);
+
+          if (needsWrapA || needsWrapB) {
+            setTimeout(() => {
+              const wrapIcon = (icon: HTMLElement, final: number) => {
+                icon.classList.add("no-transition", "off-screen-start");
+                void icon.offsetWidth;
+                icon.style.setProperty("--p", "0%");
+                void icon.offsetWidth;
+                icon.classList.remove("no-transition", "off-screen-start");
+                void icon.offsetWidth;
+                icon.style.setProperty("--p", `${final}%`);
+              };
+
+              if (needsWrapA && icons[fromIndex]) wrapIcon(icons[fromIndex]!, finalA);
+              if (needsWrapB && icons[toIndex]) wrapIcon(icons[toIndex]!, finalB);
+            }, duration * 0.3);
+          }
+
+          setTimeout(() => {
+            positions[fromIndex] = finalA;
+            positions[toIndex] = finalB;
+
+            setTimeout(() => {
+              locked = false;
+              if (!icons[0] || !icons[1]) return;
+
+              const anyHovered =
+                icons[fromIndex]!.matches(":hover") || icons[toIndex]!.matches(":hover");
+
+              if (anyHovered) {
+                const hoveredIndex = icons[fromIndex]!.matches(":hover") ? fromIndex : toIndex;
+                hoverTimeouts[hoveredIndex] = setTimeout(() => {
+                  if (
+                    icons[0] &&
+                    icons[1] &&
+                    (icons[0].matches(":hover") || icons[1].matches(":hover")) &&
+                    !locked
+                  ) {
+                    swapForward(hoveredIndex);
+                  }
+                }, 500);
+              }
+            }, cooldown);
+          }, duration);
+        }
+
+        icons.forEach((icon, index) => {
+          if (!icon) return;
+
+          icon.addEventListener("mouseenter", () => swapForward(index));
+          icon.addEventListener("mouseleave", () => {
+            const timeout = hoverTimeouts[index];
+            if (timeout) {
+              clearTimeout(timeout);
+              hoverTimeouts[index] = null;
+            }
+          });
+        });
+      }
+    }
+
+    const mobileContainer = document.querySelector(".snake-container-mobile");
+    if (!mobileContainer) return;
+
+    const mobileIcons = [
+      mobileContainer.querySelector(".icon-left") as HTMLElement | null,
+      mobileContainer.querySelector(".icon-right") as HTMLElement | null,
+    ];
+
+    if (!mobileIcons[0] || !mobileIcons[1]) return;
+
+    const [offScreenLeft, visiblePosition, offScreenRight] = [-10, 80, 120];
+    let mobileLocked = false;
+
+    function slideNext() {
+      if (mobileLocked || !mobileIcons[0] || !mobileIcons[1]) return;
+      mobileLocked = true;
+
+      const currentVisibleIndex = mobileIcons.findIndex((icon) => {
+        if (!icon) return false;
+        const left = parseFloat(icon.style.left || getComputedStyle(icon).left);
+        return Math.abs(left - visiblePosition) < 5;
+      });
+
+      if (currentVisibleIndex === -1) {
+        mobileIcons[0]!.style.left = `${offScreenLeft}%`;
+        mobileIcons[1]!.style.left = `${visiblePosition}%`;
+        mobileLocked = false;
+        return;
+      }
+
+      const nextIndex = currentVisibleIndex === 0 ? 1 : 0;
+      mobileIcons[currentVisibleIndex]!.style.left = `${offScreenRight}%`;
+      mobileIcons[nextIndex]!.style.left = `${visiblePosition}%`;
+
+      setTimeout(() => {
+        const icon = mobileIcons[currentVisibleIndex];
+        if (!icon) return;
+
+        icon.classList.add("no-transition");
+        void icon.offsetWidth;
+        icon.style.left = `${offScreenLeft}%`;
+        void icon.offsetWidth;
+        icon.classList.remove("no-transition");
+        mobileLocked = false;
+      }, 1400);
+    }
+
+    mobileIcons.forEach((icon) => {
+      if (!icon) return;
+
+      icon.addEventListener("click", slideNext);
+      icon.addEventListener(
+        "touchend",
+        (event) => {
+          event.preventDefault();
+          slideNext();
+        },
+        { passive: false }
+      );
+    });
+  })();
+</script>

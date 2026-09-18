@@ -1,0 +1,117 @@
+{
+  "id": "cloudcannon-hydra",
+  "name": "Hydra",
+  "repository": "https://github.com/CloudCannon/hydra-jekyll-template",
+  "commit": "67de74e52e29b2db05dccd9caa3630e324e72513",
+  "license": "MIT",
+  "licenseFirstLine": "MIT License",
+  "framework": "Jekyll 4",
+  "sourceDirectory": "vendor/templates/cloudcannon-hydra",
+  "photography": "None. Every photograph bundled upstream was removed before vendoring and replaced with placeholder artwork drawn in this repository, so no third-party photograph is redistributed.",
+  "changes": [
+    "Google Analytics block removed from the layout.",
+    "Disqus comment embed removed.",
+    "Google Maps embed replaced with a drawn map panel; the address text is kept.",
+    "Remote demo photographs (source.unsplash.com, unsplash.it, placehold.it, placekitten.com, placebear.com, fillmurray.com) replaced with placeholder artwork drawn for this repository.",
+    "Bundled photographs removed and replaced with placeholder artwork drawn for this repository: images/dashboard.png",
+    "A visible note marks the demonstration content as illustrative.",
+    "The named testimonial and the award claim were replaced with illustrative wording; the third-party product screenshot in the hero became a drawn application panel."
+  ],
+  "images": [
+    {
+      "file": "apple-touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/hydra-jekyll-template at 67de74e52e29b2db05dccd9caa3630e324e72513. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "favicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/hydra-jekyll-template at 67de74e52e29b2db05dccd9caa3630e324e72513. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/dashboard.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/logo.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/hydra-jekyll-template at 67de74e52e29b2db05dccd9caa3630e324e72513. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/placeholders/field-1500x1145.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/field-1500x1146.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/field-1500x1147.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/field-1500x1148.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/field-1500x1149.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/map-1600x520.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-600x400.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-600x600.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-601x601.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-602x602.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-603x603.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-604x604.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-605x605.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "siteicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/hydra-jekyll-template at 67de74e52e29b2db05dccd9caa3630e324e72513. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/hydra-jekyll-template at 67de74e52e29b2db05dccd9caa3630e324e72513. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    }
+  ]
+}

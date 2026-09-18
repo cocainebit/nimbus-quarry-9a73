@@ -1,0 +1,52 @@
+---
+import BlogList from "@components/blog/list.astro";
+import BlogPagination from "@components/blog/pagination.astro";
+import Layout from "@layouts/Layout.astro";
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+
+  // Sort posts by date (newest first)
+  const sortedPosts = posts.sort((a, b) => {
+    const dateA = new Date(a.data.date).getTime();
+    const dateB = new Date(b.data.date).getTime();
+    return dateB - dateA;
+  });
+
+  const page = await getEntry("pages", "blog");
+  return paginate(sortedPosts, { pageSize: page?.data.page_size });
+}
+
+const page = await getEntry("pages", "blog");
+
+if (!page) {
+  throw new Error("Failed to get blog index page data");
+}
+
+const frontmatter = page?.data;
+interface BlogPaginationResult {
+  data: CollectionEntry<"blog">[];
+  currentPage: number;
+  lastPage: number;
+  pageSize: number;
+  url: {
+    current: string;
+    prev: string | undefined;
+    next: string | undefined;
+  };
+}
+
+// Declare expected props shape for this dynamic route so Astro provides types
+export interface Props {
+  page: BlogPaginationResult;
+}
+
+const { page: pagination } = Astro.props;
+const posts = pagination.data;
+---
+
+<Layout title={frontmatter.title} seo={frontmatter.seo}>
+  <BlogList posts={posts} page={page.data} />
+  <BlogPagination pagination={{ ...pagination, data: posts }} />
+</Layout>

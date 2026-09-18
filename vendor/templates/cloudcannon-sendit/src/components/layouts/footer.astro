@@ -1,0 +1,84 @@
+---
+import footer from "../../../data/footer.json";
+
+// Define TypeScript interfaces
+interface SocialLink {
+  link: string;
+  icon: string;
+  icon_alt: string;
+}
+
+interface FooterLink {
+  link: string;
+  text: string;
+}
+
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
+interface FooterData {
+  logo: string;
+  logo_url: string;
+  copyright: string;
+  sections: FooterSection[];
+}
+
+const footerData = footer as FooterData;
+---
+
+<footer class="relative bg-black pt-16 2xl:pt-24 pb-12 sm:pb-16" id="footer">
+  <div class="w-full px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto 2xl:max-w-[1500px]">
+      <div class="flex flex-wrap -mx-4">
+        <div class="w-full lg:w-1/3 px-4 order-2 lg:order-1 lg:mr-auto">
+          <div class="mt-7 md:mt-0 text-center lg:text-left sm:text-left">
+            <a data-astro-prefetch href={footerData.logo_url} class="inline-block mb-6 sm:mb-5">
+              <img
+                data-editable="image"
+                data-prop-src="@data[footer].logo"
+                data-prop-alt="@data[footer].logo_alt"
+                src={footerData.logo}
+                alt="logo"
+                class="max-h-26 max-w-full"
+              />
+            </a>
+            <p class="text-gray-300 text-sm font-semibold mb-6 sm:mb-8">
+              © Copyright <span>{new Date().getFullYear()}</span>{" "}
+              <editable-text data-prop="@data[footer].copyright">{footerData.copyright}</editable-text>
+            </p>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-2/3 px-4 order-1">
+          <div class="flex flex-wrap -mx-4" data-editable="array" data-prop="@data[footer].sections">
+            {
+              footerData.sections?.map((section: FooterSection, i: number) => (
+                <div class="w-1/2 md:w-1/4 lg:w-1/3 px-4" data-editable="array-item">
+                  <div class="2xl:ml-20 mb-6 lg:mb-8 sm:mb-8">
+                    <h3 class="mb-6 text-gray-300 text-sm font-semibold opacity-70">
+                      <editable-text data-prop="title">{section.title}</editable-text>
+                    </h3>
+                    <ul class="space-y-2" data-editable="array" data-prop="links">
+                      {section.links?.map((link: FooterLink, i: number) => (
+                        <li data-editable="array-item">
+                          <a
+                            data-astro-prefetch
+                            href={link.link}
+                            class="block py-2 px-1 text-white font-semibold transition-all duration-300 ease-in-out hover:text-primary">
+                            <editable-text data-prop="text">{link.text}</editable-text>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

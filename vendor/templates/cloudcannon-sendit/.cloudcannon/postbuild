@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# https://cloudcannon.com/documentation/articles/extending-your-build-process-with-hooks/#postbuild
+# A script at /.cloudcannon/postbuild which runs after your build is completed successfully before the files are uploaded to CloudCannon servers. Postbuild scripts are useful for augmenting your built output or running postbuild webhooks.

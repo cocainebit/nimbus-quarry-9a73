@@ -1,0 +1,74 @@
+{
+  "logoSource": "/src/assets/images/jetstream-logo.svg",
+  "logoAlternateSource": "/src/assets/images/jetstream-dark-theme.svg",
+  "logoAlt": "Logo",
+  "themeToggle": true,
+  "navData": [
+    {
+      "name": "Features",
+      "path": null,
+      "children": [
+        {
+          "name": "What we do best",
+          "path": "/#services",
+          "subtext": "",
+          "iconName": "arrow-down",
+          "iconPosition": "after",
+          "children": []
+        },
+        {
+          "name": "Problems we've solved",
+          "path": "/#solutions",
+          "subtext": "",
+          "iconName": "arrow-down",
+          "iconPosition": "after",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Blog",
+      "path": "/blog/",
+      "children": []
+    },
+    {
+      "name": "Pricing",
+      "path": "/pricing/",
+      "children": []
+    },
+    {
+      "name": "About",
+      "path": "/about/",
+      "children": []
+    },
+    {
+      "name": "Contact",
+      "path": "/contact/",
+      "children": []
+    }
+  ],
+  "buttonSections": [
+    {
+      "_component": "building-blocks/core-elements/button",
+      "text": "Search",
+      "hideText": true,
+      "link": "/search/",
+      "iconName": "magnifying-glass",
+      "iconColor": "default",
+      "iconPosition": "before",
+      "variant": "secondary",
+      "size": "md"
+    },
+    {
+      "_component": "building-blocks/core-elements/button",
+      "text": "Get started",
+      "hideText": false,
+      "link": "https://cloudcannon.com/templates/jetstream/",
+      "iconName": "arrow-right",
+      "iconColor": "default",
+      "iconPosition": "after",
+      "variant": "primary",
+      "size": "md"
+    }
+  ]
+}

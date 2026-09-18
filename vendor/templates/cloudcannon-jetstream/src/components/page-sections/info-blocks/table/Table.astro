@@ -1,0 +1,461 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Icon from "@components/building-blocks/core-elements/icon/Icon.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+
+const {
+  id = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  subtext = "",
+  table = {
+    headers: [],
+    sections: [],
+  },
+  maxContentWidth = "2xl",
+  paddingVertical = "4xl",
+  colorScheme = "light",
+  backgroundColor = "base",
+  contentBackground = false,
+  verticalOffset = {},
+  rounded = false,
+  class: className,
+  useDefaultEditableBinding = false,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+
+const snakePath =
+  "M0 2H113.5C124.546 2 133.5 10.9543 133.5 22V121V246.5V476C133.5 487.046 142.454 496 153.5 496H188.5C199.546 496 208.5 504.954 208.5 516V572C208.5 583.046 199.546 592 188.5 592H178C166.954 592 158 600.954 158 612V731C158 742.046 166.954 751 178 751H1545C1556.05 751 1565 742.046 1565 731V636C1565 624.954 1573.95 616 1585 616H1636C1647.05 616 1656 607.046 1656 596V478V282C1656 270.954 1647.05 262 1636 262H1598C1586.95 262 1578 253.046 1578 242V154V46C1578 34.9543 1586.95 26 1598 26H1714H1757";
+---
+
+<CustomSection
+  class:list={["table-section", className]}
+  maxContentWidth=""
+  paddingHorizontal="lg"
+  paddingVertical={paddingVertical}
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  contentBackground={false}
+  verticalOffset={verticalOffset}
+  rounded={rounded}
+  id={id}
+  {...htmlAttributes}
+>
+  <div class="background-decoration-container">
+    <div class="snake-container snake-container-desktop">
+      <svg
+        class="snake snake-pink"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        viewBox="0 0 1728 753"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <defs>
+          <linearGradient id="gradient">
+            <stop
+              offset="0%"
+              stop-color="var(--color-bg-brand)"
+              stop-opacity="0"
+            ></stop>
+            <stop
+              offset="50%"
+              stop-color="var(--color-bg-inverse)"
+              stop-opacity="1"
+            ></stop>
+            <stop
+              offset="100%"
+              stop-color="var(--color-bg-brand)"
+              stop-opacity="0"
+            ></stop>
+          </linearGradient>
+          <mask
+            id="gradient-mask"
+            mask-type="alpha"
+          >
+            <rect
+              class="mask-rect"
+              x="0"
+              y="0"
+              width="50%"
+              height="100%"
+              fill="url(#gradient)"
+            ></rect>
+          </mask>
+        </defs>
+        <path
+          mask="url(#gradient-mask)"
+          d={snakePath}
+          stroke="var(--color-bg-inverse)"
+          stroke-width="4"
+        ></path>
+      </svg>
+      <svg
+        class="snake snake-purple"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        viewBox="0 0 1728 753"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <path
+          d={snakePath}
+          stroke="var(--color-bg-brand)"
+          stroke-width="4"
+        ></path>
+      </svg>
+    </div>
+  </div>
+  <CustomSection
+    class:list={["table", className]}
+    maxContentWidth={maxContentWidth}
+    paddingHorizontal="lg"
+    paddingVertical="4xl"
+    colorScheme=""
+    backgroundColor=""
+    contentBackground={contentBackground}
+  >
+    <Icon {...eyebrowIcon} />
+    <SimpleText
+      alignmentHorizontal="center"
+      class="eyebrow"
+      data-prop="eyebrowText"
+    >
+      {eyebrowText}
+    </SimpleText>
+    <Heading
+      level="h2"
+      size="lg"
+      alignmentHorizontal="center"
+      data-prop="heading"
+      text={heading}
+    />
+    <Text
+      class="feature-carousel-grid-subtext"
+      alignmentHorizontal="center"
+      data-prop="subtext"
+      text={subtext}
+    />
+
+    <div
+      class="table-scroll-progress"
+      hidden
+    >
+      <div
+        class="table-scroll-progress-track"
+        aria-hidden="true"
+      >
+        <span class="table-scroll-progress-thumb"></span>
+      </div>
+    </div>
+
+    <div
+      class="table-container"
+      tabindex="0"
+    >
+      <div class="table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr
+              data-editable="array"
+              data-prop="table.headers"
+            >
+              {
+                table.headers?.map((header: any) => (
+                  <th data-editable="array-item">{!header.hideText && header.text}</th>
+                ))
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {
+              table.sections?.map((section: any, index: number) => (
+                <>
+                  {section.rows?.map((row: any, rowIndex: number) => (
+                    <tr>
+                      {rowIndex === 0 && (
+                        <th
+                          data-editable="text"
+                          data-prop={`table.sections.${index}.sectionName`}
+                          rowspan={section.rows.length}
+                          class="section-header"
+                        >
+                          {section.sectionName}
+                        </th>
+                      )}
+                      {row.cells?.map((cell: string, cellIndex: number) => (
+                        <td
+                          data-editable="text"
+                          data-prop={`table.sections.${index}.rows.${rowIndex}.cells.${cellIndex}`}
+                        >
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </CustomSection>
+</CustomSection>
+
+<script>
+  import { onPageLoad } from "@component-utils/onPageLoad";
+  import { setupAllTableScrolls } from "./setup";
+
+  onPageLoad(() => setupAllTableScrolls());
+</script>
+
+<style is:global>
+  @layer page-sections {
+    .table .content .table-container {
+      margin-top: var(--spacing-2xl);
+    }
+
+    .table .content .table-scroll-progress:not([hidden]) + .table-container {
+      margin-top: var(--spacing-md);
+    }
+
+    .table .content .table-wrapper {
+      position: relative;
+      border-radius: var(--radius-md);
+
+      &::before {
+        --angle: 0deg;
+        content: "";
+        position: absolute;
+        inset: -4px;
+        z-index: -1;
+        border-radius: calc(var(--radius-md) + 4px);
+        background: conic-gradient(
+          from var(--angle),
+          var(--color-bg-brand),
+          var(--color-bg-inverse),
+          var(--color-bg-brand)
+        );
+        animation: rotate-angle 2s linear infinite;
+      }
+    }
+
+    .table-section {
+      container-name: table;
+      container-type: inline-size;
+
+      .table-scroll-progress {
+        margin-top: var(--spacing-2xl);
+      }
+
+      .table-scroll-progress-track {
+        position: relative;
+        width: 100%;
+        height: 10px;
+        border-radius: 9999px;
+        background: var(--color-bg-brand-muted);
+        cursor: grab;
+        touch-action: none;
+
+        &:active {
+          cursor: grabbing;
+        }
+      }
+
+      .table-scroll-progress-thumb {
+        position: absolute;
+        inset-block: 0;
+        left: 0;
+        display: block;
+        width: 0;
+        border-radius: 9999px;
+        background: var(--color-bg-brand);
+      }
+
+      /*
+       * The scroller is widened by `--bleed` on each side and gives that space
+       * back as padding, so the bordered box below sits in the section padding
+       * at either end of the scroll. `--bleed` is only wide enough for the
+       * animated border here; the mobile rules below widen it to the section
+       * padding so the box runs off both edges of the screen in between.
+       */
+      .table-container {
+        --bleed: var(--spacing-sm);
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        margin-inline: calc(var(--bleed) * -1);
+        padding-block: var(--spacing-sm);
+        padding-inline: var(--bleed);
+
+        /* Native scrollbar is only hidden once the custom indicator is live. */
+        &[data-scroll-custom="true"] {
+          scrollbar-width: none;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+      }
+
+      /*
+       * The box is part of the scrolled content, so native scrolling moves its
+       * edges, nothing is repositioned per frame. `fit-content` keeps it as
+       * wide as the table when that overflows, and as wide as the scroller when
+       * it doesn't. The auto margins centre a narrow table, and collapse to 0
+       * once it overflows so the scroll still starts at the table's first
+       * column.
+       */
+      .table-wrapper {
+        width: fit-content;
+        margin-inline: auto;
+        padding: var(--spacing-md);
+        background: var(--color-bg);
+      }
+
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: none;
+
+        th,
+        td {
+          padding: var(--spacing-md);
+          text-align: left;
+          border: none;
+        }
+
+        thead th {
+          background: var(--color-bg);
+          font-weight: var(--font-weight-bold);
+          position: sticky;
+          top: 0;
+          z-index: var(--layer-1);
+          font-family: var(--font-headings);
+          color: var(--color-text-brand);
+        }
+
+        tbody tr {
+          position: relative;
+        }
+
+        tbody tr:not(:last-child)::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(
+            to right,
+            var(--color-bg-inverse) 0%,
+            var(--color-bg-inverse) 30%,
+            var(--color-bg-brand) 100%
+          );
+          pointer-events: none;
+        }
+
+        .section-header {
+          position: relative;
+          font-weight: var(--font-weight-bold);
+          vertical-align: top;
+          background: var(--color-bg);
+          z-index: var(--layer-1);
+        }
+      }
+
+      /*
+       * Below the desktop breakpoint the columns keep a legible floor width
+       * instead of squashing, so the table overflows and is scrolled with the
+       * indicator above it.
+       */
+      @container table (max-width: 1023px) {
+        .table-container {
+          /* Cancels the outer + inner CustomSection `pad-x-lg`. */
+          --bleed: calc(var(--spacing-lg) * 2);
+
+          /*
+           * Fades an edge out once the box has passed it, `--scroll-start` and
+           * `--scroll-end` are the distance scrolled from each end, set by the
+           * script, so the fade only starts once the border has left the
+           * screen and never sits over it.
+           */
+          --fade-start: clamp(
+            0px,
+            calc(var(--scroll-start, 0px) - var(--bleed)),
+            var(--spacing-3xl)
+          );
+          --fade-end: clamp(0px, calc(var(--scroll-end, 0px) - var(--bleed)), var(--spacing-3xl));
+
+          mask-image: linear-gradient(
+            to right,
+            transparent 0,
+            #000 var(--fade-start),
+            #000 calc(100% - var(--fade-end)),
+            transparent 100%
+          );
+        }
+
+        .comparison-table {
+          th,
+          td {
+            min-width: 8.5rem;
+          }
+
+          thead th:empty {
+            min-width: 0;
+          }
+
+          .section-header {
+            min-width: 7rem;
+          }
+        }
+      }
+
+      .background-decoration-container {
+        display: none;
+      }
+
+      @container table (min-width: 1024px) {
+        .background-decoration-container {
+          display: block;
+          position: absolute;
+          inset: var(--spacing-md) 0;
+          z-index: var(--layer-1);
+          pointer-events: none;
+          overflow: clip visible;
+
+          .snake-container {
+            position: sticky;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            height: 80%;
+          }
+
+          .snake-container-desktop {
+            display: block;
+          }
+
+          .snake {
+            position: absolute;
+            height: 100%;
+          }
+
+          .snake-pink {
+            z-index: var(--layer-1);
+          }
+
+          .mask-rect {
+            animation: slide-mask var(--animation-extra-slow) linear infinite;
+          }
+        }
+      }
+    }
+  }
+</style>

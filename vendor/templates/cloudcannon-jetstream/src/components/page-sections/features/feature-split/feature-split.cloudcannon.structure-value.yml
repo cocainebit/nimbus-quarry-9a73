@@ -1,0 +1,50 @@
+label: Feature Split
+icon: view_week
+description: Split layout that pairs narrative content with a focused feature list.
+value:
+  _component: page-sections/features/feature-split
+  sectionLabel: ""
+  eyebrowIcon: {}
+  eyebrowText: Eyebrow text
+  heading: Heading text
+  subtext: Subtext placeholder text that will be replaced with actual content.
+  buttonSections: []
+  imageSource: /src/assets/images/component-docs/website-split.svg
+  imageAlt: Feature image
+  imageAspectRatio: portrait
+  imageRounded: true
+  reverse: false
+  maxContentWidth: xl
+  paddingHorizontal: lg
+  paddingVertical: 4xl
+  colorScheme: inherit
+  backgroundColor: base
+  contentBackground: false
+  background:
+    type: image
+    positionVertical: top
+    positionHorizontal: center
+    priority: false
+    imageSource: ""
+    imageAlt: ""
+    videoSource: null
+    overlay: 0
+  verticalOffset: {}
+  rounded: false
+preview:
+  text:
+    - Feature Split
+  subtext:
+    - key: heading
+  icon: view_week
+  gallery:
+    image: public/component-previews/page-sections/features/feature-split.svg
+    fit: cover
+picker_preview:
+  text: Feature Split
+  subtext: Split view with story content and supporting feature list.
+  gallery:
+    image: public/component-previews/page-sections/features/feature-split.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/page-sections/features/feature-split/feature-split.cloudcannon.inputs.yml

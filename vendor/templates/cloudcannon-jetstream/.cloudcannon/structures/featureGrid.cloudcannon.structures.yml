@@ -1,0 +1,264 @@
+featureGridItem:
+  values:
+    - label: Feature Grid
+      icon: apps
+      value:
+        features: []
+        backgroundColor: "base"
+        gridBackgroundMaxWidth: "none"
+        gridMaxWidth: "2xl"
+        rounded: false
+        overhang: false
+      _inputs:
+        backgroundColor:
+          type: select
+          comment: Background color for the section.
+          options:
+            values:
+              - id: none
+                name: None
+              - id: base
+                name: Base
+              - id: surface
+                name: Surface
+              - id: accent
+                name: Accent
+              - id: highlight
+                name: Highlight
+              - id: highlight-grid
+                name: Highlight Grid
+              - id: surface-linear-gradient
+                name: Surface Linear Gradient
+              - id: brand-linear-gradient-reverse
+                name: Brand Linear Gradient Reverse
+              - id: brand-linear-gradient
+                name: Brand Linear Gradient
+              - id: brand-linear-gradient-muted
+                name: Brand Linear Gradient Muted
+              - id: highlight-linear-gradient
+                name: Highlight Linear Gradient
+              - id: highlight-radial-gradient
+                name: Highlight Radial Gradient
+              - id: highlight-radial-gradient-animated
+                name: Highlight Radial Gradient Animated
+        features:
+          type: array
+          label: Features
+          comment: Feature cards rendered in the grid.
+          options:
+            structures: _structures.featureGridItems
+        gridMaxWidth:
+          type: select
+          comment: Maximum width constraint for the content, must be smaller/the same as than the grid background max width.
+          options:
+            values:
+              - id: xs
+                name: Extra Small
+              - id: sm
+                name: Small
+              - id: md
+                name: Medium
+              - id: lg
+                name: Large
+              - id: xl
+                name: Extra Large
+              - id: 2xl
+                name: 2xl
+              - id: 3xl
+                name: 3xl
+        gridBackgroundMaxWidth:
+          type: select
+          comment: Maximum width constraint for the grid background.
+          options:
+            values:
+              - id: xs
+                name: Extra Small
+              - id: sm
+                name: Small
+              - id: md
+                name: Medium
+              - id: lg
+                name: Large
+              - id: xl
+                name: Extra Large
+              - id: 2xl
+                name: 2xl
+              - id: 3xl
+                name: 3xl
+        overhang:
+          comment: Whether the cards overhang the grid background.
+featureGridItems:
+  id_key: _component
+  values:
+    - label: Feature Item
+      icon: star
+      value:
+        _component: page-sections/features/feature-grid/feature-item
+        link: ""
+        image:
+          source: ""
+          alt: ""
+        eyebrowIcon: {}
+        eyebrowText: Eyebrow placeholder
+        title: Feature title
+        description: Feature description placeholder text that will be replaced with actual content.
+        columnSpan: 4
+        rowSpan: 1
+      preview:
+        text:
+          - key: title
+          - Feature
+        subtext:
+          - key: description
+        image:
+          - template: src/icons/{iconName}.svg
+      _inputs:
+        title:
+          type: text
+          comment: Name of the feature.
+        description:
+          type: markdown
+          comment: Supporting description for the feature.
+          options:
+            blockquote: false
+            bold: true
+            format:
+            italic: true
+            link: true
+            strike: false
+            subscript: true
+            superscript: true
+            underline: false
+            bulletedlist: false
+            numberedlist: false
+        eyebrowIcon:
+          type: object
+          comment: Optional icon displayed above the eyebrow.
+          options:
+            structures: _structures.eyebrowIcon
+        eyebrowText:
+          type: text
+          comment: Optional label displayed above the heading.
+        image:
+          options:
+            structures:
+              values:
+                - label: Image
+                  icon: image
+                  value:
+                    source: ""
+                    alt: ""
+                    rounded: false
+                  _inputs:
+                    source:
+                      type: image
+                      comment: Image for the feature.
+                      options:
+                        paths:
+                          uploads: src/assets/images
+                    alt:
+                      type: text
+                      comment: Alt text for the image.
+        link:
+          comment: URL for the card to link to.
+        columnSpan:
+          type: range
+          comment: The number of columns the item should span, each row has 12 columns.
+          options:
+            min: 1
+            max: 12
+            step: 1
+        rowSpan:
+          type: range
+          comment: The number of rows the item should span.
+          options:
+            min: 1
+            max: 4
+            step: 1
+    - label: Pricing Item
+      icon: attach_money
+      value:
+        _component: page-sections/features/feature-grid/pricing-item
+        title: Tier
+        price:
+          prefix: $
+          amount: "599"
+          suffix: /mo
+        subtext: Best for growing agencies (up to 100 staff).
+        list:
+          _component: building-blocks/core-elements/list
+          items:
+            - text: List item 1
+              iconName: heart
+              iconColor: default
+              link:
+            - text: List item 2
+              iconName: heart
+              iconColor: default
+              link:
+            - text: List item 3
+              iconName: heart
+              iconColor: default
+              link:
+          direction: vertical
+          alignmentHorizontal: start
+          size: md
+          listType: icon
+        button:
+          _component: building-blocks/core-elements/button
+          text: Get started
+          hideText: false
+          link: /
+          iconName: arrow-right
+          iconPosition: after
+          variant: secondary
+          size: md
+        columnSpan: 7
+        rowSpan: 1
+      preview:
+        text:
+          - key: title
+          - Pricing Item
+        subtext:
+          - key: description
+        icon:
+          - attach_money
+      _inputs:
+        title:
+          comment: Card heading.
+        price:
+          type: object
+          comment: Price information for the item.
+          options:
+            structures:
+              values:
+                - label: Price
+                  icon: attach_money
+                  value:
+                    prefix: $
+                    amount: "599"
+                    suffix: /mo
+        subtext:
+          type: textarea
+        list:
+          type: object
+          options:
+            structures: _structures.list
+        button:
+          type: object
+          options:
+            structures: _structures.buttonSections
+        columnSpan:
+          type: range
+          comment: The number of columns the item should span, each row has 12 columns.
+          options:
+            min: 1
+            max: 12
+            step: 1
+        rowSpan:
+          type: range
+          comment: The number of rows the item should span.
+          options:
+            min: 1
+            max: 4
+            step: 1

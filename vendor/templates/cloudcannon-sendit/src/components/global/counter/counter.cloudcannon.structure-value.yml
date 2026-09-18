@@ -1,0 +1,51 @@
+label: Counter
+icon: functions
+tags: []
+
+value:
+  _name: global/counter
+  title: Design for your
+  title_suffix: Business
+  description: We believe that a good email marketing strategy is the key to growth. So we’re helping you grow your business with tools and resources that make email marketing easy.
+  alternate_style: false
+  numbers:
+    - prefix: $
+      number: '300'
+      suffix: m
+      text: Venture capital raised
+ 
+_inputs:
+  description:
+    type: markdown
+  alternate_style:
+    type: switch
+  numbers:
+    type: array
+    options:
+      structures: _structures.counter_stat
+
+_structures:
+  counter_stat:
+    values:
+      - value:
+          prefix:
+          number:
+          suffix:
+          text:
+        _inputs:
+          number:
+            type: text
+            options:
+              pattern: '^\d+$'
+              pattern_message: Value must be only numbers.
+        preview:
+          icon: numbers
+          text:
+            - template: '{prefix} {number} {suffix}'
+            - Counter Statistic
+          subtext:
+            - key: text
+          
+preview:
+  subtext:
+    - template: '{title} {title_suffix}'

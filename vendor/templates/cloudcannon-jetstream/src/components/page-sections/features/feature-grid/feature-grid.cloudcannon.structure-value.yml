@@ -1,0 +1,50 @@
+label: Feature Grid
+icon: apps
+description: Responsive grid layout for highlighting multiple features.
+value:
+  _component: page-sections/features/feature-grid
+  id:
+  eyebrowIcon: {}
+  eyebrowText: Eyebrow placeholder
+  heading: Heading placeholder
+  subtext: Subtext placeholder
+  featureGrid:
+    features: []
+    backgroundColor: "base"
+    gridBackgroundMaxWidth: "none"
+    gridMaxWidth: "2xl"
+    rounded: false
+    overhang: false
+  maxContentWidth: "2xl"
+  paddingVertical: "4xl"
+  colorScheme: "inherit"
+  backgroundColor: "base"
+  contentBackground: false
+  background:
+    type: image
+    positionVertical: top
+    positionHorizontal: center
+    priority: false
+    imageSource: ""
+    imageAlt: ""
+    videoSource: null
+    overlay: 0
+  verticalOffset: {}
+  rounded: false
+preview:
+  text:
+    - Feature Grid
+  subtext:
+    - key: heading
+  icon: apps
+  gallery:
+    image: public/component-previews/page-sections/features/feature-grid.svg
+    fit: cover
+picker_preview:
+  text: Feature Grid
+  subtext: Grid of feature highlights with icons and descriptions.
+  gallery:
+    image: public/component-previews/page-sections/features/feature-grid.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/page-sections/features/feature-grid/feature-grid.cloudcannon.inputs.yml

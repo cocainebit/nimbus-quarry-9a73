@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# https://cloudcannon.com/documentation/articles/extending-your-build-process-with-hooks/#prebuild
+# A script at /.cloudcannon/prebuild which runs after the install scripts and before any build commands.
+# Prebuild commands allow you to incorporate your favourite tools for building and pre-processing into CloudCannon.
+# Some ideas for using this feature include:
+# - Bundling JavaScript
+# - Fetching API data
+# - Running build commands outside of your SSG
+# - Sending messages to your Slack channel

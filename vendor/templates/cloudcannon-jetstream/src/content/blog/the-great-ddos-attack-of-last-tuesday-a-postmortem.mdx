@@ -1,0 +1,110 @@
+---
+_schema: default
+permalink:
+title: "The great DDoS attack of last Tuesday: a postmortem"
+description: >-
+  We faced 4.7 terabits of malicious traffic and our systems barely noticed, but
+  our monitoring team certainly did.
+date: 2026-02-17T00:00:00Z
+author: 2137f543-e0e7-4113-878f-d83e8cbcad3b
+image: /src/assets/images/blog-ddos.png
+image_alt: A dense volley of feathered arrows in flight, tinted purple
+tag: Performance
+counters: []
+---
+
+Last Tuesday at 14:37 UTC, someone decided to attack our network with 4.7 terabits per second of malicious traffic. Our systems barely noticed. Our monitoring team certainly did.
+
+## What happened
+
+The attack began with what appeared to be legitimate DNS queries from approximately 400,000 compromised IoT devices. Refrigerators, security cameras, smart thermostats, the usual suspects in modern botnet infrastructure. Within 90 seconds, the query volume escalated from normal background noise to 4.7Tbps of coordinated garbage.
+
+Our edge nodes registered the anomaly at 14:37:08 UTC. By 14:37:12, our threat detection systems had identified the attack pattern, classified it as a DNS amplification attempt, and begun mitigation. By 14:37:45, the attack was effectively neutralized, though it continued for another six hours because botnets aren't known for their strategic thinking.
+
+Customer impact: zero. Service degradation: none. Packets lost: statistically insignificant. This was a success, but success teaches you less than near-misses.
+
+Our systems performed exactly as designed, which is gratifying but not particularly educational. The interesting part is what we learned from analyzing the attack afterward.
+
+## The anatomy of 4.7 terabits
+
+DDoS attacks at this scale require coordination. Someone assembled a botnet of 400,000 devices, configured them to target our infrastructure simultaneously, and launched the attack with what our security team described as "amateur enthusiasm but professional tooling."
+
+The attack used DNS amplification, a technique where attackers send small queries with spoofed source addresses to DNS resolvers, which then send much larger responses to the victim. It's efficient from the attacker's perspective: you send 60 bytes, you get back 3,000 bytes, all directed at your target.
+
+Our network received approximately 800 billion malicious DNS queries over six hours. Each query was designed to generate the maximum possible response size. The math is straightforward: small investment in bandwidth, massive return in attack traffic.
+
+What made this attack interesting wasn't the technique, DNS amplification is well-understood and decades old. What made it interesting was the scale and the apparent targeting logic.
+
+## Why our systems didn't care
+
+We've spent years building infrastructure that treats DDoS attacks as background noise rather than existential threats. Our defense operates in layers, with each layer designed to catch what the previous layer missed.
+
+### **Layer one: traffic profiling at the edge**
+
+Every edge node monitors incoming request patterns in real-time. Our systems know what normal traffic looks like for each region, time of day, and customer. When 400,000 IoT devices suddenly start making identical DNS queries, the deviation from normal is immediately obvious.
+
+Our edge nodes began filtering malicious traffic within four seconds of attack initiation. The attack continued, but most of it never reached our core infrastructure.
+
+### **Layer two: behavioral analysis**
+
+Legitimate DNS queries follow patterns. They come from diverse sources, request different domains, and arrive at varying intervals. Attack traffic is uniform, repetitive, and predictable.
+
+Our behavioral analysis systems flagged the attack traffic based on query similarity, source diversity (or lack thereof), and request timing. By 14:37:30, our systems had built a profile of the attack and were dropping matching traffic automatically.
+
+### **Layer three: capacity absorption**
+
+Even with filtering and behavioral blocking, some attack traffic made it through. Our infrastructure is deliberately over-provisioned for exactly this scenario. We maintain enough spare capacity to absorb massive traffic spikes without impacting legitimate requests.
+
+The 4.7Tbps attack represented approximately 40% of our total network capacity. Uncomfortable, but manageable. Our customer traffic continued flowing through the remaining 60% without noticeable degradation.
+
+## What we learned
+
+The attack itself was unremarkable. DNS amplification attacks happen constantly, we mitigate dozens daily. What made this one worth analyzing was the targeting pattern.
+
+The attacker specifically targeted edge nodes serving financial services customers during peak trading hours. This wasn't random. Someone had researched our network topology, identified high-value targets, and timed the attack for maximum potential impact.
+
+They failed, but the attempt was sophisticated enough to warrant attention.
+
+Our security team spent the following week analyzing attack traffic, tracing botnet command and control infrastructure, and identifying patterns that might indicate who launched the attack or why. We shared our findings with relevant authorities and with other infrastructure providers who might face similar attacks.
+
+We also updated our threat detection models based on the new attack patterns we observed. Every attack, successful or not, improves our systems.
+
+## The pizza and monitoring celebration
+
+After confirming the attack was fully mitigated, our operations team ordered pizza and spent the evening watching monitoring dashboards. This has become something of a tradition, we celebrate successful defense with food and obsessive metric analysis.
+
+Someone suggested we should feel proud that our systems performed flawlessly under a 4.7Tbps attack. Our VP of Security disagreed. "We should feel appropriately satisfied that systems designed to handle exactly this scenario handled exactly this scenario," he said, while eating his third slice. "Pride comes when we handle something we didn't anticipate."
+
+Fair point.
+
+## The follow-up actions
+
+No system is perfect. Even successful defense reveals opportunities for improvement.
+
+We identified three areas for enhancement:
+
+- **Faster initial detection**, Four seconds from attack start to mitigation is good. Our team believes we can reduce it to under two seconds through improved edge node communication.
+- **Better attack attribution**, We successfully blocked the attack but struggled to identify its source quickly. We're implementing additional forensic capabilities to trace attacks back to their origin faster.
+- **Automated threat intelligence sharing**, We manually shared attack data with other providers. This process should be automatic. We're building APIs for real-time threat intelligence exchange across infrastructure providers.
+
+These improvements are now in our engineering backlog, scheduled for implementation over the next quarter.
+
+## What you should know
+
+If you were a Jetstream customer last Tuesday, you probably didn't notice anything unusual. That's exactly how DDoS mitigation should work, invisible when successful, obvious only when it fails.
+
+Our infrastructure is designed to absorb attacks of this magnitude without affecting legitimate traffic. We maintain excess capacity, implement multiple defense layers, and continuously update our threat detection based on real-world attacks.
+
+The next attack will be bigger. They always are. Our team is ready.
+
+**Attack statistics:**
+
+- **4\.7Tbps** peak attack traffic
+- **400,000** compromised IoT devices in botnet
+- **800 billion** malicious DNS queries over 6 hours
+- **4 seconds** from attack start to mitigation
+- **0** customer impact
+- **6 hours** total attack duration
+- **3** pizzas consumed during post-incident analysis
+
+**Concerned about DDoS protection for your infrastructure?** Our security team has spent years preparing for attacks exactly like this one. [Talk to us](/pricing/#about) about how we keep services online when everyone else would be scrambling.

@@ -1,0 +1,96 @@
+ctaSplit:
+  snippet: <CtaSplit heading=[[heading]] [[args]] />
+  inline: false
+  preview:
+    text:
+      - CTA Split
+    subtext:
+      - key: heading
+    icon: call_to_action
+    gallery:
+      image: public/component-previews/page-sections/ctas/cta-split.svg
+      fit: cover
+  params:
+    args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: id
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: eyebrowIcon
+            type: object
+            optional: true
+            remove_empty: true
+          - editor_key: eyebrowText
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: subtext
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: imageSource
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: imageAlt
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: buttonSections
+            type: array
+            optional: true
+          - editor_key: reverse
+            type: boolean
+            optional: true
+          - editor_key: maxContentWidth
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: paddingVertical
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: colorScheme
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: backgroundColor
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: contentBackground
+            type: boolean
+            optional: true
+          - editor_key: background
+            type: object
+            optional: true
+            remove_empty: true
+          - editor_key: verticalOffset
+            type: object
+            optional: true
+            remove_empty: true
+          - editor_key: rounded
+            type: boolean
+            optional: true
+        format:
+          ref: "mdx_format"
+    heading:
+      parser: argument
+      options:
+        model:
+          editor_key: heading
+          type: string
+          optional: true
+        format:
+          root_value_boundary_optional:
+            string: false
+          root_value_boundary:
+            start: "{"
+            end: "}"
+          string_boundary:
+            - '"'
+  _inputs_from_glob:
+    - /src/components/page-sections/ctas/cta-split/cta-split.cloudcannon.inputs.yml

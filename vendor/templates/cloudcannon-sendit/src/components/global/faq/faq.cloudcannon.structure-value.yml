@@ -1,0 +1,31 @@
+label: FAQ
+icon: checklist
+tags: []
+
+value:
+  _name: global/faq
+  title: Have
+  title_suffix: Questions?
+  description: We believe that a good email marketing strategy is the key to growth. So we’re helping you grow your business with tools and resources that make email marketing easy.
+  FAQ:
+
+_inputs:
+  description:
+    type: markdown
+  FAQ:
+    type: array
+    options:
+      structures: _structures.faq_item
+
+_structures:
+  faq_item:
+    values:
+      - value:
+          title: 
+          description:
+        _inputs:
+          description:
+            type: markdown
+        preview:
+          icon: question_exchange
+             

@@ -1,0 +1,304 @@
+---
+/**
+ * Modal Component with Content Unloading Support
+ *
+ * Features:
+ * - Standard modal functionality with backdrop and ESC key support
+ * - Optional content unloading on close (useful for videos, heavy components)
+ * - Custom events for lifecycle management
+ *
+ * Events dispatched:
+ * - modal:before-close: Fired before modal starts closing (use for cleanup)
+ * - modal:after-close: Fired after modal is fully closed
+ * - modal:open: Fired when modal opens
+ *
+ * Usage for video components:
+ * <Modal id="video-modal" unloadOnClose={true}>
+ *   <VideoComponent />
+ * </Modal>
+ *
+ * Child components can listen for cleanup:
+ * document.addEventListener('modal:before-close', (e) => {
+ *   if (e.detail.modalId === 'video-modal') {
+ *     // Stop video, cleanup resources, etc.
+ *   }
+ * });
+ */
+
+export interface Props {
+  id: string;
+  trigger?: string;
+  triggerClass?: string;
+  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "full";
+  closeOnBackdrop?: boolean;
+  showCloseButton?: boolean;
+  unloadOnClose?: boolean;
+  class?: string;
+}
+
+const {
+  id,
+  trigger,
+  triggerClass = "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-primary transition-colors",
+  size = "md",
+  closeOnBackdrop = true,
+  showCloseButton = true,
+  unloadOnClose = false,
+  class: className = "",
+} = Astro.props;
+
+const sizeClasses = {
+  sm: "max-w-sm",
+  md: "max-w-md",
+  lg: "max-w-lg",
+  xl: "max-w-xl",
+  "2xl": "max-w-2xl",
+  "3xl": "max-w-3xl",
+  "4xl": "max-w-4xl",
+  "5xl": "max-w-5xl",
+  "6xl": "max-w-6xl",
+  "7xl": "max-w-7xl",
+  full: "max-w-full w-full h-full",
+};
+
+const dialogClasses = `
+  fixed inset-0 z-50 
+  ${sizeClasses[size]} 
+  w-full max-h-[90vh] 
+  p-0 m-auto 
+  bg-white rounded-lg shadow-xl
+  border-0 outline-none
+  transition-all duration-300 ease-out
+  ${size === "full" ? "rounded-none" : ""}
+  ${className}
+`
+  .trim()
+  .replace(/\s+/g, " ");
+---
+
+{
+  trigger && (
+    <button type="button" onclick={`document.getElementById('${id}').showModal()`} class={triggerClass}>
+      {trigger}
+    </button>
+  )
+}
+
+<dialog id={id} class={dialogClasses} data-modal="true" data-unload-on-close={unloadOnClose}>
+  <div class="relative w-full h-full flex flex-col">
+    <!-- Close button -->
+    {
+      showCloseButton && (
+        <button
+          type="button"
+          onclick={`document.getElementById('${id}').close()`}
+          class="absolute top-4 right-4 z-10 p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+          aria-label="Close modal">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      )
+    }
+
+    <!-- Header slot -->
+    <div class="shrink-0 px-6 py-4 border-b border-gray-200">
+      <slot name="header" />
+    </div>
+
+    <!-- Main content -->
+    <div class="flex-1 overflow-y-auto px-6 py-4">
+      <slot />
+    </div>
+
+    <!-- Footer slot -->
+    <div class="shrink-0 px-6 py-4 border-t border-gray-200 bg-gray-50">
+      <slot name="footer">
+        <div class="flex justify-end space-x-3">
+          <button
+            type="button"
+            onclick={`document.getElementById('${id}').close()`}
+            class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            Cancel
+          </button>
+        </div>
+      </slot>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  /* Dialog backdrop styling */
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    animation: backdrop-fade-in 0.3s ease-out;
+  }
+
+  /* Dialog animation */
+  dialog[open] {
+    animation: modal-fade-in 0.3s ease-out;
+  }
+
+  /* Hide dialog when not open */
+  dialog:not([open]) {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+  }
+
+  /* Smooth closing animation */
+  dialog.closing {
+    animation: modal-fade-out 0.3s ease-in forwards;
+  }
+
+  dialog.closing::backdrop {
+    animation: backdrop-fade-out 0.3s ease-in forwards;
+  }
+
+  @keyframes backdrop-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes backdrop-fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes modal-fade-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes modal-fade-out {
+    from {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+  }
+</style>
+
+<script>
+  // Enhanced modal functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const modals = document.querySelectorAll('dialog[data-modal="true"]');
+
+    modals.forEach((modal) => {
+      const dialogElement = modal as HTMLDialogElement;
+      const unloadOnClose = dialogElement.getAttribute("data-unload-on-close") === "true";
+
+      // Smooth close with animation
+      function closeModal() {
+        // Dispatch before-close event for child components to handle cleanup
+        const beforeCloseEvent = new CustomEvent("modal:before-close", {
+          bubbles: true,
+          cancelable: false,
+          detail: { modalId: dialogElement.id },
+        });
+        dialogElement.dispatchEvent(beforeCloseEvent);
+
+        // If unloadOnClose is enabled, clear the content
+        if (unloadOnClose) {
+          // Store original content for potential reopening
+          if (!(dialogElement as any)._originalContent) {
+            (dialogElement as any)._originalContent = dialogElement.innerHTML;
+          }
+        }
+
+        dialogElement.classList.add("closing");
+        setTimeout(() => {
+          dialogElement.close();
+          dialogElement.classList.remove("closing");
+
+          // Clear content after closing animation if unloadOnClose is enabled
+          if (unloadOnClose) {
+            const contentSlot = dialogElement.querySelector(".flex-1.overflow-y-auto");
+            if (contentSlot) {
+              contentSlot.innerHTML = "";
+            }
+          }
+
+          // Dispatch after-close event
+          const afterCloseEvent = new CustomEvent("modal:after-close", {
+            bubbles: true,
+            cancelable: false,
+            detail: { modalId: dialogElement.id, unloaded: unloadOnClose },
+          });
+          dialogElement.dispatchEvent(afterCloseEvent);
+        }, 300);
+      }
+
+      // Handle modal opening to restore content if needed
+      function openModal() {
+        if (unloadOnClose && (dialogElement as any)._originalContent) {
+          // Restore original content when reopening
+          dialogElement.innerHTML = (dialogElement as any)._originalContent;
+          // Re-attach event listeners after content restoration
+          attachEventListeners();
+        }
+
+        // Dispatch open event
+        const openEvent = new CustomEvent("modal:open", {
+          bubbles: true,
+          cancelable: false,
+          detail: { modalId: dialogElement.id },
+        });
+        dialogElement.dispatchEvent(openEvent);
+      }
+
+      // Function to attach event listeners (needed after content restoration)
+      function attachEventListeners() {
+        // Re-attach close button listeners
+        const closeButtons = dialogElement.querySelectorAll('button[onclick*="close()"]');
+        closeButtons.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeModal();
+          });
+        });
+      }
+
+      // Click outside to close (if enabled)
+      dialogElement.addEventListener("click", (e) => {
+        if (e.target === dialogElement) {
+          closeModal();
+        }
+      });
+
+      // ESC key handling is built into <dialog>
+      dialogElement.addEventListener("cancel", (e) => {
+        e.preventDefault();
+        closeModal();
+      });
+
+      // Initial attachment of event listeners
+      attachEventListeners();
+
+      // Override the showModal method to handle opening
+      const originalShowModal = dialogElement.showModal.bind(dialogElement);
+      dialogElement.showModal = function () {
+        openModal();
+        originalShowModal();
+      };
+    });
+  });
+</script>

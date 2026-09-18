@@ -1,0 +1,233 @@
+---
+import { Icon as AstroIcon } from "astro-icon/components";
+
+const props = Astro.props as any;
+const {
+  name,
+  size = "lg",
+  color = "default",
+  background = false,
+  iconOffset = false,
+  alignmentHorizontal = "",
+  class: className,
+  useDefaultEditableBinding: _useDefaultEditableBinding = false,
+  _component,
+  ...htmlAttributes
+} = props || {};
+
+const isValidName = name && typeof name === "string" && name.trim();
+
+// Render nothing when there is no icon to show. Don't return early from the
+// frontmatter, components rendered on their own (e.g. a CloudCannon editable
+// region re-rendering after an edit) must always return markup, even if empty.
+const shouldRender = Boolean(_component || isValidName);
+
+// Generate unique ID for this icon instance if using gradient
+const gradientId = color === "brand-gradient" ? `icon-brand-gradient-${crypto.randomUUID()}` : null;
+---
+
+{
+  shouldRender && (
+    <div
+      class:list={[
+        "icon",
+        `size-${size}`,
+        `color-${color}`,
+        background && "background",
+        background && iconOffset && "icon-offset",
+        alignmentHorizontal && `align-${alignmentHorizontal}`,
+        name?.includes("social/") && "fill",
+        className,
+      ]}
+      {...(htmlAttributes as any)}
+    >
+      {gradientId && (
+        <svg
+          class="svg-paint-servers"
+          width="0"
+          height="0"
+          aria-hidden="true"
+          focusable="false"
+          style="position: absolute;"
+        >
+          <defs>
+            <linearGradient
+              id={gradientId}
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                stop-color="var(--color-bg-brand)"
+                stop-opacity="1"
+              />
+              <stop
+                offset="100%"
+                stop-color="var(--color-bg-inverse)"
+                stop-opacity="1"
+              />
+            </linearGradient>
+          </defs>
+        </svg>
+      )}
+      {isValidName && (
+        <AstroIcon
+          name={String(name).trim()}
+          is:inline
+          style={gradientId ? `--gradient-id: url(#${gradientId});` : undefined}
+        />
+      )}
+    </div>
+  )
+}
+
+<style is:global>
+  @layer components {
+    .icon {
+      border-radius: var(--radius-xs);
+      color: inherit;
+      display: inline-block;
+      line-height: 0;
+      vertical-align: middle;
+    }
+
+    .icon.flip-rtl {
+      transform: scaleX(-1);
+    }
+
+    .icon.background-subtle {
+      padding: 0.15em;
+    }
+
+    .icon.fill {
+      fill: currentcolor;
+    }
+
+    .icon.background {
+      background-color: var(--color-bg-surface);
+      padding: var(--spacing-em-xs);
+      width: fit-content;
+    }
+
+    .icon.icon-offset {
+      position: relative;
+      width: 1.5em !important;
+      height: 1.5em;
+    }
+
+    .icon.icon-offset svg {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      top: 0;
+      left: 0;
+    }
+
+    .icon.icon-offset.background {
+      background-color: transparent !important;
+      height: 1.5em;
+    }
+
+    .icon.icon-offset.background::before {
+      content: "";
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      bottom: 0;
+      right: 0;
+      border-radius: var(--radius-xs);
+      z-index: var(--layer-below);
+      background-color: var(--color-bg-surface);
+    }
+
+    .icon.color-brand {
+      color: var(--color-text-on-brand);
+    }
+
+    .icon.color-brand.background {
+      background-color: var(--color-bg-brand);
+    }
+
+    .icon.color-brand.background::before {
+      background-color: var(--color-bg-brand);
+    }
+
+    .icon.color-brand-gradient svg path {
+      stroke: var(--gradient-id, url(#icon-brand-gradient));
+    }
+
+    .icon.color-brand-gradient.background {
+      background-color: var(--color-bg-surface);
+    }
+
+    .icon.color-brand-gradient.background::before {
+      background-color: var(--color-bg-surface);
+    }
+
+    .icon.color-brand-inverse {
+      color: var(--color-text-on-brand);
+    }
+
+    .icon.color-brand-inverse.background {
+      background-color: var(--color-bg-inverse);
+    }
+
+    .icon.color-brand-inverse.background::before {
+      background-color: var(--color-bg-inverse);
+    }
+
+    .icon.size-sm {
+      font-size: var(--font-size-sm);
+    }
+
+    .icon.size-md {
+      font-size: var(--font-size-xl);
+    }
+
+    .icon.size-lg {
+      font-size: var(--font-size-2xl);
+    }
+
+    .icon.size-xl {
+      font-size: var(--font-size-3xl);
+    }
+
+    .icon.size-2xl {
+      font-size: var(--font-size-4xl);
+    }
+
+    .icon.size-3xl {
+      font-size: var(--font-size-heading-2xl);
+    }
+
+    .icon.size-4xl {
+      font-size: var(--font-size-heading-3xl);
+    }
+
+    .icon.align-start {
+      display: block;
+      width: fit-content;
+      height: fit-content;
+    }
+
+    .icon.align-center {
+      display: block;
+      margin-inline: auto;
+      width: fit-content;
+      height: fit-content;
+    }
+
+    .icon.align-end {
+      display: block;
+      margin-inline-start: auto;
+      width: fit-content;
+      height: fit-content;
+    }
+
+    .icon svg {
+      max-height: 100%;
+    }
+  }
+</style>

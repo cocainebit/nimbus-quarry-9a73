@@ -1,0 +1,5 @@
+eyebrowIcon:
+  id_key: _component
+  style: select
+  values_from_glob:
+    - /src/components/building-blocks/core-elements/icon/icon.cloudcannon.structure-value.yml

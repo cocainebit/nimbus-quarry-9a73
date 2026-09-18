@@ -1,0 +1,590 @@
+---
+import Button from "@core-elements/button/Button.astro";
+import Counter from "@core-elements/counter/Counter.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Image from "@core-elements/image/Image.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Page from "@layouts/Page.astro";
+import CustomSection from "@page-sections/builders/custom-section/CustomSection.astro";
+import ButtonGroup from "@wrappers/button-group/ButtonGroup.astro";
+import Card from "@wrappers/card/Card.astro";
+import Split from "@wrappers/split/Split.astro";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+
+// Automatically import all components from building-blocks and page-sections for MDX
+const buildingBlocksImports = import.meta.glob("../../components/building-blocks/**/*.astro", {
+  eager: true,
+});
+
+const pageSectionsImports = import.meta.glob("../../components/page-sections/**/*.astro", {
+  eager: true,
+});
+
+// Merge both import objects
+const componentImports = { ...buildingBlocksImports, ...pageSectionsImports };
+
+// Build components object with PascalCase names from file paths
+const mdxComponents: Record<string, any> = {};
+
+Object.entries(componentImports).forEach(([path, module]) => {
+  const pathParts = path.split("/");
+  const fileName = pathParts[pathParts.length - 1].replace(".astro", "");
+
+  // Component name is already PascalCase from filename
+  const componentName = fileName;
+
+  mdxComponents[componentName] = (module as any).default;
+});
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post: CollectionEntry<"blog">) => {
+    const slug = post.id.replace(/\.mdx?$/, "");
+
+    return {
+      params: { slug },
+      props: { post },
+    };
+  });
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const date = post.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+// Get three most recent posts excluding the current one
+const allPosts = await getCollection("blog");
+const recentPosts = allPosts
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+// Get author page from uuid
+const team = await getCollection("team");
+const author = team.find((m: any) => m.data.uuid === post.data.author);
+
+// Build article metadata for Open Graph
+const article = {
+  publishedTime: post.data.date.toISOString(),
+  author: author?.data.name,
+  tags: post.data.tag ? [post.data.tag] : undefined,
+};
+---
+
+<Page
+  title={post.data.title}
+  description={post.data.description}
+  keywords={post.data.keywords}
+  image={post.data.image}
+  type="article"
+  article={article}
+>
+  <CustomSection
+    class:list={["hero-feature"]}
+    maxContentWidth="2xl"
+    paddingHorizontal="lg"
+    paddingVertical="4xl"
+    colorScheme="inherit"
+    backgroundColor="highlight-grid"
+    contentBackground="true"
+    verticalOffset={{
+      size: "nav-height",
+      direction: "back",
+    }}
+  >
+    <Split
+      distributionMode="half"
+      gap="lg"
+    >
+      <Fragment slot="first">
+        <Heading
+          level="h1"
+          size="2xl"
+          alignmentHorizontal="start"
+          class="heading"
+          data-prop="title"
+          text={post.data.title}
+        />
+        <p class="breadcrumb">
+          <a
+            href="/blog/"
+            class="blog-link"
+            >Blog</a
+          > / <a
+            href={`/blog/tag/${post.data.tag}`}
+            class="tag"
+            ><span
+              data-editable="text"
+              data-prop="tag"
+              >{post.data.tag}</span
+            ></a
+          >
+        </p>
+      </Fragment>
+      <Fragment slot="second">
+        <SimpleText
+          alignmentHorizontal="start"
+          class="description"
+          data-prop="description"
+        >
+          {post.data.description}
+        </SimpleText>
+        <p class="author">
+          By {author?.data.name || "Anonymous"} | {date}
+        </p>
+      </Fragment>
+    </Split>
+    <Split
+      distributionMode="three-quarters-quarter"
+      gap="lg"
+    >
+      <div
+        class="hero-image"
+        slot="first"
+      >
+        <Image
+          source={post.data.image}
+          alt={post.data.image_alt}
+          rounded={true}
+          data-prop-src="image"
+          data-prop-alt="image_alt"
+        />
+      </div>
+      <div
+        class="counters"
+        slot="second"
+        data-editable="array"
+        data-prop="counters"
+      >
+        {
+          post.data?.counters?.map((counter: any, index: number) => (
+            <div
+              class="counter-container"
+              data-editable="array-item"
+            >
+              <editable-component
+                data-prop="counter"
+                data-component="building-blocks/core-elements/counter"
+              >
+                <Counter {...counter.counter} />
+              </editable-component>
+              <SimpleText
+                text={counter.subtext}
+                alignmentHorizontal="start"
+                data-prop={`subtext`}
+              />
+            </div>
+          ))
+        }
+        <template>
+          <div class="counter-container">
+            <editable-component
+              data-prop="counter"
+              data-component="building-blocks/core-elements/counter"
+            >
+              <Counter number={0} />
+            </editable-component>
+            <SimpleText
+              text="Counter subtext"
+              alignmentHorizontal="start"
+              data-prop={`subtext`}
+            />
+          </div>
+        </template>
+      </div>
+    </Split>
+  </CustomSection>
+  <CustomSection
+    maxContentWidth="2xl"
+    paddingHorizontal="lg"
+    paddingVertical="4xl"
+    colorScheme="inherit"
+    backgroundColor="base"
+    class="post-container"
+    data-pagefind-filter="Type:Article"
+  >
+    <Split
+      distributionMode="three-quarters-quarter"
+      gap="xl"
+      class="post-layout"
+    >
+      <div
+        class="post"
+        slot="first"
+      >
+        <editable-text data-prop="@content">
+          <Content components={mdxComponents} />
+        </editable-text>
+
+        {
+          author && (
+            <Card
+              rounded={true}
+              border={false}
+              backgroundColor="accent"
+              paddingVertical="md"
+              paddingHorizontal="md"
+              editable={false}
+              class="author-card"
+            >
+              <Split
+                distributionMode="fixed-flexible"
+                fixedWidth="66"
+                minSplitWidth="200"
+                gap="md"
+              >
+                <Image
+                  slot="first"
+                  source={author.data.imageSource}
+                  alt={author.data.name}
+                  aspectRatio="square"
+                  rounded={true}
+                  editable={false}
+                  style="border-radius: var(--radius-full);"
+                />
+                <div slot="second">
+                  <Heading
+                    level="h3"
+                    size="sm"
+                    style="margin-bottom: var(--spacing-md); margin-top: 0;"
+                    editable={false}
+                  >
+                    {author.data.name}
+                  </Heading>
+                  <SimpleText
+                    size="sm"
+                    style="margin-top: 0; color: var(--color-text-muted); font-weight: var(--font-weight-bold);"
+                    editable={false}
+                  >
+                    {author.data.role}
+                  </SimpleText>
+                </div>
+              </Split>
+            </Card>
+          )
+        }
+
+        <div class="share-section">
+          <SimpleText
+            size="md"
+            class="share-section-text"
+            style="font-weight: var(--font-weight-bold); margin: 0px;"
+            data-editable="source"
+            data-path="/src/pages/blog/[...slug].astro"
+            data-key="share-section-heading"
+          >
+            Share this article:
+          </SimpleText>
+          <ButtonGroup style="margin: 0px;">
+            <Button
+              link={`mailto:?subject=${post.data.title.replace(/<[^>]*>/g, "")}&body=Check out this article: ${Astro.url}`}
+              variant="secondary"
+              size="lg"
+              iconName="envelope"
+              hideText={true}
+              text="Share via Email"
+              style="border-radius: var(--radius-full);"
+            />
+            <Button
+              variant="secondary"
+              size="lg"
+              iconName="link"
+              hideText={true}
+              text="Copy link"
+              class="copy-link-btn"
+              style="border-radius: var(--radius-full);"
+            />
+          </ButtonGroup>
+        </div>
+      </div>
+      <div
+        class="sidebar"
+        slot="second"
+      >
+        <SimpleText
+          size="sm"
+          class="sidebar-title"
+          style="border-bottom: 2px solid var(--color-border-subtle); color: var(--color-text-brand); font-weight: var(--font-weight-bold); margin-top: var(--spacing-md);"
+          data-editable="source"
+          data-path="/src/pages/blog/[...slug].astro"
+          data-key="sidebar-heading"
+          >Latest News</SimpleText
+        >
+        {
+          recentPosts.map((recentPost) => {
+            const slug = recentPost.id?.replace(/\.mdx?$/, "") || recentPost.slug;
+            const postDate = recentPost.data.date.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            });
+            const author = team.find((m: any) => m.data.uuid === recentPost.data.author);
+
+            return (
+              <Card
+                link={`/blog/${slug}`}
+                rounded={true}
+                border={false}
+                backgroundColor="accent"
+                paddingVertical="sm"
+                paddingHorizontal="sm"
+                editable={false}
+              >
+                <Image
+                  source={recentPost.data.image}
+                  alt={recentPost.data.image_alt}
+                  aspectRatio="landscape"
+                  editable={false}
+                  rounded={true}
+                  style="max-height: 150px; width: 100%;"
+                />
+                <SimpleText
+                  size="xs"
+                  style="color: var(--color-text-brand); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xs); margin-top: var(--spacing-sm);"
+                  editable={false}
+                >
+                  {recentPost.data.tag}
+                </SimpleText>
+                <Heading
+                  level="h3"
+                  size="xs"
+                  style="margin-bottom: var(--spacing-xs); margin-top: 0;"
+                  editable={false}
+                  text={recentPost.data.title.replace(/<[^>]*>/g, "")}
+                />
+                <SimpleText
+                  size="sm"
+                  style="color: var(--color-text-muted); margin-top: 0; font-weight: var(--font-weight-bold);"
+                  editable={false}
+                >
+                  By {author?.data.name || "Anonymous"} | {postDate}
+                </SimpleText>
+              </Card>
+            );
+          })
+        }
+      </div>
+    </Split>
+  </CustomSection>
+</Page>
+
+<style is:global>
+  @layer page-sections {
+    .hero-feature {
+      .breadcrumb {
+        color: var(--color-text-brand);
+        font-weight: var(--font-weight-bold);
+      }
+      .blog-link {
+        text-decoration: none;
+        color: var(--color-text-brand);
+      }
+      .tag {
+        text-decoration: none;
+        color: var(--color-text-brand);
+      }
+
+      .description {
+        font-weight: var(--font-weight-bold);
+      }
+
+      .author {
+        color: var(--color-text-muted);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-sm);
+      }
+
+      .counters {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-xl);
+
+        @container (max-width: 700px) {
+          flex-direction: row;
+          flex-wrap: wrap;
+          margin-top: 0;
+        }
+
+        .counter-container {
+          @container (max-width: 700px) {
+            flex: 1 1 150px;
+          }
+
+          .counter {
+            color: var(--color-text);
+            margin-top: 0;
+          }
+
+          .simple-text {
+            margin: 0;
+
+            .simple-text-content {
+              font-weight: var(--font-weight-bold);
+              margin: var(--spacing-xs) 0 0;
+              text-wrap: wrap;
+            }
+          }
+        }
+      }
+
+      .split:has(.counters):not(:has(.counter-container)) {
+        > .split-inner {
+          --split-columns-desktop: 1fr;
+          row-gap: 0;
+        }
+
+        .hero-image {
+          margin-inline: auto;
+        }
+      }
+
+      .hero-image {
+        position: relative;
+        max-width: min(100%, var(--content-width-xl));
+        height: 450px;
+        margin-top: var(--spacing-xl);
+
+        &::before {
+          --angle: 0deg;
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+          margin: -4px;
+          border-radius: calc(var(--radius-lg) + 4px);
+          background: conic-gradient(
+            from var(--angle),
+            var(--color-bg-brand),
+            var(--color-bg-inverse),
+            var(--color-bg-brand)
+          );
+          animation: rotate-angle 2s linear infinite;
+        }
+
+        .image {
+          margin: 0;
+          height: 100%;
+
+          .image-inner {
+            max-height: 450px;
+            overflow: hidden;
+            height: 100%;
+          }
+
+          picture {
+            height: 100%;
+          }
+
+          img {
+            max-height: 450px;
+            object-fit: cover;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .share-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      align-items: center;
+      margin: var(--spacing-xl) 0;
+
+      .share-section-text {
+        flex: 0 0 auto;
+      }
+
+      .button-group {
+        flex: 0 1 50%;
+      }
+    }
+
+    .post-layout {
+      position: relative;
+      > .pane.second {
+        position: sticky;
+        top: calc(var(--spacing-nav-height) + var(--spacing-md));
+        margin-bottom: var(--spacing-xl);
+      }
+    }
+
+    .post-container.custom-section > .outer-content > .content {
+      padding-bottom: 0 !important;
+    }
+
+    .post {
+      display: grid;
+      margin-inline: auto;
+      margin-top: var(--spacing-xl);
+    }
+
+    .post > h1,
+    .post > h2,
+    .post > h3,
+    .post > h4,
+    .post > h5,
+    .post > h6 {
+      margin-bottom: 0;
+      margin-top: 1rem;
+    }
+
+    .post > h1:first-child,
+    .post > h2:first-child,
+    .post > h3:first-child,
+    .post > h4:first-child,
+    .post > h5:first-child,
+    .post > h6:first-child {
+      margin-top: 0;
+    }
+
+    .post > .astro-code {
+      margin-block: var(--spacing-xl);
+    }
+
+    .post-image {
+      margin-top: var(--spacing-xl);
+    }
+    .sidebar .card .image .image-inner {
+      max-height: 150px;
+      width: 100%;
+    }
+  }
+
+  .post-tags .post-tag-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+  }
+
+  .post-tags .post-tag-link:hover {
+    color: var(--color-text-strong);
+    text-decoration-thickness: 2px;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const copyBtn = document.querySelector(".copy-link-btn");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(window.location.href);
+        // Optional: Add visual feedback
+        const originalText = copyBtn.getAttribute("data-original-text") || "Copy link";
+        copyBtn.setAttribute("data-original-text", originalText);
+        // You could add a toast notification here
+      });
+    }
+  });
+</script>

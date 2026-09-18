@@ -1,0 +1,60 @@
+label: Hero Center
+icon: title
+description: Centered hero with heading, subtext, buttons, and a large image.
+value:
+  _component: page-sections/heroes/hero-center
+  id:
+  eyebrowIcon: {}
+  eyebrowText: Eyebrow placeholder
+  heading: Heading placeholder
+  headingSize: 4xl
+  subtext: Subtext placeholder
+  buttonSections:
+    - _component: building-blocks/core-elements/button
+      text: My Button
+      hideText: false
+      link: ""
+      iconName: ""
+      iconColor: default
+      iconPosition: before
+      variant: primary
+      size: md
+  image:
+    source: ""
+    alt: ""
+    rounded: true
+  icons:
+    - name: globe-asia-australia
+      color: brand-gradient
+      background: true
+      size: 4xl
+    - name: rocket-launch
+      color: brand-gradient
+      background: true
+      size: 4xl
+  backgroundDecoration: true
+  sectionHeight: full
+  maxContentWidth: xl
+  paddingVertical: 4xl
+  colorScheme: inherit
+  backgroundColor: base
+  contentBackground: false
+  verticalOffset: {}
+  rounded: false
+preview:
+  text:
+    - Hero Center
+  subtext:
+    - key: heading
+  icon: title
+  gallery:
+    image: public/component-previews/page-sections/heroes/hero-center.svg
+    fit: cover
+picker_preview:
+  text: Hero Center
+  subtext: Centered hero with heading, subtext, buttons, and a large image.
+  gallery:
+    image: public/component-previews/page-sections/heroes/hero-center.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/page-sections/heroes/hero-center/hero-center.cloudcannon.inputs.yml

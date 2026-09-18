@@ -1,0 +1,101 @@
+faqSection:
+  snippet: <FaqSection heading=[[heading]] [[args]] />
+  inline: false
+  preview:
+    text:
+      - FAQ Section
+    subtext:
+      - key: heading
+    icon: help
+    gallery:
+      image: public/component-previews/page-sections/info-blocks/faq-section.svg
+      fit: cover
+  params:
+    args:
+      parser: key_values
+      options:
+        models:
+          - editor_key: sectionLabel
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: id
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: eyebrowIcon
+            type: object
+            optional: true
+            remove_empty: true
+          - editor_key: eyebrowText
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: subtext
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: items
+            type: array
+          - editor_key: singleOpen
+            type: boolean
+            optional: true
+          - editor_key: openFirst
+            type: boolean
+            optional: true
+          - editor_key: maxContentWidth
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: paddingHorizontal
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: paddingVertical
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: colorScheme
+            type: string
+            optional: true
+            remove_empty: true
+          - editor_key: backgroundColor
+            type: string
+            optional: true
+            remove_empty: true
+            default: "none"
+          - editor_key: contentBackground
+            type: boolean
+            optional: true
+            remove_empty: false
+          - editor_key: background
+            type: object
+            optional: true
+            remove_empty: true
+          - editor_key: verticalOffset
+            type: object
+            optional: true
+            remove_empty: true
+          - editor_key: rounded
+            type: boolean
+            optional: true
+            remove_empty: false
+        format:
+          ref: "mdx_format"
+    heading:
+      parser: argument
+      options:
+        model:
+          editor_key: heading
+          type: string
+          optional: true
+        format:
+          root_value_boundary_optional:
+            string: false
+          root_value_boundary:
+            start: "{"
+            end: "}"
+          string_boundary:
+            - '"'
+  _inputs_from_glob:
+    - /src/components/page-sections/info-blocks/faq-section/faq-section.cloudcannon.inputs.yml

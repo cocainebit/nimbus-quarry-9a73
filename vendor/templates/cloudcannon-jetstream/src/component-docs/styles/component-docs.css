@@ -1,0 +1,161 @@
+@layer components {
+  .component-docs {
+    & .library-container > .outer-content > .content {
+      display: flex;
+
+      > .nav-root {
+        flex-shrink: 0;
+      }
+
+      > .main {
+        min-width: 0;
+        padding-block-end: var(--spacing-2xl);
+      }
+    }
+
+    & .library-sidebar {
+      display: none;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: var(--spacing-md);
+      position: sticky;
+      top: 0;
+      width: 280px;
+
+      > .sidebar-logo {
+        height: auto;
+        margin-inline: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+        max-width: 130px;
+        width: 100%;
+
+        > svg {
+          height: 2.5em;
+          width: 100%;
+        }
+      }
+    }
+
+    & .library-mobile-nav {
+      align-items: center;
+      background: var(--color-bg);
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+      display: flex;
+      height: 5rem;
+      justify-content: space-between;
+      padding-inline: var(--spacing-lg);
+      position: sticky;
+      top: 0;
+      z-index: var(--layer-2);
+
+      > .sidebar-logo {
+        height: auto;
+        margin-top: 0;
+        max-width: 130px;
+        width: 100%;
+      }
+
+      > .library-mobile-nav-actions {
+        align-items: center;
+        display: flex;
+        gap: var(--spacing-md);
+      }
+    }
+
+    & .heading-anchor {
+      color: var(--color-text-subtle);
+      font-weight: var(--font-weight-normal);
+      margin-inline-start: 0.25em;
+      opacity: 0;
+      text-decoration: none;
+      transition: opacity var(--animation-normal) ease;
+
+      &:hover {
+        color: var(--color-text-link);
+      }
+    }
+
+    & h2:hover .heading-anchor,
+    & h3:hover .heading-anchor,
+    & .heading-anchor:focus-visible {
+      opacity: 1;
+    }
+
+    & .component-viewer {
+      & .copy-button {
+        position: relative;
+
+        &.copied {
+          background-color: rgb(32, 219, 156);
+
+          &::after {
+            animation: fade-in-out 3s ease-in-out;
+            background: var(--color-bg-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xs);
+            bottom: -2.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--color-text-strong);
+            content: "Copied!";
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            left: 50%;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            position: absolute;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            z-index: var(--layer-10);
+          }
+        }
+      }
+    }
+
+    /* Override 100vw with 100% for components in docs */
+    & .hero-center {
+      width: 100% !important;
+
+      .image img {
+        width: 100% !important;
+      }
+
+      .icon-layer-mobile {
+        width: 100% !important;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    .component-docs {
+      & .library-container > .outer-content > .content > .main {
+        border-left: 1px solid var(--color-border-subtle);
+        padding-inline-start: var(--spacing-em-lg);
+      }
+
+      & .library-sidebar {
+        display: flex;
+      }
+
+      & .library-mobile-nav {
+        display: none;
+      }
+    }
+  }
+
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-4px);
+    }
+    10%,
+    90% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-4px);
+    }
+  }
+}

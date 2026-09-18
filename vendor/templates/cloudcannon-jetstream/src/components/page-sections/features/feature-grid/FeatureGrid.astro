@@ -1,0 +1,147 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+import BentoBox from "@wrappers/bento-box/BentoBox.astro";
+import RenderBlock from "@components/utils/renderBlock.astro";
+
+const {
+  id = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  subtext = "",
+  featureGrid = {
+    features: [],
+    backgroundColor: "base",
+    gridMaxWidth: "2xl",
+    gridBackgroundMaxWidth: "none",
+    rounded: false,
+    overhang: false,
+  },
+  maxContentWidth = "xl",
+  paddingVertical = "4xl",
+  colorScheme = "inherit",
+  backgroundColor,
+  contentBackground,
+  background,
+  verticalOffset = {},
+  rounded = false,
+  class: className,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<CustomSection
+  class:list={["feature-grid", className]}
+  maxContentWidth=""
+  paddingHorizontal=""
+  paddingVertical={paddingVertical}
+  rounded={rounded}
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  background={background}
+  rounded={rounded}
+  verticalOffset={verticalOffset}
+  id={id}
+  {...htmlAttributes}
+>
+  <CustomSection
+    class:list={["feature-grid-content", className]}
+    style={`--padding-between: var(--spacing-${paddingVertical})`}
+    maxContentWidth={maxContentWidth}
+    paddingHorizontal="md"
+    paddingVertical=""
+    rounded={false}
+    colorScheme={colorScheme}
+    backgroundColor=""
+    contentBackground={contentBackground}
+  >
+    <Icon {...eyebrowIcon} />
+    <SimpleText
+      alignmentHorizontal="center"
+      class="eyebrow"
+      data-prop="eyebrowText"
+    >
+      {eyebrowText}
+    </SimpleText>
+    <Heading
+      level="h2"
+      size="lg"
+      alignmentHorizontal="center"
+      data-prop="heading"
+      text={heading}
+    />
+    <Text
+      class="feature-grid-subtext"
+      alignmentHorizontal="center"
+      data-prop="subtext"
+      text={subtext}
+    />
+  </CustomSection>
+
+  <CustomSection
+    class:list={["feature-grid-background", featureGrid.overhang && "feature-grid-overhang-frame"]}
+    maxContentWidth={featureGrid.gridBackgroundMaxWidth}
+    paddingHorizontal=""
+    paddingVertical="xs"
+    colorScheme={colorScheme}
+  >
+    <CustomSection
+      class:list={[
+        "feature-grid-grid",
+        featureGrid.overhang && "feature-grid-overhang",
+        featureGrid.overhang && featureGrid.rounded && "feature-grid-overhang-rounded",
+      ]}
+      maxContentWidth={featureGrid.gridMaxWidth}
+      colorScheme={colorScheme}
+      paddingVertical=""
+      paddingHorizontal="md"
+      backgroundColor={featureGrid.backgroundColor}
+      rounded={featureGrid.overhang ? false : featureGrid.rounded}
+    >
+      <BentoBox
+        gap="md"
+        data-children-prop="featureGrid.features"
+        data-children-component-key="_component"
+        class="feature-grid-grid"
+      >
+        {
+          featureGrid.features && (
+            <RenderBlock
+              contentSections={featureGrid.features}
+              useDefaultEditableBinding={true}
+            />
+          )
+        }
+      </BentoBox>
+    </CustomSection>
+  </CustomSection>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .feature-grid-content {
+      padding-bottom: var(--padding-between);
+    }
+
+    .feature-grid-overhang > .outer-content {
+      display: flow-root;
+    }
+
+    .feature-grid-overhang > .outer-content > .content {
+      margin-block: calc(var(--spacing-3xl) * -1);
+    }
+
+    .feature-grid-overhang-frame > .outer-content > .content {
+      padding-block: calc(var(--spacing-xs) + var(--spacing-3xl));
+    }
+
+    .feature-grid-overhang-rounded > .outer-content > .background {
+      border-radius: var(--radius-3xl);
+    }
+  }
+</style>

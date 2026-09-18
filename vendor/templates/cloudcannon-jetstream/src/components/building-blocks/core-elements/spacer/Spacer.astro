@@ -1,0 +1,52 @@
+---
+const {
+  size = "md",
+  class: className,
+  useDefaultEditableBinding: _useDefaultEditableBinding = false,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<div
+  class:list={["spacer", className, `size-${size}`]}
+  {...htmlAttributes}
+  aria-hidden="true"
+>
+</div>
+
+<style is:global>
+  @layer components {
+    .spacer {
+      height: 0;
+    }
+
+    .spacer.size-xs {
+      height: var(--spacing-xs);
+    }
+
+    .spacer.size-sm {
+      height: var(--spacing-sm);
+    }
+
+    .spacer.size-md {
+      height: var(--spacing-md);
+    }
+
+    .spacer.size-lg {
+      height: var(--spacing-lg);
+    }
+
+    .spacer.size-xl {
+      height: var(--spacing-xl);
+    }
+
+    .spacer.size-2xl {
+      height: var(--spacing-2xl);
+    }
+
+    .spacer.size-3xl {
+      height: var(--spacing-3xl);
+    }
+  }
+</style>

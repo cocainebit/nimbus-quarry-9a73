@@ -1,0 +1,180 @@
+---
+import Heading from "@core-elements/heading/Heading.astro";
+import Image from "@core-elements/image/Image.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Card from "@wrappers/card/Card.astro";
+import GridItem from "@wrappers/grid/GridItem.astro";
+
+const {
+  name = "",
+  role = "",
+  imageSource = "",
+  imageAlt = "",
+  editable = false,
+  class: className,
+  _component,
+  useDefaultEditableBinding: _useDefaultEditableBinding = false,
+  ...htmlAttributes
+} = Astro.props;
+
+const cardClasses = ["team-item", className].filter(Boolean).join(" ");
+---
+
+<GridItem>
+  <Card
+    {...htmlAttributes}
+    class:list={cardClasses || undefined}
+    paddingHorizontal="lg"
+    paddingVertical="sm"
+    rounded={false}
+    border={false}
+    backgroundColor=""
+  >
+    <div class="team-content">
+      <Heading
+        class="team-name"
+        level="h3"
+        size="md"
+        alignmentHorizontal="start"
+        style="margin-bottom: var(--spacing-xs); margin-top: 0;"
+        data-prop={editable ? "name" : undefined}
+      >
+        {name}
+      </Heading>
+      <SimpleText
+        class="team-role"
+        size="sm"
+        alignmentHorizontal="start"
+        style="font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-sm);margin-top: 0;"
+        data-prop={editable ? "role" : undefined}
+      >
+        {role}
+      </SimpleText>
+    </div>
+    <div class="team-image-container">
+      <Image
+        class="team-image"
+        source={imageSource}
+        alt={imageAlt || name}
+        aspectRatio="square"
+        widths={[400, 800]}
+        sizes="400px"
+        data-prop-src={editable ? "imageSource" : undefined}
+        data-prop-alt={editable ? "imageAlt" : undefined}
+        slot="before"
+      />
+    </div>
+  </Card>
+</GridItem>
+
+<style>
+  @layer page-sections {
+    .team-item {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .team-content {
+        max-width: 70%;
+        color: var(--color-text-muted);
+        min-height: 5rem;
+        display: flex;
+        flex-direction: column;
+        transition: color var(--animation-normal) ease;
+
+        .team-name,
+        .team-role {
+          color: var(--color-text-muted);
+          transition: color var(--animation-normal) ease;
+        }
+        .simple-text {
+          position: relative;
+          flex-grow: 1;
+          &::before {
+            border-bottom: 2px solid var(--color-text-muted);
+            content: "";
+            top: calc(100% + 20px);
+            position: absolute;
+            display: block;
+            width: 100%;
+            z-index: var(--layer-below);
+            transition: border-color var(--animation-normal) ease;
+          }
+          &::after {
+            position: absolute;
+            top: calc(100% + 16px);
+            display: block;
+            content: "";
+            background: var(--color-text-muted);
+            height: 10px;
+            width: 10px;
+            border-radius: var(--radius-full);
+            z-index: var(--layer-below);
+            transition: background-color var(--animation-normal) ease;
+          }
+        }
+      }
+      .team-image-container {
+        position: relative;
+        width: 75%;
+        justify-self: end;
+
+        &::before {
+          --angle: 0deg;
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+          margin: -4px;
+          border-radius: var(--radius-full);
+          background: conic-gradient(
+            from var(--angle),
+            var(--color-bg-brand),
+            var(--color-bg-inverse),
+            var(--color-bg-brand)
+          );
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity var(--animation-normal) ease;
+          /* Paused until hover so the angle holds its position on the way out */
+          animation: rotate-angle 2s linear infinite paused;
+        }
+
+        .team-image {
+          margin: 0;
+          border-radius: var(--radius-full);
+          filter: grayscale(1);
+          transition: filter 0.3s ease;
+        }
+      }
+
+      &:hover {
+        .team-content {
+          color: var(--color-text-strong);
+
+          .team-name,
+          .team-role {
+            color: var(--color-text-strong);
+          }
+          .simple-text {
+            &::before {
+              border-bottom-color: var(--color-text-brand);
+            }
+            &::after {
+              background-color: var(--color-text-brand);
+            }
+          }
+        }
+        .team-image-container {
+          &::before {
+            opacity: 1;
+            animation-play-state: running;
+          }
+          .team-image {
+            filter: grayscale(0);
+          }
+        }
+      }
+    }
+  }
+</style>

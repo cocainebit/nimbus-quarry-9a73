@@ -1,0 +1,167 @@
+---
+import { Image } from "astro:assets";
+import MarkdownIt from "markdown-it";
+import Button from "../../shared/Button.astro";
+import Heading from "../../shared/Heading.astro";
+import Modal from "../../shared/Modal.astro";
+import Vimeo from "../../shared/Vimeo.astro";
+const md = new MarkdownIt({ html: true });
+
+// Define TypeScript interfaces
+interface ButtonType {
+  link: string;
+  text: string;
+}
+
+interface VideoType {
+  image: string;
+  image_alt: string;
+  video_url: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  button?: ButtonType;
+  video?: VideoType;
+}
+
+
+const { title, description, button, video } = Astro.props;
+---
+
+<section class="py-16 xl:py-24 2xl:py-32">
+  <!-- Video Modal -->
+  <Modal id="about-video-modal" size={"7xl"} showCloseButton unloadOnClose>
+    <div slot="header">
+      <h3 class="text-lg font-semibold text-gray-900">Video Player</h3>
+    </div>
+
+    <!-- Main content - Vimeo embed -->
+    <div class="aspect-video" data-editable="component" data-prop-videoid="video" data-component="shared/Vimeo">
+      {video && (
+        <Vimeo videoid={video.video_url} title="Video Player" responsive={true} autoplay={true} class="w-full h-full" />
+      )}
+    </div>
+  </Modal>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+      <!-- Content Section -->
+      <div class="lg:order-1">
+        <div class="max-w-2xl">
+          <Heading 
+            level={2}
+            text={title}
+            data-prop="title"
+            data-editable="text"
+            class="mb-6 tracking-tight"
+          />
+          <div 
+            class="text-lg text-gray-600 leading-relaxed mb-8 prose prose-lg max-w-none" 
+            data-editable="text" 
+            data-prop="description" 
+            set:html={md.render(description)} 
+          />
+          {button && (
+            <Button 
+              href={button.link}
+              variant="secondary"
+              size="lg"
+              text={button.text}
+              data-prop="button.text"
+              data-editable="text"
+              class="bg-white text-gray-900 border-2 border-gray-900 hover:bg-gray-900 hover:text-white"
+            />
+          )}
+        </div>
+      </div>
+      
+      <!-- Video Section -->
+      <div class="lg:order-2">
+        {video && (
+          <div class="relative">
+            <div class="rounded-[20px] overflow-hidden relative">
+              <Image
+                src={video.image}
+                alt={video.image_alt}
+                width={648}
+                height={400}
+                class="w-full"
+                loading="lazy"
+              />
+              <!-- Red overlay -->
+              <div class="absolute inset-0 bg-red-600 opacity-20 rounded-[20px]"></div>
+            </div>
+
+            <!-- Video play button -->
+            <div class="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+              <div class="video-play-wrapper relative">
+                <button
+                  type="button"
+                  onclick="document.getElementById('about-video-modal').showModal()"
+                  class="relative w-[86px] h-[86px] border-2 border-[#e53b2a] rounded-full bg-[#e53b2a] z-10 outline-none flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95"
+                  aria-label="Play video"
+                >
+                  <svg
+                    width="28"
+                    height="32"
+                    viewBox="0 0 28 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="ml-0.5"
+                  >
+                    <path
+                      d="M26 12.5359C28.6667 14.0755 28.6667 17.9245 26 19.4641L6.5 30.7224C3.83333 32.262 0.499998 30.3375 0.499999 27.2583L0.5 4.74167C0.5 1.66247 3.83333 -0.262033 6.5 1.27757L26 12.5359Z"
+                      fill="white"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-play-wrapper::before,
+  .video-play-wrapper::after {
+    content: "";
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    transform-origin: top left;
+    animation-name: grow;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .video-play-wrapper::after {
+    width: 110px;
+    height: 110px;
+    opacity: 0.5;
+  }
+
+  .video-play-wrapper::before {
+    width: 140px;
+    height: 140px;
+    animation-delay: 1s;
+    opacity: 0.4;
+  }
+
+  @keyframes grow {
+    0% {
+      transform: scale(0.9) translate(-50%, -50%);
+    }
+    100% {
+      transform: scale(1) translate(-50%, -50%);
+    }
+  }
+</style>

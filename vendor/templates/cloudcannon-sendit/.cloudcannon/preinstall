@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# https://cloudcannon.com/documentation/articles/extending-your-build-process-with-hooks/#preinstall
+# A script at /.cloudcannon/preinstall which runs after the files are available and before any install scripts.
+# Preinstall scripts are useful for configuring your install commands before they run.

@@ -1,0 +1,268 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Image from "@core-elements/image/Image.astro";
+
+const {
+  id = "",
+  heading = "",
+  images = [],
+  maxContentWidth = "2xl",
+  paddingVertical = "4xl",
+  colorScheme = "light",
+  backgroundColor = "base",
+  contentBackground = false,
+  lockColorScheme = false,
+  verticalOffset,
+  rounded = false,
+  class: className,
+  useDefaultEditableBinding = false,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<CustomSection
+  class:list={["logo-strip", className]}
+  maxContentWidth={maxContentWidth}
+  paddingHorizontal="lg"
+  paddingVertical={paddingVertical}
+  rounded={rounded}
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  contentBackground={contentBackground}
+  verticalOffset={verticalOffset}
+  id={id}
+  lockColorScheme={lockColorScheme}
+  {...htmlAttributes}
+>
+  <Heading
+    level="h2"
+    size="xs"
+    alignmentHorizontal="center"
+    data-prop="heading"
+    class="logo-strip-heading"
+    text={heading}
+  />
+
+  <div
+    class="logo-strip-grid"
+    aria-label={heading || "Logo strip"}
+    data-logo-strip-viewport
+    data-animate="false"
+  >
+    <div
+      class="logo-strip-track"
+      data-logo-strip-track
+      data-animate="false"
+    >
+      <div
+        class="logo-strip-group"
+        data-logo-strip-group
+        data-editable="array"
+        data-prop="images"
+      >
+        {
+          images.map((image: any, index: number) => {
+            const Tag = image.link ? "a" : "div";
+
+            return (
+              <Tag
+                class="logo-strip-item"
+                {...(image.link && {
+                  href: image.link,
+                })}
+                data-editable="array-item"
+              >
+                <Image
+                  source={image.source}
+                  alt={image.alt}
+                />
+              </Tag>
+            );
+          })
+        }
+      </div>
+
+      <div
+        class="logo-strip-group logo-strip-group--duplicate"
+        aria-hidden="true"
+        data-editable="array"
+        data-prop="images"
+      >
+        {
+          images.map((image: any, index: number) => {
+            const Tag = image.link ? "a" : "div";
+
+            return (
+              <Tag
+                class="logo-strip-item"
+                {...(image.link && {
+                  href: image.link,
+                  tabindex: "-1",
+                })}
+                data-editable="array-item"
+              >
+                <Image
+                  source={image.source}
+                  alt={image.alt}
+                />
+              </Tag>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .logo-strip-grid {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-block: 0.25rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      margin-top: var(--spacing-xl);
+    }
+
+    .logo-strip-track {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      gap: 5rem;
+      --marquee-distance: 0px;
+      animation: none;
+    }
+
+    .logo-strip-group {
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+    }
+
+    .logo-strip-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      text-decoration: none;
+      transition: scale var(--animation-fast) ease;
+      padding: 0.5rem;
+      height: calc(60px + 1rem);
+    }
+
+    .logo-strip-item:is(a):hover,
+    .logo-strip-item:is(a):focus {
+      scale: 1.05;
+    }
+
+    .logo-strip-item .image,
+    .logo-strip-item img,
+    .logo-strip-item picture {
+      height: 60px;
+      width: auto;
+      margin: 0;
+      max-height: 60px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .logo-strip-track[data-animate="true"] {
+      animation: logo-marquee 22s linear infinite;
+      will-change: transform;
+    }
+
+    .logo-strip-grid:hover .logo-strip-track[data-animate="true"],
+    .logo-strip-grid:focus-within .logo-strip-track[data-animate="true"] {
+      animation-play-state: paused;
+    }
+
+    .logo-strip-track[data-animate="false"] .logo-strip-group--duplicate {
+      display: none;
+    }
+
+    .logo-strip-grid[data-animate="false"] .logo-strip-track {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .logo-strip-grid[data-animate="true"] {
+      overflow: hidden;
+      transform: translateZ(0);
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    }
+
+    @keyframes logo-marquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(calc(-1 * var(--marquee-distance)));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-strip-track[data-animate="true"] {
+        animation: none;
+      }
+      .logo-strip-grid[data-animate="true"] {
+        -webkit-mask-image: none;
+        mask-image: none;
+        overflow-x: auto;
+      }
+    }
+  }
+</style>
+<script>
+  (() => {
+    const viewports = document.querySelectorAll("[data-logo-strip-viewport]");
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      viewports.forEach((viewport) => {
+        const track = viewport.querySelector("[data-logo-strip-track]");
+        if (!track) return;
+        viewport.setAttribute("data-animate", "false");
+        track.setAttribute("data-animate", "false");
+      });
+      return;
+    }
+
+    viewports.forEach((viewport) => {
+      const track = viewport.querySelector("[data-logo-strip-track]");
+      const group = viewport.querySelector("[data-logo-strip-group]");
+      if (!track || !group) return;
+
+      const update = () => {
+        const trackGap = parseFloat(getComputedStyle(track).gap || "0") || 0;
+        const shouldAnimate = viewport.scrollWidth > viewport.clientWidth + 1;
+        const groupWidth = group.scrollWidth;
+        track.style.setProperty("--marquee-distance", `${groupWidth + trackGap}px`);
+
+        viewport.setAttribute("data-animate", shouldAnimate ? "true" : "false");
+        track.setAttribute("data-animate", shouldAnimate ? "true" : "false");
+      };
+
+      requestAnimationFrame(() => {
+        update();
+        requestAnimationFrame(update);
+      });
+
+      const ro = new ResizeObserver(update);
+      ro.observe(viewport);
+      ro.observe(group);
+
+      window.addEventListener("resize", update);
+      window.addEventListener("load", update);
+    });
+  })();
+</script>

@@ -1,0 +1,104 @@
+---
+import Heading from "@core-elements/heading/Heading.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import Image from "@core-elements/image/Image.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+import BentoBoxItem from "@wrappers/bento-box/BentoBoxItem.astro";
+import Card from "@wrappers/card/Card.astro";
+
+const {
+  link = "",
+  image = {
+    source: "",
+    alt: "",
+  },
+  eyebrowIcon = {},
+  eyebrowText = "",
+  title = "",
+  description = "",
+  columnSpan,
+  rowSpan,
+  class: className,
+  useDefaultEditableBinding: _useDefaultEditableBinding = false,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<BentoBoxItem
+  columnSpan={columnSpan}
+  rowSpan={rowSpan}
+  data-prop-columnSpan="columnSpan"
+  data-prop-rowSpan="rowSpan"
+  class="feature-grid-item"
+  {...htmlAttributes}
+>
+  <Card
+    class:list={["feature-item", className]}
+    paddingHorizontal="lg"
+    paddingVertical="lg"
+    rounded
+    border
+    backgroundColor="base"
+    link={link}
+  >
+    <Fragment slot="before">
+      <Image
+        {...image}
+        data-prop-src="image.source"
+        data-prop-alt="image.alt"
+      />
+    </Fragment>
+    <Icon
+      {...eyebrowIcon}
+      data-prop="eyebrowIcon"
+    />
+    <SimpleText
+      class="eyebrow"
+      data-prop="eyebrowText"
+      text={eyebrowText}
+    />
+    <Heading
+      class="feature-title"
+      level="h3"
+      size="md"
+      alignmentHorizontal="start"
+      data-prop="title"
+    >
+      {title}
+    </Heading>
+    <Text
+      class="feature-description"
+      alignmentHorizontal="start"
+      data-prop="description"
+      text={description}
+    />
+  </Card>
+</BentoBoxItem>
+
+<style is:global>
+  @layer page-sections {
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    .feature-title {
+      margin-bottom: var(--spacing-sm);
+      margin-top: var(--spacing-sm);
+    }
+
+    .feature-description {
+      margin-top: 0;
+    }
+  }
+</style>

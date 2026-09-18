@@ -1,0 +1,197 @@
+headingLevel:
+  type: select
+  comment: HTML heading level (h1-h6).
+  options:
+    values:
+      - id: h1
+        name: H1
+      - id: h2
+        name: H2
+      - id: h3
+        name: H3
+      - id: h4
+        name: H4
+      - id: h5
+        name: H5
+      - id: h6
+        name: H6
+headingSize:
+  type: select
+  comment: Visual size of the heading.
+  options:
+    values:
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2X Large
+singleOpen:
+  type: switch
+  comment: Whether only one accordion item can be open at a time.
+openFirst:
+  type: switch
+  comment: Whether the first accordion item should be open by default.
+items:
+  type: array
+  label: FAQ Items
+  comment: Questions and answers in the accordion.
+  options:
+    structures: _structures.faqItems
+sectionLabel:
+  type: text
+  comment: Optional label to identify the section in the editor. When set and no HTML id is provided, an id is derived from this value.
+
+id:
+  type: text
+  comment: Unique identifier for the section which can be used as an anchor link.
+eyebrowIcon:
+  type: object
+  comment: Optional icon displayed above the eyebrow.
+  options:
+    structures: _structures.eyebrowIcon
+eyebrowText:
+  type: text
+  comment: Optional label displayed above the heading.
+heading:
+  type: text
+  comment: Main heading for the FAQ section.
+subtext:
+  type: markdown
+  comment: Optional subtext displayed beneath the heading.
+  options:
+    bold: true
+    italic: true
+    link: true
+    underline: true
+maxContentWidth:
+  type: select
+  comment: Maximum width constraint for the content.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl
+      - id: 3xl
+        name: 3xl
+paddingHorizontal:
+  type: select
+  comment: Horizontal padding applied to the section content.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl
+      - id: 3xl
+        name: 3xl
+paddingVertical:
+  type: select
+  comment: Vertical padding applied to the section content.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl
+      - id: 3xl
+        name: 3xl
+      - id: 4xl
+        name: 4xl
+      - id: 5xl
+        name: 5xl
+      - id: 6xl
+        name: 6xl
+colorScheme:
+  type: select
+  comment: Color scheme theme for the section wrapper.
+  options:
+    values:
+      - id: inherit
+        name: Inherit
+      - id: light
+        name: Light
+      - id: dark
+        name: Dark
+lockColorScheme:
+  type: switch
+  comment: Keep the selected color scheme from flipping when the visitor toggles the site theme.
+  hidden: true
+backgroundColor:
+  type: select
+  comment: Solid background color token behind the section content.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: base
+        name: Base
+      - id: surface
+        name: Surface
+      - id: accent
+        name: Accent
+      - id: highlight
+        name: Highlight
+contentBackground:
+  type: switch
+  comment: Add a radial background in the base color behind the content.
+background:
+  type: object
+  comment: Optional background still image or looping HTML5 video (self-hosted). Shared positioning applies to whichever type you choose. Video is hidden when the user prefers reduced motion.
+  options:
+    empty_type: object
+    structures: _structures.background
+    preview:
+      icon: wallpaper
+      text:
+        - Background
+      subtext:
+        - key: type
+verticalOffset:
+  type: object
+  comment: Offset section up above or below the previous section.
+  options:
+    empty_type: object
+    preview:
+      icon: arrow_upward
+    structures: _structures.vertical_offset
+rounded:
+  type: switch
+  comment: Whether to apply rounded corners to the section.

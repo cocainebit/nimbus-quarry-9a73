@@ -1,0 +1,182 @@
+---
+import Image from "@core-elements/image/Image.astro";
+import MarkdownIt from "markdown-it";
+const {
+  text,
+  authorName,
+  authorDescription,
+  alignmentHorizontal = "center",
+  authorImage = "",
+  class: className,
+  useDefaultEditableBinding = false,
+  "data-prop": customDataProp,
+  "data-prop-author-name": customDataPropAuthorName,
+  "data-prop-author-description": customDataPropAuthorDescription,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+
+const md = MarkdownIt({ html: true });
+const MarkdownText = text ? md.render(text) : "";
+
+const effectiveDataProp = customDataProp ?? (useDefaultEditableBinding ? "text" : null);
+const textDataAttributes = effectiveDataProp
+  ? { "data-editable": "text", "data-prop": effectiveDataProp }
+  : {};
+
+const effectiveAuthorNameProp =
+  customDataPropAuthorName ?? (useDefaultEditableBinding ? "authorName" : null);
+const authorNameDataAttributes = effectiveAuthorNameProp
+  ? { "data-editable": "text", "data-prop": effectiveAuthorNameProp }
+  : {};
+
+const effectiveAuthorDescProp =
+  customDataPropAuthorDescription ?? (useDefaultEditableBinding ? "authorDescription" : null);
+const authorDescriptionDataAttributes = effectiveAuthorDescProp
+  ? { "data-editable": "text", "data-prop": effectiveAuthorDescProp }
+  : {};
+---
+
+<blockquote
+  class:list={["testimonial", `alignment-${alignmentHorizontal}`, className]}
+  {...htmlAttributes}
+>
+  <div
+    class="quote"
+    {...textDataAttributes}
+  >
+    <slot>
+      {text && <Fragment set:html={MarkdownText} />}
+    </slot>
+  </div>
+  <div class="author">
+    <Image
+      source={authorImage}
+      alt={authorName}
+      width={100}
+      height={100}
+      class="author-image"
+      data-prop-src="authorImage"
+      data-prop-alt="authorName"
+    />
+    <cite class="author-content">
+      <strong
+        class="name"
+        {...authorNameDataAttributes}
+      >
+        {authorName}
+      </strong>
+      {
+        authorDescription && (
+          <>
+            <br />
+            <span
+              class="description"
+              {...authorDescriptionDataAttributes}
+            >
+              {authorDescription}
+            </span>
+          </>
+        )
+      }
+    </cite>
+  </div>
+</blockquote>
+
+<style is:global>
+  @layer components {
+    .testimonial {
+      border: none;
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      justify-content: center;
+      margin: 0;
+      padding: var(--spacing-md);
+
+      @media (width >= 768px) {
+        gap: var(--spacing-2xl);
+      }
+
+      &.alignment-center {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      > .quote {
+        align-content: center;
+        flex: 1 1 var(--content-width-sm);
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-bold);
+        margin: 0;
+
+        > p {
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-bold);
+        }
+
+        @media (width < 1024px) {
+          text-align: center;
+        }
+
+        *:first-child {
+          margin-top: 0;
+        }
+
+        *:last-child {
+          margin-bottom: 0;
+        }
+
+        *:first-child::before {
+          content: "\201C";
+        }
+
+        *:last-child::after {
+          content: "\201D";
+        }
+      }
+
+      > .author {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        gap: var(--spacing-md);
+        width: 25%;
+
+        > .author-content {
+          font-style: normal;
+          text-align: center;
+        }
+
+        > .image.author-image {
+          aspect-ratio: var(--ratio-square);
+          height: 80px;
+          margin-top: 0;
+          overflow: hidden;
+          width: 80px;
+
+          > .image-inner {
+            height: 100%;
+            width: 100%;
+          }
+
+          picture {
+            border-radius: var(--radius-full);
+            height: 100%;
+            overflow: hidden;
+            width: 80px;
+          }
+
+          img {
+            height: 100%;
+            object-fit: cover;
+            width: 80px;
+          }
+        }
+      }
+    }
+  }
+</style>

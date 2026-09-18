@@ -1,0 +1,179 @@
+---
+_schema: default
+permalink:
+title: Your traffic patterns are more predictable than you think
+description: >-
+  Our machine learning models can forecast your traffic spikes with
+  uncomfortable accuracy, and here's why that matters.
+date: 2026-02-06T00:00:00Z
+author: 6c4b5141-d659-4153-b8f9-aa2f93feaa7c
+image: /src/assets/images/blog-traffic.png
+image_alt: Aerial view of a multi-lane highway interchange packed with cars, running into a city at dusk
+tag: Prediction
+counters: []
+---
+
+Our machine learning models can predict your traffic patterns with uncomfortable accuracy. Not approximate predictions, specific forecasts of which content will be requested, from where, and when.
+
+This predictive capability enables pre-caching, proactive capacity scaling, and performance optimization that approaches clairvoyance. It also raises reasonable questions about what we're observing and why.
+
+## The pattern recognition problem
+
+Content delivery networks handle trillions of requests. Buried in that request data are patterns: temporal rhythms, geographic correlations, behavioral trends that repeat predictably.
+
+Humans can't detect these patterns at scale. Machine learning models can.
+
+We've trained models on years of traffic data across our network. These models identify patterns we never explicitly taught them to recognize:
+
+- Business applications see traffic spikes at 9am local time in every region
+- Entertainment content peaks in evenings, with different timing per country
+- News sites experience traffic surges following major events
+- E-commerce traffic correlates with payment cycles and holidays
+
+These patterns are obvious in retrospect. What's less obvious: the models also detect subtle patterns humans wouldn't notice.
+
+## The uncomfortable accuracy
+
+Our prediction models forecast traffic with approximately 94% accuracy 24 hours in advance. For the next hour, accuracy approaches 98%.
+
+This means we know what content you'll request before you request it.
+
+Not you specifically, our models predict aggregate traffic patterns, not individual behavior. But at population scale, aggregate predictions are remarkably precise.
+
+**Example:** A customer operates a video streaming platform. Every Thursday at 20:00 UTC, they release new episode content. Our models predict:
+
+- Traffic will increase 340% within 15 minutes of release
+- 60% of traffic will originate from three specific countries
+- Peak traffic will occur 90 minutes after release
+- Traffic will decline to baseline over four hours
+
+These predictions are accurate within 5%. We pre-cache content, allocate capacity, and optimize routing based on these forecasts. When the episode releases, our infrastructure is already prepared.
+
+From the customer's perspective, their content delivery is mysteriously perfect. From our perspective, we simply prepared for what we knew would happen.
+
+## How prediction enables performance
+
+Predictive traffic modeling unlocks several optimization strategies:
+
+### **Pre-caching content before requests arrive**
+
+If we know content will be requested heavily in Southeast Asia starting at 19:00 local time, we pre-position that content on Southeast Asian edge nodes at 18:30.
+
+When requests arrive, content is already cached. First request and millionth request have identical performance, both served from edge cache with no origin traffic required.
+
+Traditional CDNs cache content after first request. We cache content before first request. This eliminates cold-start latency entirely.
+
+### **Proactive capacity allocation**
+
+We move computational resources to regions where we predict traffic increases. Edge nodes in regions expecting traffic growth receive additional capacity before that growth occurs.
+
+This prevents the scenario where traffic spikes overwhelm available capacity before systems can respond. Capacity is already present when needed.
+
+### **Optimized routing decisions**
+
+Our traffic routing considers predicted future load, not just current load. If a node will be heavily loaded in 30 minutes based on predictions, we start directing traffic to alternative nodes now, preventing problems before they occur.
+
+## The privacy question
+
+Predicting traffic patterns requires analyzing traffic patterns. This raises obvious privacy concerns.
+
+What we actually observe: aggregate request metadata. Which content was requested, from which geographic region, at what time. We don't examine content of requests, user identity, or specific user behavior.
+
+Our models learn population-level patterns. "Users in Region A typically request Content Type B at Time C." Not "User X will request Content Y."
+
+This distinction matters. We can't predict individual behavior, our models lack the data. We can predict aggregate behavior very accurately because populations exhibit consistent patterns.
+
+**What we store:** Anonymized request metadata with geographic region and timestamp. No user identifiers, no IP addresses in prediction models, no personally identifiable information.
+
+**What we don't store:** User tracking across requests, behavioral profiles of individuals, or any data that would enable identifying specific users.
+
+Our prediction enables performance optimization without requiring user-level tracking. Population patterns are sufficient for infrastructure optimization.
+
+## When predictions fail
+
+Models are wrong approximately 6% of the time. These failures are educational.
+
+### **Unexpected events break patterns**
+
+Our models predicted normal traffic for a news website on a quiet Tuesday afternoon. Then a major political event occurred. Traffic spiked 2000% in six minutes.
+
+Our models didn't predict this because the event was genuinely unexpected. Our automated systems detected the traffic surge and responded, allocating additional capacity, pre-caching popular articles, but reactively rather than proactively.
+
+We couldn't have predicted the unpredictable event. But our systems adapted quickly enough that customer impact was minimal.
+
+### **Seasonal patterns shift gradually**
+
+User behavior changes over time. Content that was popular last year might not be popular this year. Traffic patterns that held true for months can shift gradually.
+
+Our models retrain continuously on recent data to adapt to these shifts. But there's always lag between behavior changing and models recognizing the change.
+
+When models predict based on outdated patterns, performance suffers slightly until models adapt. We've optimized retraining schedules to minimize this lag while preventing models from overreacting to temporary anomalies.
+
+### **Some traffic is genuinely random**
+
+Not all behavior follows patterns. Some requests are essentially random, users discovering old content, following unusual links, exploring content libraries unpredictably.
+
+Our models can't predict randomness. We handle unpredictable traffic the traditional way: cache after first request, serve from cache for subsequent requests.
+
+Fortunately, most traffic is predictable enough that predictive optimization provides significant benefit despite the unpredictable minority.
+
+## The competitive advantage
+
+Most CDNs optimize reactively. Traffic arrives, systems respond, performance improves over time as caches warm up and routing adapts.
+
+We optimize proactively. Traffic arrives to infrastructure already optimized for it.
+
+This provides first-request performance that competitors can't match. Their first requests trigger cache population and routing optimization. Our first requests are served from already-optimized infrastructure.
+
+The difference is most visible during traffic spikes. Competitors scramble to cache content and allocate capacity while traffic is already arriving. We prepared before traffic arrived.
+
+Users perceive this as better performance. We perceive it as better prediction.
+
+## What customers should know
+
+If you're a Jetstream customer, our models are probably predicting your traffic patterns right now. This enables:
+
+- Content pre-cached before users request it
+- Capacity allocated proactively rather than reactively
+- Traffic routing optimized for predicted future load
+- Performance that remains consistent during traffic spikes
+
+You don't need to do anything to enable this. Prediction happens automatically based on observed traffic patterns. The optimization is transparent, you simply experience better performance.
+
+If you want visibility into predictions, our dashboard shows forecast traffic for the next 24 hours. You can see what our models expect and verify predictions match your understanding of your traffic patterns.
+
+## The philosophical question
+
+How much prediction is too much?
+
+We've deliberately limited our prediction scope to infrastructure optimization. We predict aggregate traffic to allocate capacity efficiently. We don't predict user behavior for targeting, profiling, or any purpose beyond performance optimization.
+
+This is a choice. We could build more sophisticated models that predict individual user behavior. These models would enable additional optimizations. They would also require user-level tracking we've chosen not to implement.
+
+The line we've drawn: predict populations, not people. Optimize infrastructure, not user manipulation.
+
+Other providers might draw this line differently. We're comfortable with our position.
+
+## The future of prediction
+
+Our current models predict 24 hours ahead with 94% accuracy. We're working on models that predict farther into the future with similar accuracy.
+
+Week-ahead predictions would enable longer-term capacity planning. Month-ahead predictions would inform infrastructure deployment decisions.
+
+The challenge is prediction accuracy degrades with time horizon. Predicting tomorrow is easy. Predicting next month requires understanding seasonal patterns, long-term trends, and factors our models don't currently consider.
+
+We're experimenting with hybrid models that combine machine learning with domain knowledge, teaching models about holidays, seasonal patterns, content release schedules. Early results suggest we can achieve 85% accuracy for week-ahead predictions.
+
+If we succeed, infrastructure planning becomes less reactive and more deliberately strategic.
+
+## The bottom line
+
+Your traffic patterns follow predictable patterns. Our models detect those patterns and optimize infrastructure accordingly.
+
+This provides better performance than reactive optimization while respecting privacy by predicting populations rather than people.
+
+If this makes you uncomfortable, that's reasonable. If this makes you curious about what our models predict about your traffic, our dashboard shows forecasts. If this makes you want infrastructure that's already optimized when traffic arrives, you're already using it.
+
+Traffic prediction is how we deliver first-request performance that equals millionth-request performance. The content is already where it needs to be when you need it there.
+
+That's not magic. That's machine learning applied to infrastructure optimization.

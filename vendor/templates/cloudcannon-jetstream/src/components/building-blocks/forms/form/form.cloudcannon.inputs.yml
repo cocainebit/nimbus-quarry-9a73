@@ -1,0 +1,13 @@
+action:
+  type: url
+  comment: Where to send the form-data when the form is submitted. The URL that processes the form submission.
+  options:
+    disable_upload_file: true
+    hide_link_to_email_address: true
+    hide_link_to_file: true
+    hide_link_to_telephone: true
+formBlocks:
+  type: array
+  comment: The form blocks to render inside the form.
+  options:
+    structures: _structures.formBlocks

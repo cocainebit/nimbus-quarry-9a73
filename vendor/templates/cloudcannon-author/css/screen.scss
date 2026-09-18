@@ -1,0 +1,22 @@
+---
+---
+@import "variables";
+@import "book";
+@import "layout";
+@import "typography";
+@import "cloudcannon";
+
+.plotform-demo-note{margin:1.5rem auto 0;max-width:46rem;padding:0.85rem 1.25rem;
+font-size:0.8125rem;line-height:1.5;text-align:center;color:inherit;
+border:1px solid;border-color:color-mix(in srgb, currentColor 30%, transparent);
+border-radius:4px;background:color-mix(in srgb, currentColor 7%, transparent);}
+
+
+.wrap{box-sizing:border-box;margin-left:auto;margin-right:auto;}
+@media (max-width: 720px){
+  .wrap{padding:0 20px;}
+}
+@media (max-width: 560px){
+  .book{width:260px;height:404px;margin:96px auto;}
+  .formats a{display:inline-block;}
+}

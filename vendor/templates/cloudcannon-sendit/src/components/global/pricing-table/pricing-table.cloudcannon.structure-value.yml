@@ -1,0 +1,98 @@
+label: Pricing Table
+icon: table_rows
+tags: []
+
+value:
+  _name: global/pricing-table
+  pricing_tier:
+    - tier: free
+      highlight_tier: false
+      description: For starters Includes unlimited members
+      currency_symbol: $
+      price: '0'
+      has_discount: false
+      discount_price: '0'
+      features:
+        - item: 1 Site Activation
+          active_feature: true
+      button:
+        link: /login
+        text: Try This Free
+
+_inputs:
+  pricing_tier:
+    type: array
+    options:
+      structures: _structures.pricing_tier
+
+_structures:
+  pricing_tier:
+    values:
+      - value:
+          tier:
+          highlight_tier: false
+          description:
+          currency_symbol:
+          price:
+          has_discount:
+          discount_price:
+          features:
+          button:
+            link: 
+            text:
+        _inputs:
+          tier:
+            type: text
+            comment: The label displayed at the top of the pricing card.
+          highlight_tier:
+            type: switch
+          price:
+            type: text
+            options:
+              pattern: '^\d+$'
+              pattern_message: Value must be only numbers.
+          has_discount:
+            type: switch
+            comment: Discounts will be visible after a save & build
+          discount_price:
+            type: text
+            options:
+              pattern: '^\d+$'
+              pattern_message: Value must be only numbers.
+            hidden: '!has_discount'
+          description:
+            type: markdown
+          currency_symbol:
+            type: text
+            hidden: '!price'
+          features:
+            type: array
+            options:
+              structures: _structures.feature
+          button:
+            type: object
+            options:
+              preview:
+                icon: smart_button
+                text:
+                  - key: text
+                subtext:
+                  - key: link
+        _structures:
+          feature:
+            values:
+              - value:
+                  item: 
+                  active_feature: true
+                _inputs:
+                  active_feature:
+                    type: switch
+                    comment: Active/Inactive styles will be applied after a save & build.
+                preview:
+                  icon: stars
+        preview:
+          icon: checklist
+          text:
+            - key: tier
+          subtext:
+            - template: '{currency_symbol}{price}'

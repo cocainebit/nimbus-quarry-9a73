@@ -1,0 +1,27 @@
+label: Counter
+icon: speed
+description: Animated counter for highlighting key stats or figures.
+value:
+  _component: building-blocks/core-elements/counter
+  number: 100
+  prefix: $
+  suffix: M
+  alignmentHorizontal: start
+  size: 2xl
+preview:
+  text:
+    - Counter
+  subtext:
+    - template: "{prefix}{number}{suffix}"
+  icon: speed
+  gallery:
+    image: public/component-previews/building-blocks/core-elements/counter.svg
+    fit: cover
+picker_preview:
+  text: Counter
+  subtext: Animated counter for highlighting key stats or figures.
+  gallery:
+    image: public/component-previews/building-blocks/core-elements/counter.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/building-blocks/core-elements/counter/counter.cloudcannon.inputs.yml

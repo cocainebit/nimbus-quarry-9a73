@@ -1,0 +1,67 @@
+{
+  "id": "cloudcannon-treat",
+  "name": "Treat",
+  "repository": "https://github.com/CloudCannon/treat-jekyll-template",
+  "commit": "105333c37b8d342caa238f984cf8c2008e702f82",
+  "license": "MIT",
+  "licenseFirstLine": "MIT License",
+  "framework": "Jekyll 4",
+  "sourceDirectory": "vendor/templates/cloudcannon-treat",
+  "photography": "None. Every photograph bundled upstream was removed before vendoring and replaced with placeholder artwork drawn in this repository, so no third-party photograph is redistributed.",
+  "changes": [
+    "Google Analytics block removed from the layout.",
+    "Disqus comment embed removed.",
+    "Google Fonts stylesheet replaced with self-hosted woff2 files.",
+    "Remote demo photographs (source.unsplash.com, unsplash.it, placehold.it, placekitten.com, placebear.com, fillmurray.com) replaced with placeholder artwork drawn for this repository.",
+    "Bundled photographs removed and replaced with placeholder artwork drawn for this repository: images/author.jpg",
+    "A visible note marks the demonstration content as illustrative.",
+    "The Pinterest hover widget and its jQuery dependency were removed; anchor scrolling now uses CSS scroll-behavior."
+  ],
+  "images": [
+    {
+      "file": "apple-touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/treat-jekyll-template at 105333c37b8d342caa238f984cf8c2008e702f82. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/author.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/favicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/treat-jekyll-template at 105333c37b8d342caa238f984cf8c2008e702f82. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/logo.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/treat-jekyll-template at 105333c37b8d342caa238f984cf8c2008e702f82. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/placeholders/field-1560x940.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/field-1600x1000.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-1600x1000.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "siteicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/treat-jekyll-template at 105333c37b8d342caa238f984cf8c2008e702f82. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/treat-jekyll-template at 105333c37b8d342caa238f984cf8c2008e702f82. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    }
+  ]
+}

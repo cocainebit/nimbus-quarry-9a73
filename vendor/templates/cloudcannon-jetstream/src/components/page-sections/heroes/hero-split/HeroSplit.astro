@@ -1,0 +1,189 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Icon from "@components/building-blocks/core-elements/icon/Icon.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Image from "@core-elements/image/Image.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+import ButtonGroup from "@wrappers/button-group/ButtonGroup.astro";
+import Split from "@wrappers/split/Split.astro";
+
+const {
+  id = "",
+  title = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  subtext = "",
+  buttonSections = [],
+  image = {},
+  reverse = false,
+  paddingVertical = "4xl",
+  colorScheme = "inherit",
+  backgroundColor,
+  contentBackground = false,
+  background,
+  verticalOffset = {},
+  rounded = false,
+  class: className,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<CustomSection
+  label={id}
+  maxContentWidth=""
+  paddingHorizontal=""
+  paddingVertical={paddingVertical}
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  background={background}
+  contentBackground={contentBackground}
+  verticalOffset={verticalOffset}
+  rounded={rounded}
+  class:list={["hero", className]}
+  id={id}
+  {...htmlAttributes}
+>
+  <CustomSection
+    maxContentWidth="3xl"
+    paddingHorizontal="lg"
+    paddingVertical=""
+    colorScheme={colorScheme}
+    backgroundColor=""
+    contentBackground={false}
+    verticalOffset={false}
+    class:list={["hero-title", className]}
+  >
+    <Heading
+      level="h1"
+      size="3xl"
+      alignmentHorizontal="center"
+      data-prop="title"
+      >{title}</Heading
+    >
+  </CustomSection>
+  <CustomSection
+    maxContentWidth="3xl"
+    paddingHorizontal="lg"
+    paddingVertical=""
+    colorScheme={colorScheme}
+    backgroundColor=""
+    contentBackground={false}
+    verticalOffset={false}
+    class:list={["hero-split-content", className]}
+  >
+    <Split
+      distributionMode="half"
+      alignmentVertical="center"
+      reverse={reverse}
+      minSplitWidth={975}
+      gap="2xl"
+    >
+      <Fragment slot="first">
+        <Icon
+          style="margin-top: var(--spacing-2xl) !important;"
+          {...eyebrowIcon}
+        />
+        <div>
+          <SimpleText
+            class="eyebrow"
+            data-prop="eyebrowText"
+          >
+            {eyebrowText}
+          </SimpleText>
+          <Heading
+            level="h1"
+            size="2xl"
+            data-prop="heading"
+            text={heading}
+          />
+          <Text
+            class="subtext"
+            data-prop="subtext"
+            text={subtext}
+          />
+          <ButtonGroup
+            class="buttons-container"
+            buttonSections={buttonSections}
+          />
+        </div>
+      </Fragment>
+      <Fragment slot="second"></Fragment>
+    </Split>
+  </CustomSection>
+  <Split
+    distributionMode="half"
+    alignmentVertical="center"
+    reverse={reverse}
+    minSplitWidth={1023}
+    gap="2xl"
+    class="hero-split-image"
+  >
+    <Fragment slot="first"></Fragment>
+    <Fragment slot="second">
+      <Image
+        source={image.source}
+        alt={image.alt}
+        rounded={image.rounded}
+        data-prop-src="image.source"
+        data-prop-alt="image.alt"
+      />
+    </Fragment>
+  </Split>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .hero {
+      > .outer-content .content {
+        @media (width >= 1024px) {
+          display: grid;
+
+          .hero-split-content,
+          .hero-split-image {
+            grid-row: 2;
+            grid-column: 1;
+          }
+
+          .hero-split-content {
+            .pane.first {
+              display: flex;
+              gap: var(--spacing-md);
+
+              .icon {
+                flex-shrink: 0;
+              }
+            }
+          }
+
+          .hero-split-image {
+            .image-inner {
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+            }
+          }
+
+          .hero-split-image.reversed {
+            .image-inner {
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+              border-top-right-radius: var(--radius-md);
+              border-bottom-right-radius: var(--radius-md);
+            }
+          }
+        }
+
+        .hero-split-image {
+          .image-inner {
+            max-height: 50vh;
+            width: 100%;
+            position: relative;
+            z-index: var(--layer-2);
+          }
+        }
+      }
+    }
+  }
+</style>

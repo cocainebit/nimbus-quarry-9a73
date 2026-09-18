@@ -1,0 +1,167 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+import ButtonGroup from "@wrappers/button-group/ButtonGroup.astro";
+
+const {
+  id = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  subtext = "",
+  buttonSections = [],
+  colorScheme = "inherit",
+  maxContentWidth = "xl",
+  backgroundColor,
+  contentBackground = false,
+  background,
+  paddingVertical = "4xl",
+  verticalOffset = {},
+  class: className,
+  rounded = false,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<CustomSection
+  class:list={["cta-center", className]}
+  contentClass={rounded ? "cta-center-rounded" : ""}
+  label={id}
+  maxContentWidth={maxContentWidth}
+  paddingHorizontal="md"
+  paddingVertical={paddingVertical}
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  contentBackground={contentBackground}
+  background={background}
+  verticalOffset={verticalOffset}
+  rounded={false}
+  style={`--max-width: var(--content-width-${maxContentWidth})`}
+  id={id}
+  {...htmlAttributes}
+>
+  <Icon {...eyebrowIcon} />
+  <SimpleText
+    alignmentHorizontal="center"
+    class="eyebrow"
+    data-prop="eyebrowText"
+  >
+    {eyebrowText}
+  </SimpleText>
+  <Heading
+    level="h2"
+    size="xl"
+    alignmentHorizontal="center"
+    data-prop="heading"
+    text={heading}
+  />
+  <Text
+    alignmentHorizontal="center"
+    data-prop="subtext"
+    text={subtext}
+  />
+  <ButtonGroup
+    class="buttons"
+    buttonSections={buttonSections}
+    alignmentHorizontal="center"
+    data-children-prop="buttonSections"
+  />
+  <div class="background-decoration"></div>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .cta-center {
+      margin: var(--spacing-xl) 0;
+      container-type: inline-size;
+      container-name: cta-center;
+
+      .outer-content {
+        @container cta-center (max-width: 1024px) {
+          margin-right: var(--spacing-lg);
+        }
+      }
+
+      .outer-content {
+        position: relative;
+        z-index: 0;
+      }
+      .outer-content > .content {
+        position: static;
+      }
+
+      .outer-content > .background {
+        max-width: calc(var(--max-width) + calc((100vw - var(--max-width)) / 2));
+        z-index: var(--layer-below-2);
+      }
+
+      .outer-content > .background-image,
+      .outer-content > .background-video,
+      .outer-content > .background-overlay {
+        max-width: calc(var(--max-width) + calc((100vw - var(--max-width)) / 2));
+        z-index: var(--layer-below);
+      }
+
+      .outer-content > .radial-background-wrapper,
+      .outer-content > .radial-background-wrapper > .radial-background {
+        z-index: var(--layer-below);
+      }
+
+      .icon.align-center {
+        margin: 0 auto;
+      }
+
+      .background-decoration {
+        position: absolute;
+        width: 100%;
+        max-width: calc(var(--max-width) + calc((100vw - var(--max-width)) / 2));
+        top: var(--spacing-lg);
+        right: 0;
+        height: 100%;
+        z-index: var(--layer-below-3);
+        border: 1px solid var(--color-bg-surface);
+        border-right: none;
+        background: repeating-linear-gradient(
+          135deg,
+          var(--color-bg-surface) 0 1px,
+          transparent 2px 20px
+        );
+
+        @container cta-center (max-width: 1024px) {
+          border: 1px solid var(--color-bg-surface);
+          left: var(--spacing-lg);
+        }
+      }
+
+      .outer-content.cta-center-rounded {
+        > .background {
+          border-top-right-radius: var(--radius-md);
+          border-bottom-right-radius: var(--radius-md);
+        }
+
+        > .background.bg-highlight-radial-gradient-animated {
+          overflow: hidden;
+        }
+        .background-decoration {
+          border-top-left-radius: var(--radius-md);
+          border-bottom-left-radius: var(--radius-md);
+        }
+
+        > .background {
+          @container cta-center (max-width: 1024px) {
+            border-radius: var(--radius-md);
+          }
+        }
+        .background-decoration {
+          @container cta-center (max-width: 1024px) {
+            border-radius: var(--radius-md);
+          }
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+const {
+  paddingVertical = "md",
+  class: className,
+  useDefaultEditableBinding: _useDefaultEditableBinding = false,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<div
+  class:list={["divider", className, `padding-y-${paddingVertical}`]}
+  {...htmlAttributes}
+  aria-hidden="true"
+>
+  <hr class="rule" />
+</div>
+
+<style is:global>
+  @layer components {
+    .divider.padding-y-none {
+      padding: 0;
+    }
+
+    .divider.padding-y-xs {
+      padding-block: var(--spacing-xs);
+    }
+
+    .divider.padding-y-sm {
+      padding-block: var(--spacing-sm);
+    }
+
+    .divider.padding-y-md {
+      padding-block: var(--spacing-md);
+    }
+
+    .divider.padding-y-lg {
+      padding-block: var(--spacing-lg);
+    }
+
+    .divider.padding-y-xl {
+      padding-block: var(--spacing-xl);
+    }
+
+    .divider.padding-y-2xl {
+      padding-block: var(--spacing-2xl);
+    }
+
+    .divider.padding-y-3xl {
+      padding-block: var(--spacing-3xl);
+    }
+
+    .divider > .rule {
+      margin: 0;
+      border: 0;
+      border-top: 2px solid var(--color-border-subtle);
+    }
+  }
+</style>

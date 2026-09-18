@@ -1,0 +1,29 @@
+label: Video
+icon: videocam
+description: Video component for YouTube, Vimeo, and HTML5 sources.
+value:
+  _component: building-blocks/core-elements/video
+  id: ""
+  type: youtube
+  videoId: ""
+  title: ""
+  source: ""
+  thumbnail: ""
+preview:
+  text:
+    - template: Video - {type}
+    - Video
+  subtext:
+    - key: title
+  icon: videocam
+  gallery:
+    image: public/component-previews/building-blocks/core-elements/video.svg
+    fit: cover
+picker_preview:
+  text: Video
+  subtext: Video component for YouTube, Vimeo, and HTML5 sources.
+  gallery:
+    image: public/component-previews/building-blocks/core-elements/video.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/building-blocks/core-elements/video/video.cloudcannon.inputs.yml

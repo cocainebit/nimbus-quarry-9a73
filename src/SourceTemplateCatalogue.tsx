@@ -82,6 +82,7 @@ export default function SourceTemplateCatalogue({
           ["studio", "Studio editions"],
           ["contemporary", "Contemporary"],
           ["motion", "Motion studies"],
+          ["cloudcannon", "Publisher library"],
           ["developer", "Developer & publishing"],
           ["classic", "Classic archive"],
         ].map(([id, label]) => (
@@ -108,6 +109,13 @@ export default function SourceTemplateCatalogue({
         <p className="source-collection-context">
           The earlier collection, retained for existing projects. These designs
           are not the contemporary selection.
+        </p>
+      )}
+      {collection === "cloudcannon" && (
+        <p className="source-collection-context">
+          CloudCannon's MIT template line, imported unchanged apart from removing
+          remote services and every bundled photograph. Image slots hold drawn
+          placeholders for your own pictures.
         </p>
       )}
       {collection === "motion" && (

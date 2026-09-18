@@ -1,0 +1,235 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import ContentSelector from "@building-blocks/wrappers/content-selector/ContentSelector.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+
+const {
+  id = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  subtext = "",
+  tabs = [],
+  navigationPosition = "start",
+  paddingVertical = "6xl",
+  maxContentWidth = "xl",
+  backgroundColor = "base",
+  colorScheme = "light",
+  background,
+  verticalOffset = {},
+  rounded = false,
+  class: className,
+  useDefaultEditableBinding = false,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+
+const snakePath =
+  "M0 2H113.5C124.546 2 133.5 10.9543 133.5 22V121V246.5V476C133.5 487.046 142.454 496 153.5 496H188.5C199.546 496 208.5 504.954 208.5 516V572C208.5 583.046 199.546 592 188.5 592H178C166.954 592 158 600.954 158 612V731C158 742.046 166.954 751 178 751H1545C1556.05 751 1565 742.046 1565 731V636C1565 624.954 1573.95 616 1585 616H1636C1647.05 616 1656 607.046 1656 596V478V282C1656 270.954 1647.05 262 1636 262H1598C1586.95 262 1578 253.046 1578 242V154V46C1578 34.9543 1586.95 26 1598 26H1714H1757";
+---
+
+<CustomSection
+  class:list={["tabbed-content", className]}
+  maxContentWidth=""
+  paddingHorizontal="lg"
+  paddingVertical={paddingVertical}
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  background={background}
+  contentBackground={false}
+  verticalOffset={verticalOffset}
+  rounded={rounded}
+  id={id}
+  {...htmlAttributes}
+>
+  <div class="background-decoration-container">
+    <div class="snake-container snake-container-desktop">
+      <svg
+        class="snake snake-pink"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        viewBox="0 0 1728 753"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <defs>
+          <linearGradient id="gradient">
+            <stop
+              offset="0%"
+              stop-color="var(--color-bg-brand)"
+              stop-opacity="0"
+            ></stop>
+            <stop
+              offset="50%"
+              stop-color="var(--color-bg-inverse)"
+              stop-opacity="1"
+            ></stop>
+            <stop
+              offset="100%"
+              stop-color="var(--color-bg-brand)"
+              stop-opacity="0"
+            ></stop>
+          </linearGradient>
+          <mask
+            id="gradient-mask"
+            mask-type="alpha"
+          >
+            <rect
+              class="mask-rect"
+              x="0"
+              y="0"
+              width="50%"
+              height="100%"
+              fill="url(#gradient)"
+            ></rect>
+          </mask>
+        </defs>
+        <path
+          mask="url(#gradient-mask)"
+          d={snakePath}
+          stroke="var(--color-bg-inverse)"
+          stroke-width="4"
+        ></path>
+      </svg>
+      <svg
+        class="snake snake-purple"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        viewBox="0 0 1728 753"
+        preserveAspectRatio="none"
+        fill="none"
+      >
+        <path
+          d={snakePath}
+          stroke="var(--color-bg-brand)"
+          stroke-width="4"
+        ></path>
+      </svg>
+    </div>
+  </div>
+  <CustomSection
+    class:list={["tabbed-content-section-wrapper", className]}
+    maxContentWidth={maxContentWidth}
+    paddingHorizontal=""
+    paddingVertical=""
+    colorScheme={colorScheme}
+    backgroundColor=""
+    contentBackground={false}
+  >
+    <CustomSection
+      class:list={["tabbed-content-section", className]}
+      maxContentWidth=""
+      paddingHorizontal="lg"
+      paddingVertical="lg"
+      colorScheme={colorScheme}
+      backgroundColor="base"
+      contentBackground={false}
+    >
+      <Icon {...eyebrowIcon} />
+      <SimpleText
+        alignmentHorizontal="start"
+        class="eyebrow"
+        data-prop="eyebrowText"
+      >
+        {eyebrowText}
+      </SimpleText>
+      <Heading
+        level="h2"
+        size="xl"
+        alignmentHorizontal="start"
+        data-prop="heading"
+        text={heading}
+      />
+      <Text
+        text={subtext}
+        alignmentHorizontal="start"
+        data-prop="subtext"
+      >
+        {subtext}
+      </Text>
+
+      <ContentSelector
+        items={tabs}
+        navigationPosition={navigationPosition}
+        data-children-prop="tabs"
+      />
+    </CustomSection>
+  </CustomSection>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .tabbed-content {
+      container-type: inline-size;
+
+      .tabbed-content-section-wrapper {
+        > .outer-content > .content {
+          &::before {
+            --angle: 0deg;
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            margin: -4px;
+            border-radius: calc(var(--radius-md) + 4px);
+            background: conic-gradient(
+              from var(--angle),
+              var(--color-bg-brand),
+              var(--color-bg-inverse),
+              var(--color-bg-brand)
+            );
+            animation: rotate-angle 2s linear infinite;
+          }
+        }
+      }
+
+      .tabbed-content-section {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+      }
+
+      .background-decoration-container {
+        display: none;
+      }
+
+      @container (min-width: 1280px) {
+        .background-decoration-container {
+          display: block;
+          position: absolute;
+          inset: var(--spacing-md) 0;
+          z-index: var(--layer-1);
+          pointer-events: none;
+          overflow: clip visible;
+
+          .snake-container {
+            position: sticky;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            height: 80%;
+          }
+
+          .snake-container-desktop {
+            display: block;
+          }
+
+          .snake {
+            position: absolute;
+            height: 100%;
+          }
+
+          .snake-pink {
+            z-index: var(--layer-1);
+          }
+
+          .mask-rect {
+            animation: slide-mask var(--animation-extra-slow) linear infinite;
+          }
+        }
+      }
+    }
+  }
+</style>

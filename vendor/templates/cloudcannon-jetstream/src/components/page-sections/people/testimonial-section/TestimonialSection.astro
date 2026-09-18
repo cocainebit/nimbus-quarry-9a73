@@ -1,0 +1,60 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Testimonial from "@core-elements/testimonial/Testimonial.astro";
+
+const {
+  id = "",
+  text = "",
+  authorName = "",
+  authorDescription = "",
+  authorImage = "",
+  alignmentHorizontal = "start",
+  paddingVertical = "sm",
+  maxContentWidth = "2xl",
+  colorScheme = "inherit",
+  backgroundColor,
+  class: className,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<CustomSection
+  {...htmlAttributes}
+  class:list={["testimonial-section-container", className]}
+  maxContentWidth={maxContentWidth}
+  paddingHorizontal="lg"
+  paddingVertical={paddingVertical}
+  colorScheme={colorScheme}
+  backgroundColor=""
+  id={id}
+>
+  <CustomSection
+    class:list={["testimonial-section", className]}
+    maxContentWidth=""
+    paddingHorizontal="2xl"
+    paddingVertical="2xl"
+    colorScheme={colorScheme}
+    backgroundColor={backgroundColor}
+  >
+    <Testimonial
+      text={text}
+      authorName={authorName}
+      authorDescription={authorDescription}
+      authorImage={authorImage}
+      alignmentHorizontal={alignmentHorizontal}
+      data-prop="text"
+      data-prop-author-name="authorName"
+      data-prop-author-description="authorDescription"
+    />
+  </CustomSection>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .testimonial-section {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+  }
+</style>

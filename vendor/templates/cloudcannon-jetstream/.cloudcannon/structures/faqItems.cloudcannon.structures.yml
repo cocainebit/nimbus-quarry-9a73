@@ -1,0 +1,27 @@
+faqItems:
+  values:
+    - label: FAQ Item
+      icon: help
+      value:
+        _component: building-blocks/wrappers/accordion/accordion-item
+        title: Question text
+        contentSections:
+          - _component: building-blocks/core-elements/text
+            text: Answer text goes here.
+      preview:
+        text:
+          - key: title
+          - FAQ Item
+        subtext:
+          - key: contentSections.0.text
+          - Add answer text
+      _inputs:
+        title:
+          type: text
+          comment: The question text.
+        contentSections:
+          type: array
+          label: Answer Content
+          comment: Content sections for the answer (typically text).
+          options:
+            structures: _structures.accordionSections

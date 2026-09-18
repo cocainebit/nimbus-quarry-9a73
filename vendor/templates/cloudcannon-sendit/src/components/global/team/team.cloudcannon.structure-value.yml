@@ -1,0 +1,20 @@
+label: Team
+icon: groups
+tags: []
+
+value:
+  _name: global/team
+  title: Our leadership & Team Members
+  team_members:
+    - name: Cody Fisher
+      designation: Co-Founder & CEO
+      image: /images/team/1.jpg
+      image_alt: "Team member: Cody Fisher"
+
+_inputs:
+  image:
+    type: image
+    options:
+      resize_style: crop
+      prevent_resize_existing_files: true
+      expandable: true

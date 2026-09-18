@@ -1,0 +1,124 @@
+---
+_schema: default
+permalink:
+title: Why our engineers get excited about fiber optic cables
+description: >-
+  There's something deeply satisfying about photons traveling at the speed of
+  light through glass, and we're here to explain why.
+date: 2026-02-04T00:00:00Z
+author: abd48cd0-7d1e-43e4-ba1c-5921e60cc87a
+image: /src/assets/images/blog-fiberoptic.png
+image_alt: A technician in a data centre threading teal fiber optic cables into a server rack
+tag: Photons
+counters: []
+---
+
+Last month, one of our senior network engineers spent 45 minutes explaining why a new fiber optic cable route between Singapore and Tokyo made him genuinely excited. His enthusiasm was infectious and slightly concerning.
+
+But he was right to be excited. Physical infrastructure matters more than most people realize.
+
+## The physics of light in glass
+
+Fiber optic cables transmit data as pulses of light through extremely pure glass. Light travels through this glass at approximately 200,000 kilometers per second, about two-thirds the speed of light in vacuum.
+
+This sounds fast. It is fast. It's also the fundamental speed limit for data transmission over distance.
+
+When you request a website, your request travels as light pulses through fiber optic cables to a server, which processes the request and sends a response that travels back through cables to you. The total time depends primarily on the physical distance light must travel.
+
+Singapore to Tokyo is approximately 5,300 kilometers. Light traveling through fiber takes roughly 26 milliseconds to cover this distance. Add some overhead for routing and signal processing: approximately 30 milliseconds minimum latency.
+
+This is a hard physical limit. We can't make light travel faster through glass. The only way to reduce latency is to reduce distance.
+
+## Why cable routes matter
+
+Not all fiber cables take the most direct route. Undersea cables follow coastlines, avoid geographic obstacles, and connect at available landing stations. The route between two cities might be considerably longer than the straight-line distance.
+
+The old fiber route between Singapore and Tokyo was approximately 6,800 kilometers, 28% longer than the straight-line distance. This added roughly 8 milliseconds of latency purely due to extra cable length.
+
+The new cable route our engineer was excited about is 5,500 kilometers, much closer to the straight-line distance. This reduces latency by approximately 6-7 milliseconds.
+
+Seven milliseconds might not sound significant. For applications that make dozens of round-trip requests to render a page, those milliseconds compound. Seven milliseconds per request, fifty requests per page load: 350 milliseconds of latency reduction just from better cable routing.
+
+Our engineer's enthusiasm was justified.
+
+## The economics of dark fiber
+
+"Dark fiber" refers to installed fiber optic cables not currently carrying traffic. Telecommunications companies install more fiber capacity than they immediately need, then lease unused capacity to other organizations.
+
+Purchasing dark fiber rights gives us dedicated capacity on specific cable routes. This provides several advantages:
+
+- **Lower latency:** Dedicated fiber means we control routing decisions. Our traffic takes the shortest available path rather than whatever path the carrier selects.
+- **Higher bandwidth:** Dedicated capacity means we're not competing with other traffic for bandwidth. We can utilize full cable capacity when needed.
+- **Better reliability:** If we control the fiber, we control failover decisions. When problems occur, we reroute traffic immediately rather than waiting for carrier intervention.
+- **Cost predictability:** Purchasing long-term fiber rights costs more upfront but less over time than leasing bandwidth. For high-traffic routes, this is economically sensible.
+
+We've invested heavily in dark fiber partnerships over the past several years. Our network now includes dedicated fiber on major routes between data centers. This investment directly improves latency and reliability for customer traffic.
+
+## Light and wavelength division multiplexing
+
+A single fiber optic strand can carry multiple wavelengths of light simultaneously. Different wavelengths don't interfere with each other, you can send different data streams on different wavelengths through the same fiber.
+
+This technique, called wavelength division multiplexing, dramatically increases capacity without installing additional cables.
+
+Modern fiber systems support 80+ wavelengths per fiber. Each wavelength can carry 100+ gigabits per second. A single fiber strand can theoretically transmit 8+ terabits per second.
+
+Our edge nodes use WDM extensively. We transmit different customer traffic on different wavelengths, maintaining separation and quality of service without requiring separate physical cables for each traffic type.
+
+This is why our engineers get excited about fiber technology developments. Improvements in WDM technology directly increase our network capacity without requiring new cable installations.
+
+## The last mile problem
+
+Our fiber infrastructure connects data centers and edge nodes efficiently. But the "last mile", the connection from our edge nodes to end users, is often slower and less reliable.
+
+Most users connect via residential internet through cable, DSL, or wireless connections with higher latency and lower reliability than fiber. We can optimize our backbone network perfectly, but user experience still depends on their local internet connection.
+
+This is why edge node placement matters so much. We can't improve users' last-mile connections, but we can position edge nodes geographically closer to users, reducing the distance traffic must travel over that last mile.
+
+A user in Bangkok with 10ms latency to their ISP will experience much better performance accessing an edge node in Bangkok (15ms total latency) than accessing one in Singapore (40ms total latency).
+
+Geographic expansion of our edge network is fundamentally about reducing the physical distance between users and our infrastructure. Better fiber routes between edge nodes help, but proximity matters more.
+
+## Why this matters for applications
+
+Different applications have different latency sensitivity:
+
+- **Video streaming:** Relatively latency-tolerant. A few hundred milliseconds of delay is imperceptible. Bandwidth matters more than latency.
+- **Web browsing:** Moderately latency-sensitive. Each page load involves multiple round trips. 50ms latency is acceptable, 200ms is noticeable, 500ms is frustrating.
+- **Gaming:** Highly latency-sensitive. Every millisecond matters. 30ms feels responsive, 100ms feels sluggish, 200ms is nearly unplayable.
+- **Financial trading:** Extremely latency-sensitive. Microseconds matter. Entire industries exist around shaving milliseconds off trade execution times.
+
+Our fiber infrastructure optimization primarily benefits latency-sensitive applications. We've reduced Singapore-Tokyo latency by 7ms not because video streaming needs it but because gaming and financial applications absolutely do.
+
+## The future of fiber
+
+Current fiber technology uses light wavelengths in the infrared spectrum. Research into using additional wavelengths could multiply capacity again.
+
+Hollow-core fiber, where light travels through air gaps rather than solid glass, could reduce latency by another 30% by allowing light to travel closer to its vacuum speed.
+
+Multi-core fiber, with multiple light-transmitting cores in a single cable, could increase capacity without requiring more cable installations.
+
+These technologies are experimental but promising. When they become commercially viable, our network will benefit immediately.
+
+## The engineer's perspective
+
+Why do our engineers get excited about fiber optic cables?
+
+Because fiber is the foundation everything else builds on. Software optimization can improve efficiency. Better algorithms can reduce computational overhead. Smarter caching can eliminate redundant requests.
+
+But ultimately, data transmission speed is limited by physics. Light travels at finite speed through glass. The only way to reduce latency is better routes, shorter cables, and strategic placement of infrastructure.
+
+Every millisecond we shave off latency through better fiber infrastructure provides permanent improvement. Software optimizations require ongoing maintenance. Physical infrastructure improvements are durable.
+
+That new Singapore-Tokyo cable route will provide latency benefits for decades. Our engineer's 45-minute excited explanation was entirely warranted.
+
+## The honest truth
+
+Most users will never notice the 7-millisecond improvement from better fiber routing. Most applications won't benefit measurably. But for the applications and use cases where milliseconds matter, those improvements are significant.
+
+We optimize infrastructure for the most demanding use cases because those optimizations benefit everyone. Infrastructure fast enough for gaming is more than fast enough for video streaming. Latency low enough for financial trading makes web browsing feel instantaneous.
+
+Our engineers get excited about fiber because they understand that infrastructure performance starts with physical reality. Glass, light, distance, and physics matter more than any software optimization.
+
+That's why we invest in dark fiber partnerships, celebrate new cable routes, and employ engineers who genuinely get excited about photons traveling through glass at 200,000 kilometers per second.
+
+It's not the most glamorous aspect of infrastructure engineering. But it's foundational to everything else we do.

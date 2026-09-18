@@ -1,0 +1,25 @@
+---
+layout: page
+---
+
+{% include post-summary-details.html post=page %}
+
+<div>{{ content }}</div>
+
+<h2>Meet the author</h2>
+<div class="post-author staff">
+	{% assign author_id = page.author_staff_member | prepend: "/staff_members/" | append: "/" %}
+	{% assign author = site.staff_members | where: "url", author_id | first %}
+
+	{% include staff-member.html member=author %}
+</div>
+
+<h2>Keep reading</h2>
+<ol class="post-links post-list">
+	{% if page.next %}
+		{% include post-summary.html post=page.next %}
+	{% elsif page.previous %}
+		{% include post-summary.html post=page.previous %}
+	{% endif %}
+</ol>
+

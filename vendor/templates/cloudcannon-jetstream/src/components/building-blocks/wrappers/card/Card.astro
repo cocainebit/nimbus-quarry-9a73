@@ -1,0 +1,536 @@
+---
+import Component from "@components/utils/renderBlock.astro";
+import { slugifyLabel } from "@components/utils/slugify";
+import Image from "@core-elements/image/Image.astro";
+import LiquidGradient from "@core-elements/liquid-gradient/LiquidGradient.astro";
+import Video from "@core-elements/video/Video.astro";
+
+const {
+  label,
+  contentSections,
+  beforeContentSections,
+  afterContentSections,
+  maxContentWidth,
+  paddingHorizontal,
+  paddingVertical,
+  colorScheme = "inherit",
+  backgroundColor,
+  background,
+  link,
+  showBeforeAfter = true,
+  rounded = false,
+  border = false,
+  class: className,
+  useDefaultEditableBinding = false,
+  _component,
+  "data-children-prop": childrenDataProp,
+  "data-children-prop-before": childrenDataPropBefore,
+  "data-children-prop-after": childrenDataPropAfter,
+  ...htmlAttributes
+} = Astro.props;
+
+const {
+  type: bgType = "image",
+  positionVertical = "top",
+  positionHorizontal = "center",
+  priority = false,
+  imageSource = "",
+  imageAlt = "",
+  videoSource = "",
+  overlay = 0,
+} = background || {};
+
+if (!htmlAttributes.id && label) {
+  htmlAttributes.id = slugifyLabel(label);
+}
+
+const effectiveChildrenProp =
+  childrenDataProp ?? (useDefaultEditableBinding ? "contentSections" : null);
+const arrayDataAttributes = effectiveChildrenProp
+  ? { "data-editable": "array", "data-prop": effectiveChildrenProp }
+  : {};
+
+const effectiveBeforeProp =
+  childrenDataPropBefore ?? (useDefaultEditableBinding ? "beforeContentSections" : null);
+const arrayDataAttributesBefore = effectiveBeforeProp
+  ? { "data-editable": "array", "data-prop": effectiveBeforeProp }
+  : {};
+
+const effectiveAfterProp =
+  childrenDataPropAfter ?? (useDefaultEditableBinding ? "afterContentSections" : null);
+const arrayDataAttributesAfter = effectiveAfterProp
+  ? { "data-editable": "array", "data-prop": effectiveAfterProp }
+  : {};
+
+const isPopoverLink = link?.startsWith("^");
+const Tag = link ? (isPopoverLink ? "button" : "a") : "div";
+const hasBeforeSlot = Astro.slots.has("before");
+const hasAfterSlot = Astro.slots.has("after");
+const usesBeforeContentSections = !hasBeforeSlot && showBeforeAfter && beforeContentSections;
+const usesAfterContentSections = !hasAfterSlot && showBeforeAfter && afterContentSections;
+---
+
+<div
+  class:list={["card", className]}
+  {...htmlAttributes}
+>
+  <Tag
+    {...isPopoverLink
+      ? { type: "button", popovertarget: link.slice(1), popovertargetaction: "show" }
+      : link && { href: link }}
+    class:list={["card-inner", rounded && "rounded", border && "border"]}
+    data-theme={colorScheme && colorScheme !== "inherit" ? colorScheme : undefined}
+  >
+    {
+      bgType === "image" && (
+        <Image
+          class:list={["background-image"]}
+          source={imageSource}
+          alt={imageAlt}
+          priority={priority}
+          positionVertical={positionVertical}
+          positionHorizontal={positionHorizontal}
+          background={true}
+        />
+      )
+    }
+    {
+      bgType === "video" && (
+        <Video
+          type="local-source"
+          source={videoSource}
+          background={true}
+          style={{ "--background-position": `${positionHorizontal} ${positionVertical}` }}
+        />
+      )
+    }
+    {
+      overlay !== 0 && (
+        <div
+          class="background-overlay"
+          aria-hidden="true"
+          style={{
+            backgroundColor: `rgba(${overlay < 0 ? "0, 0, 0" : "255, 255, 255"}, ${Math.abs(overlay)})`,
+          }}
+        />
+      )
+    }
+    {
+      backgroundColor && (
+        <div
+          aria-hidden="true"
+          class:list={["background", backgroundColor && `bg-${backgroundColor}`]}
+        >
+          {backgroundColor === "highlight-radial-gradient-animated" && <LiquidGradient />}
+        </div>
+      )
+    }
+
+    {
+      (usesBeforeContentSections || hasBeforeSlot) && (
+        <div
+          class="before-content"
+          {...arrayDataAttributesBefore}
+        >
+          <slot name="before">
+            {beforeContentSections && (
+              <Component
+                contentSections={beforeContentSections}
+                useDefaultEditableBinding={!!effectiveBeforeProp}
+              />
+            )}
+          </slot>
+        </div>
+      )
+    }
+
+    <div class="card-outer-content">
+      <div
+        class:list={[
+          "card-content",
+          paddingHorizontal && `pad-x-${paddingHorizontal}`,
+          paddingVertical && `pad-y-${paddingVertical}`,
+          maxContentWidth && `max-width-${maxContentWidth}`,
+        ]}
+        {...arrayDataAttributes}
+      >
+        <slot>
+          {
+            contentSections && (
+              <Component
+                contentSections={contentSections}
+                useDefaultEditableBinding={!!effectiveChildrenProp}
+              />
+            )
+          }
+        </slot>
+      </div>
+    </div>
+
+    {
+      (usesAfterContentSections || hasAfterSlot) && (
+        <div
+          class="after-content"
+          {...arrayDataAttributesAfter}
+        >
+          <slot name="after">
+            {afterContentSections && (
+              <Component
+                contentSections={afterContentSections}
+                useDefaultEditableBinding={!!effectiveAfterProp}
+              />
+            )}
+          </slot>
+        </div>
+      )
+    }
+  </Tag>
+</div>
+
+<style is:global>
+  @layer components {
+    .card {
+      display: block;
+      height: 100%;
+      margin-top: var(--spacing-lg);
+      position: relative;
+
+      &:has(> a.card-inner)::before,
+      &:has(.button > a)::before {
+        --angle: 0deg;
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        margin: -4px;
+        border-radius: calc(var(--radius-md) + 4px);
+        background: conic-gradient(
+          from var(--angle),
+          var(--color-bg-brand),
+          var(--color-bg-inverse),
+          var(--color-bg-brand)
+        );
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--animation-normal) ease;
+        /* Paused until hover so the angle holds its position on the way out */
+        animation: rotate-angle 2s linear infinite paused;
+      }
+
+      &:has(> a.card-inner:hover)::before,
+      &:has(.button > a:hover)::before {
+        opacity: 1;
+        animation-play-state: running;
+      }
+
+      &:has(> a.card-inner:hover) > .card-inner,
+      &:has(.button > a:hover) > .card-inner.border {
+        border-color: transparent;
+      }
+
+      > button.card-inner {
+        appearance: none;
+        background: none;
+        cursor: pointer;
+        font: inherit;
+        padding: 0;
+        text-align: inherit;
+        width: 100%;
+      }
+
+      > button.card-inner {
+        appearance: none;
+        background: none;
+        cursor: pointer;
+        font: inherit;
+        padding: 0;
+        text-align: inherit;
+        width: 100%;
+      }
+
+      > .card-inner {
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+        position: relative;
+        text-decoration: none;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          border-color var(--animation-normal) ease;
+        z-index: 1;
+
+        &.rounded {
+          border-radius: var(--radius-md);
+        }
+
+        &.border {
+          border: 1px solid var(--color-border);
+        }
+
+        > .card-outer-content {
+          display: flex;
+          flex: 1 1 auto;
+          min-height: 0;
+          position: relative;
+          z-index: var(--layer-2);
+
+          > .card-content {
+            container-type: inline-size;
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            margin-inline: auto;
+            min-height: 0;
+            position: relative;
+            z-index: var(--layer-1);
+
+            > *:first-child {
+              margin-top: 0 !important;
+            }
+
+            > *:last-child {
+              margin-bottom: 0 !important;
+            }
+
+            &.pad-x-xs {
+              padding-inline: var(--spacing-xs);
+            }
+
+            &.pad-x-sm {
+              padding-inline: var(--spacing-sm);
+            }
+
+            &.pad-x-md {
+              padding-inline: var(--spacing-md);
+            }
+
+            &.pad-x-lg {
+              padding-inline: var(--spacing-lg);
+            }
+
+            &.pad-x-xl {
+              padding-inline: var(--spacing-xl);
+            }
+
+            &.pad-x-2xl {
+              padding-inline: var(--spacing-2xl);
+            }
+
+            &.pad-y-xs {
+              padding-block: var(--spacing-xs);
+            }
+
+            &.pad-y-sm {
+              padding-block: var(--spacing-sm);
+            }
+
+            &.pad-y-md {
+              padding-block: var(--spacing-md);
+            }
+
+            &.pad-y-lg {
+              padding-block: var(--spacing-lg);
+            }
+
+            &.pad-y-xl {
+              padding-block: var(--spacing-xl);
+            }
+
+            &.pad-y-2xl {
+              padding-block: var(--spacing-2xl);
+            }
+
+            &.max-width-none {
+              max-width: none;
+            }
+
+            &.max-width-xs {
+              max-width: var(--content-width-xs);
+            }
+
+            &.max-width-sm {
+              max-width: var(--content-width-sm);
+            }
+
+            &.max-width-md {
+              max-width: var(--content-width-md);
+            }
+
+            &.max-width-lg {
+              max-width: var(--content-width-lg);
+            }
+
+            &.max-width-xl {
+              max-width: var(--content-width-xl);
+            }
+
+            &.max-width-2xl {
+              max-width: var(--content-width-2xl);
+            }
+
+            &.max-width-3xl {
+              max-width: var(--content-width-3xl);
+            }
+
+            @media (width < 640px) {
+              &.pad-y-xs {
+                padding-block: var(--spacing-xs);
+              }
+
+              &.pad-y-sm {
+                padding-block: var(--spacing-xs);
+              }
+
+              &.pad-y-md {
+                padding-block: var(--spacing-sm);
+              }
+
+              &.pad-y-lg {
+                padding-block: var(--spacing-md);
+              }
+
+              &.pad-y-xl {
+                padding-block: var(--spacing-md);
+              }
+
+              &.pad-y-2xl {
+                padding-block: var(--spacing-lg);
+              }
+            }
+          }
+        }
+
+        > .before-content,
+        > .after-content {
+          position: relative;
+          z-index: var(--layer-2);
+
+          > *:first-child {
+            margin-top: 0 !important;
+          }
+
+          > *:last-child {
+            margin-bottom: 0 !important;
+          }
+        }
+
+        > .background-overlay {
+          inset: 0;
+          position: absolute;
+          z-index: var(--layer-1);
+        }
+
+        > .background {
+          inset: 0;
+          position: absolute;
+        }
+
+        > .background-image {
+          z-index: var(--layer-1);
+        }
+
+        > .background-video {
+          z-index: var(--layer-1);
+        }
+
+        > .bg-base {
+          background-color: var(--color-bg);
+        }
+
+        > .bg-surface {
+          background-color: var(--color-bg-surface);
+        }
+
+        > .bg-accent {
+          background-color: var(--color-bg-accent);
+        }
+
+        > .bg-highlight {
+          background-color: var(--color-bg-highlight);
+        }
+
+        > .bg-highlight-grid {
+          --grid-size: 32px;
+          --line: var(--color-bg-highlight);
+          opacity: 0.4;
+
+          background-image:
+            linear-gradient(to right, var(--line) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+
+          background-size: var(--grid-size) var(--grid-size);
+
+          background-position: calc(var(--grid-size) / 2) calc(var(--grid-size) / 2);
+          background-color: transparent;
+        }
+
+        > .bg-highlight-linear-gradient {
+          background: linear-gradient(
+            360deg,
+            var(--color-bg-surface) 0%,
+            var(--color-bg-highlight) 100%
+          );
+        }
+
+        > .bg-brand-linear-gradient-reverse {
+          background: linear-gradient(
+            360deg,
+            var(--color-bg-brand) 0%,
+            var(--color-bg-inverse) 100%
+          );
+        }
+
+        > .bg-brand-linear-gradient {
+          background: linear-gradient(
+            360deg,
+            var(--color-bg-inverse) 0%,
+            var(--color-bg-brand) 100%
+          );
+        }
+
+        > .bg-brand-linear-gradient-muted {
+          background: linear-gradient(
+            360deg,
+            var(--color-bg-inverse-muted) 0%,
+            var(--color-bg-brand-muted) 100%
+          );
+        }
+
+        > .bg-surface-linear-gradient {
+          background: linear-gradient(360deg, var(--color-bg) 0%, var(--color-bg-surface) 100%);
+        }
+
+        > .bg-highlight-radial-gradient {
+          background:
+            radial-gradient(circle at 65% 40%, var(--purple-2) 0%, transparent 20%),
+            radial-gradient(
+              20% 100% at 70% 120%,
+              color-mix(in oklab, var(--pink-6) 60%, transparent) 0%,
+              transparent 100%
+            ),
+            radial-gradient(
+              30% 100% at 0% 0%,
+              var(--purple-4) 0%,
+              var(--purple-2) 40%,
+              transparent 100%
+            ),
+            radial-gradient(20% 40% at 40% 0%, var(--purple-4) 0%, transparent 100%),
+            radial-gradient(20% 100% at 30% 120%, var(--pink-4) 0%, transparent 100%),
+            linear-gradient(to right, var(--pink-2) 20%, var(--purple-4) 75%, var(--purple-6) 100%);
+
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+
+        /* .bg-highlight-radial-gradient-animated has no rule here on purpose:
+           its ground gradient and drifting layers both live in the shared
+           LiquidGradient component, rendered inside .background above. One
+           definition serves every section offering the variant. */
+      }
+    }
+  }
+</style>

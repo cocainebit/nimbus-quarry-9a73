@@ -1,0 +1,242 @@
+image:
+  type: object
+  options:
+    structures:
+      values:
+        - label: Image
+          icon: image
+          value:
+            source: ""
+            alt: ""
+            rounded: false
+          _inputs:
+            source:
+              type: image
+              comment: The URL or path to the image.
+              options:
+                paths:
+                  uploads: src/assets/images
+                  static: ""
+            alt:
+              type: textarea
+              comment: Alternative text for accessibility.
+            rounded:
+              type: switch
+              comment: Whether to apply rounded corners to the image.
+icons:
+  type: array
+  comment: Icons to display in the hero. Requires exactly 2 icons.
+  hidden: "!backgroundDecoration"
+  options:
+    min_items: 2
+    max_items: 2
+    structures:
+      values:
+        - label: Icon
+          icon: circle
+          value:
+            name: ""
+            color: ""
+            background: false
+            size: ""
+          preview:
+            text:
+              - Icon
+            subtext:
+              - key: name
+            icon: star
+          _inputs:
+            name:
+              type: select
+              comment: The name of the icon to display from the icon library.
+              options:
+                values: _select_data.icons
+                preview:
+                  text:
+                    - key: name
+                  image:
+                    - template: src/icons/{id}.svg
+            size:
+              type: select
+              comment: The size of the icon.
+              options:
+                values:
+                  - id: none
+                    name: None
+                  - id: sm
+                    name: Small
+                  - id: md
+                    name: Medium
+                  - id: lg
+                    name: Large
+                  - id: xl
+                    name: Extra Large
+                  - id: 2xl
+                    name: 2xl
+                  - id: 3xl
+                    name: 3xl
+                  - id: 4xl
+                    name: 4xl
+            color:
+              type: select
+              comment: The color of the icon.
+              options:
+                values:
+                  - id: default
+                    name: Default (inherit)
+                  - id: brand
+                    name: Brand
+                  - id: brand-inverse
+                    name: Brand Inverse
+                  - id: brand-gradient
+                    name: Brand Gradient
+            background:
+              type: switch
+              comment: Show a background behind the icon.
+buttonSections:
+  type: array
+  comment: Calls-to-action shown beneath the copy block.
+  options:
+    structures: _structures.buttonSections
+backgroundDecoration:
+  type: switch
+  comment: Add a decorative line and icons into the background.
+headingSize:
+  comment: The font size of the heading text.
+  type: select
+  options:
+    values:
+      - id: 2xl
+        name: 2xl
+      - id: 4xl
+        name: 4xl
+sectionHeight:
+  type: select
+  comment: "The height of the section. Note: only applies on large screens."
+  options:
+    values:
+      - id: full
+        name: Full
+      - id: content
+        name: Fit Content
+
+id:
+  type: text
+  comment: Unique identifier for the section which can be used as an anchor link.
+eyebrowIcon:
+  type: object
+  comment: Optional icon displayed above the eyebrow.
+  options:
+    structures: _structures.eyebrowIcon
+eyebrowText:
+  type: text
+  comment: Optional label displayed above the heading.
+heading:
+  type: html
+  comment: Main heading text for the section.
+  options:
+    styles: .cloudcannon/styles/editor.css
+subtext:
+  type: markdown
+  comment: Optional subtext displayed beneath the heading.
+  options:
+    bold: true
+    italic: true
+    link: true
+    underline: true
+maxContentWidth:
+  type: select
+  comment: Maximum width constraint for the content.
+  options:
+    values:
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl
+      - id: 3xl
+        name: 3xl
+paddingVertical:
+  type: select
+  comment: Vertical padding applied to the custom section content.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl
+      - id: 3xl
+        name: 3xl
+colorScheme:
+  type: select
+  comment: Color scheme theme for the hero.
+  options:
+    values:
+      - id: inherit
+        name: Inherit
+      - id: light
+        name: Light
+      - id: dark
+        name: Dark
+backgroundColor:
+  type: select
+  comment: Background color for the section.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: base
+        name: Base
+      - id: surface
+        name: Surface
+      - id: accent
+        name: Accent
+      - id: highlight
+        name: Highlight
+      - id: highlight-grid
+        name: Highlight Grid
+      - id: surface-linear-gradient
+        name: Surface Linear Gradient
+      - id: brand-linear-gradient-reverse
+        name: Brand Linear Gradient Reverse
+      - id: brand-linear-gradient
+        name: Brand Linear Gradient
+      - id: brand-linear-gradient-muted
+        name: Brand Linear Gradient Muted
+      - id: highlight-linear-gradient
+        name: Highlight Linear Gradient
+      - id: highlight-radial-gradient
+        name: Highlight Radial Gradient
+      - id: highlight-radial-gradient-animated
+        name: Highlight Radial Gradient Animated
+contentBackground:
+  type: switch
+  comment: Add a radial background in the base color behind the content.
+verticalOffset:
+  type: object
+  comment: Offset section up above or below the previous section.
+  options:
+    empty_type: object
+    preview:
+      icon: arrow_upward
+    structures: _structures.vertical_offset
+rounded:
+  type: switch
+  comment: Whether to apply rounded corners to the section.

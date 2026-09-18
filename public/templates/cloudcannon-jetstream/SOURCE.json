@@ -1,0 +1,519 @@
+{
+  "id": "cloudcannon-jetstream",
+  "name": "Jetstream",
+  "repository": "https://github.com/CloudCannon/jetstream-astro-template",
+  "commit": "ea8ecef3cb094eb27dff6ecff9f78ecea7839962",
+  "license": "MIT",
+  "licenseFirstLine": "MIT License",
+  "framework": "Astro 6",
+  "sourceDirectory": "vendor/templates/cloudcannon-jetstream",
+  "photography": "None. Every photograph bundled upstream was removed before vendoring and replaced with placeholder artwork drawn in this repository, so no third-party photograph is redistributed.",
+  "changes": [],
+  "images": [
+    {
+      "file": "_astro/about-hero.aJ-pzWIL.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/about-hero.aJ-pzWIL_24n0Lq.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/about-hero.aJ-pzWIL_2weamJ.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/about-hero.aJ-pzWIL_Z1JAGus.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/about-hero.aJ-pzWIL_Z1VvqER.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/about-hero.aJ-pzWIL_ZDv8uj.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/acs-logo-dark.D44TAiTx.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/acs-logo.DzQYN5px.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/apex.XG1flypd.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/aura.CpYVRsww.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_1NFPT.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_1PyvVs.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_1V0Ft2.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_1md11s.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_1qMjjM.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_2h73i2.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_2rWGBl.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_Z1CGj3a.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_Z1ODYoA.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_Z1ju0js.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_Z1kJJyr.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_Z2wGJhe.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_ZFFghM.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_ZiwmEh.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_Zyb6lM.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-cdn.t1qcPsqG_b3w2o.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-ddos.CjEfNqci.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-ddos.CjEfNqci_19UzHv.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-ddos.CjEfNqci_1h6fSD.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-ddos.CjEfNqci_1zhxnJ.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-ddos.CjEfNqci_UYS4D.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-ddos.CjEfNqci_Z1t4u91.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-ddos.CjEfNqci_Z2arb27.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-ddos.CjEfNqci_Z7xSHR.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-ddos.CjEfNqci_ZanKqz.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_1NKX4V.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_B9uN.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_Z1U43Pa.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_Z1XdHJl.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_Z1hDtPv.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_Z1wXgTJ.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_Z2uvbgc.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_ZHPJ2Y.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_ZMzmpT.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-dns-resolver.C5zDfwxT_ZdSiK.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_15pX6L.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_1qNI8e.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_Z1FQzsg.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_Z1RGKgz.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_Z25Un7x.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_ZJITnp.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_ZSQ8LQ.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_ZtxOhE.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_j9Trm.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-markdown.DJXnvq0g_jyzac.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_1UKuHP.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_1c4kfi.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_1pea3t.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_1tVHjz.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_2iHNBF.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_DmL6T.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_GlfLM.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_Z2uQvPz.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_a4PiH.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/blog-snippets.hdlgD8_j_gUE5m.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/business2.EqzHQRO4.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/businesss.Be87l4_s.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/card-1.CkGtgrPZ.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/card-2.DwDWijoG.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/card-3.BtlJ6Rv-.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/card-4.B9Zu6Wkb.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/dental.DDW2baJF.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/fake-uni.CFPTcP52.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/fin-trust.HfwxjxDC.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/fin-trust.HfwxjxDC_Z1NhDN7.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/fin-trust.HfwxjxDC_Z2bzuMg.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/fin-trust.HfwxjxDC_eACv8.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/fintech.2_0rT8v9.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/hero-1.D070_NTO.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/jetstream-dark-theme.BSxoV8nF.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/jetstream-logo.D8EZUkI_.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/logo.CYULZAsd.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/medical.B2bybhxY.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/staff-1.DlIfJrQ3.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/staff-1.DlIfJrQ3_ZBY5Gt.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/staff-1.DlIfJrQ3_ZBsHb2.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/staff-1.DlIfJrQ3_rXHcf.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/staff-1.DlIfJrQ3_su5HG.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/testimonial.BihrJJgm.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/testimonial.BihrJJgm_Vic00.webp",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/testimonial.BihrJJgm_Z1GGRQw.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/video-placeholder.CPUywlg-.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "_astro/website-documented.DjzJzczw.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/website-feature.DEna4FuL.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/website-hero.D4U7jVob.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "_astro/website-split.Sc9mlfrq.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "favicon.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/jetstream-astro-template at ea8ecef3cb094eb27dff6ecff9f78ecea7839962. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    }
+  ]
+}

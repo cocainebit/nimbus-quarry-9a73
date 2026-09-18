@@ -1,0 +1,52 @@
+---
+const components: Record<string, any> = {};
+const componentImports = import.meta.glob(
+  "../../components/**/*.{jsx,tsx,astro}",
+  {
+    eager: true,
+  }
+);
+
+Object.entries(componentImports).forEach(([path, mod]: [string, any]) => {
+  // Normalize path: strip leading ../../components/ and .jsx extension
+  let rel = path
+    .replace("../../components/", "")
+    .replace(/\.(jsx|tsx|astro)$/, "");
+  const parts = rel.split("/");
+  // If last two segments duplicate (e.g. feature/feature, hero/hero) drop the final
+  if (parts.length > 1 && parts[parts.length - 1] === parts[parts.length - 2]) {
+    parts.pop();
+  }
+  rel = parts.join("/");
+  components[rel] = mod.default;
+});
+
+const { content_blocks } = Astro.props;
+---
+
+<main
+  id="main-content"
+  tabindex="-1"
+  data-editable="array"
+  data-prop="content_blocks"
+  data-id-key="_name"
+  data-component-key="_name"
+>
+  {
+    content_blocks.map((block: any) => {
+      const key = block._name;
+      const Component = components[key];
+      if (!Component) {
+        console.warn(`Unknown component for block key '${key}'`, block);
+        return null;
+      }
+      return (
+        <editable-array-item data-id={block._name} data-component={block._name}>
+          <editable-component data-component={block._name} data-prop="">
+            <Component {...block} />
+          </editable-component>
+        </editable-array-item>
+      );
+    })
+  }
+</main>

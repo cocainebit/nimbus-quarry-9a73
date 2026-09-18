@@ -1,0 +1,48 @@
+label: FAQ Section
+icon: help
+description: Section displaying frequently asked questions in an accordion format.
+value:
+  _component: page-sections/info-blocks/faq-section
+  sectionLabel: ""
+  id:
+  eyebrowIcon: {}
+  eyebrowText: Eyebrow placeholder
+  heading: Frequently Asked Questions
+  subtext: Subtext placeholder
+  items: []
+  singleOpen: true
+  openFirst: false
+  maxContentWidth: xl
+  paddingHorizontal: lg
+  paddingVertical: 4xl
+  colorScheme: inherit
+  backgroundColor: base
+  contentBackground: false
+  background:
+    type: image
+    positionVertical: top
+    positionHorizontal: center
+    priority: false
+    imageSource: ""
+    imageAlt: ""
+    videoSource: null
+    overlay: 0
+  verticalOffset: {}
+  rounded: false
+preview:
+  text:
+    - FAQ Section
+  subtext:
+    - key: heading
+  icon: help
+  gallery:
+    image: public/component-previews/page-sections/info-blocks/faq-section.svg
+    fit: cover
+picker_preview:
+  text: FAQ Section
+  subtext: Accordion of frequently asked questions.
+  gallery:
+    image: public/component-previews/page-sections/info-blocks/faq-section.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/page-sections/info-blocks/faq-section/faq-section.cloudcannon.inputs.yml

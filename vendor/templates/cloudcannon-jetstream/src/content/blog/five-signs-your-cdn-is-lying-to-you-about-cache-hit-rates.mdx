@@ -1,0 +1,111 @@
+---
+_schema: default
+permalink:
+title: Five signs your CDN is lying to you about cache hit rates
+description: >-
+  Not all content delivery networks are created equal, and some are
+  significantly more creative with their statistics than others.
+date: 2026-02-16T00:00:00Z
+author: 470d9a38-a9ab-4112-b222-8e10e7d5ac7d
+image: /src/assets/images/blog-cdn.png
+image_alt: Close-up of a laptop keyboard glowing blue in a darkened room
+tag: Caching
+counters: []
+---
+
+Cache hit rates are the most important metric for CDN performance. They're also the easiest metric to manipulate, misrepresent, or report in ways that sound impressive but mean nothing.
+
+We've analyzed competitor CDN performance claims for years. The numbers are often creative. Here's how to tell if your CDN is being honest with you.
+
+## Sign one: they report a single global cache hit rate
+
+"Our CDN achieves 95% cache hit rates!" sounds excellent until you ask: 95% of what, where, and when?
+
+A single global number hides enormous regional variation. Your CDN might achieve 98% hit rates in North America while struggling at 70% in Southeast Asia. The global average looks good, but half your users are experiencing terrible performance.
+
+**What honest reporting looks like:** Cache hit rates broken down by region, content type, and time of day. At Jetstream, our dashboard shows hit rates for each edge node individually. Some nodes perform better than others, we don't hide that by averaging everything together.
+
+**Why this matters:** Cache misses mean requests travel to your origin server, adding latency and increasing your bandwidth costs. A CDN with inconsistent regional performance costs you money and frustrates users in poorly-served regions.
+
+## Sign two: they count "partial hits" as full hits
+
+Some CDNs serve content in chunks. If they have 80% of a file cached and fetch the remaining 20% from origin, they report it as a "cache hit" because technically they served most of it from cache.
+
+This is mathematically creative and practically dishonest.
+
+**What honest reporting looks like:** Clear definitions of what counts as a hit. At Jetstream, a cache hit means the entire resource was served from edge nodes without touching origin. Partial hits are reported separately as what they actually are: partial cache misses that still require origin traffic.
+
+**Why this matters:** Partial hits still generate origin requests, which means your origin servers handle more traffic than the reported hit rate suggests. You're paying for bandwidth and infrastructure that shouldn't be necessary if cache performance matched the reported numbers.
+
+## Sign three: their hit rates improve mysteriously after you sign the contract
+
+During sales conversations, CDNs often demonstrate performance on their own demo sites or carefully optimized test content. These demonstrations show impressive cache hit rates, low latency, and perfect performance.
+
+Then you migrate your actual content and discover hit rates are 15-20% lower than promised.
+
+**What honest reporting looks like:** Performance guarantees in your contract, not just verbal promises during sales calls. At Jetstream, our SLAs include minimum cache hit rate commitments. If we don't meet them, you receive service credits. Our sales team isn't allowed to promise performance our contracts don't guarantee.
+
+**Why this matters:** Demo performance rarely matches production reality. Content varies in cacheability. Traffic patterns differ. If your CDN can't maintain promised performance under real-world conditions, you're paying for capabilities you're not receiving.
+
+## Sign four: they don't explain what they're measuring
+
+"Cache hit rate" sounds straightforward until you ask what's being counted. Some CDNs measure:
+
+- **Request hit rate**, percentage of requests served from cache
+- **Byte hit rate**, percentage of bytes served from cache
+- **Object hit rate**, percentage of unique objects served from cache
+
+These produce dramatically different numbers for the same traffic.
+
+Consider a scenario: your CDN serves 1,000 requests. 950 are for small HTML files (10KB each), served from cache. 50 are for large video files (100MB each), which miss cache and fetch from origin.
+
+- Request hit rate: 95% (950 of 1,000 requests hit cache)
+- Byte hit rate: 16% (most bytes came from origin due to video size)
+
+Same traffic, wildly different reported performance.
+
+**What honest reporting looks like:** Clear definitions of measurement methodology. At Jetstream, we report both request hit rates and byte hit rates because they tell different stories about performance. Request rates matter for latency. Byte rates matter for bandwidth costs. Both are important.
+
+**Why this matters:** A CDN reporting high request hit rates might still be generating massive origin bandwidth if cache misses are concentrated in large files. You need both metrics to understand actual performance and cost.
+
+## Sign five: they blame your content when hit rates are low
+
+When confronted with poor cache performance, some CDNs immediately point to your content configuration. "Your cache headers are wrong." "Your content isn't optimized for caching." "You need to restructure your entire application."
+
+Sometimes this is true. Often it's deflection.
+
+**What honest reporting looks like:** CDNs that proactively identify cacheability issues and suggest specific improvements. At Jetstream, our dashboard flags content that's difficult to cache and explains why. If your cache headers prevent caching, we tell you. If our systems could cache something but aren't, we investigate why our systems are underperforming.
+
+**Why this matters:** Content optimization is important, but CDNs should maximize cache efficiency for the content you actually have, not the idealized content they wish you had. A CDN that immediately blames your content for every performance issue isn't working hard enough to optimize its own systems.
+
+## How to verify your CDN's honesty
+
+Request detailed analytics access. Good CDNs provide granular performance data:
+
+- Regional cache hit rate breakdowns
+- Hit rates by content type and file size
+- Origin request volume and bandwidth
+- Cache miss reasons (expired, not cacheable, first request)
+- Time-series data showing performance trends
+
+If your CDN can't or won't provide this data, ask why. Transparency about performance indicates confidence in systems. Opacity suggests the numbers won't tell a flattering story.
+
+## What we do differently
+
+At Jetstream, our cache hit rates average 99.97% because we've invested heavily in prediction algorithms that pre-cache content before it's requested. Our systems analyze traffic patterns and geographic access trends to anticipate what users will request next.
+
+We report cache performance with uncomfortable honesty because we're confident in our systems. Our dashboard shows:
+
+- Per-node cache hit rates updated in real-time
+- Regional performance variations with explanations for outliers
+- Separate request and byte hit rate metrics
+- Cache miss categorization (why specific content missed cache)
+- Month-over-month performance trends
+
+When our cache performance drops, we investigate internally before mentioning your content configuration. Usually the issue is on our side, a cache eviction policy that's too aggressive, a prediction model that needs retraining, or edge nodes that need capacity expansion.
+
+## The bottom line
+
+Your CDN should make your infrastructure faster and more reliable. If you can't trust their performance reporting, you can't trust that you're getting value for your money.
+
+Ask hard questions. Demand transparent metrics. Insist on contractual performance guarantees. Good CDNs welcome scrutiny because their systems perform as advertised.

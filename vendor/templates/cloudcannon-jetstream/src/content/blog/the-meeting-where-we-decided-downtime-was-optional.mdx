@@ -1,0 +1,190 @@
+---
+_schema: default
+permalink:
+title: The meeting where we decided downtime was optional
+description: >-
+  A retrospective on the architectural decisions that made our 99.999% uptime
+  guarantee possible instead of aspirational.
+date: 2026-02-08T00:00:00Z
+author: 6c4b5141-d659-4153-b8f9-aa2f93feaa7c
+image: /src/assets/images/blog-downtime.png
+image_alt: Overhead view of four colleagues meeting on couches in an office lobby, charts spread across the coffee table
+tag: Downtime
+counters: []
+---
+
+In March 2019, three engineers sat in a poorly-ventilated office arguing about acceptable failure rates. The discussion lasted seven hours and fundamentally shaped everything Jetstream would become.
+
+The question on the table: what uptime should we promise customers?
+
+## The industry standard argument
+
+One co-founder argued for 99.9% uptime. "It's industry standard," he said. "Three nines is what customers expect from infrastructure providers. It's achievable without heroic engineering effort."
+
+The math supported this position. 99.9% uptime allows approximately 8.7 hours of downtime annually. Planned maintenance, unexpected failures, the occasional catastrophic event, all manageable within that budget.
+
+Most CDN providers offer 99.9% SLAs. Some offer 99.95%. A few ambitious providers promise 99.99%.
+
+Our second co-founder pulled up competitor SLA documents and highlighted the escape clauses. "Look at the exceptions," she said. "Scheduled maintenance doesn't count. Customer configuration errors don't count. DDoS attacks don't count. Force majeure doesn't count. They're promising 99.9% uptime for the fraction of problems that are actually their fault."
+
+She wasn't wrong. Most SLAs are carefully crafted to exclude the majority of potential downtime causes.
+
+## The philosophical question
+
+Our CTO, who had been quiet for most of the discussion, asked a different question: "What if we designed a system where downtime was architecturally impossible?"
+
+Silence.
+
+"Not 'unlikely,'" he continued. "Not 'rare.' Actually impossible. What would that system look like?"
+
+Someone pointed out that nothing is impossible. Hardware fails. Networks partition. Data centers lose power. Asteroids could theoretically strike our facilities.
+
+"Fine," the CTO said. "What if we designed for downtime to be so unlikely that it effectively rounds to impossible?"
+
+This reframed the conversation entirely.
+
+## The architecture discussion
+
+The next four hours involved whiteboards, increasingly complex diagrams, and the gradual emergence of an architecture that treated failure as something to be designed around rather than managed when it occurred.
+
+### **Principle one: no single points of failure**
+
+Every component must have redundancy. Not "important components", every component. If anything can fail and cause downtime, it's a design flaw.
+
+This meant:
+
+- Multiple edge nodes in every region
+- Multiple network paths between all infrastructure
+- Multiple power sources for every facility
+- Multiple DNS servers handling queries
+- Multiple database replicas maintaining state
+
+When someone objected that this would be expensive, our CTO responded: "Downtime is more expensive."
+
+### **Principle two: automatic failover everywhere**
+
+Redundancy only matters if failover happens automatically. Waiting for human operators to detect failures and manually switch to backup systems introduces unacceptable delay.
+
+Every system must detect its own failures and automatically route around them. Edge nodes must monitor neighbors and redistribute traffic when failures occur. DNS must automatically remove failed servers from rotation. Applications must retry failed requests against healthy backends.
+
+Human operators should learn about failures from monitoring alerts, not from customer complaints.
+
+### **Principle three: continuous validation**
+
+Systems must constantly verify they're working correctly. Not periodic health checks, continuous validation that requests are being handled correctly, responses are accurate, and services are performing within acceptable parameters.
+
+This introduces overhead. Every system spends computational resources checking itself rather than purely serving customer traffic. But the overhead is worthwhile if it catches failures before customers notice.
+
+### **Principle four: defensive capacity planning**
+
+Plan for peak traffic plus 50%. Always maintain spare capacity for unexpected load spikes, traffic migrations from failed nodes, or that day when an entire country decides to stream something simultaneously.
+
+Running consistently at 90% capacity is economically efficient but operationally dangerous. Running at 60% capacity feels wasteful but provides margin for the unexpected.
+
+We chose safety over efficiency.
+
+## The target decision
+
+After extensive discussion about what was theoretically achievable with sufficient engineering effort, we settled on a target: 99.999% uptime.
+
+This allows approximately 5.26 minutes of downtime annually. Not hours. Minutes.
+
+Someone pointed out this was an insane goal. No one achieves five-nines uptime at scale. It requires perfect execution across every system, every day, forever.
+
+Our CTO agreed. "Yes," he said. "That's exactly why we should target it. If we aim for 99.9% we'll achieve 99.8%. If we aim for 99.999%, we might achieve 99.99%, which is still better than our competitors."
+
+The logic was sound even if the confidence was debatable.
+
+## The implementation challenges
+
+Deciding to aim for five-nines uptime is the easy part. Actually achieving it required years of careful engineering.
+
+### **Challenge one: state management**
+
+Stateless systems are easy to make reliable, if a server fails, route traffic to another server. Stateful systems are harder because state must be preserved across failures.
+
+We solved this through aggressive replication. Customer configuration lives in multiple databases across multiple data centers. Cache state is distributed across edge nodes with automatic redistribution when nodes fail. Session state is replicated in real-time across regions.
+
+If an entire data center disappears, customer state remains available from other locations.
+
+### **Challenge two: deployment safety**
+
+Every code deployment carries risk. Bugs in new code can cause outages. Even if code is perfect, deployment process failures can disrupt service.
+
+We implemented gradual rollout for all changes. New code deploys to 1% of edge nodes first. If metrics remain healthy for one hour, deployment expands to 10%, then 50%, then 100% over several hours.
+
+Any regression triggers automatic rollback. Code that causes problems on 1% of infrastructure never reaches the remaining 99%.
+
+### **Challenge three: dependency management**
+
+We depend on third-party services: DNS providers, certificate authorities, cloud infrastructure providers, network carriers. Their failures can cause our failures.
+
+We mitigated this through provider diversity. Multiple DNS providers, multiple certificate authorities, multiple network carriers. If one provider experiences problems, we automatically route around them.
+
+This is expensive. Maintaining relationships and integrations with multiple providers for every dependency costs money and engineering time. It's also necessary.
+
+### **Challenge four: monitoring everything**
+
+You can't maintain uptime for systems you can't observe. We instrumented everything.
+
+Every request generates metrics. Every edge node reports health continuously. Every system logs state changes. Our monitoring infrastructure processes billions of data points daily to maintain real-time visibility into system health.
+
+When something fails, we know within seconds. Usually our automated systems fix it before humans see alerts.
+
+## The actual results
+
+Jetstream launched in August 2019. Our architecture supported the uptime target but we hadn't proven it yet in production.
+
+Over the first year, we experienced:
+
+- Three edge node failures (hardware issues, automatically routed around)
+- One network partition (lasted 47 seconds, affected one region, traffic automatically rerouted)
+- Two database replica failures (automatic failover to healthy replicas)
+- Multiple attempted DDoS attacks (mitigated automatically)
+
+Total customer-visible downtime: zero.
+
+Our monitoring showed brief degradation during the network partition, latency increased by 40ms in one region for 47 seconds. But services remained available. We don't count degradation as downtime unless requests actually fail.
+
+By industry SLA definitions, we achieved 100% uptime in our first year.
+
+## The reality check
+
+Maintaining 99.999% uptime requires constant vigilance. We've operated for six years now. Our actual uptime: 99.998%.
+
+We've had two incidents that caused brief outages:
+
+**Incident one (June 2021):** A DNS configuration error caused 3 minutes of resolution failures in Europe. Our fault, our failure, our learning opportunity. We implemented additional DNS configuration validation to prevent similar errors.
+
+**Incident two (March 2024):** A database replication bug caused 2 minutes of inability to update customer configurations globally. Services continued operating but configuration changes were briefly unavailable. The bug was subtle, emerged only under specific load patterns, and was fixed immediately after detection.
+
+Total downtime over six years: 5 minutes. We're within our target, barely.
+
+## What we learned
+
+Building for five-nines uptime taught us several truths:
+
+**Reliability is expensive:** The infrastructure and engineering required to maintain this uptime level costs significantly more than accepting occasional failures. We've decided it's worth it.
+
+**Automation is non-negotiable:** Humans cannot maintain five-nines uptime through manual operations. Systems must detect and correct failures automatically.
+
+**Monitoring is as important as infrastructure:** You cannot maintain what you cannot measure. Comprehensive observability is required to achieve high reliability.
+
+**Perfect is impossible but worth pursuing:** We haven't achieved perfect uptime. We've come very close. The engineering discipline required to approach perfection makes us significantly more reliable than competitors who aim for "good enough."
+
+## The meeting's legacy
+
+That seven-hour discussion in 2019 established principles that still guide our engineering:
+
+- Downtime is a design flaw, not an operational reality
+- Redundancy everywhere, failover automatic
+- Plan for failures, design around them
+- Aim for impossible, settle for merely exceptional
+
+We've built a company around the idea that infrastructure downtime is optional. It's expensive to maintain this position. It requires constant engineering effort. It means we sometimes over-engineer solutions to problems that might never occur.
+
+But our customers don't experience outages. Their services remain available even when ours experience failures. That's the point.
+
+Downtime isn't truly optional, physics exists, hardware fails, software has bugs. But we've made it rare enough that it effectively rounds to optional.
+
+That meeting decided this was our standard. Everything since has been implementation details.

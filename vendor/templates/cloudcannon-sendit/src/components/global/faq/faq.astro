@@ -1,0 +1,72 @@
+---
+import MarkdownIt from "markdown-it";
+import Heading from "@components/shared/Heading.astro";
+import FaqItem from "./faqItem.astro";
+const md = new MarkdownIt({ html: true });
+
+// Define TypeScript interfaces
+interface FaqItemData {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  title_suffix: string;
+  description: string;
+  FAQ: FaqItemData[];
+}
+
+const { title_suffix, description, FAQ, title } = Astro.props;
+---
+
+<section class="py-16 xl:py-24 2xl:py-32 bg-primary/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-center">
+      <div class="w-full lg:w-2/3 text-center">
+        <div class="mb-12 xl:mb-16">
+          <Heading level={2} class="mb-6 tracking-tight">
+            <editable-text data-prop="title">{title}</editable-text>{" "}
+            <span class="text-primary">
+              <editable-text data-prop="title_suffix">
+                {title_suffix}
+              </editable-text>
+            </span>
+          </Heading>
+          {
+            description && (
+              <div
+                class="text-lg text-gray-600 leading-relaxed"
+                data-editable="text"
+                data-prop="description"
+                set:html={md.render(description)}
+              />
+            )
+          }
+        </div>
+      </div>
+    </div>
+    {
+      FAQ?.length && (
+        <div class="flex justify-center">
+          <div class="w-full">
+            <div
+              class="space-y-4 grid gap-3"
+              data-editable="array"
+              data-prop="FAQ"
+            >
+              {
+                <template>
+                  <FaqItem faq={{ title: "", description: "" }} i={0} />
+                </template>
+              }
+              {FAQ?.map((q: FaqItemData, i: number) => (
+                <FaqItem faq={q} i={i} data-editable="array-item" />
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</section>

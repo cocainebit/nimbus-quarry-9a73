@@ -1,0 +1,179 @@
+---
+_schema: default
+permalink:
+title: "SSL certificates: a love story about automation and trust"
+description: >-
+  How we eliminated certificate expiration anxiety through aggressive automation
+  and a healthy disrespect for manual processes.
+date: 2026-02-13T00:00:00Z
+author: c63acdd1-33d5-4366-a000-34f0c17ca88b
+image: /src/assets/images/blog-ssl.png
+image_alt: A glowing shield at the centre of a wireframe globe, surrounded by neon data streams
+tag: Security
+counters: []
+---
+
+Before November 2022, our customer support team received approximately 40 SSL certificate-related tickets daily. "My certificate expired." "Why isn't my HTTPS working?" "I forgot to renew and now my site shows security warnings."
+
+Today we receive approximately zero certificate tickets per month.
+
+This is a story about automation, cryptographic trust chains, and eliminating an entire category of customer problems through aggressive engineering.
+
+## The problem with manual certificate management
+
+SSL/TLS certificates are annoying. They expire regularly, typically every 90 days with modern certificate authorities. They require manual renewal. The renewal process involves generating certificate signing requests, verifying domain ownership, installing the new certificate, and testing that everything works.
+
+Humans are terrible at remembering to do things every 90 days.
+
+Even organizations with proper procedures and calendar reminders experience certificate expirations. Someone goes on vacation. A renewal email goes to an old address. A process breaks silently and nobody notices until the certificate expires and websites start showing browser warnings.
+
+Certificate expiration is one of the most preventable infrastructure problems and also one of the most common.
+
+After our support team's 10,000th "help, my certificate expired" ticket, our VP of Customer Success walked into engineering and asked, "Why are we still making customers manage this manually?"
+
+Nobody had a good answer.
+
+## What automation actually means
+
+"Automated certificate management" sounds straightforward. The implementation is not.
+
+We needed a system that could:
+
+- Detect when certificates would expire
+- Request renewals automatically
+- Verify domain ownership without customer intervention
+- Install new certificates across all relevant edge nodes
+- Validate that new certificates worked correctly
+- Roll back if anything went wrong
+- Handle millions of certificates simultaneously
+- Never, ever let a certificate expire
+
+This required building infrastructure that understood certificate lifecycles, integrated with multiple certificate authorities, performed domain verification automatically, and coordinated certificate deployment across our distributed edge network.
+
+We spent eight months building it.
+
+## The cryptographic challenge
+
+Certificates aren't just files, they're part of a cryptographic trust chain. Browsers trust certificates because they're signed by certificate authorities that browsers trust. The entire system depends on correctly maintaining these trust relationships.
+
+Our automation needed to handle several cryptographic complications:
+
+**Certificate authorities have their own expirations:** The intermediate certificates that CAs use to sign end-entity certificates also expire. Our system must track CA certificate expirations and update trust chains automatically.
+
+**Different domains require different validation methods:** Some domains use DNS validation, others use HTTP validation. Our system must know which method works for each customer's domain and execute it automatically.
+
+**Certificate revocation matters:** If a certificate is compromised, it must be revoked and replaced immediately. Our system monitors certificate revocation lists and replaces revoked certificates automatically.
+
+**Crypto agility is necessary:** When certificate authorities change their signing algorithms or browsers update their trust requirements, our system must adapt without requiring customer action.
+
+These aren't theoretical concerns. We've handled all of these situations in production.
+
+## Building the automation
+
+Our SSL automation system operates in layers:
+
+### **Layer one: predictive monitoring**
+
+We track every certificate across our network. 60 days before expiration, our system requests a renewal. Not 10 days, not 5 days, 60 days. This gives us enormous buffer for handling problems.
+
+If the first renewal attempt fails, we try again the next day. And the next day. And every day until either the renewal succeeds or someone from our team investigates why it's failing.
+
+### **Layer two: automated domain validation**
+
+Certificate authorities need proof you control a domain before issuing certificates. We automate this verification by:
+
+- Automatically creating DNS records for DNS-01 challenges
+- Serving HTTP validation files for HTTP-01 challenges
+- Maintaining ACME account credentials with multiple CAs
+- Retrying failed validations with exponential backoff
+
+Customer involvement: zero. Our systems handle everything.
+
+### **Layer three: zero-downtime deployment**
+
+New certificates must be installed across potentially hundreds of edge nodes serving a customer's traffic. This must happen without service interruption.
+
+Our deployment process:
+
+1. Generate new certificate
+2. Deploy to staging environment and verify
+3. Gradually deploy to production edge nodes
+4. Monitor for any TLS handshake failures
+5. Automatically rollback if errors exceed threshold
+6. Complete deployment only after verification
+
+Total time: approximately 15 minutes. Downtime: none.
+
+### **Layer four: validation and monitoring**
+
+After deployment, our systems continuously verify certificates work correctly:
+
+- Test TLS connections from multiple geographic locations
+- Verify certificate chains are complete and valid
+- Check that certificate matches requested domains
+- Monitor for unusual TLS error rates
+
+If anything looks wrong, we investigate immediately.
+
+## The first renewal crisis
+
+Our automation launched in November 2022. By January 2023, it was managing 100,000 certificates. Everything worked perfectly.
+
+Then Let's Encrypt, a major certificate authority, changed their API rate limits.
+
+Our system, configured to renew certificates 60 days before expiration, suddenly hit rate limits when trying to renew thousands of certificates simultaneously. Renewals started failing. Our system retried, hitting rate limits again.
+
+This is exactly why we built 60-day buffer into the process.
+
+Our team had weeks to identify the problem, implement rate limiting in our renewal requests, and migrate to a staggered renewal schedule that distributed requests over time instead of hammering the CA simultaneously.
+
+Zero customer certificates expired during this crisis. The automation worked as designed, when it encountered problems, it had enough time to handle them before they became emergencies.
+
+## What trust means
+
+SSL certificates are fundamentally about trust. Users trust certificates because browsers trust certificate authorities. Organizations trust CDNs to manage certificates correctly.
+
+We take this trust seriously.
+
+Our certificate management system is monitored more heavily than almost any other part of our infrastructure. Multiple independent verification systems continuously check that certificates are valid and correctly deployed. Our operations team receives alerts at multiple thresholds: 60 days before expiration, 30 days, 14 days, 7 days, 3 days.
+
+We've never let a customer certificate expire under our management. Not once. This isn't luck, it's the result of building systems that treat certificate expiration as an unacceptable failure mode and then engineering away every path to that failure.
+
+## The support ticket impact
+
+After deploying certificate automation, our support ticket volume for certificate-related issues dropped by 99.7%.
+
+The remaining 0.3% of tickets are typically:
+
+- Customers asking how the automation works (curious, not problematic)
+- Requests for specific certificate configurations (extended validation certs, specific CAs)
+- Questions about certificate transparency logs
+
+Zero tickets about expired certificates. Zero tickets about forgotten renewals. Zero tickets about last-minute renewal panics.
+
+Our support team still tracks "certificate tickets prevented" as a metric. Over the past year: approximately 14,600 tickets we didn't receive because automation handled everything silently.
+
+## What we learned
+
+Automation isn't about reducing human work, it's about eliminating entire categories of human error.
+
+Certificate expiration is a solved problem if you're willing to build the infrastructure to solve it properly. The investment required is significant: eight months of engineering time, ongoing maintenance, continuous monitoring. But the payoff is complete elimination of a common, preventable failure mode.
+
+We could have built a simple renewal reminder system. We could have offered tools that made manual renewal easier. Instead, we built automation that makes manual renewal unnecessary.
+
+That's the difference between helping customers manage problems and eliminating the problems entirely.
+
+## The broader principle
+
+Certificate automation is one example of a broader philosophy: infrastructure should handle its own maintenance.
+
+We apply this thinking to:
+
+- Cache invalidation (automated based on content change detection)
+- DDoS mitigation (automated threat response)
+- Traffic routing (automated based on performance and capacity)
+- Capacity scaling (automated based on demand prediction)
+
+The goal is always the same: eliminate categories of problems through automation rather than helping customers manage those problems manually.
+
+Good infrastructure operates without requiring constant attention. Certificate automation is how we made SSL/TLS certificates boring, which is exactly what they should be.

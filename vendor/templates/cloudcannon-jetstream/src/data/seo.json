@@ -1,0 +1,9 @@
+{
+  "_schema": "seo",
+  "name": "Jetstream Astro Template for CloudCannon",
+  "url": "https://example.com",
+  "description": "",
+  "logoSource": "/images/logo.svg",
+  "titleFormat": "{title} | Jetstream Astro Template for CloudCannon",
+  "twitterHandle": "@yourusername"
+}

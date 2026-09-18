@@ -1,0 +1,9 @@
+label: Video
+icon: videocam
+tags: []
+
+value:
+  _name: global/video
+  image: /images/video/video-thum.avif
+  image_alt: Thumbnail for video
+  video_url: https://vimeo.com/45830194

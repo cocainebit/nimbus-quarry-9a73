@@ -1,0 +1,55 @@
+{
+  "id": "cloudcannon-edition",
+  "name": "Edition",
+  "repository": "https://github.com/CloudCannon/edition-jekyll-template",
+  "commit": "3960d294c88a634b687c12501eb7f1baff954131",
+  "license": "MIT",
+  "licenseFirstLine": "The MIT License (MIT)",
+  "framework": "Jekyll 3",
+  "sourceDirectory": "vendor/templates/cloudcannon-edition",
+  "photography": "None. Every photograph bundled upstream was removed before vendoring and replaced with placeholder artwork drawn in this repository, so no third-party photograph is redistributed.",
+  "changes": [
+    "Google Analytics block removed from the layout.",
+    "Disqus comment embed removed.",
+    "Google Fonts stylesheet replaced with self-hosted woff2 files.",
+    "Remote demo photographs (source.unsplash.com, unsplash.it, placehold.it, placekitten.com, placebear.com, fillmurray.com) replaced with placeholder artwork drawn for this repository.",
+    "A visible note marks the demonstration content as illustrative."
+  ],
+  "images": [
+    {
+      "file": "apple-touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/edition-jekyll-template at 3960d294c88a634b687c12501eb7f1baff954131. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/emblem.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/edition-jekyll-template at 3960d294c88a634b687c12501eb7f1baff954131. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/favicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/edition-jekyll-template at 3960d294c88a634b687c12501eb7f1baff954131. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/menu.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/edition-jekyll-template at 3960d294c88a634b687c12501eb7f1baff954131. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/placeholders/field-800x600.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "siteicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/edition-jekyll-template at 3960d294c88a634b687c12501eb7f1baff954131. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/edition-jekyll-template at 3960d294c88a634b687c12501eb7f1baff954131. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    }
+  ]
+}

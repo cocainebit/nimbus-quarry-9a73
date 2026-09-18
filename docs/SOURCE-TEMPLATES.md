@@ -53,3 +53,32 @@ Editions as of 2026-09-17, in catalogue order:
 | Strand | Hospitality place: full-bleed photograph under an inset rounded panel, floating navigation, season switcher, rooms with SVG floor plans, a menu without prices | AstroWind (MIT) | MIT |
 
 Manifests live in `shared/source-templates-studio-*.json`; the loader in `shared/source-templates.mjs` lists studio editions first. Photography comes from a small pool of Unsplash images vendored with Dante and AstroWind, so a few photographs appear in more than one edition; each edition documents its own image sources.
+
+## Publisher library (CloudCannon)
+
+The **Publisher library** tab holds CloudCannon's MIT template line, imported whole rather than adapted one at a time. It follows the Start Bootstrap and HTML5 UP pattern: upstream source vendored under `vendor/templates/cloudcannon-*/` with its LICENSE, the built static site under `public/templates/cloudcannon-*/`, one manifest at `shared/source-templates-cloudcannon.json`, and a single spec, `tests/browser/cloudcannon-collection.spec.ts`, covering the collection as a whole.
+
+Ten templates, each pinned to a commit recorded in its manifest entry and its `SOURCE.json`:
+
+| Template | Stack | Pages | What it is |
+| --- | --- | --- | --- |
+| Jetstream | Astro 6, MDX, Pagefind | 30 | Infrastructure product site: floating navigation, dark dashboard hero, tabbed case studies, pricing, team grid, blog with tag archives, local search |
+| Sendit | Astro 5, React islands, Tailwind 4 | 25 | Email tool site whose accent colours come from `data/theme.json`; login and signup pages, counter strip, blog with tag archives |
+| Hydra | Jekyll 4 | 15 | Blue product marketing site: three tier pricing with a FAQ, staff page, blog with category archives |
+| Urban | Jekyll 4 | 18 | Dark agency site cut by diagonal section edges, with a portfolio collection |
+| Frisco | Jekyll 3 | 16 | Full-bleed dark header band on every page, with a device panel row |
+| Justice | Jekyll 4 | 12 | Serif professional practice site with a services page and a terms page |
+| Treat | Jekyll 4 | 9 | Recipe journal with a persistent author sidebar |
+| Edition | Jekyll 3 | 13 | Documentation site with a sidebar tree, bundled Lunr search and a changelog |
+| Cause | Jekyll 3 | 5 | Single page campaign site with a newsletter box and a donation slot |
+| Author | Jekyll 4 | 14 | Long-form book site with a CSS 3D cover, chapter pages and a print stylesheet |
+
+What the import changes, and why:
+
+- **No photography at all.** Every bundled photograph was deleted before vendoring and replaced with placeholder artwork drawn in code (`field`, `portrait`, `logomark`, `streetmap` and `productscreen` marks), sized to the original pixel dimensions so the framework builds are unaffected. The Unsplash Licence allows commercial use but bars redistributing photographs as a standalone collection, and a website builder re-serves template images to third parties at scale. Remote demo images (`source.unsplash.com`, `unsplash.it`, `placehold.it`, `placekitten.com`, `placebear.com`, `fillmurray.com`) went the same way. Each template's `SOURCE.json` lists every remaining image with its origin and licence.
+- **Nothing is fetched from a third party.** Google Fonts became self-hosted Fontsource woff2 with their OFL files; CDN jQuery became a vendored copy; Google Analytics, Disqus, Google Maps, Donorbox, Mailchimp, Pinterest, Vimeo, YouTube and a CodePen embed were removed or replaced with a local panel. The import script fails the build if any `src`, `srcset`, `action`, `<link href>` or CSS `url()` still points off-site.
+- **Demo content is marked.** Every page carries a footer note saying the names, quotes, prices and figures are illustrative; a named testimonial, an award claim, a population statistic and an "our clients" portfolio row were relabelled as examples. Third-party company logos shown as clients became drawn placeholders.
+- **Forms are not connected.** `plotform-static.js` blocks submission and shows a status line instead.
+- **Em dashes removed** from visible copy, per the repository rule.
+
+Aperture (the photography portfolio in the same line) was rejected: its entire design is a grid of twenty-four photographs, so it does not survive having them removed.

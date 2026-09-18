@@ -1,0 +1,19 @@
+---
+layout: null
+sitemap: false
+---
+
+$mobile-break: 700px;
+
+@import "typography";
+@import "layout";
+@import "forms";
+@import "cloudcannon";
+
+
+.plotform-demo-note{margin:1.5rem auto 0;max-width:46rem;padding:0.85rem 1.25rem;
+font-size:0.8125rem;line-height:1.5;text-align:center;color:inherit;
+border:1px solid;border-color:color-mix(in srgb, currentColor 30%, transparent);
+border-radius:4px;background:color-mix(in srgb, currentColor 7%, transparent);}
+
+header.main-hero{background-size:cover;background-position:center;}

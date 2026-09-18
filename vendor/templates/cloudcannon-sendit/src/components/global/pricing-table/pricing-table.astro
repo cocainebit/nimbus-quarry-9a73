@@ -1,0 +1,53 @@
+---
+import PricingItem from "./item.astro";
+
+// Define TypeScript interfaces
+interface Feature {
+  item: string;
+  active_feature: boolean;
+}
+
+interface Button {
+  link: string;
+  text: string;
+}
+
+interface PricingTier {
+  tier: string;
+  highlight_tier: boolean;
+  description: string;
+  currency_symbol: string;
+  price: number;
+  has_discount: boolean;
+  discount_price?: number;
+  features: Feature[];
+  button?: Button;
+}
+
+interface Props {
+  pricing_tier: PricingTier[];
+}
+
+const { pricing_tier } = Astro.props;
+---
+
+<section class="relative pb-16 lg:pb-20 2xl:pb-32">
+  <div class="bg-primary/10 bg-linear-to-b from-cyan-primary/10 to-white h-70">
+  </div>
+  <div class="max-w-7xl -mt-70 mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class="flex flex-wrap -mx-4"
+      data-editable="array"
+      data-component="global/pricing-item"
+      data-prop="pricing_tier">
+      {
+        pricing_tier &&
+          pricing_tier.map((tier) => (
+            <editable-array-item class="w-full lg:w-1/3 px-4">
+              <PricingItem {...tier} />
+            </editable-array-item>
+          ))
+      }
+    </div>
+  </div>
+</section>

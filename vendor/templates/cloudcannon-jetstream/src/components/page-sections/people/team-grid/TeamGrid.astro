@@ -1,0 +1,157 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import TeamItem from "@page-sections/people/team-grid/TeamItem.astro";
+import Grid from "@wrappers/grid/Grid.astro";
+import { getCollection } from "astro:content";
+
+const {
+  id = "",
+  eyebrowIcon = {},
+  eyebrowText = "",
+  heading = "",
+  subtext = "",
+  useCollection = false,
+  sort = "alphabetical",
+  teamMembers = [],
+  maxContentWidth = "2xl",
+  paddingVertical = "4xl",
+  colorScheme = "inherit",
+  lockColorScheme = false,
+  backgroundColor,
+  contentBackground,
+  background,
+  verticalOffset = {},
+  rounded = false,
+  class: className,
+  useDefaultEditableBinding = false,
+  ...htmlAttributes
+} = Astro.props;
+
+// Get team members from collection if useCollection is true, otherwise use teamMembers array
+let members = useCollection
+  ? (await getCollection("team")).map((entry) => ({
+      name: entry.data.name,
+      role: entry.data.role,
+      imageSource: entry.data.imageSource,
+      imageAlt: entry.data.imageAlt,
+      order: entry.data.order,
+    }))
+  : teamMembers;
+
+// Sort members if using collection
+if (useCollection) {
+  if (sort === "alphabetical") {
+    members = members.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sort === "order") {
+    members = members.sort((a, b) => {
+      // Handle cases where order might be undefined
+      const orderA = a.order ?? Infinity;
+      const orderB = b.order ?? Infinity;
+
+      return orderA - orderB;
+    });
+  }
+}
+---
+
+<CustomSection
+  class:list={["team-grid", className]}
+  paddingHorizontal="lg"
+  paddingVertical={paddingVertical}
+  colorScheme={colorScheme}
+  lockColorScheme={lockColorScheme}
+  backgroundColor={backgroundColor}
+  contentBackground={contentBackground}
+  background={background}
+  maxContentWidth={maxContentWidth}
+  verticalOffset={verticalOffset}
+  rounded={rounded}
+  id={id}
+  useDefaultEditableBinding={useDefaultEditableBinding}
+  {...htmlAttributes}
+>
+  <Icon
+    alignmentHorizontal="center"
+    {...eyebrowIcon}
+  />
+  <SimpleText
+    alignmentHorizontal="center"
+    class="eyebrow"
+    data-prop="eyebrowText"
+  >
+    {eyebrowText}
+  </SimpleText>
+  <Heading
+    class="team-grid-heading"
+    level="h2"
+    size="lg"
+    alignmentHorizontal="center"
+    data-prop="heading"
+    text={heading}
+  />
+  <SimpleText
+    class="team-grid-subtext"
+    size="md"
+    alignmentHorizontal="center"
+    data-prop="subtext"
+  >
+    {subtext}
+  </SimpleText>
+  <Grid
+    class="team-grid-grid"
+    gap="md"
+    minItemWidth={350}
+    maxItemWidth={400}
+    data-children-prop={useCollection ? "" : "teamMembers"}
+    layout="start"
+  >
+    {
+      members.map((member: any, index: number) => (
+        <TeamItem
+          {...member}
+          class="team-grid-item"
+          data-index={index}
+          data-editable={useCollection ? undefined : "array-item"}
+          data-id={useCollection ? undefined : "page-sections/people/team-grid/team-item"}
+          editable={useCollection ? false : true}
+        />
+      ))
+    }
+  </Grid>
+</CustomSection>
+
+<style is:global>
+  @layer page-sections {
+    .team-grid-heading {
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .team-grid-subtext {
+      margin-top: 0;
+    }
+
+    .team-grid-grid {
+      margin-top: var(--spacing-xl);
+    }
+
+    .team-grid .card .card-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: start;
+      height: 100%;
+    }
+
+    .team-grid .grid-item {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .team-grid .team-item.card {
+      height: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,127 @@
+logoSource:
+  type: text
+  label: Logo Source
+  comment: Path to the logo image.
+logoAlt:
+  type: text
+  label: Logo Alt Text
+  comment: Alternative text for the logo image.
+navData:
+  type: array
+  label: Navigation Data
+  comment: Array of navigation items with name, path, and optional children (up to 3 levels).
+  options:
+    structures: _structures.navItemLevel1
+buttonSections:
+  type: array
+  label: Buttons
+  comment: Buttons pinned to the bottom of the open menu. See the Button component documentation for more information.
+  options:
+    structures: _structures.buttonSections
+_structures:
+  navItemLevel1:
+    values:
+      - label: Navigation Item (Level 1)
+        icon: link
+        value:
+          name: null
+          path: null
+          children: null
+        _inputs:
+          name:
+            type: text
+            comment: The display text for the navigation item.
+          path:
+            type: text
+            comment: The URL/path for the navigation item.
+          children:
+            type: array
+            comment: Optional nested navigation items (level 2).
+            options:
+              structures: _structures.navItemLevel2
+  navItemLevel2:
+    values:
+      - label: Navigation Item (Level 2)
+        icon: link
+        value:
+          name: null
+          path: null
+          subtext: null
+          iconName: null
+          iconPosition: before
+          children: null
+        _inputs:
+          name:
+            type: text
+            comment: The display text for the navigation item.
+          path:
+            type: text
+            comment: The URL/path for the navigation item.
+          subtext:
+            type: text
+            comment: Optional description shown beneath the name in the dropdown.
+          iconName:
+            type: select
+            comment: Optional icon shown alongside the name. Sourced from [Heroicons](https://heroicons.com/).
+            options:
+              values: _select_data.icons
+              preview:
+                text:
+                  - key: name
+                image:
+                  - template: src/icons/{id}.svg
+          iconPosition:
+            type: select
+            comment: Whether the icon sits before or after the name.
+            hidden: "!iconName"
+            options:
+              values:
+                - id: before
+                  name: Before
+                - id: after
+                  name: After
+          children:
+            type: array
+            comment: Optional nested navigation items (level 3, final level).
+            options:
+              structures: _structures.navItemLevel3
+  navItemLevel3:
+    values:
+      - label: Navigation Item (Level 3)
+        icon: link
+        value:
+          name: null
+          path: null
+          subtext: null
+          iconName: null
+          iconPosition: before
+        _inputs:
+          name:
+            type: text
+            comment: The display text for the navigation item.
+          path:
+            type: text
+            comment: The URL/path for the navigation item.
+          subtext:
+            type: text
+            comment: Optional description shown beneath the name in the dropdown.
+          iconName:
+            type: select
+            comment: Optional icon shown alongside the name. Sourced from [Heroicons](https://heroicons.com/).
+            options:
+              values: _select_data.icons
+              preview:
+                text:
+                  - key: name
+                image:
+                  - template: src/icons/{id}.svg
+          iconPosition:
+            type: select
+            comment: Whether the icon sits before or after the name.
+            hidden: "!iconName"
+            options:
+              values:
+                - id: before
+                  name: Before
+                - id: after
+                  name: After

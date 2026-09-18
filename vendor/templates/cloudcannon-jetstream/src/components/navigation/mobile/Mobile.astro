@@ -1,0 +1,917 @@
+---
+import Button from "@core-elements/button/Button.astro";
+import Icon from "@core-elements/icon/Icon.astro";
+import Image from "@core-elements/image/Image.astro";
+import NavItemLabel from "@component-utils/NavItemLabel.astro";
+import { navItemHasLabelExtras } from "@component-utils/navItem";
+import { itemHasSplitNavLink } from "@component-utils/navSplitLink";
+import ButtonGroup from "@wrappers/button-group/ButtonGroup.astro";
+
+const {
+  logoSource,
+  logoAlternateSource,
+  logoAlt,
+  navData = [],
+  buttonSections = [],
+  class: className,
+  useDefaultEditableBinding: _useDefaultEditableBinding = false,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+
+const toggleId = `mobile-toggle-${crypto.randomUUID()}`;
+const navInstanceId = crypto.randomUUID();
+
+// Check if item is current page
+function isCurrentPage(item) {
+  return Boolean(item.path && Astro.url.pathname === item.path);
+}
+
+// Check if any child is current page (recursive)
+function hasCurrentChild(item) {
+  if (isCurrentPage(item)) return true;
+  return Boolean(item.children?.some((child) => hasCurrentChild(child)));
+}
+
+// Create navigation item data
+function createNavItemData(item, level, parentGroupId) {
+  const hasChildren = Boolean(item.children?.length);
+
+  return {
+    ...item,
+    hasChildren,
+    hasSplitLink: itemHasSplitNavLink(item),
+    hasLabelExtras: navItemHasLabelExtras(item),
+    level,
+    dropdownId: `dropdown-toggle-${crypto.randomUUID()}`,
+    contentId: `dropdown-content-${crypto.randomUUID()}`,
+    isCurrent: isCurrentPage(item),
+    hasCurrent: hasCurrentChild(item),
+    groupName: level === "top" ? `mobile-nav-top-${navInstanceId}` : `mobile-nav-${parentGroupId}`,
+    parentGroupId: parentGroupId || crypto.randomUUID(),
+  };
+}
+---
+
+<input
+  type="checkbox"
+  id={toggleId}
+  class="nav-toggle"
+  autocomplete="off"
+/>
+<label
+  for={toggleId}
+  class="nav-hamburger mobile-button"
+  aria-label="Toggle navigation menu"
+  tabindex="0"
+>
+  <Button
+    variant="primary"
+    size="lg"
+    element="div"
+    iconName="bars-3"
+    hideText="true"
+    class="mobile-nav-button"
+  />
+</label>
+
+<nav
+  class:list={["mobile", className]}
+  data-toggle-id={toggleId}
+  {...htmlAttributes}
+>
+  <div class="mobile-header">
+    <div class="mobile-logo">
+      <slot name="logo">
+        <Image
+          source={logoSource}
+          alternateSource={logoAlternateSource}
+          alt={logoAlt || "Astro Component Starter"}
+          class="mobile-logo-image"
+          useDefaultEditableBinding={false}
+        />
+      </slot>
+    </div>
+    <div class="mobile-header-actions">
+      <label
+        for={toggleId}
+        class="mobile-close mobile-button"
+        aria-label="Close navigation menu"
+        tabindex="0"
+      >
+        <Button
+          variant="primary"
+          size="lg"
+          element="span"
+          iconName="x-mark"
+          hideText="true"
+          class="mobile-nav-close mobile-nav-button"
+        />
+      </label>
+    </div>
+  </div>
+
+  <div class="mobile-content">
+    <ul class="mobile-list">
+      {
+        navData.map((item) => {
+          const itemData = createNavItemData(item, "top");
+
+          if (!itemData.hasChildren) {
+            return (
+              <li class="nav-item">
+                <a
+                  href={itemData.path}
+                  class:list={[itemData.hasLabelExtras && "has-label-extras"]}
+                  aria-current={itemData.isCurrent ? "page" : undefined}
+                >
+                  <NavItemLabel item={itemData} />
+                </a>
+              </li>
+            );
+          }
+
+          return (
+            <li class="nav-item has-children">
+              <input
+                type="radio"
+                name={itemData.groupName}
+                id={itemData.dropdownId}
+                class="nav-item-toggle"
+                aria-expanded={itemData.hasCurrent}
+                aria-controls={itemData.contentId}
+                autocomplete="off"
+                checked={itemData.hasCurrent}
+              />
+              {itemData.hasSplitLink ? (
+                <div class="nav-item-split">
+                  <a
+                    href={itemData.path}
+                    class:list={["nav-item-link", itemData.hasLabelExtras && "has-label-extras"]}
+                    aria-current={itemData.isCurrent ? "page" : undefined}
+                  >
+                    <NavItemLabel item={itemData} />
+                  </a>
+                  <label
+                    for={itemData.dropdownId}
+                    class="nav-item-trigger nav-item-toggle-btn"
+                    aria-controls={itemData.contentId}
+                    tabindex="0"
+                    aria-label={`Toggle ${itemData.name} submenu`}
+                  >
+                    <span class="nav-item-icon">
+                      <Icon
+                        name="chevron-right"
+                        size="none"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </label>
+                </div>
+              ) : (
+                <label
+                  for={itemData.dropdownId}
+                  class:list={["nav-item-trigger", itemData.hasLabelExtras && "has-label-extras"]}
+                  aria-controls={itemData.contentId}
+                  tabindex="0"
+                  aria-current={itemData.isCurrent ? "page" : undefined}
+                >
+                  <NavItemLabel item={itemData} />
+                  <span class="nav-item-icon">
+                    <Icon
+                      name="chevron-right"
+                      size="none"
+                      aria-hidden="true"
+                    />
+                  </span>
+                </label>
+              )}
+              <div
+                id={itemData.contentId}
+                class="nav-item-content"
+                role="region"
+                aria-label={`${itemData.name} submenu`}
+                aria-hidden={!itemData.hasCurrent}
+              >
+                <ul class="nav-list">
+                  {itemData.children!.map((child) => {
+                    const childData = createNavItemData(child, "child", itemData.parentGroupId);
+
+                    if (!childData.hasChildren) {
+                      return (
+                        <li class="nav-item">
+                          <a
+                            href={childData.path}
+                            class:list={[childData.hasLabelExtras && "has-label-extras"]}
+                            aria-current={childData.isCurrent ? "page" : undefined}
+                          >
+                            <NavItemLabel item={childData} />
+                          </a>
+                        </li>
+                      );
+                    }
+
+                    return (
+                      <li class="nav-item has-children">
+                        <input
+                          type="radio"
+                          name={childData.groupName}
+                          id={childData.dropdownId}
+                          class="nav-item-toggle"
+                          aria-expanded={childData.hasCurrent}
+                          aria-controls={childData.contentId}
+                          autocomplete="off"
+                          checked={childData.hasCurrent}
+                        />
+                        {childData.hasSplitLink ? (
+                          <div class="nav-item-split">
+                            <a
+                              href={childData.path}
+                              class:list={[
+                                "nav-item-link",
+                                childData.hasLabelExtras && "has-label-extras",
+                              ]}
+                              aria-current={childData.isCurrent ? "page" : undefined}
+                            >
+                              <NavItemLabel item={childData} />
+                            </a>
+                            <label
+                              for={childData.dropdownId}
+                              class="nav-item-trigger nav-item-toggle-btn"
+                              aria-controls={childData.contentId}
+                              tabindex="0"
+                              aria-label={`Toggle ${childData.name} submenu`}
+                            >
+                              <span class="nav-item-icon">
+                                <Icon
+                                  name="chevron-right"
+                                  size="none"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            </label>
+                          </div>
+                        ) : (
+                          <label
+                            for={childData.dropdownId}
+                            class:list={[
+                              "nav-item-trigger",
+                              childData.hasLabelExtras && "has-label-extras",
+                            ]}
+                            aria-controls={childData.contentId}
+                            tabindex="0"
+                            aria-current={childData.isCurrent ? "page" : undefined}
+                          >
+                            <NavItemLabel item={childData} />
+                            <span class="nav-item-icon">
+                              <Icon
+                                name="chevron-right"
+                                size="none"
+                                aria-hidden="true"
+                              />
+                            </span>
+                          </label>
+                        )}
+                        <div
+                          id={childData.contentId}
+                          class="nav-item-content"
+                          role="region"
+                          aria-label={`${childData.name} submenu`}
+                          aria-hidden={!childData.hasCurrent}
+                        >
+                          <ul class="nav-list">
+                            {childData.children!.map((grandChild) => {
+                              const grandChildData = createNavItemData(
+                                grandChild,
+                                "child",
+                                childData.parentGroupId
+                              );
+
+                              return (
+                                <li class="nav-item">
+                                  <a
+                                    href={grandChildData.path}
+                                    class:list={[
+                                      grandChildData.hasLabelExtras && "has-label-extras",
+                                    ]}
+                                    aria-current={grandChildData.isCurrent ? "page" : undefined}
+                                  >
+                                    <NavItemLabel item={grandChildData} />
+                                  </a>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+
+  {
+    buttonSections?.length > 0 && (
+      <div class="mobile-actions">
+        <ButtonGroup
+          direction="row"
+          alignmentHorizontal="start"
+          buttonSections={buttonSections}
+          class="mobile-button-group"
+          useDefaultEditableBinding={false}
+        />
+      </div>
+    )
+  }
+</nav>
+
+<script>
+  import { onPageLoad } from "@component-utils/onPageLoad";
+
+  // Create overlays container for proper z-index stacking
+  function getOrCreateOverlaysContainer() {
+    let container = document.getElementById("overlays-container");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "overlays-container";
+      container.style.cssText = "position: relative; z-index: 9999;";
+      document.body.insertBefore(container, document.body.firstChild);
+    }
+    return container;
+  }
+
+  // Initialize mobile navigation instances
+  function initMobileNavigation() {
+    const allMobileNavs = document.querySelectorAll(".mobile");
+    const overlaysContainer = getOrCreateOverlaysContainer();
+
+    allMobileNavs.forEach((nav) => {
+      const navElement = nav as HTMLElement;
+      if (navElement.dataset.mobileInitialized === "true") return;
+      navElement.dataset.mobileInitialized = "true";
+
+      // Add a class to indicate JS is available
+      nav.classList.add("js-enabled");
+
+      // Move entire nav to overlays container for proper z-index stacking
+      overlaysContainer.appendChild(nav);
+
+      // Find the toggle for this specific nav instance
+      const toggleId = nav.getAttribute("data-toggle-id");
+      const toggle = document.getElementById(toggleId);
+      const hamburger = document.querySelector(`label[for="${toggleId}"].nav-hamburger`);
+
+      // Handle navigation toggle state and accessibility
+      function handleNavToggle(isOpen, returnFocus = true) {
+        if (isOpen) {
+          nav.setAttribute("aria-hidden", "false");
+          nav.classList.add("open");
+          document.body.style.overflow = "hidden";
+          nav.querySelector(".mobile-close")?.focus();
+        } else {
+          nav.setAttribute("aria-hidden", "true");
+          nav.classList.remove("open");
+          document.body.style.overflow = "";
+          if (returnFocus) hamburger?.focus();
+        }
+      }
+
+      // Close the menu when a link is followed. Same-page links (such as
+      // `/#services` while already on the home page) never trigger a page load,
+      // so nothing else would close the menu for them.
+      nav.addEventListener("click", (e) => {
+        if (e.defaultPrevented || !toggle?.checked) return;
+
+        const link = e.target?.closest("a[href]");
+        if (!link || (link.target && link.target !== "_self")) return;
+
+        toggle.checked = false;
+        // Don't pull focus back to the hamburger, that would scroll away from
+        // the anchor the user just jumped to.
+        handleNavToggle(false, false);
+      });
+
+      // Handle hamburger button interactions
+      if (hamburger && toggle) {
+        const toggleHandler = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle.checked = !toggle.checked;
+          handleNavToggle(toggle.checked);
+        };
+
+        hamburger.addEventListener("click", toggleHandler);
+        hamburger.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            toggleHandler(e);
+          }
+        });
+      }
+
+      // Handle close button interactions
+      const closeButton = nav.querySelector(".mobile-close");
+      if (closeButton && toggle) {
+        const closeHandler = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle.checked = false;
+          handleNavToggle(false);
+        };
+
+        closeButton.addEventListener("click", closeHandler);
+        closeButton.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            closeHandler(e);
+          }
+        });
+      }
+
+      // Handle toggle state changes
+      if (toggle) {
+        toggle.addEventListener("change", (e) => {
+          handleNavToggle(e.target.checked);
+        });
+      }
+
+      // Handle dropdown interactions using event delegation
+      const handleDropdownToggle = (e) => {
+        const trigger = e.target?.closest(".nav-item-trigger");
+        if (!trigger) return;
+
+        const radioName = trigger.getAttribute("for");
+        let dropdownToggle = null;
+
+        if (radioName) {
+          dropdownToggle = document.getElementById(radioName);
+        } else {
+          const parent = trigger.closest(".nav-item");
+          dropdownToggle = parent?.querySelector(".nav-item-toggle");
+        }
+
+        if (dropdownToggle) {
+          e.preventDefault();
+          dropdownToggle.checked = !dropdownToggle.checked;
+          dropdownToggle.dispatchEvent(new Event("change"));
+        }
+      };
+
+      nav.addEventListener("click", handleDropdownToggle);
+      nav.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          handleDropdownToggle(e);
+        }
+      });
+
+      // Handle escape key to close navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && toggle?.checked) {
+          toggle.checked = false;
+          handleNavToggle(false);
+        }
+      });
+    });
+  }
+
+  onPageLoad(initMobileNavigation);
+</script>
+
+<style is:global>
+  @layer components {
+    .nav-toggle {
+      display: none;
+    }
+
+    .nav-toggle:checked ~ .mobile,
+    .mobile.open {
+      transform: translateX(0);
+      transition:
+        transform var(--animation-fast) ease-in-out,
+        visibility 0s;
+      visibility: visible;
+    }
+
+    .mobile-button {
+      border-radius: var(--radius-xs);
+      display: inline-block;
+      outline-offset: -2px;
+    }
+
+    /*
+     * Icon-only buttons default to a circle; square off the hamburger and close
+     * buttons so they read as the same shape as the nav's other primary buttons.
+     */
+    .nav-hamburger .button > .button-inner,
+    .mobile .mobile-header-actions .button > .button-inner {
+      border-radius: var(--radius-sm);
+    }
+
+    .mobile {
+      background: var(--color-bg);
+      border: 2px solid var(--color-border-subtle);
+      border-top-left-radius: calc(var(--radius-3xl) - 6px);
+      border-bottom-left-radius: calc(var(--radius-md) - 6px);
+      border-top-right-radius: calc(var(--radius-md) - 6px);
+      border-bottom-right-radius: calc(var(--radius-md) - 6px);
+      box-shadow: var(--shadow-raised);
+      display: flex;
+      flex-direction: column;
+      left: var(--spacing-sm);
+      max-height: calc(100dvh - (2 * var(--spacing-sm)));
+      overflow: hidden;
+      position: fixed;
+      right: var(--spacing-sm);
+      top: var(--spacing-md);
+      /* Clear the left inset as well so no sliver of the panel stays on screen. */
+      transform: translateX(calc(-100% - var(--spacing-sm)));
+      /*
+       * Hiding the closed panel keeps its shadow off screen and its links out
+       * of the tab order; the delay lets the slide-out finish first.
+       */
+      transition:
+        transform var(--animation-fast) ease-in-out,
+        visibility 0s linear var(--animation-fast);
+      visibility: hidden;
+      z-index: var(--layer-5);
+
+      .mobile-header {
+        align-items: center;
+        border-bottom: 1px solid var(--color-border-subtle);
+        display: flex;
+        flex-shrink: 0;
+        justify-content: space-between;
+        padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-2xl);
+
+        .mobile-logo {
+          svg {
+            height: 100%;
+            width: 100%;
+            max-height: 3em;
+          }
+          img,
+          .mobile-logo-image {
+            height: auto;
+            max-height: 3em;
+            max-width: min(20em, 100%);
+            width: auto;
+          }
+        }
+
+        .mobile-header-actions {
+          align-items: center;
+          display: flex;
+          gap: var(--spacing-xs);
+        }
+      }
+
+      .mobile-content {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+      }
+
+      /* The actions' top border already separates them from the last row. */
+      .mobile-content:has(+ .mobile-actions) .mobile-list > .nav-item:last-child {
+        border-bottom: none;
+      }
+
+      /* Actions stay pinned below the scrolling list. */
+      .mobile-actions {
+        border-top: 1px solid var(--color-border-subtle);
+        flex: 0 0 auto;
+        padding: var(--spacing-md);
+
+        .button-group {
+          margin-top: 0;
+
+          > .button-group__items {
+            flex-wrap: nowrap;
+            gap: var(--spacing-sm);
+          }
+
+          .button > .button-inner.icon-only .icon svg {
+            font-size: 1.25em;
+          }
+        }
+
+        .button {
+          flex: 1 1 auto;
+          min-width: 0;
+
+          &:has(> .button-inner.icon-only) {
+            flex: 0 0 auto;
+          }
+
+          > .button-inner {
+            border-radius: var(--radius-sm);
+            justify-content: center;
+            width: 100%;
+          }
+        }
+      }
+
+      .mobile-list {
+        font-size: var(--font-size-lg);
+      }
+
+      .mobile-list,
+      .nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      /* Only top-level rows are separated; dropdown rows sit flush together. */
+      .mobile-list > .nav-item {
+        border-bottom: 1px solid var(--color-border-subtle);
+      }
+
+      /*
+       * Row shell shared by direct links and full-row label triggers.
+       * Split rows (link + chevron toggle) use `.nav-item-split` below.
+       */
+      .nav-item > a,
+      .nav-item > .nav-item-trigger:not(.nav-item-toggle-btn) {
+        align-items: center;
+        border-radius: var(--radius-xs);
+        color: var(--color-text-strong);
+        cursor: pointer;
+        display: flex;
+        font-weight: var(--font-weight-semibold);
+        min-height: 2.5rem;
+        padding: var(--spacing-md);
+        text-decoration: none;
+        transition: background-color var(--animation-normal) ease-in-out;
+        user-select: none;
+        white-space: nowrap;
+        width: 100%;
+
+        &[aria-current="page"] {
+          text-decoration: underline dotted;
+          text-decoration-color: var(--color-text-muted);
+          text-underline-offset: 3px;
+        }
+
+        &:hover,
+        &:focus-visible {
+          background: var(--color-state-hover);
+          color: var(--color-text-strong);
+
+          .nav-item-icon {
+            color: var(--color-text-strong);
+          }
+        }
+      }
+
+      .nav-item > .nav-item-trigger:not(.nav-item-toggle-btn) {
+        gap: var(--spacing-xs);
+        justify-content: space-between;
+        padding-inline-end: 0;
+
+        .nav-item-icon {
+          align-items: center;
+          box-sizing: border-box;
+          color: var(--color-text-muted);
+          display: inline-flex;
+          flex-shrink: 0;
+          justify-content: center;
+          line-height: 0;
+          margin-inline: 2px var(--spacing-md);
+          min-height: 1.75rem;
+          min-width: 2.5rem;
+          padding: var(--spacing-xs);
+          transition:
+            color var(--animation-normal) ease-in-out,
+            transform var(--animation-normal) ease-in-out;
+        }
+      }
+
+      /* Split row: link column + chevron toggle column */
+      .nav-item-split {
+        align-items: stretch;
+        border-radius: var(--radius-xs);
+        display: flex;
+        flex-wrap: nowrap;
+        gap: var(--spacing-xs);
+        min-width: 0;
+        transition: background-color var(--animation-normal) ease-in-out;
+        width: 100%;
+
+        &:hover {
+          background: var(--color-state-hover);
+
+          .nav-item-link {
+            color: var(--color-text-strong);
+          }
+
+          .nav-item-toggle-btn {
+            background: color-mix(in srgb, var(--color-state-hover), var(--color-text) 3%);
+          }
+        }
+
+        .nav-item-link {
+          align-items: center;
+          border-radius: var(--radius-xs);
+          color: var(--color-text-strong);
+          cursor: pointer;
+          display: flex;
+          flex: 1 1 auto;
+          font-weight: var(--font-weight-semibold);
+          min-height: 2.5rem;
+          min-width: 0;
+          padding: var(--spacing-md) var(--spacing-xs) var(--spacing-md) var(--spacing-md);
+          text-decoration: none;
+          transition: background var(--animation-fast) ease-in-out;
+          user-select: none;
+          white-space: nowrap;
+
+          &[aria-current="page"] {
+            text-decoration: underline dotted;
+            text-decoration-color: var(--color-text-muted);
+            text-underline-offset: 3px;
+          }
+
+          &:hover,
+          &:focus-visible {
+            color: var(--color-text-strong);
+          }
+        }
+
+        .nav-item-toggle-btn {
+          align-items: center;
+          align-self: center;
+          aspect-ratio: 1;
+          background: transparent;
+          border: none;
+          border-left: 1px solid transparent;
+          border-radius: var(--radius-xs);
+          box-sizing: border-box;
+          color: var(--color-text-muted);
+          cursor: pointer;
+          display: inline-flex;
+          flex: 0 0 auto;
+          height: 2.5rem;
+          justify-content: center;
+          margin-inline: 2px var(--spacing-md);
+          padding: 0;
+          width: 2.5rem;
+          transition:
+            background-color var(--animation-normal) ease-in-out,
+            border-color var(--animation-normal) ease-in-out,
+            color var(--animation-normal) ease-in-out;
+
+          &:hover {
+            background: color-mix(in srgb, var(--color-state-hover), var(--color-text) 8%);
+            border-left-color: var(--color-border);
+            color: var(--color-text-strong);
+          }
+
+          &:focus-visible {
+            outline: 2px solid var(--color-focus-ring);
+            outline-offset: 2px;
+          }
+
+          .nav-item-icon {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            line-height: 0;
+          }
+        }
+      }
+
+      /* Hidden checkbox drives expand/collapse via `:checked ~` selectors */
+      .nav-item-toggle,
+      .nav-item-content {
+        display: none;
+      }
+
+      .nav-item-toggle:checked ~ .nav-item-content {
+        animation: grow-out var(--animation-normal) ease-out;
+        display: block;
+      }
+
+      .nav-item-icon {
+        color: var(--color-text-muted);
+        display: inline-block;
+        transition: transform var(--animation-normal) ease-in-out;
+      }
+
+      .nav-item-toggle:checked ~ .nav-item-trigger .nav-item-icon,
+      .nav-item-toggle:checked ~ .nav-item-split .nav-item-icon {
+        transform: rotate(90deg);
+      }
+
+      /*
+       * Nested lists: deeper indentation. Level two inherits the primary
+       * weight / size; level three drops to body-sm + regular.
+       */
+      .nav-list {
+        & > .nav-item > a,
+        & > .nav-item > .nav-item-trigger:not(.nav-item-toggle-btn) {
+          padding-inline: var(--spacing-xl);
+        }
+
+        & > .nav-item > .nav-item-split {
+          padding-inline: var(--spacing-xl);
+        }
+
+        & > .nav-item > .nav-item-split .nav-item-link,
+        & .nav-list > .nav-item > .nav-item-split .nav-item-link {
+          padding: var(--spacing-md) var(--spacing-xs) var(--spacing-md) 0;
+        }
+
+        & .nav-list > .nav-item > a,
+        & .nav-list > .nav-item > .nav-item-trigger:not(.nav-item-toggle-btn) {
+          font-size: var(--font-size-body-sm);
+          font-weight: var(--font-weight-regular);
+          padding-inline-start: var(--spacing-2xl);
+        }
+
+        & .nav-list > .nav-item > .nav-item-split {
+          padding-inline-end: var(--spacing-xl);
+          padding-inline-start: var(--spacing-2xl);
+        }
+
+        & .nav-list > .nav-item > .nav-item-split .nav-item-link {
+          font-size: var(--font-size-body-sm);
+          font-weight: var(--font-weight-regular);
+        }
+      }
+
+      /*
+       * Rows with an icon and/or subtext: drop the nested indent (the icon
+       * column takes its place) and keep the name at full weight.
+       */
+      .nav-list > .nav-item > a.has-label-extras,
+      .nav-list > .nav-item > .nav-item-trigger.has-label-extras,
+      .nav-list > .nav-item > .nav-item-split .nav-item-link.has-label-extras,
+      .nav-list .nav-list > .nav-item > a.has-label-extras,
+      .nav-list .nav-list > .nav-item > .nav-item-trigger.has-label-extras {
+        padding-inline: var(--spacing-md);
+      }
+
+      .nav-item > a.has-label-extras,
+      .nav-item > .nav-item-trigger.has-label-extras,
+      .nav-item > .nav-item-split .nav-item-link.has-label-extras {
+        align-items: flex-start;
+        white-space: normal;
+      }
+
+      .has-label-extras .nav-item-label-name {
+        font-size: var(--font-size-md);
+        font-weight: var(--font-weight-semibold);
+      }
+    }
+
+    .mobile .mobile-header .mobile-logo .mobile-logo-image {
+      display: flex;
+      margin-top: 0 !important;
+      max-width: none;
+      width: 100%;
+    }
+
+    .mobile .mobile-header .mobile-logo .mobile-logo-image > .image-inner {
+      width: 100%;
+    }
+
+    .mobile .mobile-header .mobile-logo .mobile-logo-image picture {
+      display: block;
+      width: 100%;
+    }
+
+    /* Matches the logo in the collapsed nav bar so it doesn't jump on open. */
+    .mobile .mobile-header .mobile-logo .mobile-logo-image img,
+    .mobile .mobile-header .mobile-logo .mobile-logo-image svg,
+    .mobile .mobile-header .mobile-logo svg {
+      display: block;
+      height: 1.25em;
+      max-width: 150px;
+      width: auto;
+    }
+
+    .mobile-overlay {
+      background: var(--color-bg);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      inset: 0;
+      position: fixed;
+      transform: translateX(-100%);
+      transition: transform var(--animation-fast) ease-in-out;
+      z-index: var(--layer-6);
+
+      &.open {
+        transform: translateX(0);
+      }
+    }
+  }
+</style>

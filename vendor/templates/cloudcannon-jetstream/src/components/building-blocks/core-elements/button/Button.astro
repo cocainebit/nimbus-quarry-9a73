@@ -1,0 +1,412 @@
+---
+import Icon from "@core-elements/icon/Icon.astro";
+
+const {
+  text,
+  iconName,
+  iconColor = "default",
+  iconPosition = "before",
+  hideText = false,
+  variant = "primary",
+  size = "md",
+  link,
+  element,
+  class: className,
+  useDefaultEditableBinding = false,
+  "data-prop": customDataProp,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+
+const effectiveDataProp = customDataProp ?? (useDefaultEditableBinding ? "text" : null);
+const textDataAttributes = effectiveDataProp
+  ? { "data-editable": "text", "data-prop": effectiveDataProp }
+  : {};
+
+const isPopoverLink = link?.startsWith("^");
+const Tag = (element ?? (isPopoverLink || !link ? "button" : "a")) as any;
+
+const tagProps: Record<string, any> = isPopoverLink
+  ? { type: "button", popovertarget: link.slice(1), popovertargetaction: "show" }
+  : Tag === "a" && link
+    ? { href: link }
+    : Tag === "button"
+      ? { type: "button" }
+      : {};
+
+if (hideText) {
+  tagProps["aria-label"] = htmlAttributes["aria-label"] || text;
+  delete htmlAttributes["aria-label"];
+}
+
+const tagKeys = new Set<string>([
+  "id",
+  "tabindex",
+  "tabIndex",
+  "popovertarget",
+  "popovertargetaction",
+]);
+
+if (Tag === "a" && link) {
+  for (const k of ["target", "rel", "download", "hreflang", "referrerpolicy", "ping"]) {
+    tagKeys.add(k);
+  }
+}
+if (Tag === "button") {
+  for (const k of [
+    "type",
+    "disabled",
+    "name",
+    "value",
+    "form",
+    "formaction",
+    "formenctype",
+    "formmethod",
+    "formnovalidate",
+    "formtarget",
+    "autofocus",
+  ]) {
+    tagKeys.add(k);
+  }
+}
+
+const restAttrs = htmlAttributes as Record<string, any>;
+
+for (const key of tagKeys) {
+  if (key in restAttrs) {
+    tagProps[key] = restAttrs[key];
+    delete restAttrs[key];
+  }
+}
+
+const hasText = text?.trim().length > 0;
+const hasSlotContent = Astro.slots.has("default");
+const hasIcon = iconName?.trim().length > 0;
+
+if (!_component && !hasText && !hasSlotContent && !hasIcon) return;
+---
+
+<span
+  class:list={["button", className]}
+  {...htmlAttributes}
+>
+  <Tag
+    class:list={[
+      "button-inner",
+      `variant-${variant}`,
+      `size-${size}`,
+      iconPosition === "after" && "icon-after",
+      hideText && "icon-only",
+    ]}
+    {...tagProps}
+  >
+    {
+      variant === "primary-animated" ? (
+        <>
+          <span class="shadow" />
+          <span class="edge" />
+          <span class="front">
+            <Icon
+              name={iconName}
+              color={iconColor}
+              size="none"
+            />
+            {!hideText && (
+              <span
+                class="label-text"
+                {...textDataAttributes}
+              >
+                <slot>{text}</slot>
+              </span>
+            )}
+          </span>
+        </>
+      ) : (
+        <>
+          <Icon
+            name={iconName}
+            color={iconColor}
+            size="none"
+          />
+          {!hideText && (
+            <span
+              class="label-text"
+              {...textDataAttributes}
+            >
+              <slot>{text}</slot>
+            </span>
+          )}
+        </>
+      )
+    }
+  </Tag>
+</span>
+
+<style is:global>
+  @layer components {
+    .button {
+      display: inline-flex;
+      max-width: 100%;
+      vertical-align: middle;
+
+      > .button-inner {
+        align-items: center;
+        background-color: var(--color-bg-surface);
+        border: 1px solid var(--color-bg-surface);
+        border-radius: var(--radius-sm);
+        color: var(--color-text-strong);
+        display: inline-flex;
+        flex-shrink: 0;
+        font-weight: var(--font-weight-bold);
+        gap: 0.15em;
+        justify-content: center;
+        min-height: 10px;
+        min-width: 10px;
+        padding-block: var(--spacing-em-sm);
+        padding-inline: var(--spacing-em-sm);
+        text-align: center;
+        text-decoration: none;
+        transition-duration: var(--animation-normal);
+        transition-property: background-color, color, border-color;
+        transition-timing-function: ease-in-out;
+
+        &:not(.variant-primary-animated):hover {
+          background-color: var(--color-bg-muted);
+          border-color: var(--color-bg-muted);
+          color: var(--color-text-strong);
+          cursor: pointer;
+        }
+
+        &:not(.variant-primary-animated):focus {
+          box-shadow: var(--shadow-focus-inset);
+          outline: none;
+        }
+
+        &.icon-only,
+        &.icon-only .front {
+          aspect-ratio: 1;
+          border-radius: var(--radius-full);
+          padding: var(--spacing-em-sm);
+
+          .icon {
+            align-content: center;
+            height: 1.5em;
+            width: 1.5em;
+          }
+        }
+
+        &.icon-after,
+        &.icon-after .front {
+          flex-direction: row-reverse;
+        }
+
+        &.variant-base {
+          background-color: var(--color-bg-surface);
+          border-color: var(--color-bg-surface);
+          color: var(--color-text-strong);
+        }
+
+        &.variant-primary {
+          background-color: var(--color-bg-primary);
+          border-color: transparent;
+          color: var(--color-text-inverse);
+        }
+
+        &.variant-primary:hover {
+          background-color: var(--color-bg-brand);
+          border-color: transparent;
+          color: var(--color-text-on-brand);
+        }
+
+        &.variant-primary:focus {
+          background-color: var(--color-brand-on);
+          border-color: transparent;
+          color: var(--color-text-on-brand);
+        }
+
+        &.variant-secondary {
+          background-color: var(--color-bg-muted);
+          border-color: transparent;
+          color: var(--color-text-strong);
+        }
+
+        &.variant-secondary:hover {
+          background-color: var(--color-bg-surface);
+          border-color: transparent;
+          color: var(--color-text-strong);
+        }
+
+        &.variant-secondary:focus {
+          background-color: var(--color-bg-brand-muted);
+          border-color: transparent;
+          color: var(--color-text-strong);
+        }
+
+        &.variant-tertiary {
+          background-color: var(--color-bg);
+          border-color: var(--color-border-subtle);
+          color: var(--color-text-strong);
+        }
+
+        &.variant-tertiary:hover {
+          background-color: var(--color-bg-surface);
+          border-color: var(--color-border);
+          color: var(--color-text-strong);
+        }
+
+        &.variant-tertiary:focus {
+          background-color: transparent;
+          border-color: var(--color-border-strong);
+          color: var(--color-text-strong);
+        }
+
+        &.variant-ghost {
+          background-color: transparent;
+          border-color: transparent;
+          color: var(--color-text-strong);
+        }
+
+        &.variant-ghost:hover {
+          background-color: transparent;
+          border-color: transparent;
+          color: var(--color-brand);
+        }
+
+        &.variant-ghost:focus {
+          background-color: transparent;
+          border-color: transparent;
+          color: var(--color-brand-on);
+        }
+
+        &.variant-text {
+          background-color: transparent;
+          border-color: transparent;
+          color: var(--color-brand);
+          font-size: var(--font-size-lg);
+          padding: 0;
+        }
+
+        &.variant-text:hover {
+          color: var(--color-brand-muted);
+        }
+
+        &.variant-text:focus {
+          color: var(--color-brand-on);
+        }
+
+        &.variant-primary-animated {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          position: relative;
+          transition: filter var(--animation-extra-fast);
+
+          .shadow {
+            background: hsl(0deg 0% 0% / 0.25);
+            border-radius: var(--radius-sm);
+            height: 100%;
+            inset: 0;
+            position: absolute;
+            transform: translateY(2px);
+            transition: transform var(--animation-fast) cubic-bezier(0.3, 0.7, 0.4, 1);
+            width: 100%;
+            will-change: transform;
+          }
+
+          .edge {
+            background:
+              repeating-linear-gradient(
+                135deg,
+                var(--color-bg-primary) 0 1px,
+                transparent 1px 20px
+              ),
+              linear-gradient(
+                to left,
+                var(--color-bg-primary) 0%,
+                var(--color-bg-brand-muted) 8%,
+                var(--color-bg-brand-muted) 92%,
+                var(--color-bg-primary) 100%
+              );
+            border: 1px solid var(--color-bg-primary);
+            border-radius: var(--radius-sm);
+            height: 100%;
+            inset: 0;
+            position: absolute;
+            width: 100%;
+          }
+
+          .front {
+            align-items: center;
+            background-color: var(--color-bg-primary);
+            border-color: transparent;
+            border-radius: var(--radius-sm);
+            color: var(--color-text-on-brand);
+            display: inline-flex;
+            flex-shrink: 0;
+            font-weight: var(--font-weight-bold);
+            gap: 0.15em;
+            justify-content: center;
+            min-height: 10px;
+            min-width: 10px;
+            padding-block: var(--spacing-em-sm);
+            padding-inline: var(--spacing-em-sm);
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transform: translateY(-4px);
+            transition: transform var(--animation-fast) cubic-bezier(0.3, 0.7, 0.4, 1);
+            vertical-align: middle;
+            will-change: transform;
+          }
+
+          &:hover {
+            filter: brightness(110%);
+          }
+
+          &:hover .front {
+            background-color: var(--color-bg-brand);
+            transform: translateY(-6px);
+            transition: transform var(--animation-extra-fast) cubic-bezier(0.3, 0.7, 0.4, 1.5);
+          }
+
+          &:active .front {
+            transform: translateY(-2px);
+            transition: transform 34ms;
+          }
+
+          &:hover .shadow {
+            transform: translateY(4px);
+            transition: transform var(--animation-extra-fast) cubic-bezier(0.3, 0.7, 0.4, 1.5);
+          }
+
+          &:active .shadow {
+            transform: translateY(1px);
+            transition: transform 34ms;
+          }
+
+          &:focus {
+            outline: var(--color-focus-ring) solid 2px;
+            outline-offset: 4px;
+          }
+
+          &:focus:not(:focus-visible) {
+            outline: none;
+          }
+        }
+
+        &.size-sm {
+          font-size: var(--font-size-xs);
+        }
+
+        &.size-md {
+          font-size: var(--font-size-md);
+        }
+
+        &.size-lg {
+          font-size: var(--font-size-xl);
+        }
+      }
+    }
+  }
+</style>

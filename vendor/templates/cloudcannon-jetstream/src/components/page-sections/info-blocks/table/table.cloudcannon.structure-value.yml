@@ -1,0 +1,59 @@
+label: Table
+icon: table_rows
+description: Description for table component.
+value:
+  _component: page-sections/info-blocks/table
+  id:
+  eyebrowIcon: {}
+  eyebrowText: Eyebrow placeholder
+  heading: "Compare Features"
+  subtext: Subtext placeholder
+  table:
+    headers:
+      - hideText: true
+        text: ""
+      - hideText: false
+        text: Category
+      - hideText: false
+        text: Plan 1
+      - hideText: false
+        text: Plan 2
+      - hideText: false
+        text: Plan 3
+    sections:
+      - sectionName: Section 1
+        rows:
+          - cells:
+              - Feature 1
+              - Value 1
+              - Value 2
+              - Value 3
+          - cells:
+              - Feature 2
+              - Value 1
+              - Value 2
+              - Value 3
+      - sectionName: Section 2
+        rows:
+          - cells:
+              - Feature 3
+              - Value 1
+              - Value 2
+              - Value 3
+  maxContentWidth: "2xl"
+  paddingVertical: "4xl"
+  colorScheme: "light"
+  backgroundColor: "base"
+  contentBackground: false
+  verticalOffset: {}
+  rounded: false
+preview:
+  gallery:
+    image: public/component-previews/page-sections/info-blocks/table.svg
+    fit: cover
+picker_preview:
+  gallery:
+    image: public/component-previews/page-sections/info-blocks/table.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/page-sections/info-blocks/table/table.cloudcannon.inputs.yml

@@ -1,0 +1,94 @@
+---
+_schema: default
+permalink:
+title: 'Why we rebuilt our DNS resolver from scratch (<span class="highlight-text">again</span>)'
+description: >-
+  Sometimes good enough isn't good enough, especially when our engineers have
+  strong opinions about query optimization.
+date: 2026-02-19T00:00:00Z
+author: 470d9a38-a9ab-4112-b222-8e10e7d5ac7d
+image: /src/assets/images/blog-dns-resolver.png
+image_alt: Macro shot of a circuit board's chips, resistors and solder joints lit in orange and blue
+tag: Performance
+counters: []
+---
+
+Our DNS resolver was working perfectly well. Response times averaged 47 milliseconds globally. Cache hit rates hovered around 94%. Customer complaints were nonexistent. By any reasonable metric, we had built a solid, dependable system that did exactly what DNS resolvers are supposed to do.
+
+Our engineering team disagreed with the word "reasonable."
+
+## The problem nobody else saw
+
+DNS queries are supposed to be fast. They're the first step in nearly every internet interaction, before your browser can load a website, before an API call can complete, before anything useful happens, there's a DNS lookup. Most providers consider 50 milliseconds acceptable. Industry standards suggest anything under 100 milliseconds is fine.
+
+We found this philosophically unacceptable.
+
+When you're processing 400 billion DNS queries daily across 847 edge nodes, even small optimizations compound dramatically. A 10-millisecond improvement per query translates to 46 days of cumulative time saved for our customers every single day. Our senior DNS engineer presented this calculation during a quarterly review and followed it with a single question: "Why are we leaving 46 days on the table?"
+
+Nobody had a good answer.
+
+## The six-month design phase
+
+We didn't write code for six months. This drove our product team mildly insane, but our CTO insisted on it. We needed to understand exactly why our current resolver performed the way it did before we could build something better.
+
+Our team analyzed query patterns, measured cache efficiency under different load conditions, and studied how requests propagated through our network. We discovered that our resolver was optimized for average performance, which meant it handled typical queries brilliantly and edge cases adequately.
+
+Edge cases, we realized, weren't actually edges. They were 18% of our traffic.
+
+The breakthrough came during a particularly long whiteboard session when someone suggested we stop thinking about DNS as a lookup service and start treating it as a prediction problem.
+
+What if our resolver could anticipate queries before they arrived?
+
+The room went quiet for approximately 30 seconds. Then someone said, "That's either brilliant or impossible," and we spent the next four months proving it was the former.
+
+## Building a resolver that predicts the future
+
+Our new architecture centers on what we're calling "speculative resolution." The system analyzes traffic patterns across our entire network and pre-computes answers for queries it expects to receive. When a query actually arrives, the answer is already waiting in memory.
+
+This required rebuilding our caching layer from scratch. Traditional DNS caches store answers to queries that have already been asked. Our cache stores answers to queries that probably will be asked, based on temporal patterns, geographic correlation, and what our machine learning models have determined about normal traffic behavior.
+
+We also parallelized everything. Our old resolver processed queries sequentially, lookup, validate, cache, respond. The new version does all of these simultaneously across multiple cores, with different threads handling different parts of the resolution process. Query validation happens while we're already preparing the response.
+
+The result? Average response times dropped from 47 milliseconds to 1.2 milliseconds.
+
+## The 840,000 lines of deleted code
+
+We wrote a lot of code during the implementation phase. Most of it was terrible.
+
+Our first working prototype achieved 8-millisecond response times, which was better than the old system but not good enough. We threw it out. The second version hit 3 milliseconds but crashed under high load. We threw that out too.
+
+Version three was close. Version four was closer. Version five introduced a caching bug that took three days to track down. By version seven, we had something that worked consistently, performed brilliantly, and contained approximately 840,000 lines of code we'd written and then deleted along the way.
+
+Our version control history from this period is a monument to iteration. Every failed approach taught us something about what wouldn't work, which narrowed the space of what would. By the time we deployed to production, we'd eliminated most possible mistakes through the simple expedient of making all of them first.
+
+## Convincing management this was necessary
+
+We held three all-hands meetings to explain why we needed to replace a perfectly functional DNS resolver. The first meeting did not go well. Our CFO asked why we were spending engineering resources on something customers weren't complaining about.
+
+Our CTO pulled up the cost analysis. The performance improvement would reduce server costs by 23% annually. The increased cache hit rates would lower bandwidth expenses. The improved reliability would prevent the kind of DNS outages that generate panicked customer emails and emergency response calls.
+
+The CFO stopped objecting and started asking about timeline.
+
+The second meeting addressed technical risk. Replacing core infrastructure is dangerous. DNS is critical. If the migration went wrong, every customer would notice immediately. Our VP of Engineering presented the rollout plan: gradual deployment across edge nodes, automated rollback triggers, real-time monitoring dashboards, and a kill switch that could revert to the old system in under 10 seconds.
+
+The third meeting was shorter. Management approved the project, and our engineering team began deployment.
+
+## What we learned
+
+Building a DNS resolver twice teaches you things you don't learn the first time. We learned that performance optimization is as much about predicting behavior as measuring it. We learned that cache efficiency matters more than cache size. We learned that parallel processing is hard to implement correctly but worth the effort.
+
+Most importantly, we learned that "good enough" is the enemy of "actually good."
+
+Our new resolver now handles 99.99% of queries in under 2 milliseconds. Cache hit rates reached 99.97%. Customer complaints remain nonexistent, but now our internal metrics make us happy too.
+
+Would we rebuild it again? Probably. Our team is already discussing version three, though management has requested we wait at least a year before proposing it. We're calling that "aggressive restraint" and considering it a reasonable compromise.
+
+## Technical specs for the curious:
+
+- 47ms average query time (old resolver)
+- 1\.2ms average query time (new resolver)
+- 6 months spent designing before coding
+- 840,000 lines of code written then deleted
+- 3 all-hands meetings required for approval
+- 99\.99% of queries resolved under 2ms
+- 99\.97% cache hit rate achieved

@@ -1,0 +1,249 @@
+card:
+  type: object
+  comment: Card content for the hero.
+  options:
+    structures:
+      values:
+        - label: Card
+          icon: rectangle
+          value:
+            usePost: false
+            post: ""
+            eyebrowText: "Card Hero Eyebrow"
+            heading: "Card Hero Heading"
+            subtext: "Card Hero Subtext"
+            metaText: "Card Hero Meta Text"
+            buttonSections: []
+            image: {}
+            counters: []
+          _inputs:
+            usePost:
+              type: switch
+              comment: Whether to use a blog post for the card content.
+            post:
+              type: select
+              comment: Select a blog post to use for the card content.
+              hidden: "!usePost"
+              options:
+                values: collections.blog
+            eyebrowText:
+              type: text
+              comment: Optional label displayed above the heading.
+              hidden: "usePost"
+            heading:
+              type: html
+              comment: Main heading text for the card section.
+              hidden: "usePost"
+              options:
+                styles: .cloudcannon/styles/editor.css
+            subtext:
+              type: markdown
+              comment: Optional subtext displayed beneath the heading.
+              hidden: "usePost"
+              options:
+                bold: true
+                italic: true
+                link: true
+                underline: true
+            metaText:
+              type: text
+              comment: Optional emphasised line displayed beneath the subtext. Replaced by the post author and date when using a post.
+              hidden: "usePost"
+            buttonSections:
+              type: array
+              comment: Calls-to-action shown beneath the copy block.
+              hidden: "usePost"
+              options:
+                structures: _structures.buttonSections
+            image:
+              type: object
+              hidden: "usePost"
+              options:
+                structures:
+                  values:
+                    - label: Image
+                      icon: image
+                      value:
+                        source: ""
+                        alt: ""
+                        rounded: false
+                      _inputs:
+                        source:
+                          type: image
+                          comment: The URL or path to the image.
+                          options:
+                            paths:
+                              uploads: src/assets/images
+                              static: ""
+                        alt:
+                          type: textarea
+                          comment: Alternative text for accessibility.
+                        rounded:
+                          type: switch
+                          comment: Whether to apply rounded corners to the image.
+            counters:
+              hidden: "usePost"
+              options:
+                structures:
+                  values:
+                    - label: Counter
+                      icon:
+                      value:
+                        counter: {}
+                        subtext: "Counter Subtext"
+                      _inputs:
+                        counter:
+                          options:
+                            structures:
+                              values:
+                                - label: Counter
+                                  icon: speed
+                                  value:
+                                    number: 100
+                                    prefix: $
+                                    suffix: M
+                                  _inputs:
+                                    number:
+                                      type: number
+                                      comment: The number to count to.
+                                    prefix:
+                                      comment: Text immediately before the number.
+                                    suffix:
+                                      comment: Text immediately after the number.
+                        subtext:
+                          type: markdown
+                          comment: Optional subtext displayed beneath the counter.
+                          options:
+                            bold: true
+                            italic: true
+                            link: true
+                            underline: true
+id:
+  type: text
+  comment: Unique identifier for the section which can be used as an anchor link.
+eyebrowIcon:
+  type: object
+  comment: Optional icon displayed above the eyebrow.
+  options:
+    structures: _structures.eyebrowIcon
+eyebrowText:
+  type: text
+  comment: Optional label displayed above the heading.
+heading:
+  type: html
+  comment: Main heading text for the section.
+  options:
+    styles: .cloudcannon/styles/editor.css
+subtext:
+  type: markdown
+  comment: Optional subtext displayed next to the heading.
+  options:
+    bold: true
+    italic: true
+    link: true
+    underline: true
+maxContentWidth:
+  type: select
+  comment: Maximum width constraint for the content.
+  options:
+    values:
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl
+      - id: 3xl
+        name: 3xl
+paddingVertical:
+  type: select
+  comment: Vertical padding applied to the custom section content.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: xs
+        name: Extra Small
+      - id: sm
+        name: Small
+      - id: md
+        name: Medium
+      - id: lg
+        name: Large
+      - id: xl
+        name: Extra Large
+      - id: 2xl
+        name: 2xl
+      - id: 3xl
+        name: 3xl
+colorScheme:
+  type: select
+  comment: Color scheme theme for the hero.
+  options:
+    values:
+      - id: inherit
+        name: Inherit
+      - id: light
+        name: Light
+      - id: dark
+        name: Dark
+backgroundColor:
+  type: select
+  comment: Background color for the section.
+  options:
+    values:
+      - id: none
+        name: None
+      - id: base
+        name: Base
+      - id: surface
+        name: Surface
+      - id: accent
+        name: Accent
+      - id: highlight
+        name: Highlight
+      - id: highlight-grid
+        name: Highlight Grid
+      - id: surface-linear-gradient
+        name: Surface Linear Gradient
+      - id: brand-linear-gradient-reverse
+        name: Brand Linear Gradient Reverse
+      - id: brand-linear-gradient
+        name: Brand Linear Gradient
+      - id: brand-linear-gradient-muted
+        name: Brand Linear Gradient Muted
+      - id: highlight-linear-gradient
+        name: Highlight Linear Gradient
+      - id: highlight-radial-gradient
+        name: Highlight Radial Gradient
+      - id: highlight-radial-gradient-animated
+        name: Highlight Radial Gradient Animated
+background:
+  type: object
+  comment: Optional background still image or looping HTML5 video (self-hosted). Shared positioning applies to whichever type you choose. Video is hidden when the user prefers reduced motion.
+  options:
+    empty_type: object
+    structures: _structures.background
+    preview:
+      icon: wallpaper
+      text:
+        - Background
+      subtext:
+        - key: type
+verticalOffset:
+  type: object
+  comment: Offset section up above or below the previous section.
+  options:
+    empty_type: object
+    preview:
+      icon: arrow_upward
+    structures: _structures.vertical_offset
+rounded:
+  type: switch
+  comment: Whether to apply rounded corners to the section.

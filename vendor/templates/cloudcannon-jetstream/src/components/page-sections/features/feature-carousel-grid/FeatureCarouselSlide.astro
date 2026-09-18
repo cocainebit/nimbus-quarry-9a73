@@ -1,0 +1,49 @@
+---
+import FeatureCarouselCard from "@features/feature-carousel-grid/FeatureCarouselCard.astro";
+import BentoBox from "@wrappers/bento-box/BentoBox.astro";
+import CarouselSlide from "@wrappers/carousel/CarouselSlide.astro";
+
+const {
+  cards = [],
+  // The mobile carousel renders synthesised one-card slides, so its cards have
+  // no `slides[n].cards[n]` path to bind to. Marking them editable would point
+  // CloudCannon at data that does not exist, so only the desktop slides opt in.
+  editable = false,
+  class: className,
+  _component,
+  useDefaultEditableBinding = false,
+  ...htmlAttributes
+} = Astro.props;
+---
+
+<CarouselSlide {...htmlAttributes}>
+  <BentoBox
+    class:list={["feature-carousel-slide-grid", className]}
+    gap="xs"
+    data-children-prop={editable ? "cards" : undefined}
+    data-children-component-key={editable ? "_component" : undefined}
+  >
+    {
+      cards.map((card: any) => (
+        <FeatureCarouselCard
+          {...card}
+          data-editable={editable ? "array-item" : undefined}
+          data-id={
+            editable
+              ? "page-sections/features/feature-carousel-grid/feature-carousel-card"
+              : undefined
+          }
+        />
+      ))
+    }
+  </BentoBox>
+</CarouselSlide>
+
+<style is:global>
+  @layer page-sections {
+    .feature-carousel-slide-grid {
+      width: 100%;
+      padding: var(--spacing-sm);
+    }
+  }
+</style>

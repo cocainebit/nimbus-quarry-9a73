@@ -1,0 +1,113 @@
+---
+import Button from "@components/building-blocks/core-elements/button/Button.astro";
+import Icon from "@components/building-blocks/core-elements/icon/Icon.astro";
+import Page from "@layouts/Page.astro";
+// Import CtaCenter to include its styles (even though we don't render it)
+import "@page-sections/ctas/cta-center/CtaCenter.astro";
+import "@components/building-blocks/core-elements/heading/Heading.astro";
+import { getEntry } from "astro:content";
+
+const pageData = await getEntry("pages", "404");
+const page = pageData?.data || {
+  title: "404 - Page Not Found",
+  description: "The page you're looking for doesn't exist.",
+  cta: {},
+};
+---
+
+<Page
+  title={page.title}
+  description={page.description}
+>
+  <section
+    class="custom-section cta-center cta-center-rounded"
+    style="--max-width: var(--content-width-xl)"
+  >
+    <div
+      class="outer-content"
+      data-theme="dark"
+    >
+      <div class="background bg-highlight-radial-gradient"></div>
+      <div class="content pad-x-md pad-y-4xl max-width-xl">
+        <editable-component
+          data-component="building-blocks/core-elements/icon"
+          data-prop="cta.eyebrowIcon"
+        >
+          <Icon {...page.cta.eyebrowIcon} />
+        </editable-component>
+        <div
+          class="simple-text eyebrow"
+          data-astro-cid-523qj64f
+        >
+          <p
+            class="simple-text-content size-md align-center"
+            data-astro-cid-523qj64f
+          >
+            <span
+              class="simple-text-inner"
+              data-editable="text"
+              data-prop="cta.eyebrowText"
+              data-astro-cid-523qj64f
+              >{page.cta.eyebrowText}</span
+            >
+          </p>
+        </div>
+        <h1
+          class="heading"
+          data-astro-cid-ewdoq4kp
+        >
+          <span
+            class="heading-inner size-xl align-center"
+            data-astro-cid-ewdoq4kp
+          >
+            <span
+              class="heading-text"
+              data-editable="text"
+              data-prop="cta.heading"
+              set:html={page.cta.heading}
+              data-astro-cid-ewdoq4kp
+            />
+          </span>
+        </h1>
+        <div
+          class="text"
+          data-astro-cid-r4icev6a
+        >
+          <div
+            class="text-inner align-center"
+            data-editable="text"
+            data-prop="cta.subtext"
+            data-astro-cid-r4icev6a
+          >
+            <p set:html={page.cta.subtext} />
+          </div>
+        </div>
+        <div
+          class="button-group buttons"
+          data-astro-cid-fbdz35ol
+        >
+          <div
+            class="button-group__items row align-center"
+            data-editable="array"
+            data-prop="cta.buttonSections"
+            data-component="building-blocks/core-elements/button"
+            data-astro-cid-fbdz35ol
+          >
+            {
+              page.cta.buttonSections.map((button: any) => (
+                <span
+                  class="button"
+                  data-editable="array-item"
+                  data-astro-cid-fb4wagyx
+                >
+                  <Button {...button} />
+                </span>
+              ))
+            }
+          </div>
+        </div>
+        <div class="background-decoration"></div>
+      </div>
+    </div>
+  </section>
+</Page>

@@ -1,0 +1,182 @@
+---
+_schema: default
+permalink:
+title: What happened when an entire country tried to stream the same thing
+description: >-
+  Peak traffic events reveal whether your CDN was built by optimists or
+  engineers; ours was built by both.
+date: 2026-02-10T00:00:00Z
+author: c63acdd1-33d5-4366-a000-34f0c17ca88b
+image: /src/assets/images/blog-country.png
+image_alt: A glowing map of the United States with traffic arcs radiating from three hub cities, keyed from early peak to late peak
+tag: CDN
+counters: []
+---
+
+At 20:00 local time on January 15, 2026, approximately 40 million people in South Korea simultaneously started streaming the finale of a popular drama series. Our CDN was serving the content.
+
+Peak traffic hit 2.8 petabytes per hour. Every edge node in the region ran at maximum capacity. Our systems held steady without a single buffering complaint.
+
+This is what happened.
+
+## The warning
+
+Our customer, a major streaming platform, contacted us four days before the event. "We're expecting very high traffic for this finale," they said. "Probably the highest we've ever seen."
+
+They provided estimates: 30-50 million concurrent viewers, sustained over 90 minutes, concentrated in South Korea with spillover to neighboring countries. Peak bandwidth requirements: unknown, but substantially higher than any previous event.
+
+Our account team forwarded this to our operations team with a note: "Is this a problem?"
+
+Our VP of Operations reviewed the numbers, checked regional capacity, ran some projections, and replied: "We'll be fine. Probably."
+
+The "probably" bothered us enough to prepare more thoroughly.
+
+## Pre-event capacity analysis
+
+We examined our South Korean infrastructure: 24 edge nodes in the region, each capable of serving 150Gbps under ideal conditions. Theoretical maximum regional capacity: 3.6Tbps.
+
+But theoretical maximum assumes perfect load distribution, no redundancy requirements, and no other customer traffic. Real-world usable capacity is typically 60-70% of theoretical maximum.
+
+Realistic capacity: approximately 2.3Tbps.
+
+The customer's traffic estimates suggested we might need 2.5-3.0Tbps.
+
+We were potentially short by 200-700Gbps.
+
+## The capacity expansion
+
+We had four days to add bandwidth capacity in a region where we couldn't physically install new edge nodes fast enough. Our solution involved three approaches:
+
+### **Approach one: capacity rebalancing**
+
+We temporarily shifted edge node resources from lower-traffic regions to South Korea. Nodes in Australia and Japan that typically ran at 30% capacity were reconfigured to prioritize traffic destined for South Korea during the event window.
+
+This didn't add capacity, but it ensured maximum available capacity was directed where needed most.
+
+### **Approach two: caching optimization**
+
+The content was a 90-minute video file. Once cached on edge nodes, subsequent requests would be served entirely from cache without touching origin infrastructure.
+
+We pre-positioned the content on every edge node in the region 12 hours before the event. We also pre-cached the video at multiple quality levels and file segments to ensure efficient delivery regardless of viewer connection quality.
+
+Cache hit rate during the event: 99.94%. Almost no origin traffic.
+
+### **Approach three: predictive traffic routing**
+
+Our traffic routing typically optimizes for latency, directing users to their nearest edge node. For this event, we configured routing to optimize for capacity distribution.
+
+Users were directed to nodes with available capacity rather than strictly nearest nodes. This introduced 2-3ms of additional latency but prevented any single node from becoming overwhelmed.
+
+## The event begins
+
+At 19:30 local time, 30 minutes before the finale, traffic started ramping up. Users logging in, browsing content, preparing to watch.
+
+At 19:55, traffic accelerated rapidly. Five minutes before the episode went live, our South Korean edge nodes were already serving 400Gbps, approximately double typical evening traffic.
+
+At 20:00:00, the finale became available.
+
+Traffic exploded.
+
+## Peak traffic behavior
+
+Within 60 seconds of the finale going live, our regional traffic jumped from 400Gbps to 2.1Tbps. Within three minutes: 2.6Tbps. At peak: 2.8Tbps sustained for 73 minutes.
+
+This represented approximately 77% of our theoretical maximum regional capacity and 95% of our realistic usable capacity. We were running extremely close to limits.
+
+Our monitoring dashboards showed every edge node in the region operating at 85-95% capacity. No node exceeded safe limits, but margins were thin.
+
+Our operations team watched obsessively, ready to implement emergency traffic routing if any node approached 100% capacity. It never happened. Load distribution remained remarkably even across all nodes.
+
+## What kept the system stable
+
+Several factors prevented overload:
+
+**Pre-caching was essential:** Because content was pre-positioned on edge nodes, we handled 99.94% of requests from cache. If even 1% of requests had gone to origin, our origin infrastructure would have collapsed under the load.
+
+**Progressive video streaming helped:** Users didn't download entire files simultaneously. They streamed progressively, requesting video segments as needed. This distributed load over time rather than creating instantaneous massive demand.
+
+**Quality adaptation worked perfectly:** Our streaming protocol automatically adjusts video quality based on available bandwidth. When edge nodes approached capacity, some users automatically received slightly lower quality streams, preventing buffer shortages while maintaining playback.
+
+**Traffic routing adaptation was crucial:** As certain edge nodes approached capacity limits, our routing system automatically directed new connections to nodes with available capacity. This happened automatically, thousands of times per second, keeping load balanced.
+
+**Regional traffic cooperation:** Our edge nodes in neighboring countries (Japan, China, Taiwan) served Korean-speaking users in those regions, preventing all traffic from concentrating on South Korean nodes.
+
+## The one thing that went wrong
+
+Approximately 18 minutes into the finale, one edge node in Seoul experienced a brief CPU spike. CPU utilization hit 97% for about 45 seconds.
+
+This didn't cause service degradation, the node continued operating, but it triggered automatic traffic diversion. Our routing system immediately reduced traffic to that node by 30%, spreading the load to other nodes while the spike resolved.
+
+The CPU spike was caused by an unusual confluence of factors: extremely high connection count, aggressive cache validation happening simultaneously with content delivery, and garbage collection in the caching system all occurring at the same moment.
+
+By the time our operations team noticed the alert and began investigating, the automatic mitigation had already resolved the issue. The node returned to normal operation, traffic routing readjusted, and the event continued without user impact.
+
+We later identified and fixed the code path that caused excessive cache validation under high load. Future events won't experience this issue.
+
+## User experience metrics
+
+We obsessively track streaming quality metrics:
+
+**Buffering rate:** 0.06% of viewing sessions experienced any buffering. This is actually better than our typical baseline of 0.08%, possibly because pre-cached content eliminates some sources of latency variability.
+
+**Average video quality:** 94% of viewers received full HD or higher quality throughout the event. 6% experienced temporary quality reductions during the first few minutes as capacity balanced.
+
+**Playback failures:** 0.003%. Essentially zero. The few failures we saw were due to client-side issues (poor local wifi, device problems) rather than CDN problems.
+
+**User complaints:** We monitored social media and customer support channels. Zero complaints about buffering or quality issues. Users discussed the finale's content, not its delivery.
+
+From a user experience perspective, the event was indistinguishable from normal streaming.
+
+## The post-event analysis
+
+After the finale ended, traffic declined rapidly. By 22:00, two hours after the episode began, traffic had returned to typical evening levels.
+
+Our operations team spent the following week analyzing every aspect of the event:
+
+- Capacity utilization patterns across all edge nodes
+- Traffic routing decisions and their effectiveness
+- Cache hit rates and content delivery efficiency
+- CPU and memory usage under peak load
+- Network utilization and bandwidth efficiency
+
+Key findings:
+
+**We had approximately 200Gbps of spare capacity:** Peak traffic was 2.8Tbps against our 3.0Tbps realistic capacity. Comfortable, but not excessive margin.
+
+**Load distribution was impressively even:** Standard deviation in node utilization was only 6%. Our traffic routing achieved nearly perfect load balancing despite not being explicitly optimized for it.
+
+**Pre-caching was non-negotiable:** Without it, the event would have failed. Origin infrastructure couldn't have handled even 1% of that traffic volume.
+
+**Automatic capacity management worked:** Our systems made thousands of routing decisions during the event without human intervention. All decisions were correct.
+
+## What we learned
+
+High-traffic events reveal infrastructure truths:
+
+**Pre-positioning matters more than raw capacity:** We succeeded not because we had infinite bandwidth, but because content was intelligently cached where users would request it.
+
+**Automatic systems outperform humans during peak events:** Human operators couldn't make routing decisions fast enough at this scale. Automated systems adjusted traffic distribution in milliseconds.
+
+**Margin planning is critical:** Running at 95% capacity is uncomfortable but manageable. If we'd planned for only 70% utilization, we would have needed significantly more infrastructure investment with minimal benefit for normal operations.
+
+**User experience metrics don't correlate linearly with capacity utilization:** We ran very close to capacity limits but user experience remained excellent. Good engineering makes high utilization sustainable.
+
+## The customer's reaction
+
+The streaming platform contacted us the next day. Their CEO's message: "We threw everything we had at your infrastructure and it didn't even flinch. Well done."
+
+They provided us with their internal metrics: 41 million peak concurrent viewers, 97 minutes average viewing time, zero customer complaints about streaming quality.
+
+They've since migrated their entire catalog to our CDN and have recommended us to other streaming platforms.
+
+One successful event under extreme conditions built more trust than years of marketing could have achieved.
+
+## What's next
+
+We're now actively preparing for even larger events. Our analysis suggests we could potentially serve 60-70 million concurrent streams if properly prepared.
+
+We've expanded our South Korean infrastructure, adding redundant capacity we hope never to fully utilize. We've refined our pre-caching strategies based on what worked during this event. We've improved our CPU optimization to prevent the spike that occurred.
+
+The next time an entire country decides to stream something simultaneously, we'll be ready.
+
+Probably.

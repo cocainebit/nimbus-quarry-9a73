@@ -1,0 +1,117 @@
+label: Timeline
+icon: timeline
+description: Description for Timeline component.
+value:
+  _component: page-sections/info-blocks/timeline
+  id:
+  eyebrowIcon: {}
+  eyebrowText: ""
+  heading: "Our Journey"
+  subtext: "Track the key milestones in our story"
+  items:
+    - icon:
+        name: light-bulb
+        color: brand-gradient
+      date: "2020"
+      heading: "Foundation & Vision"
+      text: "Started with a bold vision to transform how businesses approach digital solutions."
+    - icon:
+        name: light-bulb
+        color: brand-gradient
+      date: "2021"
+      heading: "First Major Launch"
+      text: "Released our flagship product serving over 100 companies."
+    - icon:
+        name: light-bulb
+        color: brand-gradient
+      date: "2022"
+      heading: "Global Expansion"
+      text: "Expanded operations to three new continents."
+    - icon:
+        name: light-bulb
+        color: brand-gradient
+      date: "2023"
+      heading: "Innovation Award"
+      text: "Recognized as Technology Innovator of the Year."
+  maxContentWidth: 2xl
+  paddingVertical: 4xl
+  colorScheme: light
+  backgroundColor: base
+  contentBackground: false
+  background:
+    type: image
+    positionVertical: top
+    positionHorizontal: center
+    priority: false
+    imageSource: ""
+    imageAlt: ""
+    videoSource: null
+    overlay: 0
+  verticalOffset: {}
+  rounded: false
+preview:
+  gallery:
+    image: public/component-previews/page-sections/info-blocks/timeline.svg
+    fit: cover
+picker_preview:
+  gallery:
+    image: public/component-previews/page-sections/info-blocks/timeline.svg
+    fit: cover
+_inputs_from_glob:
+  - /src/components/page-sections/info-blocks/timeline/timeline.cloudcannon.inputs.yml
+_structures:
+  timelineItems:
+    values:
+      - label: Item
+        value:
+          _component: page-sections/info-blocks/timeline/timeline-item
+          icon:
+            name: ""
+            color: ""
+          date: ""
+          heading: ""
+          text: ""
+        _inputs:
+          icon:
+            type: object
+            comment: Icon for the item.
+            options:
+              structures:
+                values:
+                  - label: Icon
+                    value:
+                      name: ""
+                      color: ""
+                    _inputs:
+                      name:
+                        type: select
+                        comment: The name of the icon to display from the icon library.
+                        options:
+                          values: _select_data.icons
+                          preview:
+                            text:
+                              - key: name
+                            image:
+                              - template: src/icons/{id}.svg
+                      color:
+                        type: select
+                        comment: The color of the icon.
+                        options:
+                          values:
+                            - id: default
+                              name: Default (inherit)
+                            - id: brand
+                              name: Brand
+                            - id: brand-inverse
+                              name: Brand Inverse
+                            - id: brand-gradient
+                              name: Brand Gradient
+          date:
+            type: text
+            comment: Date for the item.
+          heading:
+            type: text
+            comment: Heading for the item.
+          text:
+            type: textarea
+            comment: Text for the item.

@@ -1,0 +1,479 @@
+{
+  "id": "cloudcannon-sendit",
+  "name": "Sendit",
+  "repository": "https://github.com/CloudCannon/sendit-astro-template",
+  "commit": "35f7fddc5c3f645c1381958ed5b676600f95a270",
+  "license": "MIT",
+  "licenseFirstLine": "MIT License",
+  "framework": "Astro 5",
+  "sourceDirectory": "vendor/templates/cloudcannon-sendit",
+  "photography": "None. Every photograph bundled upstream was removed before vendoring and replaced with placeholder artwork drawn in this repository, so no third-party photograph is redistributed.",
+  "changes": [],
+  "images": [
+    {
+      "file": "_astro/error.BPKMPWMK_t2tGx.webp",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "favicon.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/fontawesome-webfont.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/icomoon.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/sora-v10-latin-500.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/sora-v10-latin-600.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/sora-v10-latin-700.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/sora-v10-latin-regular.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/space-grotesk-v12-latin-500.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/space-grotesk-v12-latin-600.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/space-grotesk-v12-latin-700.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "fonts/space-grotesk-v12-latin-regular.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/404/error.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/about/aboutfeature-four.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/about/aboutfeature-three.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/about/aboutfeature-two.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/about/arrow-down.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/about/patterns-three.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/about/patterns-two.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/about/patterns.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/blog/blog-thumb-1.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/blog-thumb-2.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/blog-thumb-3.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/blog-thumb-4.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/blog-thumb-5.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/blog-thumb-6.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/brett-jordan-lpzy4da9aro-unsplash-1-1.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/brett-jordan-lpzy4da9aro-unsplash-1.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/brett-jordan-lpzy4da9aro-unsplash.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/featured-image-2.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/featured-image-3.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/featured-image-4.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/featured-image-5.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/featured-image-6.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/blog/featured-image.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/contact/call-add.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/contact/corporate-fare.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/contact/directbox-send.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/contact/effects.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/favicon.ico",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/favicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/effect-1.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/effect-2.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/effect-3.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/effect-4.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/effect-5.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/effect-6.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/effect-7.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/feature-card-five.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/feature-card-four.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/feature-card-one.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/feature-card-six.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/feature-card-three.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/feature-card-two.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/feature-hero-two.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/feature/feature-hero.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/footer-logo.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/hero/hero-image-2.avif",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/hero/hero-image.avif",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/hero/hero-one-shape.avif",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/hero/hero-three-shape.avif",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/hero/hero-two-shape.avif",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/logo.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/pricing/Vector1.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/pricing/shape-one.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/pricing/shape-two.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/services/service-image-1.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/services/service-image-2.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/services/service-image-3.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/services/service-image-4.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/services/service-image-5.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/services/service-image-6.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/services/service-image-7.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/team/1.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/team/2.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/team/3.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/team/4.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/team/5.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/team/6.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/team/7.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/team/8.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/testimonial/logo-2.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/testimonial/logo-3.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/testimonial/logo-4.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/testimonial/logo.png",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/video/effect-one.avif",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/video/effect-two.avif",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/video/effect.avif",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/video/video-thum.avif",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/works/Polygon-1.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/works/banner.jpg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/works/effect.png",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "vendor/phosphor-icons/font/Phosphor.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/sendit-astro-template at 35f7fddc5c3f645c1381958ed5b676600f95a270. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    }
+  ]
+}

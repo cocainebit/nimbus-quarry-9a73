@@ -1,0 +1,282 @@
+---
+_schema: default
+permalink:
+title: "How we achieve 99.999% uptime: redundancy, paranoia, and spite"
+description: >-
+  The technical and philosophical foundations of building infrastructure that
+  refuses to fail under any circumstances.
+date: 2026-02-02T00:00:00Z
+author: 6c4b5141-d659-4153-b8f9-aa2f93feaa7c
+image: /src/assets/images/blog-uptime.png
+image_alt: A building distorted and warped behind a sheet of rippled plastic, tinted blue and orange
+tag: Uptime
+counters: []
+---
+
+Jetstream has maintained 99.998% actual uptime over six years of operation. We've experienced five minutes of customer-visible downtime total. Two incidents, both brief, both resolved quickly, both followed by extensive post-mortems and system improvements.
+
+This level of reliability doesn't happen accidentally. It requires architectural decisions that prioritize reliability over convenience, monitoring systems that border on obsessive, and an organizational culture that treats downtime as an engineering failure rather than an acceptable operational reality.
+
+Here's how we actually do it.
+
+## Redundancy at every layer
+
+Single points of failure are design flaws. If any component's failure can cause downtime, the architecture is wrong.
+
+We've implemented redundancy at every level of our infrastructure:
+
+### **Hardware redundancy**
+
+Every edge node runs on servers with redundant power supplies, redundant network cards, redundant storage drives in RAID configurations, and redundant cooling systems. When a power supply fails, the backup activates instantly. When a drive fails, RAID arrays continue operating while we schedule replacement.
+
+Hardware failures happen constantly at our scale. We operate thousands of servers. Statistical probability guarantees multiple hardware failures daily. Redundancy ensures these failures don't cause service disruption.
+
+### **Network redundancy**
+
+Every edge node connects to the internet through multiple network providers. If one carrier experiences outages, traffic automatically routes through alternate carriers.
+
+Our data centers maintain connections to at least three different network carriers. Traffic routes through whichever path provides best performance and reliability at any given moment.
+
+We've experienced complete carrier outages multiple times. Our automatic routing prevented customer impact.
+
+### **Geographic redundancy**
+
+Every region where we operate contains multiple edge nodes. If an entire edge node fails, power loss, networking failure, catastrophic hardware problems, traffic automatically redirects to nearby nodes.
+
+Users might experience slightly higher latency when accessing a more distant node, but service remains available. We prioritize availability over optimal performance during failure scenarios.
+
+### **Software redundancy**
+
+Critical software components run in active-active configurations across multiple servers. Load balancers distribute traffic across healthy instances. When an instance fails, traffic shifts to remaining instances automatically.
+
+Our DNS systems run dozens of geographically distributed servers. Multiple servers could fail simultaneously without impacting service availability.
+
+### **Data redundancy**
+
+Customer configuration data replicates across multiple databases in multiple geographic regions. Writes commit to multiple replicas before acknowledgment. If a database server fails, reads continue from remaining replicas while we restore the failed server.
+
+We've never lost customer data to hardware failure because data exists in multiple places simultaneously.
+
+## Automated failure detection
+
+Redundancy only helps if failures are detected and handled quickly. Waiting for human operators to notice problems introduces unacceptable delay.
+
+Our systems continuously monitor themselves and automatically respond to failures:
+
+### **Health checks at multiple levels**
+
+Every service exposes health check endpoints that verify correct operation. Load balancers query these endpoints every few seconds. Services that fail health checks are automatically removed from rotation.
+
+Health checks verify more than just "is the process running", they test actual functionality. A service that's running but unable to process requests correctly fails health checks and gets removed from service.
+
+### **Synthetic monitoring**
+
+We continuously generate test traffic that exercises every part of our infrastructure. This synthetic traffic mimics real customer requests but comes from our own monitoring systems.
+
+If synthetic requests start failing, we know something is wrong even before actual customer traffic is affected. This provides early warning of problems before they impact users.
+
+### **Distributed monitoring**
+
+Our monitoring runs from multiple geographic locations. A service might appear unhealthy from one monitoring location due to network issues while remaining healthy from other locations.
+
+We distinguish between actual service failures and network partition problems by comparing health check results from multiple vantage points. This prevents false alarms while catching genuine failures quickly.
+
+### **Failure injection testing**
+
+We regularly intentionally break things to verify our failure detection and automatic recovery work correctly. These "chaos engineering" tests randomly kill processes, disable network connections, or simulate hardware failures.
+
+If automatic recovery doesn't work during testing, we fix it before real failures expose the problem.
+
+## The paranoia principle
+
+Reliability requires assuming everything will eventually fail. Defensive engineering means designing for these failures rather than hoping they won't occur.
+
+### **Assume networks are unreliable**
+
+Networks partition. Packets get lost. Latency spikes unexpectedly. Our systems must continue operating during network problems.
+
+We implement aggressive timeouts on all network requests. Requests that don't complete within expected timeframes are retried automatically. Circuit breakers prevent cascading failures when downstream services become unreliable.
+
+### **Assume external services will fail**
+
+We depend on DNS providers, certificate authorities, cloud infrastructure providers, and network carriers. We assume all of them will occasionally fail.
+
+We maintain contracts with multiple providers for every dependency. When one fails, we automatically switch to alternatives. We've experienced failures from every major provider we use. Redundancy prevented downtime every time.
+
+### **Assume our own code has bugs**
+
+Perfect software doesn't exist. We assume every code change might introduce bugs, and we deploy defensively.
+
+New code deploys to small percentages of infrastructure first. If error rates increase, deployment automatically rolls back. Most bugs are caught before affecting more than 1% of traffic.
+
+### **Assume configurations will be wrong**
+
+Human-generated configurations contain errors. We've seen incorrect firewall rules, misconfigured load balancers, and routing tables with typos.
+
+All configuration changes go through automated validation before deployment. Configurations that would break service are rejected automatically. We've prevented dozens of outages by catching configuration errors before they reached production.
+
+### **Assume hardware will fail constantly**
+
+At our scale, hardware failures are not "if" but "when" and "how often." We design assuming multiple hardware failures daily.
+
+Our infrastructure remains operational despite ongoing hardware failures. Servers fail, get removed from service automatically, and get replaced without service interruption. We schedule hardware replacement during business hours because urgency is unnecessary.
+
+## The spite factor
+
+This isn't actually spite. It's professional pride combined with refusal to accept that downtime is inevitable.
+
+Many infrastructure providers treat occasional outages as acceptable operational reality. "Everything fails sometimes" becomes an excuse for inadequate reliability investment.
+
+We find this attitude offensive. Downtime is engineering failure, full stop.
+
+### **Every outage deserves a post-mortem**
+
+We've had two incidents causing customer-visible downtime in six years. Both received extensive post-mortem analysis.
+
+Post-mortems don't assign blame to individuals, system failures are usually system problems, not people problems. But we rigorously analyze what failed, why it failed, and how to prevent similar failures.
+
+After our June 2021 DNS incident, we implemented three layers of additional DNS configuration validation. After our March 2024 database replication bug, we rewrote our replication monitoring and added new test coverage for edge cases.
+
+We take outages personally in a productive way, as motivation to improve systems.
+
+### **Reliability targets are minimums, not aspirations**
+
+Our 99.999% uptime target allows 5.26 minutes of downtime annually. This is our minimum acceptable performance, not an aspirational goal we hope to approach.
+
+If we experience downtime approaching this threshold, that's a crisis requiring immediate response. We don't treat SLA targets as goals to meet, we treat them as floors below which we've failed.
+
+### **We over-invest in reliability**
+
+Building for five-nines uptime costs significantly more than building for three-nines. Redundancy is expensive. Comprehensive monitoring requires significant engineering resources. Defensive architecture adds complexity.
+
+We accept these costs because reliability is non-negotiable. Other providers might consider our reliability investment excessive. We consider their outage rates unacceptable.
+
+## Continuous validation
+
+Systems degrade gradually. Performance slowly deteriorates, error rates creep upward, capacity margins shrink. Without continuous validation, degradation goes unnoticed until it causes visible problems.
+
+We continuously verify that systems operate within acceptable parameters:
+
+### **Performance testing in production**
+
+We continuously measure actual performance under real load. Synthetic monitoring provides controlled testing, but production traffic reveals problems synthetic tests miss.
+
+When performance degrades below thresholds, we investigate immediately. Usually the cause is gradual, accumulated caching inefficiency, database query performance degradation, or traffic growth consuming available capacity.
+
+Early detection allows fixing problems before they become outages.
+
+### **Capacity monitoring and planning**
+
+We track capacity utilization continuously. When any system approaches 70% capacity utilization, we begin planning expansion. At 80%, expansion becomes urgent.
+
+This aggressive capacity planning prevents the scenario where unexpected traffic growth exhausts available capacity before we can respond.
+
+### **Drift detection**
+
+Configuration drift, where production systems gradually diverge from intended configuration, causes subtle problems that accumulate over time.
+
+We continuously compare actual system state against desired configuration. Any drift triggers alerts. This catches problems like:
+
+- Software versions falling behind on some servers
+- Configuration files manually edited instead of deployed properly
+- Security policies not uniformly applied
+- Monitoring disabled or misconfigured on specific systems
+
+Catching drift early prevents it from causing problems later.
+
+## The cultural component
+
+Reliable infrastructure requires organizational culture that prioritizes reliability above competing concerns.
+
+### **Blameless incident response**
+
+When things go wrong, our focus is understanding what failed and how to prevent recurrence, not finding someone to blame.
+
+Engineers feel comfortable escalating potential problems because they won't be blamed for raising concerns. This encourages early reporting of issues before they become incidents.
+
+### **Engineering time for reliability work**
+
+We allocate approximately 20% of engineering time to reliability improvements, refactoring code to be more robust, improving monitoring, adding redundancy, automating manual processes.
+
+This investment pays continuous dividends. Systems become more reliable over time rather than gradually degrading from accumulated technical debt.
+
+### **On-call engineers have authority**
+
+Our on-call engineers can make significant operational decisions during incidents without seeking permission. If something needs to be rolled back, traffic needs to be rerouted, or capacity needs to be added urgently, on-call engineers have authority to act immediately.
+
+Bureaucracy during incidents kills reliability. We've optimized for fast response over procedural correctness.
+
+### **Post-incident learning is mandatory**
+
+After every significant incident, not just outages, but any event that could have become an outage, we conduct learning reviews.
+
+These reviews focus on:
+
+- What happened and why
+- What prevented it from being worse
+- What could prevent similar incidents
+- What we learned about our systems
+
+This continuous learning improves reliability over time.
+
+## The actual numbers
+
+Over six years of operation:
+
+**Uptime: 99.998%**
+
+- Target: 99.999% (5.26 minutes allowed downtime annually)
+- Actual: 99.998% (5 minutes total downtime over six years)
+- We're within target but barely
+
+**Incidents: 2 outages**
+
+- June 2021: 3-minute DNS issue (Europe only)
+- March 2024: 2-minute configuration issue (global)
+- Both immediately followed by extensive post-mortems and fixes
+
+**Near-misses: 47 potential outages prevented**
+
+- Automatic failover prevented 23 potential outages from becoming actual outages
+- Early detection and intervention prevented 24 others
+- These don't appear in customer-visible metrics but matter enormously
+
+**Hardware failures: 2,847 over six years**
+
+- Redundancy prevented all from causing service disruption
+- Failures happen constantly at scale; architecture handles them
+
+**Deployment rollbacks: 156**
+
+- Code changes that caused problems were automatically rolled back
+- Prevented bugs from reaching production at scale
+
+## What it costs
+
+Maintaining this reliability level requires significant investment:
+
+**Infrastructure over-provisioning:** We maintain 40-50% excess capacity beyond current usage. This feels wasteful but provides necessary margin for traffic spikes and failure scenarios.
+
+**Engineering resources:** Approximately 20% of engineering time goes to reliability work rather than feature development.
+
+**Redundant systems:** We pay for multiple DNS providers, multiple certificate authorities, multiple network carriers, and geographic redundancy that increases operational costs.
+
+**Monitoring infrastructure:** Our monitoring systems cost nearly as much as our production infrastructure. Comprehensive observability is expensive.
+
+**Total cost:** Approximately 60% higher than building for 99.9% uptime.
+
+We've decided this cost is justified. Our customers don't experience outages. Their services remain available even when ours experience failures. That's the service we've promised to provide.
+
+## The honest assessment
+
+We haven't achieved perfect reliability. Two incidents in six years means we've failed twice.
+
+But we've achieved reliability that's exceptional by industry standards. Most infrastructure providers experience more downtime monthly than we've experienced in six years total.
+
+This didn't happen by accident or luck. It happened through architectural decisions that prioritize reliability, redundancy implemented at every layer, automated failure detection and recovery, defensive engineering practices, continuous monitoring and validation, and organizational culture that treats downtime as unacceptable.
+
+Building five-nines infrastructure requires discipline, investment, and genuine commitment to reliability as a primary value. It's expensive and requires constant effort.
+
+But it's achievable. We've proven that. We're not perfect, but we're pretty damn close.
+
+That's how you achieve 99.999% uptime: redundancy, paranoia, and spite. The redundancy handles failures. The paranoia prevents them. The spite refuses to accept that downtime is inevitable.

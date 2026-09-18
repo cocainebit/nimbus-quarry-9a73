@@ -1,0 +1,135 @@
+---
+_schema: default
+permalink:
+title: We added 47 edge nodes last month and nobody noticed
+description: >-
+  That's exactly how infrastructure upgrades should work: invisible to users,
+  measurable in metrics.
+date: 2026-02-12T00:00:00Z
+author: c63acdd1-33d5-4366-a000-34f0c17ca88b
+image: /src/assets/images/blog-edge-nodes.png
+image_alt: A glowing blue wireframe mesh of connected nodes twisting through dark space
+tag: Performance
+counters:
+  - counter:
+      number: 47
+      prefix: ""
+      suffix: ""
+    subtext: New edge nodes deployed
+  - counter:
+      number: 31
+      prefix: ""
+      suffix: "%"
+    subtext: Faster median response time
+  - counter:
+      number: 0
+      prefix: ""
+      suffix: ""
+    subtext: Support tickets raised during rollout
+---
+
+Infrastructure upgrades should be invisible. If users notice your improvements, you've probably broken something in the process.
+
+Last month we deployed 47 new edge nodes across 12 countries. Customer traffic increased by 18%. Latency decreased by 12% in newly covered regions. Not a single customer contacted support about the deployment.
+
+That's exactly how infrastructure should work.
+
+## Why invisibility matters
+
+Good infrastructure is boring. It operates reliably, handles traffic without drama, and improves without causing disruptions. The moment infrastructure becomes interesting, outages, performance degradation, unexpected behavior, something has gone wrong.
+
+We design deployments with this principle: if customers notice, we've failed.
+
+This creates interesting engineering constraints. New nodes must integrate seamlessly into existing infrastructure. Traffic routing must adapt automatically. Monitoring must detect and resolve issues before they impact users. The entire deployment must happen without requiring customer configuration changes or service interruptions.
+
+## Planning a deployment that won't be noticed
+
+Adding 47 edge nodes sounds straightforward. Install servers, configure networking, route traffic, done. In practice, it requires months of planning to ensure invisibility.
+
+### **Step one: location selection**
+
+We analyze traffic patterns to identify regions where additional edge nodes would reduce latency meaningfully. This isn't guesswork, our systems track every request's origin and calculate optimal edge node placement based on user geography and traffic volume.
+
+Last month's deployment targeted Southeast Asia, Eastern Europe, and parts of South America where our existing coverage was adequate but not optimal. The new nodes reduced average latency in these regions from 28ms to 16ms.
+
+### **Step two: capacity planning**
+
+New nodes must handle current traffic plus growth. We over-provision deliberately, better to have excess capacity than to deploy nodes that immediately become bottlenecks.
+
+Each new node was configured to handle 3x its expected traffic volume. This gives us room for traffic growth and provides redundancy if nearby nodes experience issues.
+
+### **Step three: traffic migration**
+
+The critical moment: when do we start routing customer traffic to new nodes?
+
+We do this gradually. New nodes initially handle 1% of regional traffic while we monitor performance. If everything looks good, we increase to 5%, then 10%, then full production load over several days.
+
+This staged rollout means any problems affect a tiny percentage of traffic and can be rolled back instantly. By the time nodes handle full production traffic, we've verified they perform correctly under real-world conditions.
+
+## What could go wrong (and how we prevent it)
+
+Infrastructure deployments fail in predictable ways. We've experienced most of them at least once and have built safeguards accordingly.
+
+**Configuration drift:** New nodes configured slightly differently than existing infrastructure. Even small differences, outdated software versions, different cache policies, misconfigured routing, cause subtle problems that are difficult to diagnose.
+
+_Our solution:_ Automated configuration management. Every edge node runs identical software, uses identical configurations, and gets verified automatically before receiving traffic. Human configuration is forbidden.
+
+**Network routing issues:** New nodes must integrate into our anycast routing correctly. Misconfigured BGP announcements could blackhole traffic or route it through suboptimal paths.
+
+_Our solution:_ Automated routing verification. Our systems test reachability from multiple global vantage points before announcing new nodes. If routing doesn't work correctly from all regions, the node doesn't go live.
+
+**Capacity surprises:** New nodes might receive more traffic than expected if regional traffic patterns have changed since planning.
+
+_Our solution:_ Real-time load monitoring with automatic traffic rebalancing. If a new node approaches capacity limits, our systems automatically shift traffic to nearby nodes while we investigate.
+
+**Silent failures:** New nodes might appear operational while subtly mishandling certain requests, corrupting cached content, dropping connections intermittently, or introducing latency spikes.
+
+_Our solution:_ Synthetic monitoring. Our systems continuously test new nodes with known requests and verify responses match expected results. Any deviation triggers alerts and automatic traffic diversion.
+
+## The deployment timeline
+
+### **Week one: installation and configuration**
+
+Physical infrastructure deployment. Servers installed in data centers, networking configured, initial software deployed. No customer traffic involved yet, these nodes are completely isolated from production.
+
+### **Week two: integration testing**
+
+New nodes integrated into our staging environment and subjected to simulated traffic. We test failure scenarios: what happens if a node loses network connectivity, runs out of disk space, or experiences CPU saturation? Our monitoring must detect and respond correctly.
+
+### **Week three: initial production traffic**
+
+New nodes begin receiving 1% of regional traffic. Our operations team monitors obsessively, watching for any anomalies in latency, cache hit rates, or error rates. Everything looks normal.
+
+### **Week four: full production load**
+
+Traffic percentage gradually increases: 5%, 10%, 25%, 50%, full production load. By the end of week four, new nodes handle their complete share of regional traffic without issues.
+
+### **Total customer impact: none**
+
+Not a single support ticket. No performance complaints. No questions about why latency suddenly improved. The deployment was perfectly, beautifully boring.
+
+## What success looks like
+
+Our operations dashboard showed the deployment clearly: 47 new nodes appearing in our network map, traffic shifting gradually, latency improvements visible in regional metrics. Internally, we tracked every detail.
+
+Externally? Silence. Customers continued using our services exactly as before, except slightly faster in certain regions.
+
+One customer did email us, three days after deployment completed. They noticed their video streaming service's buffering had decreased in Southeast Asian markets and wanted to know if we'd made infrastructure improvements.
+
+We confirmed we had. They thanked us. That was the extent of user-visible impact.
+
+## The boring triumph
+
+Infrastructure engineering at scale means making complex changes invisibly. We coordinate deployments across data centers, configure hundreds of servers, migrate terabits of traffic, and verify everything works correctly, all without disrupting service.
+
+This is harder than it sounds. Every deployment carries risk. Equipment fails, software has bugs, configurations contain typos, humans make mistakes. The challenge is building processes and automation that catch problems before they reach users.
+
+Last month's deployment went perfectly because we've learned from years of deployments that didn't. Every past failure taught us something about failure modes and prevention. Our current deployment process represents accumulated knowledge from countless previous attempts.
+
+## What's next
+
+We're planning to deploy 60 additional nodes next quarter. Customers won't notice those either.
+
+That's the goal: continuous infrastructure improvement that's visible only in improved performance metrics, never in service disruptions or user complaints.
+
+Good infrastructure is boring. We've gotten very good at being boring.

@@ -1,0 +1,38 @@
+label: Login
+icon: login
+tags: []
+
+value:
+  _name: global/login
+  title: Log In
+  fullname:
+    heading: Full Name
+    placeholder: Your Name
+  email:
+    heading: Email Address
+    placeholder: Your Email
+  checkbox_text: Remember Me
+  log_in_button:
+    link: /login/
+    text: Log In
+  sign_up_button:
+    link: /signup/
+    text: Create an Account
+
+_inputs:
+  fullname:
+    options:
+      preview:
+        icon: person
+  email:
+    options:
+      preview:
+        icon: email
+  log_in_button:
+    options:
+      preview:
+        icon: login
+  sign_up_button:
+    options:
+      preview:
+        icon: border_color

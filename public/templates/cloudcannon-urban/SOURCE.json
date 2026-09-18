@@ -1,0 +1,117 @@
+{
+  "id": "cloudcannon-urban",
+  "name": "Urban",
+  "repository": "https://github.com/CloudCannon/urban-jekyll-template",
+  "commit": "5119f52c23fe853b12da35684017506e6eb91e5c",
+  "license": "MIT",
+  "licenseFirstLine": "MIT License",
+  "framework": "Jekyll 4",
+  "sourceDirectory": "vendor/templates/cloudcannon-urban",
+  "photography": "None. Every photograph bundled upstream was removed before vendoring and replaced with placeholder artwork drawn in this repository, so no third-party photograph is redistributed.",
+  "changes": [
+    "Google Analytics block removed from the layout.",
+    "Disqus comment embed removed.",
+    "Google Maps embed replaced with a drawn map panel; the address text is kept.",
+    "Remote demo photographs (source.unsplash.com, unsplash.it, placehold.it, placekitten.com, placebear.com, fillmurray.com) replaced with placeholder artwork drawn for this repository.",
+    "Bundled photographs removed and replaced with placeholder artwork drawn for this repository: images/clients/cause.jpg, images/clients/edition.png, images/clients/frisco.jpg, images/clients/hydra.png, images/clients/justice.jpg, images/clients/malt.jpg, images/clients/urban.png, images/cloudcannon-logo-blue.svg, images/jekyll-logo-black-red-transparent.png",
+    "A visible note marks the demonstration content as illustrative.",
+    "Portfolio thumbnails were screenshots of other websites and the technology row carried third-party logos; both became drawn placeholders, and the portfolio is labelled as example entries."
+  ],
+  "images": [
+    {
+      "file": "apple-touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/urban-jekyll-template at 5119f52c23fe853b12da35684017506e6eb91e5c. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/clients/cause.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/clients/edition.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/clients/frisco.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/clients/hydra.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/clients/justice.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/clients/malt.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/clients/urban.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/cloudcannon-logo-blue.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/favicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/urban-jekyll-template at 5119f52c23fe853b12da35684017506e6eb91e5c. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/jekyll-logo-black-red-transparent.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/logo.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/urban-jekyll-template at 5119f52c23fe853b12da35684017506e6eb91e5c. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/pattern.png",
+      "origin": "Bundled with https://github.com/CloudCannon/urban-jekyll-template at 5119f52c23fe853b12da35684017506e6eb91e5c. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "images/placeholders/field-960x600.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/map-1600x520.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/placeholders/portrait-600x503.svg",
+      "origin": "Drawn for this repository by the import pipeline. Flat geometry written in code, with no third-party source.",
+      "license": "MIT (this repository)"
+    },
+    {
+      "file": "images/screenshot-buttons.svg",
+      "origin": "Bundled with https://github.com/CloudCannon/urban-jekyll-template at 5119f52c23fe853b12da35684017506e6eb91e5c. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "siteicon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/urban-jekyll-template at 5119f52c23fe853b12da35684017506e6eb91e5c. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    },
+    {
+      "file": "touch-icon.png",
+      "origin": "Bundled with https://github.com/CloudCannon/urban-jekyll-template at 5119f52c23fe853b12da35684017506e6eb91e5c. Vector or generated interface artwork, not photography.",
+      "license": "MIT (upstream repository licence)"
+    }
+  ]
+}

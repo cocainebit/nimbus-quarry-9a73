@@ -1,0 +1,50 @@
+{
+  "logoSource": "/src/assets/images/jetstream-logo.svg",
+  "logoAlternateSource": "/src/assets/images/jetstream-dark-theme.svg",
+  "logoAlt": "Jetstream Logo",
+  "links": [
+    {
+      "name": "Home",
+      "path": "/"
+    },
+    {
+      "name": "Pricing",
+      "path": "/pricing/"
+    },
+    {
+      "name": "Blog",
+      "path": "/blog/"
+    },
+    {
+      "name": "About",
+      "path": "/about/"
+    },
+    {
+      "name": "Contact",
+      "path": "/contact/"
+    }
+  ],
+  "socials": [
+    {
+      "icon": "social/bluesky",
+      "link": "https://bsky.app/"
+    },
+    {
+      "icon": "social/github",
+      "link": "https://github.com"
+    },
+    {
+      "icon": "social/gitlab",
+      "link": "https://about.gitlab.com/"
+    },
+    {
+      "icon": "social/discord",
+      "link": "https://discord.com/"
+    },
+    {
+      "icon": "social/linkedin",
+      "link": "https://linkedin.com"
+    }
+  ],
+  "footerText": "© 2026 All rights reserved."
+}
