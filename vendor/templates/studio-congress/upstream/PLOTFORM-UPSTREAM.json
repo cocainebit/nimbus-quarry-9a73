@@ -1,0 +1,13 @@
+{
+  "repo": "DigitaleGesellschaft/jekyll-theme-conference",
+  "commit": "7d7479e486d87c59a15280e20e76c015d26aabb1",
+  "sourceUrl": "https://github.com/DigitaleGesellschaft/jekyll-theme-conference/tree/7d7479e486d87c59a15280e20e76c015d26aabb1",
+  "license": "MIT",
+  "copyright": "2017-2026 Lorenz Schmid",
+  "archive": "jekyll-theme-conference-7d7479e4-source.zip",
+  "note": "Fetched for the studio-congress adaptation and archived here so the edition carries its own upstream copy. The theme is not otherwise vendored in this repository.",
+  "excludedFromArchive": [
+    "screenshot.png (a 297 kB screenshot of the upstream demo site, used by its README and by nothing in this adaptation)"
+  ],
+  "excludedWhy": "One binary screenshot only. Every layout, include, stylesheet, script, data file, licence and document of the upstream theme is included unchanged; the complete original remains available at the pinned commit above."
+}

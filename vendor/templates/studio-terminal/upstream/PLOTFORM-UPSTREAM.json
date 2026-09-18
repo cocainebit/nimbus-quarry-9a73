@@ -1,0 +1,25 @@
+{
+  "repo": "khang-nd/7.css",
+  "commit": "3e934439c7587e0e89cce12bb3179cd3f8fd187b",
+  "commitDate": "2026-03-17",
+  "sourceUrl": "https://github.com/khang-nd/7.css/tree/3e934439c7587e0e89cce12bb3179cd3f8fd187b",
+  "license": "MIT",
+  "copyright": "2021 Khang Nguyen Duy",
+  "archive": "7css-3e934439-source.zip",
+  "note": "The complete upstream working tree at the pinned commit, minus its git history. Bevel adapts the SCSS sources in gui/ rather than importing the built stylesheet, so nothing from this archive is loaded by the published pages.",
+  "excludedFromArchive": [".git/ (history only)"],
+  "licenceAudit": {
+    "checked": "2026-09-17",
+    "rejected": [
+      {
+        "project": "98.css (jdan/98.css)",
+        "reason": "Bundles fonts/converted/ms_sans_serif.woff and ms_sans_serif_bold.woff. The source archives at fonts/src/ms-sans-serif/license.txt and fonts/src/ms-sans-serif-bold/license.txt read: 'The FontStruction \\u201cMS Sans Serif\\u201d (https://fontstruct.com/fontstructions/show/1384746) by \\u201clou\\u201d is licensed under a Creative Commons Attribution Share Alike license'. CC BY-SA 3.0 is share alike, so it would pass a copyleft obligation on to every person who publishes a website made from this edition, and the file is a reconstruction of a typeface belonging to someone else."
+      },
+      {
+        "project": "XP.css (botoxparty/XP.css)",
+        "reason": "Carries the same FontStruction face plus Perfect DOS VGA 437, so it fails for the same reason."
+      }
+    ],
+    "chosen": "7.css bundles no font files at all and its identity is gradients and borders, so there is no font licence to pass on and no bitmap to redistribute. Its own icon PNGs are not used by this edition."
+  }
+}

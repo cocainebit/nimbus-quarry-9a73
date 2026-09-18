@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420" role="img">
+<rect x="0.5" y="0.5" width="719" height="419" fill="#ffffff" stroke="#8e8f8f"/>
+<path d="M120 250 L400 190 L620 250 L340 310 Z" fill="#5f7f4f" fill-opacity="0.22" stroke="#1d252d" stroke-width="2"/>
+<text x="30" y="256" font-family="Noto Sans, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#1d252d" text-anchor="start">Ground</text>
+<path d="M120 190 L400 130 L620 190 L340 250 Z" fill="#c8892b" fill-opacity="0.22" stroke="#1d252d" stroke-width="2"/>
+<text x="30" y="196" font-family="Noto Sans, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#1d252d" text-anchor="start">Props</text>
+<path d="M120 130 L400 70 L620 130 L340 190 Z" fill="#2b5b91" fill-opacity="0.22" stroke="#1d252d" stroke-width="2"/>
+<text x="30" y="136" font-family="Noto Sans, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#1d252d" text-anchor="start">Roofs</text>
+<path d="M120 70 L400 10 L620 70 L340 130 Z" fill="#a9583f" fill-opacity="0.22" stroke="#1d252d" stroke-width="2"/>
+<text x="30" y="76" font-family="Noto Sans, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#1d252d" text-anchor="start">Collision</text>
+<path d="M400 330 L400 296" stroke="#8e8f8f" stroke-width="2" stroke-dasharray="4 4"/>
+<path d="M400 270 L400 236" stroke="#8e8f8f" stroke-width="2" stroke-dasharray="4 4"/>
+<path d="M400 210 L400 176" stroke="#8e8f8f" stroke-width="2" stroke-dasharray="4 4"/>
+<path d="M400 150 L400 116" stroke="#8e8f8f" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="30" y="380" font-family="Noto Sans, Segoe UI, sans-serif" font-size="14" font-weight="400" fill="#3b4854" text-anchor="start">Each layer keeps its own grid and its own opacity</text>
+</svg>

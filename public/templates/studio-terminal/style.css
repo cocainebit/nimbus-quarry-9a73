@@ -1,0 +1,1252 @@
+/* Bevel: a Plotform studio edition.
+   Window chrome adapted from 7.css by Khang Nguyen Duy (MIT), pinned at
+   3e934439c7587e0e89cce12bb3179cd3f8fd187b. The custom properties prefixed
+   --w7- keep their upstream names so the borrowed formulas stay traceable to
+   gui/_variables.scss, gui/_window.scss, gui/_button.scss, gui/_tabs.scss,
+   gui/_textbox.scss, gui/_groupbox.scss and gui/_treeview.scss. Everything
+   prefixed --bv- is this edition's own type, space and colour system, and the
+   upstream icon PNGs are not used: every mark here is SVG written for this
+   edition or a CSS gradient. */
+
+/* ---------------------------------------------------------------- fonts -- */
+@font-face {
+  font-family: "Noto Sans";
+  src: url("assets/noto-sans.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("assets/jetbrains-mono.woff2") format("woff2-variations");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------- tokens -- */
+:root {
+  /* Borrowed from 7.css gui/_variables.scss, with the font stack replaced by
+     the face this edition bundles rather than a system font. */
+  --w7-font-size: 13px;
+  --w7-surface: #f0f0f0;
+  --w7-el-bg: #f2f2f2;
+  --w7-el-bg-d: #f4f4f4;
+  --w7-el-bg-s-1: #ebebeb;
+  --w7-el-bg-s-2: #cfcfcf;
+  --w7-el-sd: inset 0 0 0 1px #fffc;
+  --w7-el-sd-a: inset 1px 1px 0 #0003, inset -1px 1px 0 #0001;
+  --w7-el-bd: #8e8f8f;
+  --w7-el-bd-h: #3c7fb1;
+  --w7-el-bd-a: #6d91ab;
+  --w7-el-bd-d: #adb2b5;
+  --w7-el-bdr: 3px;
+  --w7-el-c: #1d252d;
+  --w7-el-c-d: #6d757d;
+  --w7-el-grad: linear-gradient(var(--w7-el-bg) 45%, var(--w7-el-bg-s-1) 45%, var(--w7-el-bg-s-2));
+  --w7-el-grad-h: linear-gradient(#eaf6fd 45%, #bee6fd 45%, #a7d9f5);
+  --w7-el-grad-a: linear-gradient(#e5f4fc, #c4e5f6 30% 50%, #98d1ef 50%, #68b3db);
+  --w7-li-bd-hl: #aaddfa;
+  --w7-li-bg-hl: linear-gradient(#fff9, #e6ecf5cc 90%, #fffc);
+
+  /* Borrowed from 7.css gui/_window.scss. */
+  --w7-w-space: 6px;
+  --w7-w-bd: #00000099;
+  --w7-w-bdr: 6px;
+  --w7-w-bg: #4580c4;
+  --w7-w-grad: linear-gradient(to right, #ffffff66, #0000001a, #ffffff33), var(--w7-w-bg);
+  --w7-wct-bd: #0000004d;
+  --w7-wct-bdr: 5px;
+  --w7-wct-sd: inset 0 0 0 1px #fffa;
+  --w7-wct-bg: linear-gradient(#ffffff80, #ffffff4d 45%, #0000001a 50%, #0000001a 75%, #ffffff80);
+
+  /* This edition's own system. */
+  --bv-sans: "Noto Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --bv-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --bv-ink: #151b22;
+  --bv-ink-soft: #3f4c59;
+  --bv-ink-faint: #64717e;
+  --bv-rule: #c8cdd3;
+  --bv-paper: #ffffff;
+  --bv-link: #16558f;
+  --bv-link-hover: #0d3c69;
+  --bv-accent: #9a5f16;
+  --bv-focus: #12508c;
+  --bv-desktop-1: #123143;
+  --bv-desktop-2: #0b1e2c;
+  --bv-desktop-3: #2a5f78;
+  --bv-gutter: clamp(14px, 2.4vw, 26px);
+  --bv-measure: 66ch;
+}
+
+/* ----------------------------------------------------------- foundation -- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: clamp(0px, 2.4vw, 34px) clamp(0px, 2.4vw, 34px) 0;
+  min-height: 100vh;
+  font-family: var(--bv-sans);
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--bv-ink);
+  background:
+    radial-gradient(120% 90% at 18% 6%, #3d7f9c33 0%, transparent 58%),
+    radial-gradient(90% 70% at 88% 92%, #1b4a6633 0%, transparent 60%),
+    linear-gradient(168deg, var(--bv-desktop-3) 0%, var(--bv-desktop-1) 42%, var(--bv-desktop-2) 100%);
+  background-attachment: fixed;
+  overflow-wrap: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--bv-link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--bv-link-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--bv-focus);
+  outline-offset: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 40;
+  background: var(--bv-paper);
+  color: var(--bv-ink);
+  border: 1px solid var(--w7-el-bd);
+  border-radius: var(--w7-el-bdr);
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.skip:focus {
+  left: 16px;
+}
+
+/* --------------------------------------------------------------- window -- */
+.frame {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* Window shell: border, radius, glass edge and the lit inner rim, from
+   7.css gui/_window.scss .window. */
+.window {
+  position: relative;
+  z-index: 0;
+  border: 1px solid var(--w7-w-bd);
+  border-radius: var(--w7-w-bdr);
+  box-shadow: 2px 3px 16px 2px #00000059, inset 0 0 0 1px #fffa;
+}
+
+.window::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: var(--w7-w-bdr);
+  background: linear-gradient(transparent 20%, #ffffffb3 40%, transparent 41%), var(--w7-w-grad);
+  background-color: var(--w7-w-bg);
+  box-shadow: inset 0 0 0 1px #fffd;
+}
+
+.window + .window {
+  margin-top: 26px;
+}
+
+/* Title bar, from 7.css .title-bar. The controls are ornament: a page cannot
+   be minimised, so they are drawn shapes marked aria-hidden rather than
+   buttons that announce an action they do not perform. */
+.title-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 var(--w7-w-space) var(--w7-w-space);
+  border-radius: var(--w7-w-bdr) var(--w7-w-bdr) 0 0;
+  box-shadow: inset 0 1px 0 #fffd, inset 1px 0 0 #fffd, inset -1px 0 0 #fffd;
+}
+
+.title-bar-icon {
+  width: 22px;
+  height: 22px;
+  margin-top: var(--w7-w-space);
+  flex: none;
+}
+
+.title-bar-text {
+  min-width: 0;
+  max-width: none;
+  flex: 1 1 auto;
+  margin: 0;
+  padding-top: var(--w7-w-space);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  color: #0c1a26;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 9px #fff, 0 0 8px #fff, 0 0 7px #fff;
+}
+
+.title-bar-controls {
+  display: flex;
+  flex: none;
+  background: #ffffff4d;
+  border: 1px solid var(--w7-wct-bd);
+  border-top: 0;
+  border-radius: 0 0 var(--w7-wct-bdr) var(--w7-wct-bdr);
+  box-shadow: 0 1px 0 #fffa, 1px 0 0 #fffa, -1px 0 0 #fffa;
+}
+
+.title-bar-controls span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 20px;
+  border-right: 1px solid var(--w7-wct-bd);
+  background: var(--w7-wct-bg);
+  box-shadow: var(--w7-wct-sd);
+}
+
+.title-bar-controls span:first-child {
+  border-bottom-left-radius: var(--w7-wct-bdr);
+}
+
+.title-bar-controls span:last-child {
+  width: 46px;
+  border-right: 0;
+  border-bottom-right-radius: var(--w7-wct-bdr);
+  background:
+    radial-gradient(circle at -60% 50%, #0007 5% 10%, #0000 50%),
+    radial-gradient(circle at 160% 50%, #0007 5% 10%, #0000 50%),
+    linear-gradient(#e0a197e5, #cf796a 25% 50%, #d54f36 50%);
+}
+
+.title-bar-controls svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* A second window on a page reads as the one behind: dimmer bar, until
+   something inside it takes focus. */
+.window.is-quiet::before {
+  filter: saturate(0.35) brightness(1.08);
+}
+
+.window.is-quiet:focus-within::before {
+  filter: none;
+}
+
+/* ---------------------------------------------------------- menu strip --- */
+.menu-strip {
+  margin: 0 var(--w7-w-space);
+  padding: 2px 4px;
+  background: linear-gradient(#fdfdfd, #eef1f4);
+  border: 1px solid var(--w7-w-bd);
+  border-bottom: 0;
+  box-shadow: 0 0 0 1px #fff9;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+}
+
+.menu-strip nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  min-width: 0;
+}
+
+.menu-strip a {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--bv-ink);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--w7-el-bdr);
+}
+
+.menu-strip a:hover {
+  background: var(--w7-el-grad-h);
+  border-color: var(--w7-li-bd-hl);
+  color: var(--bv-ink);
+}
+
+.menu-strip a[aria-current="page"] {
+  background: var(--w7-el-grad-a);
+  border-color: var(--w7-el-bd-a);
+  font-weight: 600;
+}
+
+.menu-strip .menu-tail {
+  margin-left: auto;
+  padding: 4px 8px;
+  font-size: 12.5px;
+  color: var(--bv-ink-faint);
+}
+
+/* -------------------------------------------------------------- window --- */
+/* Body: two real panes, the navigator and the document, from .window-body. */
+.window-body {
+  margin: 0 var(--w7-w-space);
+  border: 1px solid var(--w7-w-bd);
+  background: var(--w7-surface);
+  box-shadow: 0 0 0 1px #fff9;
+  display: grid;
+  grid-template-columns: minmax(212px, 258px) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.window-body.is-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pane {
+  min-width: 0;
+}
+
+.pane-side {
+  border-right: 1px solid #b9bfc5;
+  background: linear-gradient(180deg, #eef1f4, #e4e9ee);
+  padding: 14px 12px 20px;
+}
+
+.pane-main {
+  min-width: 0;
+  background: var(--bv-paper);
+  padding: clamp(18px, 3.2vw, 38px) var(--bv-gutter) 34px;
+}
+
+/* Status bar, from 7.css .status-bar. */
+.status-bar {
+  margin: 0 var(--w7-w-space);
+  background: var(--w7-surface);
+  border: 1px solid var(--w7-w-bd);
+  border-top: 0;
+  box-shadow: 0 1px 0 #fff9, 1px 0 0 #fff9, -1px 0 0 #fff9;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.status-bar-field {
+  flex: 1 1 200px;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 5px 9px;
+  border-right: 1px solid #cfcfcf;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--bv-ink-soft);
+}
+
+.status-bar-field:last-child {
+  border-right: 0;
+}
+
+.window-foot {
+  height: var(--w7-w-space);
+}
+
+/* ------------------------------------------------------------ navigator -- */
+.pane-title {
+  margin: 0 0 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bv-ink-faint);
+}
+
+/* Tree view, from 7.css gui/_treeview.scss: the container, the 20px indent,
+   the dotted connectors and the small square expander. */
+.tree-view {
+  margin: 0;
+  padding: 6px 6px 8px 20px;
+  list-style: none;
+  font-size: 14px;
+  background: var(--bv-paper);
+  border: 1px solid var(--w7-el-bd);
+}
+
+.tree-view ul {
+  margin: 4px 0 0;
+  padding-left: 20px;
+  list-style: none;
+  position: relative;
+}
+
+.tree-view li {
+  position: relative;
+  margin-top: 4px;
+}
+
+.tree-view ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8px;
+  height: calc(100% - 10px);
+  border-left: 1px dotted #6f7a85;
+}
+
+.tree-view ul li::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  right: calc(100% + 2px);
+  width: 10px;
+  border-bottom: 1px dotted #6f7a85;
+}
+
+.tree-view a {
+  display: inline-block;
+  padding: 1px 5px;
+  color: var(--bv-ink);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+
+.tree-view a:hover {
+  background: var(--w7-li-bg-hl);
+  border-color: var(--w7-li-bd-hl);
+  text-decoration: underline;
+}
+
+.tree-view a[aria-current="page"] {
+  background: var(--w7-el-grad-a);
+  border-color: var(--w7-el-bd-a);
+  font-weight: 600;
+}
+
+.tree-view summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 1px 5px 1px 0;
+  list-style: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.tree-view summary::-webkit-details-marker {
+  display: none;
+}
+
+.tree-view summary::before {
+  content: "+";
+  display: grid;
+  place-items: center;
+  width: 12px;
+  height: 12px;
+  margin-left: -20px;
+  margin-right: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #34518d;
+  background: linear-gradient(to bottom, var(--w7-el-bg) 45%, var(--w7-el-bg-s-1));
+  border: 1px solid #919191;
+  border-radius: 1px;
+}
+
+.tree-view details[open] > summary::before {
+  content: "\2013";
+}
+
+.tree-view summary:hover {
+  text-decoration: underline;
+}
+
+.tree-icon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.pane-side .side-note {
+  margin: 16px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--bv-ink-faint);
+}
+
+/* ----------------------------------------------------------- typography -- */
+.pane-main > * + * {
+  margin-top: 20px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--bv-sans);
+  color: var(--bv-ink);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(30px, 4.6vw, 52px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(21px, 2.4vw, 27px);
+  font-weight: 700;
+  line-height: 1.18;
+}
+
+h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+  max-width: var(--bv-measure);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bv-accent);
+}
+
+.lead {
+  font-size: clamp(17px, 1.5vw, 19.5px);
+  line-height: 1.55;
+  color: var(--bv-ink-soft);
+}
+
+.section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid var(--bv-rule);
+}
+
+.section:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.section > * + * {
+  margin-top: 16px;
+}
+
+.prose > * + * {
+  margin-top: 14px;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0;
+  padding-left: 22px;
+  max-width: var(--bv-measure);
+}
+
+.prose li + li {
+  margin-top: 6px;
+}
+
+.hero {
+  display: grid;
+  gap: clamp(20px, 3vw, 34px);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+.hero-body > * + * {
+  margin-top: 16px;
+}
+
+.hero-figure {
+  margin: 0;
+  border: 1px solid var(--w7-el-bd);
+  background: var(--w7-surface);
+  padding: 6px;
+  box-shadow: inset 0 0 0 1px #fff;
+}
+
+.hero-figure figcaption {
+  padding: 8px 4px 2px;
+  font-size: 12.5px;
+  color: var(--bv-ink-faint);
+}
+
+.grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.card {
+  background: var(--bv-paper);
+  border: 1px solid var(--bv-rule);
+  border-radius: var(--w7-el-bdr);
+  padding: 16px;
+}
+
+.card > * + * {
+  margin-top: 8px;
+}
+
+.card-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.card p {
+  font-size: 15px;
+  color: var(--bv-ink-soft);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Raised control, from 7.css gui/_button.scss: 1px border, 3px radius, the
+   light inner rim and the two stop gradient. */
+.pushbutton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+  padding: 4px 16px;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1c242c;
+  text-decoration: none;
+  background: var(--w7-el-grad);
+  border: 1px solid var(--w7-el-bd);
+  border-radius: var(--w7-el-bdr);
+  box-shadow: var(--w7-el-sd);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.pushbutton:hover {
+  background: var(--w7-el-grad-h);
+  border-color: var(--w7-el-bd-h);
+  color: #12303f;
+}
+
+.pushbutton:active {
+  background: var(--w7-el-grad-a);
+  border-color: var(--w7-el-bd-a);
+  box-shadow: var(--w7-el-sd-a);
+}
+
+.pushbutton.is-default {
+  border-color: #5586a3;
+  background: var(--w7-el-grad-h);
+}
+
+.textlink {
+  font-weight: 600;
+}
+
+/* Group box, from 7.css gui/_groupbox.scss. */
+.groupbox {
+  margin: 0;
+  border: 1px solid #cdd7db;
+  border-radius: var(--w7-el-bdr);
+  box-shadow: inset 0 0 0 1px #fff;
+  padding: 10px 14px 16px;
+  background: #fbfcfd;
+}
+
+.groupbox > legend {
+  padding: 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1c2a3a;
+}
+
+.groupbox > * + * {
+  margin-top: 12px;
+}
+
+/* Sunken field, from 7.css gui/_textbox.scss borders. */
+.sunken {
+  background: var(--bv-paper);
+  border: 1px solid;
+  border-color: #abadb3 #dbdfe6 #e3e9ef #e2e3ea;
+  border-radius: 2px;
+  padding: 14px 16px;
+}
+
+.sunken > * + * {
+  margin-top: 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #2c3a49;
+  background: var(--w7-el-grad);
+  border: 1px solid var(--w7-el-bd);
+  border-radius: 10px;
+}
+
+.badge.is-quiet {
+  color: var(--bv-ink-faint);
+  background: #eef1f4;
+  border-color: #cfd5db;
+  font-weight: 600;
+}
+
+.demo-note {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--bv-ink-soft);
+  background: #fdf8ee;
+  border: 1px solid #e3d3ad;
+  border-radius: var(--w7-el-bdr);
+  padding: 10px 12px;
+  max-width: none;
+}
+
+/* ----------------------------------------------------------------- tabs -- */
+/* Tab strip and panel, from 7.css gui/_tabs.scss: the panel edge runs under
+   the selected tab, which loses its bottom border. */
+.tabs {
+  margin-top: 8px;
+}
+
+.tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: 0 0 -1px;
+  padding: 0 0 0 4px;
+  list-style: none;
+}
+
+.tablist button {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #24303c;
+  background: var(--w7-el-grad);
+  border: 1px solid var(--w7-el-bd);
+  border-radius: var(--w7-el-bdr) var(--w7-el-bdr) 0 0;
+  box-shadow: var(--w7-el-sd);
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.tablist button:hover {
+  background: var(--w7-el-grad-h);
+  border-color: var(--w7-el-bd-h);
+}
+
+.tablist button[aria-selected="true"] {
+  z-index: 3;
+  padding-bottom: 8px;
+  margin-bottom: -2px;
+  background: var(--bv-paper);
+  border-bottom-color: var(--bv-paper);
+  box-shadow: none;
+}
+
+.tabpanel {
+  position: relative;
+  z-index: 2;
+  padding: clamp(16px, 2vw, 22px);
+  background: var(--bv-paper);
+  border: 1px solid var(--w7-el-bd);
+}
+
+.tabpanel[hidden] {
+  display: none;
+}
+
+.tabpanel > * + * {
+  margin-top: 14px;
+}
+
+.tabpanel-split {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.tabpanel-split img {
+  border: 1px solid var(--bv-rule);
+}
+
+.speclist {
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(96px, auto) minmax(0, 1fr);
+  gap: 6px 14px;
+  font-size: 14.5px;
+}
+
+.speclist dt {
+  font-weight: 700;
+  color: var(--bv-ink-soft);
+}
+
+.speclist dd {
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- console --- */
+/* The one monospace in this edition: a terminal pane is the subject here, not
+   the interface around it. */
+.console {
+  background: #101820;
+  border: 1px solid #0a1016;
+  border-radius: 2px;
+  padding: 14px 16px;
+  overflow-x: auto;
+}
+
+.console-line {
+  margin: 0;
+  font-family: var(--bv-mono);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #cfe3f5;
+  white-space: pre;
+}
+
+.console-line .prompt {
+  color: #8fd18a;
+}
+
+.console-line .muted {
+  color: #7f94a6;
+}
+
+.caret {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  vertical-align: -2px;
+  background: #8fd18a;
+  animation: caret-blink 1.1s steps(2, start) infinite;
+}
+
+@keyframes caret-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+pre.sample {
+  margin: 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: var(--bv-mono);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #22303d;
+  background: #f7f9fb;
+  border: 1px solid var(--bv-rule);
+  border-radius: 2px;
+}
+
+/* ------------------------------------------------------------- listings -- */
+.rowlist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--w7-el-bd);
+  background: var(--bv-paper);
+}
+
+.rowlist > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e2e6ea;
+}
+
+.rowlist > li:last-child {
+  border-bottom: 0;
+}
+
+.rowlist > li:nth-child(even) {
+  background: #f7f9fb;
+}
+
+.row-icon {
+  width: 30px;
+  height: 30px;
+  flex: none;
+}
+
+.row-body {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.row-body p {
+  font-size: 14px;
+  color: var(--bv-ink-soft);
+}
+
+.release {
+  border: 1px solid var(--bv-rule);
+  border-radius: var(--w7-el-bdr);
+  padding: 16px;
+  background: var(--bv-paper);
+}
+
+.release + .release {
+  margin-top: 14px;
+}
+
+.release-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.release-head h3 {
+  font-size: 19px;
+}
+
+.release-date {
+  font-size: 13px;
+  color: var(--bv-ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.release ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  max-width: var(--bv-measure);
+}
+
+.release li + li {
+  margin-top: 4px;
+}
+
+.faq {
+  border: 1px solid var(--bv-rule);
+  border-radius: var(--w7-el-bdr);
+  background: var(--bv-paper);
+}
+
+.faq + .faq {
+  margin-top: 10px;
+}
+
+.faq summary {
+  padding: 12px 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::before {
+  content: "+";
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  flex: none;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  color: #34518d;
+  background: linear-gradient(to bottom, var(--w7-el-bg) 45%, var(--w7-el-bg-s-1));
+  border: 1px solid #919191;
+  border-radius: 1px;
+}
+
+.faq[open] > summary::before {
+  content: "\2013";
+}
+
+.faq .faq-body {
+  padding: 0 14px 14px 40px;
+}
+
+.faq .faq-body > * + * {
+  margin-top: 10px;
+}
+
+/* -------------------------------------------------------------- taskbar -- */
+.taskbar {
+  max-width: 1240px;
+  margin: 26px auto 0;
+  padding: 0;
+}
+
+.taskbar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid #0f273a;
+  border-radius: 4px;
+  background: linear-gradient(#54708a, #24384c 42%, #16293a 43%, #22394d 100%);
+  box-shadow: inset 0 1px 0 #ffffff59, 0 2px 10px #00000055;
+}
+
+.taskbar-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f2f7fb;
+  text-decoration: none;
+  border: 1px solid #ffffff3d;
+  border-radius: 3px;
+  background: linear-gradient(#ffffff2e, #ffffff0a 45%, #0000001f);
+}
+
+.taskbar-mark:hover {
+  color: #ffffff;
+  background: linear-gradient(#ffffff45, #ffffff1a 45%, #00000024);
+}
+
+.taskbar-mark img {
+  width: 18px;
+  height: 18px;
+}
+
+.taskbar nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+
+.taskbar nav a {
+  padding: 5px 10px;
+  font-size: 13.5px;
+  color: #e8f0f7;
+  text-decoration: none;
+  border: 1px solid #ffffff2b;
+  border-radius: 3px;
+  background: linear-gradient(#ffffff1f, #ffffff08 45%, #0000001a);
+}
+
+.taskbar nav a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  border-color: #ffffff4d;
+}
+
+.taskbar .tray {
+  margin-left: auto;
+  padding: 5px 10px;
+  font-size: 12.5px;
+  color: #c6d6e4;
+  border: 1px solid #ffffff1f;
+  border-radius: 3px;
+}
+
+.colophon {
+  max-width: 1240px;
+  margin: 12px auto 0;
+  padding: 0 4px 28px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #c3d3e0;
+}
+
+.colophon a {
+  color: #dbe9f5;
+}
+
+.colophon p {
+  max-width: none;
+}
+
+.colophon p + p {
+  margin-top: 4px;
+}
+
+/* ------------------------------------------------------------ responsive -- */
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .tabpanel-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: start;
+  }
+}
+
+@media (max-width: 899px) {
+  .window-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pane-side {
+    order: 2;
+    border-right: 0;
+    border-top: 1px solid #b9bfc5;
+  }
+
+  .pane-main {
+    order: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --w7-w-bdr: 4px;
+  }
+
+  body {
+    padding: 0;
+    font-size: 16px;
+  }
+
+  .window {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    box-shadow: none;
+  }
+
+  .window::before {
+    border-radius: 0;
+  }
+
+  .title-bar {
+    border-radius: 0;
+    gap: 6px;
+  }
+
+  .title-bar-text {
+    font-size: 13px;
+  }
+
+  .title-bar-controls {
+    display: none;
+  }
+
+  .menu-strip .menu-tail {
+    display: none;
+  }
+
+  .taskbar {
+    margin-top: 0;
+  }
+
+  .taskbar-inner {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .taskbar .tray {
+    margin-left: 0;
+  }
+
+  .colophon {
+    padding: 12px 16px 24px;
+  }
+
+  .status-bar-field {
+    flex-basis: 100%;
+    border-right: 0;
+    border-bottom: 1px solid #cfcfcf;
+  }
+
+  .status-bar-field:last-child {
+    border-bottom: 0;
+  }
+
+  .speclist {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .speclist dd + dt {
+    margin-top: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .caret {
+    animation: none;
+    visibility: visible;
+  }
+}

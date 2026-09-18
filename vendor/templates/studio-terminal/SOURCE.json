@@ -1,0 +1,101 @@
+{
+  "id": "studio-terminal",
+  "name": "Bevel",
+  "kind": "Plotform-authored adaptation",
+  "adaptationLabel": "Adapted from 7.css",
+  "adaptedFrom": {
+    "name": "7.css",
+    "url": "https://github.com/khang-nd/7.css",
+    "commit": "3e934439c7587e0e89cce12bb3179cd3f8fd187b",
+    "commitDate": "2026-03-17",
+    "license": "MIT",
+    "copyright": "2021 Khang Nguyen Duy",
+    "licenseFile": "licenses/7css-MIT.txt",
+    "vendoredAt": "vendor/templates/studio-terminal/upstream (also archived inside source.zip under upstream/7.css-3e934439/)",
+    "reused": [
+      "The window shell: 1px border, 6px radius, the drop shadow and the lit inner rim, plus the glass gradient behind the title bar (gui/_window.scss .window and .window::before), rewritten here as .window",
+      "The title bar: gradient, white inner edge, the glow behind the title text and the control cluster with its own rounded plate (gui/_window.scss .title-bar)",
+      "The raised control: 1px border, 3px radius, inset white rim and the two stop gradient with its hover and active variants (gui/_button.scss), rewritten as .pushbutton and the tab buttons",
+      "The tab strip whose selected tab drops its bottom border so the panel edge runs under it (gui/_tabs.scss)",
+      "The sunken field border colours (gui/_textbox.scss) and the group box with its inset white rim (gui/_groupbox.scss)",
+      "The tree view: 20px indent, dotted connectors and the small square plus and minus expander (gui/_treeview.scss)",
+      "The status bar with its divided fields (gui/_window.scss .status-bar)",
+      "The custom property naming, kept with its --w7- prefix so each borrowed formula stays traceable to the file it came from"
+    ],
+    "notReused": [
+      "The upstream icon PNGs in gui/icon (close, maximize, minimize, restore, help, spinner, slider parts). Every mark in this edition is SVG drawn for it or a CSS gradient",
+      "docs/, including its demo photograph and the Windows 7 tribute framing",
+      "The component set this edition does not use: menus, combo boxes, sliders, spinners, progress bars, balloons, list boxes, search boxes, scrollbar skinning",
+      "The npm and postcss build. This edition is plain CSS with no build step and no dependency",
+      "The system font stack. 7.css leaves the face to the machine; this edition bundles one so a page looks the same everywhere",
+      "All upstream copy"
+    ]
+  },
+  "licenceAudit": {
+    "checked": "2026-09-17",
+    "rejected98css": "98.css (MIT) bundles fonts/converted/ms_sans_serif.woff. Its own fonts/src/ms-sans-serif/license.txt states the FontStruction 'MS Sans Serif' by 'lou' is licensed under Creative Commons Attribution Share Alike 3.0. A share alike font would pass a copyleft obligation on to everyone who publishes a site made from this edition, and it is a reconstruction of a typeface belonging to someone else, so 98.css was not used.",
+    "rejectedXpcss": "XP.css carries the same FontStruction face plus Perfect DOS VGA 437, so it fails for the same reason.",
+    "chosen7css": "7.css bundles no font files at all and draws its chrome with gradients and borders, so it adds no font licence surface and no bitmap to redistribute."
+  },
+  "images": [
+    {
+      "file": "assets/screen-editor.svg",
+      "origin": "Authored for this edition: a drawn editor window with a tool column, a sixteen by fourteen tile canvas, a palette and a layer list, written by tools/make-art.mjs",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/screen-map.svg",
+      "origin": "Authored for this edition: a thirty two by eighteen tile map filled from a fixed arithmetic rule, with a dashed selection, written by tools/make-art.mjs",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/screen-export.svg",
+      "origin": "Authored for this edition: thirty two numbered frames, an arrow and a file card, written by tools/make-art.mjs",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/panel-palette.svg, assets/panel-layers.svg, assets/panel-script.svg",
+      "origin": "Authored for this edition: the three inspector panels drawn as flat vector panels, written by tools/make-art.mjs",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/diagram-pipeline.svg",
+      "origin": "Authored for this edition: four labelled boxes joined by arrows with one dashed return, written by tools/make-art.mjs",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/icon-plumbline.svg, icon-disk.svg, icon-book.svg, icon-help.svg, icon-mail.svg, icon-folder.svg",
+      "origin": "Authored for this edition: six icons drawn as SVG paths and rectangles, written by tools/make-art.mjs. The plumb bob, the disk, the book, the question mark, the envelope and the folder are generic objects, not anyone's product marks",
+      "license": "MIT"
+    },
+    {
+      "file": "the three window controls in each title bar",
+      "origin": "Authored for this edition: inline SVG shapes, marked aria-hidden because a web page cannot be minimised and they are ornament rather than controls",
+      "license": "MIT"
+    }
+  ],
+  "photography": "None. No photographs, no generated imagery, no screenshot of any real program and no asset taken from a reference site. Every visual is CSS or SVG written for this edition.",
+  "trademarks": "None. The illustrative product, its studio and its file formats are invented, no operating system is named anywhere in the pages, and no logo belonging to anyone is drawn or bundled.",
+  "fonts": [
+    {
+      "file": "assets/noto-sans.woff2",
+      "family": "Noto Sans",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/noto-sans-OFL.txt",
+      "origin": "@fontsource-variable/noto-sans, latin subset with the weight axis",
+      "why": "7.css sets no font of its own: its --w7-font stack is Segoe UI first and Noto Sans as the open fallback. Noto Sans is that fallback, is a humanist sans in the same register, and is under the OFL, so the edition bundles it rather than depending on whatever the visitor's machine happens to hold."
+    },
+    {
+      "file": "assets/jetbrains-mono.woff2",
+      "family": "JetBrains Mono",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/jetbrains-mono-OFL.txt",
+      "origin": "@fontsource-variable/jetbrains-mono, latin subset with the weight axis, copied from public/templates/_plotform-fonts",
+      "why": "Used in exactly two places: the console on the tour page and the file sample on the versions page, where the typing is the subject rather than the interface."
+    }
+  ],
+  "typography": "Noto Sans throughout, at 13 to 14px in the chrome and 16.5px with a 66 character measure in the document pane. Headings run to 800 weight with negative tracking, which is this edition's own voice rather than an imitation of a system font. Navigation, headings and body copy are never monospaced.",
+  "referenceDirection": "A late nineties desktop as the layout: the window chrome is the page frame, the navigator and the document are real panes of a CSS grid, and the status bar and taskbar are part of the structure rather than decoration pasted on top. No reference site code, imagery or branding copied.",
+  "interaction": "A tabbed properties panel, the inspector on features.html. It is a real WAI-ARIA tab widget: role tablist, role tab with aria-selected and aria-controls, role tabpanel labelled by its tab, roving tabindex, Left and Right and Up and Down to move, Home and End to jump, and automatic selection as focus moves. It works by mouse and by keyboard, and the panels are ordinary elements that are hidden rather than moved. The navigator tree and the question list are native details elements, so they expand and collapse before any script loads.",
+  "demoContent": "Plumbline and Tin Roof Software are invented. The screens, the version numbers, the dates, the changelog entries and the answers on the help page are illustrative, and every page carries a visible note saying so. No price, no download count, no award, no testimonial and no claim about real software appears anywhere. The three build rows on the versions page are marked as not connected because the template ships no application files."
+}

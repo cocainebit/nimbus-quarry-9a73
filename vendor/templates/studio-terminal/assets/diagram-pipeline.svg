@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 260" width="960" height="260" role="img">
+<rect x="0.5" y="0.5" width="959" height="259" fill="#f0f0f0" stroke="#8e8f8f"/>
+<rect x="32" y="60" width="190" height="96" fill="#ffffff" stroke="#1d252d"/>
+<rect x="32" y="60" width="190" height="10" fill="#4580c4" stroke="none" opacity="0.8"/>
+<text x="48" y="100" font-family="Noto Sans, Segoe UI, sans-serif" font-size="17" font-weight="600" fill="#1d252d" text-anchor="start">Tiles</text>
+<text x="48" y="126" font-family="Noto Sans, Segoe UI, sans-serif" font-size="13" font-weight="400" fill="#3b4854" text-anchor="start">drawn one by one</text>
+<path d="M228 108 L256 108" stroke="#1d252d" stroke-width="3" fill="none"/>
+<path d="M262 108 L250 101 L250 115 Z" fill="#1d252d"/>
+<rect x="264" y="60" width="190" height="96" fill="#ffffff" stroke="#1d252d"/>
+<rect x="264" y="60" width="190" height="10" fill="#4580c4" stroke="none" opacity="0.8"/>
+<text x="280" y="100" font-family="Noto Sans, Segoe UI, sans-serif" font-size="17" font-weight="600" fill="#1d252d" text-anchor="start">Map</text>
+<text x="280" y="126" font-family="Noto Sans, Segoe UI, sans-serif" font-size="13" font-weight="400" fill="#3b4854" text-anchor="start">tiles placed on layers</text>
+<path d="M460 108 L488 108" stroke="#1d252d" stroke-width="3" fill="none"/>
+<path d="M494 108 L482 101 L482 115 Z" fill="#1d252d"/>
+<rect x="496" y="60" width="190" height="96" fill="#ffffff" stroke="#1d252d"/>
+<rect x="496" y="60" width="190" height="10" fill="#4580c4" stroke="none" opacity="0.8"/>
+<text x="512" y="100" font-family="Noto Sans, Segoe UI, sans-serif" font-size="17" font-weight="600" fill="#1d252d" text-anchor="start">Sheet</text>
+<text x="512" y="126" font-family="Noto Sans, Segoe UI, sans-serif" font-size="13" font-weight="400" fill="#3b4854" text-anchor="start">packed for the engine</text>
+<path d="M692 108 L720 108" stroke="#1d252d" stroke-width="3" fill="none"/>
+<path d="M726 108 L714 101 L714 115 Z" fill="#1d252d"/>
+<rect x="728" y="60" width="190" height="96" fill="#ffffff" stroke="#1d252d"/>
+<rect x="728" y="60" width="190" height="10" fill="#4580c4" stroke="none" opacity="0.8"/>
+<text x="744" y="100" font-family="Noto Sans, Segoe UI, sans-serif" font-size="17" font-weight="600" fill="#1d252d" text-anchor="start">Game</text>
+<text x="744" y="126" font-family="Noto Sans, Segoe UI, sans-serif" font-size="13" font-weight="400" fill="#3b4854" text-anchor="start">your own code reads it</text>
+<path d="M700 170 L700 200 L128 200 L128 170" stroke="#1d252d" stroke-width="2" fill="none" stroke-dasharray="7 5"/>
+<path d="M128 156 L121 172 L135 172 Z" fill="#1d252d"/>
+<text x="330" y="222" font-family="Noto Sans, Segoe UI, sans-serif" font-size="14" font-weight="400" fill="#3b4854" text-anchor="start">Edits travel back to the tiles, so nothing is exported twice by hand</text>
+</svg>

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en" id="top">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The Plenum programme: three illustrative days laid out as a time grid, switchable by day and filterable by track. A Plotform studio edition.">
+<title>Programme, Plenum</title>
+<link rel="preload" href="assets/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="rail wrap">
+<span class="rail-dates figures">12 to 14 March 2027</span>
+<span class="rail-place">The Old Waterworks, Example Quay</span>
+<span class="rail-note">Illustrative content throughout</span>
+</div>
+<header class="site-header wrap">
+<a class="wordmark" href="index.html" aria-label="Plenum home">plenum</a>
+<nav class="site-nav" aria-label="Main navigation"><a href="index.html">Congress</a><a href="programme.html" aria-current="page">Programme</a><a href="speakers.html">Speakers</a><a href="venue.html">Venue</a></nav>
+<a class="pill header-mail" href="mailto:hello@example.com">Write to us</a>
+<button class="pill menu-toggle" type="button" aria-haspopup="dialog" aria-controls="menu">Menu</button>
+</header>
+<dialog class="menu" id="menu" aria-label="Main navigation">
+<div class="menu-inner">
+<div class="menu-top"><span class="wordmark">plenum</span><button class="pill menu-close" type="button">Close</button></div>
+<nav><a href="index.html">Congress</a><a href="programme.html">Programme</a><a href="speakers.html">Speakers</a><a href="venue.html">Venue</a></nav>
+<a class="menu-mail" href="mailto:hello@example.com">hello@example.com</a>
+</div>
+</dialog>
+
+<main id="main">
+<section class="programme section section-first wrap" data-track="all" aria-labelledby="programme-title">
+<div class="head">
+<span class="head-num figures">01</span>
+<h1 class="head-title" id="programme-title">Thirty sessions across three days</h1>
+<p class="head-note">Time runs down the left, rooms run across the top, and the colour on the left edge of each session is its track. Every title here is a plain heading except one: Maintenance as a public act opens the example talk page this edition ships with.</p>
+</div>
+
+<!-- grid:start -->
+<div class="daytabs" role="tablist" aria-label="Congress days">
+<button class="daytab" type="button" role="tab" id="tab-day-1" aria-controls="day-1" aria-selected="true" tabindex="0" data-day="day-1"><span class="daytab-weekday">Friday</span><span class="daytab-date">12 March</span></button>
+<button class="daytab" type="button" role="tab" id="tab-day-2" aria-controls="day-2" aria-selected="false" tabindex="-1" data-day="day-2"><span class="daytab-weekday">Saturday</span><span class="daytab-date">13 March</span></button>
+<button class="daytab" type="button" role="tab" id="tab-day-3" aria-controls="day-3" aria-selected="false" tabindex="-1" data-day="day-3"><span class="daytab-weekday">Sunday</span><span class="daytab-date">14 March</span></button>
+</div>
+
+<div class="controls">
+<div class="filters" role="group" aria-label="Filter the grid by track">
+<button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+<button class="filter" type="button" data-filter="ground" aria-pressed="false">Ground</button>
+<button class="filter" type="button" data-filter="bench" aria-pressed="false">Bench</button>
+<button class="filter" type="button" data-filter="floor" aria-pressed="false">Floor</button>
+</div>
+<p class="status" id="programme-status" role="status">Friday: showing 12 of 12 sessions, all tracks</p>
+</div>
+
+<section class="panel" id="day-1" role="tabpanel" aria-labelledby="tab-day-1" data-day="day-1">
+<div class="panel-head">
+<h2 class="panel-title"><span class="panel-weekday">Friday</span><span class="panel-date">12 March 2027</span></h2>
+<p class="panel-note">The first day runs long. Doors open at 09:00 and the hall is cleared at 18:30.</p>
+</div>
+<div class="grid cols-4">
+<div class="hour-rule r-2 s-4" role="presentation"></div>
+<div class="hour-rule r-6 s-4" role="presentation"></div>
+<div class="hour-rule r-10 s-4" role="presentation"></div>
+<div class="hour-rule r-14 s-4" role="presentation"></div>
+<div class="hour-rule r-18 s-4" role="presentation"></div>
+<div class="hour-rule r-22 s-4" role="presentation"></div>
+<div class="hour-rule r-26 s-4" role="presentation"></div>
+<div class="hour-rule r-30 s-4" role="presentation"></div>
+<div class="hour-rule r-34 s-4" role="presentation"></div>
+<div class="grid-corner r-1 s-1 c-time" role="presentation"></div>
+<a class="room r-1 s-1 c-1" href="venue.html#great-hall">Great Hall</a>
+<a class="room r-1 s-1 c-2" href="venue.html#turbine-room">Turbine Room</a>
+<a class="room r-1 s-1 c-3" href="venue.html#pump-house">Pump House</a>
+<a class="room r-1 s-1 c-4" href="venue.html#reading-room">Reading Room</a>
+<span class="tick r-2 s-4 c-time">09:00</span>
+<span class="tick r-6 s-4 c-time">10:00</span>
+<span class="tick r-10 s-4 c-time">11:00</span>
+<span class="tick r-14 s-4 c-time">12:00</span>
+<span class="tick r-18 s-4 c-time">13:00</span>
+<span class="tick r-22 s-4 c-time">14:00</span>
+<span class="tick r-26 s-4 c-time">15:00</span>
+<span class="tick r-30 s-4 c-time">16:00</span>
+<span class="tick r-34 s-4 c-time">17:00</span>
+<article class="session t-floor r-3 s-3 c-1" data-track="floor" aria-label="09:15 to 10:00, Great Hall, Floor">
+<p class="session-time"><span class="time-from">09:15</span><span class="time-join">to</span><span class="time-to">10:00</span><span class="session-track">Floor</span></p>
+<h3 class="session-title">Opening the doors</h3>
+<p class="session-by">Neve Ashlock</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-ground r-6 s-3 c-1" data-track="ground" aria-label="10:00 to 10:45, Great Hall, Ground">
+<p class="session-time"><span class="time-from">10:00</span><span class="time-join">to</span><span class="time-to">10:45</span><span class="session-track">Ground</span></p>
+<h3 class="session-title"><a href="talk-maintenance.html">Maintenance as a public act</a></h3>
+<p class="session-by">Ruth Pellamy</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-bench r-6 s-8 c-3" data-track="bench" aria-label="10:00 to 12:00, Pump House, Bench">
+<p class="session-time"><span class="time-from">10:00</span><span class="time-join">to</span><span class="time-to">12:00</span><span class="session-track">Bench</span></p>
+<h3 class="session-title">Reading a meter by hand</h3>
+<p class="session-by">Tomas Quilley</p>
+<p class="session-where"><a class="session-room" href="venue.html#pump-house">Pump House</a></p>
+</article>
+<article class="session t-floor r-7 s-3 c-4" data-track="floor" aria-label="10:15 to 11:00, Reading Room, Floor">
+<p class="session-time"><span class="time-from">10:15</span><span class="time-join">to</span><span class="time-to">11:00</span><span class="session-track">Floor</span></p>
+<h3 class="session-title">Open table: what broke this year</h3>
+<p class="session-by">Lior Fenwick</p>
+<p class="session-where"><a class="session-room" href="venue.html#reading-room">Reading Room</a></p>
+</article>
+<article class="session t-ground r-10 s-3 c-1" data-track="ground" aria-label="11:00 to 11:45, Great Hall, Ground">
+<p class="session-time"><span class="time-from">11:00</span><span class="time-join">to</span><span class="time-to">11:45</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">The cost of a spare part</h3>
+<p class="session-by">Kwesi Barrowman</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-ground r-11 s-3 c-2" data-track="ground" aria-label="11:15 to 12:00, Turbine Room, Ground">
+<p class="session-time"><span class="time-from">11:15</span><span class="time-join">to</span><span class="time-to">12:00</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">Nine ways to lose a map</h3>
+<p class="session-by">Asta Vennemo</p>
+<p class="session-where"><a class="session-room" href="venue.html#turbine-room">Turbine Room</a></p>
+</article>
+<article class="session t-break r-14 s-5 c-all" data-track="break" aria-label="12:00 to 13:15, Break">
+<p class="session-time"><span class="time-from">12:00</span><span class="time-join">to</span><span class="time-to">13:15</span><span class="session-track">Break</span></p>
+<h3 class="session-title">Lunch in the courtyard</h3>
+</article>
+<article class="session t-ground r-19 s-3 c-1" data-track="ground" aria-label="13:15 to 14:00, Great Hall, Ground">
+<p class="session-time"><span class="time-from">13:15</span><span class="time-join">to</span><span class="time-to">14:00</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">Who is on call at three in the morning</h3>
+<p class="session-by">Bea Tornquist</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-bench r-19 s-8 c-2" data-track="bench" aria-label="13:15 to 15:15, Turbine Room, Bench">
+<p class="session-time"><span class="time-from">13:15</span><span class="time-join">to</span><span class="time-to">15:15</span><span class="session-track">Bench</span></p>
+<h3 class="session-title">Drawing a plan a stranger can read</h3>
+<p class="session-by">Marisol Pentreath</p>
+<p class="session-where"><a class="session-room" href="venue.html#turbine-room">Turbine Room</a></p>
+</article>
+<article class="session t-ground r-23 s-3 c-1" data-track="ground" aria-label="14:15 to 15:00, Great Hall, Ground">
+<p class="session-time"><span class="time-from">14:15</span><span class="time-join">to</span><span class="time-to">15:00</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">A register nobody can edit</h3>
+<p class="session-by">Imri Sandoval-Roe</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-break r-26 s-2 c-all" data-track="break" aria-label="15:00 to 15:30, Break">
+<p class="session-time"><span class="time-from">15:00</span><span class="time-join">to</span><span class="time-to">15:30</span><span class="session-track">Break</span></p>
+<h3 class="session-title">Tea, standing up</h3>
+</article>
+<article class="session t-ground r-28 s-3 c-1" data-track="ground" aria-label="15:30 to 16:15, Great Hall, Ground">
+<p class="session-time"><span class="time-from">15:30</span><span class="time-join">to</span><span class="time-to">16:15</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">The long afternoon of a public database</h3>
+<p class="session-by">Solveig Rannoch</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-bench r-28 s-6 c-3" data-track="bench" aria-label="15:30 to 17:00, Pump House, Bench">
+<p class="session-time"><span class="time-from">15:30</span><span class="time-join">to</span><span class="time-to">17:00</span><span class="session-track">Bench</span></p>
+<h3 class="session-title">Taking a pump apart</h3>
+<p class="session-by">Dmitri Halloran-Fisk</p>
+<p class="session-where"><a class="session-room" href="venue.html#pump-house">Pump House</a></p>
+</article>
+<article class="session t-floor r-32 s-4 c-1" data-track="floor" aria-label="16:30 to 17:30, Great Hall, Floor">
+<p class="session-time"><span class="time-from">16:30</span><span class="time-join">to</span><span class="time-to">17:30</span><span class="session-track">Floor</span></p>
+<h3 class="session-title">Assembly: what the first day left open</h3>
+<p class="session-by">Neve Ashlock</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+</div>
+</section>
+
+<section class="panel" id="day-2" role="tabpanel" aria-labelledby="tab-day-2" data-day="day-2" hidden>
+<div class="panel-head">
+<h2 class="panel-title"><span class="panel-weekday">Saturday</span><span class="panel-date">13 March 2027</span></h2>
+<p class="panel-note">The busiest day. Two workshops run right through the morning, so take a seat early.</p>
+</div>
+<div class="grid cols-4">
+<div class="hour-rule r-2 s-4" role="presentation"></div>
+<div class="hour-rule r-6 s-4" role="presentation"></div>
+<div class="hour-rule r-10 s-4" role="presentation"></div>
+<div class="hour-rule r-14 s-4" role="presentation"></div>
+<div class="hour-rule r-18 s-4" role="presentation"></div>
+<div class="hour-rule r-22 s-4" role="presentation"></div>
+<div class="hour-rule r-26 s-4" role="presentation"></div>
+<div class="hour-rule r-30 s-4" role="presentation"></div>
+<div class="hour-rule r-34 s-4" role="presentation"></div>
+<div class="grid-corner r-1 s-1 c-time" role="presentation"></div>
+<a class="room r-1 s-1 c-1" href="venue.html#great-hall">Great Hall</a>
+<a class="room r-1 s-1 c-2" href="venue.html#turbine-room">Turbine Room</a>
+<a class="room r-1 s-1 c-3" href="venue.html#pump-house">Pump House</a>
+<a class="room r-1 s-1 c-4" href="venue.html#reading-room">Reading Room</a>
+<span class="tick r-2 s-4 c-time">09:00</span>
+<span class="tick r-6 s-4 c-time">10:00</span>
+<span class="tick r-10 s-4 c-time">11:00</span>
+<span class="tick r-14 s-4 c-time">12:00</span>
+<span class="tick r-18 s-4 c-time">13:00</span>
+<span class="tick r-22 s-4 c-time">14:00</span>
+<span class="tick r-26 s-4 c-time">15:00</span>
+<span class="tick r-30 s-4 c-time">16:00</span>
+<span class="tick r-34 s-4 c-time">17:00</span>
+<article class="session t-ground r-4 s-3 c-1" data-track="ground" aria-label="09:30 to 10:15, Great Hall, Ground">
+<p class="session-time"><span class="time-from">09:30</span><span class="time-join">to</span><span class="time-to">10:15</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">What a queue knows</h3>
+<p class="session-by">Bea Tornquist</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-bench r-4 s-8 c-3" data-track="bench" aria-label="09:30 to 11:30, Pump House, Bench">
+<p class="session-time"><span class="time-from">09:30</span><span class="time-join">to</span><span class="time-to">11:30</span><span class="session-track">Bench</span></p>
+<h3 class="session-title">Soldering for people who drop things</h3>
+<p class="session-by">Dmitri Halloran-Fisk</p>
+<p class="session-where"><a class="session-room" href="venue.html#pump-house">Pump House</a></p>
+</article>
+<article class="session t-ground r-8 s-3 c-1" data-track="ground" aria-label="10:30 to 11:15, Great Hall, Ground">
+<p class="session-time"><span class="time-from">10:30</span><span class="time-join">to</span><span class="time-to">11:15</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">Paper is a protocol</h3>
+<p class="session-by">Ode Kirchmeyer</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-ground r-8 s-3 c-2" data-track="ground" aria-label="10:30 to 11:15, Turbine Room, Ground">
+<p class="session-time"><span class="time-from">10:30</span><span class="time-join">to</span><span class="time-to">11:15</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">The archive in the basement</h3>
+<p class="session-by">Solveig Rannoch</p>
+<p class="session-where"><a class="session-room" href="venue.html#turbine-room">Turbine Room</a></p>
+</article>
+<article class="session t-ground r-12 s-3 c-1" data-track="ground" aria-label="11:30 to 12:15, Great Hall, Ground">
+<p class="session-time"><span class="time-from">11:30</span><span class="time-join">to</span><span class="time-to">12:15</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">Counting what the meter misses</h3>
+<p class="session-by">Tomas Quilley</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-floor r-12 s-3 c-4" data-track="floor" aria-label="11:30 to 12:15, Reading Room, Floor">
+<p class="session-time"><span class="time-from">11:30</span><span class="time-join">to</span><span class="time-to">12:15</span><span class="session-track">Floor</span></p>
+<h3 class="session-title">Open table: small repairs</h3>
+<p class="session-by">Lior Fenwick</p>
+<p class="session-where"><a class="session-room" href="venue.html#reading-room">Reading Room</a></p>
+</article>
+<article class="session t-break r-15 s-5 c-all" data-track="break" aria-label="12:15 to 13:30, Break">
+<p class="session-time"><span class="time-from">12:15</span><span class="time-join">to</span><span class="time-to">13:30</span><span class="session-track">Break</span></p>
+<h3 class="session-title">Lunch in the courtyard</h3>
+</article>
+<article class="session t-ground r-20 s-3 c-1" data-track="ground" aria-label="13:30 to 14:15, Great Hall, Ground">
+<p class="session-time"><span class="time-from">13:30</span><span class="time-join">to</span><span class="time-to">14:15</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">Two hundred years of pipe</h3>
+<p class="session-by">Kwesi Barrowman</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-bench r-20 s-8 c-2" data-track="bench" aria-label="13:30 to 15:30, Turbine Room, Bench">
+<p class="session-time"><span class="time-from">13:30</span><span class="time-join">to</span><span class="time-to">15:30</span><span class="session-track">Bench</span></p>
+<h3 class="session-title">Writing a fault report somebody reads</h3>
+<p class="session-by">Marisol Pentreath</p>
+<p class="session-where"><a class="session-room" href="venue.html#turbine-room">Turbine Room</a></p>
+</article>
+<article class="session t-ground r-24 s-3 c-1" data-track="ground" aria-label="14:30 to 15:15, Great Hall, Ground">
+<p class="session-time"><span class="time-from">14:30</span><span class="time-join">to</span><span class="time-to">15:15</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">Handing over the keys</h3>
+<p class="session-by">Asta Vennemo</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-break r-27 s-2 c-all" data-track="break" aria-label="15:15 to 15:45, Break">
+<p class="session-time"><span class="time-from">15:15</span><span class="time-join">to</span><span class="time-to">15:45</span><span class="session-track">Break</span></p>
+<h3 class="session-title">Tea, standing up</h3>
+</article>
+<article class="session t-ground r-29 s-3 c-1" data-track="ground" aria-label="15:45 to 16:30, Great Hall, Ground">
+<p class="session-time"><span class="time-from">15:45</span><span class="time-join">to</span><span class="time-to">16:30</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">The map and the ledger</h3>
+<p class="session-by">Imri Sandoval-Roe</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-floor r-33 s-5 c-1" data-track="floor" aria-label="16:45 to 18:00, Great Hall, Floor">
+<p class="session-time"><span class="time-from">16:45</span><span class="time-join">to</span><span class="time-to">18:00</span><span class="session-track">Floor</span></p>
+<h3 class="session-title">Assembly: the long list</h3>
+<p class="session-by">Neve Ashlock</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+</div>
+</section>
+
+<section class="panel" id="day-3" role="tabpanel" aria-labelledby="tab-day-3" data-day="day-3" hidden>
+<div class="panel-head">
+<h2 class="panel-title"><span class="panel-weekday">Sunday</span><span class="panel-date">14 March 2027</span></h2>
+<p class="panel-note">A short day in three rooms. The Pump House stays shut while the equipment goes back.</p>
+</div>
+<div class="grid cols-3">
+<div class="hour-rule r-2 s-4" role="presentation"></div>
+<div class="hour-rule r-6 s-4" role="presentation"></div>
+<div class="hour-rule r-10 s-4" role="presentation"></div>
+<div class="hour-rule r-14 s-4" role="presentation"></div>
+<div class="hour-rule r-18 s-4" role="presentation"></div>
+<div class="grid-corner r-1 s-1 c-time" role="presentation"></div>
+<a class="room r-1 s-1 c-1" href="venue.html#great-hall">Great Hall</a>
+<a class="room r-1 s-1 c-2" href="venue.html#turbine-room">Turbine Room</a>
+<a class="room r-1 s-1 c-3" href="venue.html#reading-room">Reading Room</a>
+<span class="tick r-2 s-4 c-time">10:00</span>
+<span class="tick r-6 s-4 c-time">11:00</span>
+<span class="tick r-10 s-4 c-time">12:00</span>
+<span class="tick r-14 s-4 c-time">13:00</span>
+<span class="tick r-18 s-4 c-time">14:00</span>
+<article class="session t-ground r-2 s-3 c-1" data-track="ground" aria-label="10:00 to 10:45, Great Hall, Ground">
+<p class="session-time"><span class="time-from">10:00</span><span class="time-join">to</span><span class="time-to">10:45</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">Sunday, and the work continues</h3>
+<p class="session-by">Ruth Pellamy</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-bench r-2 s-8 c-2" data-track="bench" aria-label="10:00 to 12:00, Turbine Room, Bench">
+<p class="session-time"><span class="time-from">10:00</span><span class="time-join">to</span><span class="time-to">12:00</span><span class="session-track">Bench</span></p>
+<h3 class="session-title">Repair table, with your own broken thing</h3>
+<p class="session-by">Dmitri Halloran-Fisk</p>
+<p class="session-where"><a class="session-room" href="venue.html#turbine-room">Turbine Room</a></p>
+</article>
+<article class="session t-ground r-6 s-3 c-1" data-track="ground" aria-label="11:00 to 11:45, Great Hall, Ground">
+<p class="session-time"><span class="time-from">11:00</span><span class="time-join">to</span><span class="time-to">11:45</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">A budget you can read aloud</h3>
+<p class="session-by">Solveig Rannoch</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-floor r-6 s-3 c-3" data-track="floor" aria-label="11:00 to 11:45, Reading Room, Floor">
+<p class="session-time"><span class="time-from">11:00</span><span class="time-join">to</span><span class="time-to">11:45</span><span class="session-track">Floor</span></p>
+<h3 class="session-title">Open table: what we should have said</h3>
+<p class="session-by">Ode Kirchmeyer</p>
+<p class="session-where"><a class="session-room" href="venue.html#reading-room">Reading Room</a></p>
+</article>
+<article class="session t-break r-10 s-4 c-all" data-track="break" aria-label="12:00 to 13:00, Break">
+<p class="session-time"><span class="time-from">12:00</span><span class="time-join">to</span><span class="time-to">13:00</span><span class="session-track">Break</span></p>
+<h3 class="session-title">Lunch in the courtyard</h3>
+</article>
+<article class="session t-ground r-14 s-3 c-1" data-track="ground" aria-label="13:00 to 13:45, Great Hall, Ground">
+<p class="session-time"><span class="time-from">13:00</span><span class="time-join">to</span><span class="time-to">13:45</span><span class="session-track">Ground</span></p>
+<h3 class="session-title">The last mile is a stair</h3>
+<p class="session-by">Lior Fenwick</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+<article class="session t-bench r-14 s-6 c-2" data-track="bench" aria-label="13:00 to 14:30, Turbine Room, Bench">
+<p class="session-time"><span class="time-from">13:00</span><span class="time-join">to</span><span class="time-to">14:30</span><span class="session-track">Bench</span></p>
+<h3 class="session-title">Packing the hall down</h3>
+<p class="session-by">Marisol Pentreath</p>
+<p class="session-where"><a class="session-room" href="venue.html#turbine-room">Turbine Room</a></p>
+</article>
+<article class="session t-floor r-18 s-4 c-1" data-track="floor" aria-label="14:00 to 15:00, Great Hall, Floor">
+<p class="session-time"><span class="time-from">14:00</span><span class="time-join">to</span><span class="time-to">15:00</span><span class="session-track">Floor</span></p>
+<h3 class="session-title">Closing assembly</h3>
+<p class="session-by">Neve Ashlock</p>
+<p class="session-where"><a class="session-room" href="venue.html#great-hall">Great Hall</a></p>
+</article>
+</div>
+</section>
+<!-- grid:end -->
+
+</section>
+
+<section class="section wrap" aria-labelledby="key-title">
+<div class="head">
+<span class="head-num figures">02</span>
+<h2 class="head-title" id="key-title">The key</h2>
+<p class="head-note">Breaks are not filtered out. They keep the shape of the day when only one track is showing.</p>
+</div>
+<div class="tracks">
+<article class="track track-ground">
+<img src="assets/track-ground.svg" width="120" height="120" alt="Ground track mark: a single solid block of ruled lines resting on a baseline" loading="lazy">
+<h3>Ground</h3>
+<p>Talks in front of everybody, forty five minutes, questions at the end.</p>
+</article>
+<article class="track track-bench">
+<img src="assets/track-bench.svg" width="120" height="120" alt="Bench track mark: a work surface on two legs with a ring, a block and a triangle laid out above it" loading="lazy">
+<h3>Bench</h3>
+<p>Hands on sessions that run long. Places are limited and taken at the desk.</p>
+</article>
+<article class="track track-floor">
+<img src="assets/track-floor.svg" width="120" height="120" alt="Floor track mark: seven filled circles arranged in a dashed ring around a small empty square" loading="lazy">
+<h3>Floor</h3>
+<p>Open sessions with nothing prepared. Anybody in the room may speak.</p>
+</article>
+</div>
+</section>
+
+<section class="band band-quiet wrap" aria-label="About this programme">
+<span class="label">Please note</span>
+<p class="band-text">Every session, room and speaker on this grid is illustrative. Nothing here describes a real congress, and no session is bookable. Edit the schedule in one place, in the data file that ships with the source archive, and rebuild the grid from it.</p>
+</section>
+</main>
+
+<footer class="site-footer" id="contact">
+<div class="wrap">
+<div class="footer-top">
+<p class="footer-line meta">Write to the programme desk about a session, about access, or about a place at a Bench workshop.</p>
+<a class="big-link" href="mailto:hello@example.com">hello@example.com</a>
+</div>
+<a class="footer-mark" href="index.html" aria-label="Plenum home">plenum</a>
+<div class="footer-bottom">
+<span>Plenum, a Plotform studio edition. An illustrative congress.</span>
+<nav aria-label="Footer"><a href="credits.html">Credits and source</a><a href="venue.html">Getting here</a><a href="#top">Back to top</a></nav>
+</div>
+</div>
+</footer>
+</body>
+</html>

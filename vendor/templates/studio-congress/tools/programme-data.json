@@ -1,0 +1,90 @@
+{
+  "note": "The whole schedule lives here. Edit it and run: node tools/build-programme.mjs. The idea of a single schedule data file comes from jekyll-theme-conference's _data/program.yml; the shape, the renderer and the markup are written for this edition.",
+  "slotMinutes": 15,
+  "tracks": [
+    { "id": "ground", "name": "Ground", "blurb": "Talks in front of everybody, forty five minutes, questions at the end." },
+    { "id": "bench", "name": "Bench", "blurb": "Hands on sessions with a limited number of places, signed up for at the desk." },
+    { "id": "floor", "name": "Floor", "blurb": "Open sessions with no prepared talk. Anybody in the room may speak." }
+  ],
+  "days": [
+    {
+      "id": "day-1",
+      "name": "Friday",
+      "date": "12 March 2027",
+      "short": "12 March",
+      "note": "The first day runs long. Doors open at 09:00 and the hall is cleared at 18:30.",
+      "rooms": [
+        { "name": "Great Hall", "anchor": "great-hall" },
+        { "name": "Turbine Room", "anchor": "turbine-room" },
+        { "name": "Pump House", "anchor": "pump-house" },
+        { "name": "Reading Room", "anchor": "reading-room" }
+      ],
+      "sessions": [
+        { "start": "09:15", "end": "10:00", "room": 0, "track": "floor", "title": "Opening the doors", "by": "Neve Ashlock" },
+        { "start": "10:00", "end": "10:45", "room": 0, "track": "ground", "title": "Maintenance as a public act", "by": "Ruth Pellamy", "href": "talk-maintenance.html" },
+        { "start": "10:00", "end": "12:00", "room": 2, "track": "bench", "title": "Reading a meter by hand", "by": "Tomas Quilley" },
+        { "start": "10:15", "end": "11:00", "room": 3, "track": "floor", "title": "Open table: what broke this year", "by": "Lior Fenwick" },
+        { "start": "11:00", "end": "11:45", "room": 0, "track": "ground", "title": "The cost of a spare part", "by": "Kwesi Barrowman" },
+        { "start": "11:15", "end": "12:00", "room": 1, "track": "ground", "title": "Nine ways to lose a map", "by": "Asta Vennemo" },
+        { "start": "12:00", "end": "13:15", "room": "all", "track": "break", "title": "Lunch in the courtyard" },
+        { "start": "13:15", "end": "14:00", "room": 0, "track": "ground", "title": "Who is on call at three in the morning", "by": "Bea Tornquist" },
+        { "start": "13:15", "end": "15:15", "room": 1, "track": "bench", "title": "Drawing a plan a stranger can read", "by": "Marisol Pentreath" },
+        { "start": "14:15", "end": "15:00", "room": 0, "track": "ground", "title": "A register nobody can edit", "by": "Imri Sandoval-Roe" },
+        { "start": "15:00", "end": "15:30", "room": "all", "track": "break", "title": "Tea, standing up" },
+        { "start": "15:30", "end": "16:15", "room": 0, "track": "ground", "title": "The long afternoon of a public database", "by": "Solveig Rannoch" },
+        { "start": "15:30", "end": "17:00", "room": 2, "track": "bench", "title": "Taking a pump apart", "by": "Dmitri Halloran-Fisk" },
+        { "start": "16:30", "end": "17:30", "room": 0, "track": "floor", "title": "Assembly: what the first day left open", "by": "Neve Ashlock" }
+      ]
+    },
+    {
+      "id": "day-2",
+      "name": "Saturday",
+      "date": "13 March 2027",
+      "short": "13 March",
+      "note": "The busiest day. Two workshops run right through the morning, so take a seat early.",
+      "rooms": [
+        { "name": "Great Hall", "anchor": "great-hall" },
+        { "name": "Turbine Room", "anchor": "turbine-room" },
+        { "name": "Pump House", "anchor": "pump-house" },
+        { "name": "Reading Room", "anchor": "reading-room" }
+      ],
+      "sessions": [
+        { "start": "09:30", "end": "10:15", "room": 0, "track": "ground", "title": "What a queue knows", "by": "Bea Tornquist" },
+        { "start": "09:30", "end": "11:30", "room": 2, "track": "bench", "title": "Soldering for people who drop things", "by": "Dmitri Halloran-Fisk" },
+        { "start": "10:30", "end": "11:15", "room": 0, "track": "ground", "title": "Paper is a protocol", "by": "Ode Kirchmeyer" },
+        { "start": "10:30", "end": "11:15", "room": 1, "track": "ground", "title": "The archive in the basement", "by": "Solveig Rannoch" },
+        { "start": "11:30", "end": "12:15", "room": 0, "track": "ground", "title": "Counting what the meter misses", "by": "Tomas Quilley" },
+        { "start": "11:30", "end": "12:15", "room": 3, "track": "floor", "title": "Open table: small repairs", "by": "Lior Fenwick" },
+        { "start": "12:15", "end": "13:30", "room": "all", "track": "break", "title": "Lunch in the courtyard" },
+        { "start": "13:30", "end": "14:15", "room": 0, "track": "ground", "title": "Two hundred years of pipe", "by": "Kwesi Barrowman" },
+        { "start": "13:30", "end": "15:30", "room": 1, "track": "bench", "title": "Writing a fault report somebody reads", "by": "Marisol Pentreath" },
+        { "start": "14:30", "end": "15:15", "room": 0, "track": "ground", "title": "Handing over the keys", "by": "Asta Vennemo" },
+        { "start": "15:15", "end": "15:45", "room": "all", "track": "break", "title": "Tea, standing up" },
+        { "start": "15:45", "end": "16:30", "room": 0, "track": "ground", "title": "The map and the ledger", "by": "Imri Sandoval-Roe" },
+        { "start": "16:45", "end": "18:00", "room": 0, "track": "floor", "title": "Assembly: the long list", "by": "Neve Ashlock" }
+      ]
+    },
+    {
+      "id": "day-3",
+      "name": "Sunday",
+      "date": "14 March 2027",
+      "short": "14 March",
+      "note": "A short day in three rooms. The Pump House stays shut while the equipment goes back.",
+      "rooms": [
+        { "name": "Great Hall", "anchor": "great-hall" },
+        { "name": "Turbine Room", "anchor": "turbine-room" },
+        { "name": "Reading Room", "anchor": "reading-room" }
+      ],
+      "sessions": [
+        { "start": "10:00", "end": "10:45", "room": 0, "track": "ground", "title": "Sunday, and the work continues", "by": "Ruth Pellamy" },
+        { "start": "10:00", "end": "12:00", "room": 1, "track": "bench", "title": "Repair table, with your own broken thing", "by": "Dmitri Halloran-Fisk" },
+        { "start": "11:00", "end": "11:45", "room": 0, "track": "ground", "title": "A budget you can read aloud", "by": "Solveig Rannoch" },
+        { "start": "11:00", "end": "11:45", "room": 2, "track": "floor", "title": "Open table: what we should have said", "by": "Ode Kirchmeyer" },
+        { "start": "12:00", "end": "13:00", "room": "all", "track": "break", "title": "Lunch in the courtyard" },
+        { "start": "13:00", "end": "13:45", "room": 0, "track": "ground", "title": "The last mile is a stair", "by": "Lior Fenwick" },
+        { "start": "13:00", "end": "14:30", "room": 1, "track": "bench", "title": "Packing the hall down", "by": "Marisol Pentreath" },
+        { "start": "14:00", "end": "15:00", "room": 0, "track": "floor", "title": "Closing assembly", "by": "Neve Ashlock" }
+      ]
+    }
+  ]
+}

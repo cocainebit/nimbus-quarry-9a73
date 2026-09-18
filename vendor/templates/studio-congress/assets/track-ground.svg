@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-hidden="true" focusable="false">
+  <title>Ground track mark: one solid block on a baseline</title>
+  <rect x="16" y="24" width="88" height="56" fill="#dde8e0"/>
+  <rect x="16" y="24" width="8" height="56" fill="#1f5c3f"/>
+  <path d="M16 96h88" stroke="#1f5c3f" stroke-width="4"/>
+  <path d="M16 40h64M16 54h64M16 68h40" stroke="#1f5c3f" stroke-opacity="0.45" stroke-width="3"/>
+</svg>

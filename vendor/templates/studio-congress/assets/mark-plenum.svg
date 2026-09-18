@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" role="img" aria-hidden="true" focusable="false">
+  <title>Three days of a congress drawn as a schedule</title>
+  <g stroke="#16181d" stroke-opacity="0.28" stroke-width="2" stroke-linecap="square">
+    <path d="M18 60h44M18 112h44M18 164h44M18 216h44M18 268h44M18 320h44M18 372h44M18 424h44M18 476h44"/>
+  </g>
+  <path d="M88 34V526" stroke="#16181d" stroke-opacity="0.55" stroke-width="2"/>
+
+  <g>
+    <rect x="120" y="56" width="330" height="104" fill="#dde8e0"/>
+    <rect x="120" y="56" width="9" height="104" fill="#1f5c3f"/>
+    <rect x="120" y="174" width="330" height="156" fill="#f4e0d3"/>
+    <rect x="120" y="174" width="9" height="156" fill="#b4451b"/>
+    <rect x="120" y="344" width="330" height="72" fill="#dce2ed"/>
+    <rect x="120" y="344" width="9" height="72" fill="#27456f"/>
+  </g>
+
+  <g>
+    <rect x="475" y="56" width="330" height="156" fill="#f4e0d3"/>
+    <rect x="475" y="56" width="9" height="156" fill="#b4451b"/>
+    <rect x="475" y="226" width="330" height="104" fill="#dde8e0"/>
+    <rect x="475" y="226" width="9" height="104" fill="#1f5c3f"/>
+    <rect x="475" y="344" width="330" height="126" fill="#dde8e0"/>
+    <rect x="475" y="344" width="9" height="126" fill="#1f5c3f"/>
+  </g>
+
+  <g>
+    <rect x="830" y="90" width="330" height="72" fill="#dce2ed"/>
+    <rect x="830" y="90" width="9" height="72" fill="#27456f"/>
+    <rect x="830" y="176" width="330" height="104" fill="#dde8e0"/>
+    <rect x="830" y="176" width="9" height="104" fill="#1f5c3f"/>
+    <rect x="830" y="294" width="330" height="176" fill="#f4e0d3"/>
+    <rect x="830" y="294" width="9" height="176" fill="#b4451b"/>
+  </g>
+
+  <rect x="120" y="486" width="1040" height="34" fill="#e4dfd2"/>
+  <path d="M120 486h1040" stroke="#16181d" stroke-opacity="0.4" stroke-width="2" stroke-dasharray="10 8"/>
+</svg>

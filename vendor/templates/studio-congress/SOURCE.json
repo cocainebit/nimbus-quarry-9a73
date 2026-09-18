@@ -1,0 +1,84 @@
+{
+  "id": "studio-congress",
+  "name": "Plenum",
+  "kind": "Plotform-authored adaptation",
+  "adaptationLabel": "Adapted from jekyll-theme-conference",
+  "adaptedFrom": {
+    "name": "jekyll-theme-conference",
+    "author": "Digitale Gesellschaft",
+    "url": "https://github.com/DigitaleGesellschaft/jekyll-theme-conference",
+    "commit": "7d7479e486d87c59a15280e20e76c015d26aabb1",
+    "license": "MIT",
+    "copyright": "2017-2026 Lorenz Schmid",
+    "licenseFile": "licenses/jekyll-theme-conference-MIT.txt",
+    "archivedAt": "upstream/jekyll-theme-conference-7d7479e4-source.zip",
+    "reused": [
+      "The multi day programme as a time grid: time down the left, rooms across the top, each session placed by its start time and spanning its duration (_layouts/program.html)",
+      "Switching between days over one grid, with the first day shown on load (the day tabs in _layouts/program.html)",
+      "The track as a colour carried on the left edge of every session, with a track key printed under the grid (_includes/get_track_properties.html and the legend block of _layouts/program.html)",
+      "The set of page types a congress needs: programme, talk, speaker index, room and location (_layouts/talk.html, speaker-overview.html, room.html, location.html)",
+      "The talk page shape: track and time tags above the title, the description, and a facts list beside it (_layouts/talk.html, _includes/show_talk_info.html)",
+      "One schedule data file that the whole grid is generated from (_data/program.yml), rebuilt here as tools/programme-data.json with tools/build-programme.mjs"
+    ],
+    "notReused": [
+      "Jekyll, Liquid, the gem packaging, npm and the Vite build",
+      "Bootstrap 5, its colour and spacing utilities and the Bootstrap icon set: the whole visual surface was rewritten",
+      "The upstream HTML table grid, replaced by a CSS grid that collapses into a chronological list on a narrow screen",
+      "The Leaflet map and its tile requests on the location page, replaced by two SVG drawings written here",
+      "The dark mode switch, the live indication, the stream modal, the progressive web app layer and the service worker",
+      "The JSON-LD schema layer, the Open Graph and Twitter card generation and the info box",
+      "Every line of upstream copy, its demo schedule and its screenshot"
+    ]
+  },
+  "images": [
+    {
+      "file": "assets/mark-plenum.svg",
+      "origin": "Authored for this edition: the house mark, three days of a schedule drawn as stacked colour blocks against a ruled time gutter with a break bar across the foot",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/track-ground.svg",
+      "origin": "Authored for this edition: the Ground track mark, a solid ruled block on a baseline",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/track-bench.svg",
+      "origin": "Authored for this edition: the Bench track mark, a work surface on two legs with three tools laid out above it",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/track-floor.svg",
+      "origin": "Authored for this edition: the Floor track mark, seven filled circles in a dashed ring around an empty centre",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/venue-plan.svg",
+      "origin": "Authored for this edition: the plan of the illustrative venue, six spaces around a hatched courtyard with one entrance and a stair run. It carries no text, so every room name stays editable HTML on the venue page; each space carries a shape that repeats as a CSS key in the room list",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/venue-approach.svg",
+      "origin": "Authored for this edition: the drawn approach, a station, one street, a tram stop, a dashed walking route and the building beside a band of water. It replaces the Leaflet map on the upstream location page",
+      "license": "MIT"
+    }
+  ],
+  "photography": "None. This edition contains no photographs, no generated images and no assets taken from any reference site. Every graphic is an SVG file written by hand; the hour rules, the track tints and the dashed break bands are CSS.",
+  "fonts": [
+    {
+      "file": "assets/space-grotesk.woff2",
+      "family": "Space Grotesk Variable",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/space-grotesk-OFL.txt",
+      "origin": "@fontsource-variable/space-grotesk, latin subset with the weight axis. Used for display, headings, labels and every time on the site, with tabular figures throughout"
+    },
+    {
+      "file": "assets/inter.woff2",
+      "family": "Inter Variable",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/inter-OFL.txt",
+      "origin": "@fontsource-variable/inter, latin subset with the weight axis, copied from public/templates/_plotform-fonts. Used for running text only"
+    }
+  ],
+  "referenceDirection": "A congress read as a timetable rather than as a brochure: a warm paper ground, a near black ink, three track colours that key the grid and the pages alike, a compressed grotesk for display and for every time, hairline hour rules, and drawings instead of photographs. No reference site code, imagery or branding copied.",
+  "demoContent": "Plenum, its dates, its venue, its six rooms, its thirty sessions and its twelve speakers are illustrative examples, not a real congress and not real people. No ticket prices, attendance figures, sponsors, awards or testimonials appear anywhere, and no form, booking flow or map service is wired to anything."
+}

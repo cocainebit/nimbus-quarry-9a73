@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An illustrative help page for Plumbline: five questions that open and close, a short list of known limits, and one honest way to get in touch by email.">
+<title>Help · Plumbline</title>
+<link rel="preload" href="assets/noto-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the document</a>
+<div class="frame">
+<div class="window">
+<header class="title-bar">
+<img class="title-bar-icon" src="assets/icon-plumbline.svg" width="64" height="64" alt="">
+<p class="title-bar-text">Plumbline · Help</p>
+<span class="title-bar-controls" aria-hidden="true"><span><svg viewBox="0 0 10 10" focusable="false"><rect x="1" y="7" width="8" height="1.6" fill="#10202c"/></svg></span><span><svg viewBox="0 0 10 10" focusable="false"><rect x="1.2" y="1.6" width="7.6" height="6.8" fill="none" stroke="#10202c" stroke-width="1.5"/></svg></span><span><svg viewBox="0 0 10 10" focusable="false"><path d="M2 2 L8 8 M8 2 L2 8" stroke="#ffffff" stroke-width="1.8" fill="none"/></svg></span></span>
+</header>
+<div class="menu-strip">
+<nav class="site-nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="features.html">The tour</a><a href="versions.html">Versions</a><a href="support.html" aria-current="page">Help</a><a href="about.html">About</a></nav>
+<span class="menu-tail">Illustrative template</span>
+</div>
+<div class="window-body">
+<aside class="pane pane-side">
+<nav aria-label="Document navigator">
+<p class="pane-title">Navigator</p>
+<ul class="tree-view">
+<li><details open><summary><img class="tree-icon" src="assets/icon-folder.svg" width="64" height="64" alt=""><span>Plumbline</span></summary>
+<ul><li><a href="index.html">Overview</a></li><li><a href="features.html">The tour</a></li><li><a href="versions.html">Versions</a></li><li><a href="support.html" aria-current="page">Help</a></li><li><a href="about.html">About</a></li></ul>
+</details></li>
+<li><details><summary><img class="tree-icon" src="assets/icon-folder.svg" width="64" height="64" alt=""><span>Licences</span></summary>
+<ul><li><a href="licenses/7css-MIT.txt">7.css, MIT</a></li><li><a href="licenses/noto-sans-OFL.txt">Noto Sans, OFL</a></li><li><a href="licenses/jetbrains-mono-OFL.txt">JetBrains Mono, OFL</a></li><li><a href="LICENSE">This edition, MIT</a></li></ul>
+</details></li>
+</ul>
+</nav>
+<p class="side-note">The navigator holds the same links as the menu. Both groups open and close with the keyboard.</p>
+</aside>
+<main class="pane pane-main" id="main">
+<div class="section">
+<p class="eyebrow">Support</p>
+<h1>Help, and what it cannot do.</h1>
+<p class="lead">A small program should be able to say plainly where it stops. These answers are written in that spirit, and the limits are on the same page as the promises.</p>
+<p class="demo-note">The questions and answers below are illustrative, written for an invented program. Replace them with your own before publishing.</p>
+</div>
+
+<div class="section">
+<h2>Questions</h2>
+<details class="faq">
+<summary>What does Plumbline save?</summary>
+<div class="faq-body"><p>A project folder holds the tiles, the palettes and one file per map. All of them are plain text except the exported sheet, which is an image.</p><p>Nothing is stored anywhere else, and closing the program writes no other file.</p></div>
+</details>
+<details class="faq">
+<summary>Can I open a map without the editor?</summary>
+<div class="faq-body"><p>Yes. A map is a list of tiles and a list of layers, so a text editor shows it exactly as the program sees it.</p></div>
+</details>
+<details class="faq">
+<summary>Does it need an account?</summary>
+<div class="faq-body"><p>No. There is no sign in, no licence key to type at start up, and no part of the program asks for a network.</p></div>
+</details>
+<details class="faq">
+<summary>How do I report a problem?</summary>
+<div class="faq-body"><p>Write to the address below and attach the map file. A map is small and readable, which is usually enough to see what went wrong.</p></div>
+</details>
+<details class="faq">
+<summary>Which parts of this website are illustrative?</summary>
+<div class="faq-body"><p>All of them. Plumbline, Tin Roof Software, the screens, the versions and the answers on this page were written to fill a template.</p><p>The window chrome, the navigator, the inspector and the keyboard behaviour are real and are yours to keep.</p></div>
+</details>
+</div>
+
+<div class="section">
+<h2>Known limits</h2>
+<div class="sunken">
+<div class="prose">
+<ul>
+<li>One project is open at a time. Two maps from different projects cannot share a window.</li>
+<li>A palette is fixed in size once tiles depend on it, and growing one means a new palette.</li>
+<li>The script runner reads one project, named on the command line, and writes only beside that project.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Getting in touch</h2>
+<div class="grid">
+<div class="card">
+<img class="card-icon" src="assets/icon-mail.svg" width="64" height="64" alt="">
+<h3>By email</h3>
+<p>The only route this template connects. It opens your own mail program with an example address already filled in.</p>
+<div class="actions">
+<a class="pushbutton is-default" href="mailto:hello@example.com">Write to hello@example.com</a>
+</div>
+</div>
+<div class="card">
+<img class="card-icon" src="assets/icon-help.svg" width="64" height="64" alt="">
+<h3>No form here</h3>
+<p>There is no contact form, no chat widget and no tracker on any page. Nothing on this site sends a request anywhere.</p>
+</div>
+<div class="card">
+<img class="card-icon" src="assets/icon-book.svg" width="64" height="64" alt="">
+<h3>Before you write</h3>
+<p>The tour answers most questions about how a map is built, and the versions page says what changed and when.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div class="status-bar"><p class="status-bar-field">Help</p><p class="status-bar-field">Five questions</p><p class="status-bar-field">Illustrative content throughout</p></div>
+<div class="window-foot"></div>
+</div>
+
+</div>
+<footer class="taskbar">
+<div class="taskbar-inner">
+<a class="taskbar-mark" href="index.html"><img src="assets/icon-plumbline.svg" width="64" height="64" alt=""><span>Plumbline</span></a>
+<nav aria-label="Footer navigation"><a href="index.html">Overview</a><a href="features.html">The tour</a><a href="versions.html">Versions</a><a href="support.html">Help</a><a href="about.html">About</a></nav>
+<span class="tray">Illustrative content</span>
+</div>
+<div class="colophon">
+<p>Bevel is a Plotform studio edition. Its window chrome is adapted from 7.css by Khang Nguyen Duy, used under the MIT licence.</p>
+<p>Plumbline and Tin Roof Software are invented for this template. Write to <a href="mailto:hello@example.com">hello@example.com</a> and replace that address with your own before you publish.</p>
+</div>
+</footer>
+</body>
+</html>

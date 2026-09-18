@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-hidden="true" focusable="false">
+  <title>Bench track mark: a work surface on two legs, with tools laid out</title>
+  <rect x="12" y="56" width="96" height="12" fill="#b4451b"/>
+  <path d="M26 68v34M94 68v34" stroke="#b4451b" stroke-width="6"/>
+  <circle cx="34" cy="40" r="11" fill="none" stroke="#b4451b" stroke-width="4"/>
+  <rect x="54" y="30" width="10" height="20" fill="#f4e0d3" stroke="#b4451b" stroke-width="3"/>
+  <path d="M76 50 88 30 100 50Z" fill="none" stroke="#b4451b" stroke-width="4" stroke-linejoin="miter"/>
+</svg>

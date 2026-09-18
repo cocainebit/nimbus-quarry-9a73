@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="How the illustrative Plumbline editor works: the pipeline from tiles to sheet, a tabbed inspector covering canvas, palette, layers and scripting, and a drawn console.">
+<title>The tour · Plumbline</title>
+<link rel="preload" href="assets/noto-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the document</a>
+<div class="frame">
+<div class="window">
+<header class="title-bar">
+<img class="title-bar-icon" src="assets/icon-plumbline.svg" width="64" height="64" alt="">
+<p class="title-bar-text">Plumbline · The tour</p>
+<span class="title-bar-controls" aria-hidden="true"><span><svg viewBox="0 0 10 10" focusable="false"><rect x="1" y="7" width="8" height="1.6" fill="#10202c"/></svg></span><span><svg viewBox="0 0 10 10" focusable="false"><rect x="1.2" y="1.6" width="7.6" height="6.8" fill="none" stroke="#10202c" stroke-width="1.5"/></svg></span><span><svg viewBox="0 0 10 10" focusable="false"><path d="M2 2 L8 8 M8 2 L2 8" stroke="#ffffff" stroke-width="1.8" fill="none"/></svg></span></span>
+</header>
+<div class="menu-strip">
+<nav class="site-nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="features.html" aria-current="page">The tour</a><a href="versions.html">Versions</a><a href="support.html">Help</a><a href="about.html">About</a></nav>
+<span class="menu-tail">Illustrative template</span>
+</div>
+<div class="window-body">
+<aside class="pane pane-side">
+<nav aria-label="Document navigator">
+<p class="pane-title">Navigator</p>
+<ul class="tree-view">
+<li><details open><summary><img class="tree-icon" src="assets/icon-folder.svg" width="64" height="64" alt=""><span>Plumbline</span></summary>
+<ul><li><a href="index.html">Overview</a></li><li><a href="features.html" aria-current="page">The tour</a></li><li><a href="versions.html">Versions</a></li><li><a href="support.html">Help</a></li><li><a href="about.html">About</a></li></ul>
+</details></li>
+<li><details><summary><img class="tree-icon" src="assets/icon-folder.svg" width="64" height="64" alt=""><span>Licences</span></summary>
+<ul><li><a href="licenses/7css-MIT.txt">7.css, MIT</a></li><li><a href="licenses/noto-sans-OFL.txt">Noto Sans, OFL</a></li><li><a href="licenses/jetbrains-mono-OFL.txt">JetBrains Mono, OFL</a></li><li><a href="LICENSE">This edition, MIT</a></li></ul>
+</details></li>
+</ul>
+</nav>
+<p class="side-note">The navigator holds the same links as the menu. Both groups open and close with the keyboard.</p>
+</aside>
+<main class="pane pane-main" id="main">
+<div class="section">
+<p class="eyebrow">How it works</p>
+<h1>Tiles, a map, one sheet.</h1>
+<p class="lead">Plumbline holds one idea at each step and hands the result to the next one. Nothing is hidden in a project file you cannot open.</p>
+<p class="demo-note">This tour describes an invented program. The steps and panels below are written to show how a real tool might explain itself, not to document software you can install.</p>
+<figure class="hero-figure">
+<img src="assets/diagram-pipeline.svg" width="960" height="260" alt="A diagram of four boxes: tiles, map, sheet and game, joined left to right by arrows, with a dashed line returning from the sheet to the tiles">
+<figcaption>Edits travel back along the dashed line, so a change to one tile never means exporting by hand twice.</figcaption>
+</figure>
+</div>
+
+<div class="section">
+<h2>The inspector</h2>
+<p>The right hand panel changes with what you have selected. Each tab below is one page of it. Move between them with the arrow keys, or click.</p>
+<div class="tabs">
+<div class="tablist" role="tablist" aria-label="Inspector panels"><button type="button" role="tab" id="tab-canvas" aria-controls="panel-canvas" aria-selected="true" tabindex="0">Canvas</button><button type="button" role="tab" id="tab-palette" aria-controls="panel-palette" aria-selected="false" tabindex="-1">Palette</button><button type="button" role="tab" id="tab-layers" aria-controls="panel-layers" aria-selected="false" tabindex="-1">Layers</button><button type="button" role="tab" id="tab-script" aria-controls="panel-script" aria-selected="false" tabindex="-1">Script</button></div>
+<div class="tabpanel" role="tabpanel" id="panel-canvas" aria-labelledby="tab-canvas" tabindex="0">
+<div class="tabpanel-split">
+<div class="prose">
+<h3>The canvas</h3>
+<p>The canvas is the map itself, at the size the game will read it. Grid lines sit under the tiles rather than over them, so a drawing never has to be squinted at through its own guides.</p>
+<dl class="speclist"><dt>Grid</dt><dd>Set once per map, in tiles rather than pixels</dd><dt>Selection</dt><dd>Rectangular, and it keeps its shape while you drag it</dd><dt>Undo</dt><dd>Per map, and it survives a save</dd></dl>
+</div>
+<img src="assets/screen-map.svg" width="960" height="600" alt="A drawn map view: a grid of coloured tiles with a road running through it and a dashed selection rectangle">
+</div>
+</div>
+<div class="tabpanel" role="tabpanel" id="panel-palette" aria-labelledby="tab-palette" tabindex="0" hidden>
+<div class="tabpanel-split">
+<div class="prose">
+<h3>The palette</h3>
+<p>A palette is a small, fixed set of colours that every tile in a project shares. Slots can be locked, so a colour that older tiles depend on cannot quietly change under them.</p>
+<dl class="speclist"><dt>Slots</dt><dd>Sixteen by default, and a project may hold several palettes</dd><dt>Ramps</dt><dd>Built from two ends, then adjusted by hand</dd><dt>Locking</dt><dd>A locked slot keeps its value when the palette is edited</dd></dl>
+</div>
+<img src="assets/panel-palette.svg" width="720" height="420" alt="A drawn palette panel: sixteen colour swatches, a ramp of twelve steps and a row of locked slots">
+</div>
+</div>
+<div class="tabpanel" role="tabpanel" id="panel-layers" aria-labelledby="tab-layers" tabindex="0" hidden>
+<div class="tabpanel-split">
+<div class="prose">
+<h3>Layers</h3>
+<p>Layers stack in the order a game draws them, and each one keeps its own grid. A collision layer is a layer like any other, so it can be edited with the same tools as the ground.</p>
+<dl class="speclist"><dt>Order</dt><dd>Bottom to top, matching the order the engine reads</dd><dt>Opacity</dt><dd>Per layer, for editing only, and never written to the sheet</dd><dt>Locking</dt><dd>A locked layer is visible but cannot be painted on</dd></dl>
+</div>
+<img src="assets/panel-layers.svg" width="720" height="420" alt="A drawn stack of four map layers shown as offset planes labelled ground, props, roofs and collision">
+</div>
+</div>
+<div class="tabpanel" role="tabpanel" id="panel-script" aria-labelledby="tab-script" tabindex="0" hidden>
+<div class="tabpanel-split">
+<div class="prose">
+<h3>Scripting</h3>
+<p>Anything the panels can do, a short script can do without opening the window. Scripts are plain text files kept beside the map, and they run in the order you give them.</p>
+<dl class="speclist"><dt>Language</dt><dd>A short list of commands rather than a general language</dd><dt>Scope</dt><dd>One project at a time, named on the command line</dd><dt>Output</dt><dd>Written next to the map, never anywhere else on the disk</dd></dl>
+</div>
+<img src="assets/panel-script.svg" width="720" height="420" alt="A drawn console panel: rows of coloured bars standing in for lines of output on a dark field">
+</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>The console</h2>
+<p>The same commands the panels run are available as text. This is the one place in the template set in a monospaced face, because here the typing is the subject rather than the furniture.</p>
+<div class="console">
+<p class="console-line"><span class="prompt">$</span><span> plumb build map-01.pbl --sheet sheet.png</span></p>
+<p class="console-line"><span class="muted">  reading 96 tiles from tiles.pbl</span></p>
+<p class="console-line"><span class="muted">  packing 32 frames</span></p>
+<p class="console-line"><span class="muted">  wrote sheet.png and sheet.index</span></p>
+<p class="console-line"><span class="prompt">$</span><span> plumb watch map-01.pbl</span></p>
+<p class="console-line"><span class="muted">  watching for changes</span><span class="caret" aria-hidden="true"></span></p>
+</div>
+<p class="demo-note">A drawn session, written into the page as text. No command runs, nothing is sent anywhere, and the caret holds still when a visitor has asked for reduced motion.</p>
+</div>
+
+<div class="section">
+<h2>Export</h2>
+<p>An export writes two files next to each other: one image holding every frame, and one index naming them. Engines that want a different layout can read the index and repack it.</p>
+<figure class="hero-figure">
+<img src="assets/screen-export.svg" width="960" height="520" alt="A drawn export view: thirty two frames arranged in a grid, an arrow, and a card standing for the written sheet file" loading="lazy">
+<figcaption>Illustrative export view. The frame count shown is part of the drawing.</figcaption>
+</figure>
+</div>
+</main>
+</div>
+<div class="status-bar"><p class="status-bar-field">Tour</p><p class="status-bar-field">Four panels in the inspector</p><p class="status-bar-field">Illustrative content throughout</p></div>
+<div class="window-foot"></div>
+</div>
+
+</div>
+<footer class="taskbar">
+<div class="taskbar-inner">
+<a class="taskbar-mark" href="index.html"><img src="assets/icon-plumbline.svg" width="64" height="64" alt=""><span>Plumbline</span></a>
+<nav aria-label="Footer navigation"><a href="index.html">Overview</a><a href="features.html">The tour</a><a href="versions.html">Versions</a><a href="support.html">Help</a><a href="about.html">About</a></nav>
+<span class="tray">Illustrative content</span>
+</div>
+<div class="colophon">
+<p>Bevel is a Plotform studio edition. Its window chrome is adapted from 7.css by Khang Nguyen Duy, used under the MIT licence.</p>
+<p>Plumbline and Tin Roof Software are invented for this template. Write to <a href="mailto:hello@example.com">hello@example.com</a> and replace that address with your own before you publish.</p>
+</div>
+</footer>
+</body>
+</html>

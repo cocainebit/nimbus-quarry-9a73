@@ -1,0 +1,61 @@
+[
+  {
+    "id": "studio-terminal",
+    "name": "Bevel",
+    "category": "Software product",
+    "collection": "studio",
+    "framework": "HTML / CSS / JavaScript",
+    "description": "A small software product presented as a late nineties desktop: the window chrome is the layout, with a navigator tree and a document laid out as real panes, a keyboard operable tabbed inspector, a status bar, a taskbar and a drawn console. Every mark is SVG or a CSS gradient.",
+    "sourceUrl": "https://github.com/khang-nd/7.css",
+    "license": "MIT + OFL fonts",
+    "entry": "index.html",
+    "pages": [
+      "index.html",
+      "features.html",
+      "versions.html",
+      "support.html",
+      "about.html"
+    ],
+    "files": [
+      "LICENSE",
+      "SOURCE.json",
+      "VENDOR-NOTES.md",
+      "about.html",
+      "assets/diagram-pipeline.svg",
+      "assets/icon-book.svg",
+      "assets/icon-disk.svg",
+      "assets/icon-folder.svg",
+      "assets/icon-help.svg",
+      "assets/icon-mail.svg",
+      "assets/icon-plumbline.svg",
+      "assets/jetbrains-mono.woff2",
+      "assets/noto-sans.woff2",
+      "assets/panel-layers.svg",
+      "assets/panel-palette.svg",
+      "assets/panel-script.svg",
+      "assets/screen-editor.svg",
+      "assets/screen-export.svg",
+      "assets/screen-map.svg",
+      "features.html",
+      "index.html",
+      "licenses/7css-MIT.txt",
+      "licenses/jetbrains-mono-OFL.txt",
+      "licenses/noto-sans-OFL.txt",
+      "plotform-preview.jpg",
+      "script.js",
+      "source.zip",
+      "style.css",
+      "support.html",
+      "versions.html"
+    ],
+    "adaptedFrom": "https://github.com/khang-nd/7.css",
+    "sourceArchive": "source.zip",
+    "designNotes": [
+      "Plotform adaptation of 7.css, not an unchanged upstream template, and without its icon images: every mark here is SVG drawn for the edition or a CSS gradient.",
+      "98.css and XP.css were checked first and rejected: both bundle a FontStruction of MS Sans Serif licensed CC BY-SA 3.0, which would pass a share alike obligation to everyone publishing from the edition. 7.css bundles no fonts at all, so this edition bundles Noto Sans, the open face its own stack falls back to.",
+      "The chrome is the layout: the navigator and the document are real panes of a grid, and at 320px the window drops its radius and borders and runs edge to edge rather than scrolling sideways.",
+      "The one interaction is a real tab widget with arrow, Home and End keys, correct roles and a visible focus ring. The illustrative product, its studio and its changelog are invented and marked as such on every page."
+    ],
+    "adaptationLabel": "Adapted from 7.css"
+  }
+]

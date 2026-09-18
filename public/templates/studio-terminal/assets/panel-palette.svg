@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420" role="img">
+<rect x="0.5" y="0.5" width="719" height="419" fill="#ffffff" stroke="#8e8f8f"/>
+<rect x="32" y="48" width="64" height="64" fill="#5f7f4f" stroke="#1d252d"/>
+<rect x="36" y="52" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="112" y="48" width="64" height="64" fill="#c8892b" stroke="#1d252d"/>
+<rect x="116" y="52" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="192" y="48" width="64" height="64" fill="#a9583f" stroke="#1d252d"/>
+<rect x="196" y="52" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="272" y="48" width="64" height="64" fill="#2b5b91" stroke="#1d252d"/>
+<rect x="276" y="52" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="352" y="48" width="64" height="64" fill="#bee6fd" stroke="#1d252d"/>
+<rect x="356" y="52" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="432" y="48" width="64" height="64" fill="#d7dde3" stroke="#1d252d"/>
+<rect x="436" y="52" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="512" y="48" width="64" height="64" fill="#8fa3b0" stroke="#1d252d"/>
+<rect x="516" y="52" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="592" y="48" width="64" height="64" fill="#3f4a55" stroke="#1d252d"/>
+<rect x="596" y="52" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="32" y="128" width="64" height="64" fill="#7d5a3c" stroke="#1d252d"/>
+<rect x="36" y="132" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="112" y="128" width="64" height="64" fill="#b7c9a8" stroke="#1d252d"/>
+<rect x="116" y="132" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="192" y="128" width="64" height="64" fill="#e3d7b8" stroke="#1d252d"/>
+<rect x="196" y="132" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="272" y="128" width="64" height="64" fill="#4f6b8a" stroke="#1d252d"/>
+<rect x="276" y="132" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="352" y="128" width="64" height="64" fill="#2f3a45" stroke="#1d252d"/>
+<rect x="356" y="132" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="432" y="128" width="64" height="64" fill="#c9b79c" stroke="#1d252d"/>
+<rect x="436" y="132" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="512" y="128" width="64" height="64" fill="#6f8f7a" stroke="#1d252d"/>
+<rect x="516" y="132" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<rect x="592" y="128" width="64" height="64" fill="#96545a" stroke="#1d252d"/>
+<rect x="596" y="132" width="56" height="8" fill="#ffffff" stroke="none" opacity="0.3"/>
+<text x="32" y="236" font-family="Noto Sans, Segoe UI, sans-serif" font-size="14" font-weight="600" fill="#1d252d" text-anchor="start">Ramp</text>
+<rect x="32" y="250" width="48" height="44" fill="rgb(46,62,84)" stroke="#1d252d"/>
+<rect x="84" y="250" width="48" height="44" fill="rgb(62,77,95)" stroke="#1d252d"/>
+<rect x="136" y="250" width="48" height="44" fill="rgb(79,91,106)" stroke="#1d252d"/>
+<rect x="188" y="250" width="48" height="44" fill="rgb(95,106,117)" stroke="#1d252d"/>
+<rect x="240" y="250" width="48" height="44" fill="rgb(111,120,128)" stroke="#1d252d"/>
+<rect x="292" y="250" width="48" height="44" fill="rgb(128,135,139)" stroke="#1d252d"/>
+<rect x="344" y="250" width="48" height="44" fill="rgb(144,149,149)" stroke="#1d252d"/>
+<rect x="396" y="250" width="48" height="44" fill="rgb(161,164,160)" stroke="#1d252d"/>
+<rect x="448" y="250" width="48" height="44" fill="rgb(177,178,171)" stroke="#1d252d"/>
+<rect x="500" y="250" width="48" height="44" fill="rgb(193,193,182)" stroke="#1d252d"/>
+<rect x="552" y="250" width="48" height="44" fill="rgb(210,207,193)" stroke="#1d252d"/>
+<rect x="604" y="250" width="48" height="44" fill="rgb(226,222,204)" stroke="#1d252d"/>
+<text x="32" y="330" font-family="Noto Sans, Segoe UI, sans-serif" font-size="14" font-weight="400" fill="#3b4854" text-anchor="start">Locked slots keep old tiles readable</text>
+<rect x="32" y="344" width="44" height="44" fill="#f0f0f0" stroke="#8e8f8f"/>
+<path d="M44 366 l8 8 l14 -18" stroke="#1d252d" stroke-width="3" fill="none"/>
+<rect x="84" y="344" width="44" height="44" fill="#f0f0f0" stroke="#8e8f8f"/>
+<path d="M96 366 l8 8 l14 -18" stroke="#1d252d" stroke-width="3" fill="none"/>
+<rect x="136" y="344" width="44" height="44" fill="#ffffff" stroke="#8e8f8f"/>
+<rect x="188" y="344" width="44" height="44" fill="#ffffff" stroke="#8e8f8f"/>
+<rect x="240" y="344" width="44" height="44" fill="#ffffff" stroke="#8e8f8f"/>
+<rect x="292" y="344" width="44" height="44" fill="#ffffff" stroke="#8e8f8f"/>
+</svg>

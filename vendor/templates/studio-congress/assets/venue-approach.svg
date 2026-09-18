@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="1000" height="480" role="img" aria-hidden="true" focusable="false">
+  <title>Drawn approach to the illustrative venue: station, one street, a tram stop and the building by the water</title>
+  <rect width="1000" height="480" fill="#f7f5ef"/>
+
+  <path d="M0 392c110 0 130 22 240 22s130-22 240-22 130 22 240 22 130-22 280-22v88H0z" fill="#dce2ed"/>
+  <path d="M0 392c110 0 130 22 240 22s130-22 240-22 130 22 240 22 130-22 280-22" fill="none" stroke="#27456f" stroke-opacity="0.5" stroke-width="3"/>
+
+  <rect x="0" y="228" width="1000" height="44" fill="#ebe7dd"/>
+  <path d="M0 228h1000M0 272h1000" stroke="#16181d" stroke-width="3"/>
+  <path d="M0 250h1000" stroke="#16181d" stroke-opacity="0.3" stroke-width="2" stroke-dasharray="18 16"/>
+
+  <rect x="690" y="272" width="44" height="120" fill="#ebe7dd"/>
+  <path d="M690 272v120M734 272v120" stroke="#16181d" stroke-width="3"/>
+
+  <g>
+    <rect x="58" y="150" width="170" height="78" fill="#ebe7dd"/>
+    <rect x="58" y="150" width="170" height="78" fill="none" stroke="#16181d" stroke-width="3"/>
+    <path d="M78 196h130M78 178h130" stroke="#16181d" stroke-opacity="0.45" stroke-width="3"/>
+    <path d="M143 110v40" stroke="#16181d" stroke-width="3"/>
+    <circle cx="143" cy="100" r="13" fill="none" stroke="#16181d" stroke-width="3"/>
+  </g>
+
+  <g>
+    <circle cx="452" cy="250" r="15" fill="#f7f5ef" stroke="#16181d" stroke-width="4"/>
+    <path d="M452 235v-42" stroke="#16181d" stroke-width="3"/>
+    <rect x="438" y="176" width="28" height="18" fill="#16181d"/>
+  </g>
+
+  <rect x="762" y="286" width="186" height="96" fill="#f4e0d3"/>
+  <rect x="762" y="286" width="186" height="96" fill="none" stroke="#b4451b" stroke-width="5"/>
+  <path d="M762 286h186" stroke="#b4451b" stroke-width="12"/>
+  <path d="M836 382v-30h38v30" fill="none" stroke="#b4451b" stroke-width="4"/>
+
+  <path d="M143 228v-8M143 228 143 250h309" fill="none" stroke="#16181d" stroke-width="0"/>
+  <path d="M143 250h569v86h50" fill="none" stroke="#b4451b" stroke-width="5" stroke-dasharray="14 12" stroke-linecap="butt"/>
+  <circle cx="143" cy="250" r="9" fill="#b4451b"/>
+  <path d="M762 336l-22-13v26z" fill="#b4451b"/>
+
+  <g transform="translate(920 74)">
+    <circle r="30" fill="none" stroke="#16181d" stroke-opacity="0.45" stroke-width="3"/>
+    <path d="M0 22V-14" stroke="#16181d" stroke-width="4"/>
+    <path d="M0-30l11 20H-11z" fill="#16181d"/>
+  </g>
+</svg>
