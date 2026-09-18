@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Abstract mark: rings spreading from the lower left corner, one of them red, cut by a vertical bar and a red triangle">
+<rect x="0" y="0" width="600" height="600" fill="#d5cfc0"/>
+<rect x="0" y="0" width="600" height="300" fill="#f3f0e9"/>
+<circle cx="60" cy="560" r="24.6" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="54.4" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="89.4" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="129.6" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="175" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="225.6" fill="none" stroke="#d93a1e" stroke-width="6"/>
+<circle cx="60" cy="560" r="281.4" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="342.4" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="408.6" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="480" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="556.6" fill="none" stroke="#16150f" stroke-width="2"/>
+<circle cx="60" cy="560" r="638.4" fill="none" stroke="#16150f" stroke-width="2"/>
+<rect x="392" y="0" width="16" height="600" fill="#16150f"/>
+<path d="M600 0 L600 170 L430 0 Z" fill="#d93a1e"/>
+</svg>

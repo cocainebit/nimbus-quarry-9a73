@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640" role="img" aria-label="Floor plan drawing: six rectangular spaces around a hatched courtyard, a stair run in the centre and a red threshold at the entrance">
+<defs><clipPath id="court"><rect x="43" y="323" width="304" height="274"/></clipPath></defs>
+<rect x="0" y="0" width="1000" height="640" fill="#f3f0e9"/>
+<rect x="40" y="40" width="310" height="280" fill="#f3f0e9" stroke="#16150f" stroke-width="6"/>
+<rect x="350" y="40" width="310" height="280" fill="#f3f0e9" stroke="#16150f" stroke-width="6"/>
+<rect x="660" y="40" width="300" height="280" fill="#f3f0e9" stroke="#16150f" stroke-width="6"/>
+<rect x="40" y="320" width="310" height="280" fill="#f3f0e9" stroke="#16150f" stroke-width="6"/>
+<rect x="350" y="320" width="310" height="280" fill="#f3f0e9" stroke="#16150f" stroke-width="6"/>
+<rect x="660" y="320" width="300" height="280" fill="#f3f0e9" stroke="#16150f" stroke-width="6"/>
+<g clip-path="url(#court)">
+<line x1="-272" y1="600" x2="8" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-246" y1="600" x2="34" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-220" y1="600" x2="60" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-194" y1="600" x2="86" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-168" y1="600" x2="112" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-142" y1="600" x2="138" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-116" y1="600" x2="164" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-90" y1="600" x2="190" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-64" y1="600" x2="216" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-38" y1="600" x2="242" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="-12" y1="600" x2="268" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="14" y1="600" x2="294" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="40" y1="600" x2="320" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="66" y1="600" x2="346" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="92" y1="600" x2="372" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="118" y1="600" x2="398" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="144" y1="600" x2="424" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="170" y1="600" x2="450" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="196" y1="600" x2="476" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="222" y1="600" x2="502" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="248" y1="600" x2="528" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="274" y1="600" x2="554" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="300" y1="600" x2="580" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="326" y1="600" x2="606" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="352" y1="600" x2="632" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="378" y1="600" x2="658" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="404" y1="600" x2="684" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="430" y1="600" x2="710" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="456" y1="600" x2="736" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="482" y1="600" x2="762" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="508" y1="600" x2="788" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="534" y1="600" x2="814" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="560" y1="600" x2="840" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="586" y1="600" x2="866" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="612" y1="600" x2="892" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+<line x1="638" y1="600" x2="918" y2="320" stroke="#16150f" stroke-width="1.5" opacity="0.5"/>
+</g>
+<line x1="395" y1="370" x2="545" y2="370" stroke="#16150f" stroke-width="2"/>
+<line x1="395" y1="392" x2="545" y2="392" stroke="#16150f" stroke-width="2"/>
+<line x1="395" y1="414" x2="545" y2="414" stroke="#16150f" stroke-width="2"/>
+<line x1="395" y1="436" x2="545" y2="436" stroke="#16150f" stroke-width="2"/>
+<line x1="395" y1="458" x2="545" y2="458" stroke="#16150f" stroke-width="2"/>
+<line x1="395" y1="480" x2="545" y2="480" stroke="#16150f" stroke-width="2"/>
+<line x1="395" y1="502" x2="545" y2="502" stroke="#16150f" stroke-width="2"/>
+<line x1="395" y1="524" x2="545" y2="524" stroke="#16150f" stroke-width="2"/>
+<line x1="395" y1="546" x2="545" y2="546" stroke="#16150f" stroke-width="2"/>
+<rect x="393" y="368" width="154" height="180" fill="none" stroke="#16150f" stroke-width="3"/>
+<rect x="160" y="317" width="86" height="6" fill="#f3f0e9"/>
+<rect x="347" y="130" width="6" height="86" fill="#f3f0e9"/>
+<rect x="657" y="130" width="6" height="86" fill="#f3f0e9"/>
+<rect x="657" y="430" width="6" height="86" fill="#f3f0e9"/>
+<rect x="460" y="317" width="86" height="6" fill="#f3f0e9"/>
+<rect x="120" y="597" width="110" height="6" fill="#f3f0e9"/>
+<rect x="120" y="604" width="110" height="16" fill="#d93a1e"/>
+<line x1="175" y1="620" x2="175" y2="638" stroke="#16150f" stroke-width="3"/>
+</svg>

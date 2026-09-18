@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" id="top">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The Plinth programme: exhibitions, sound pieces, wall drawings and workshops, filtered by what is on now, what is coming and what has closed.">
+<title>Plinth · Programme</title>
+<link rel="preload" href="assets/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<a class="wordmark" href="index.html" aria-label="Plinth home">plinth</a>
+<nav class="site-nav" aria-label="Main navigation"><a href="index.html">Now</a><a href="programme.html" aria-current="page">Programme</a><a href="field-notation.html">Field Notation</a><a href="visit.html">Visit</a></nav>
+<a class="pill header-mail" href="mailto:hello@example.com">Write to us</a>
+<button class="pill menu-toggle" type="button" aria-haspopup="dialog" aria-controls="menu">Menu</button>
+</header>
+<dialog class="menu" id="menu" aria-label="Main navigation">
+<div class="menu-top"><span class="wordmark">plinth</span><button class="pill menu-close" type="button">Close</button></div>
+<nav><a href="index.html">Now</a><a href="programme.html">Programme</a><a href="field-notation.html">Field Notation</a><a href="visit.html">Visit</a></nav>
+<a class="menu-mail" href="mailto:hello@example.com">hello@example.com</a>
+</dialog>
+<main id="main">
+<section class="page-head" aria-labelledby="page-title">
+<span class="label">Programme</span>
+<h1 id="page-title">Ten entries, one room at a time.</h1>
+<p class="lead">Everything Plinth has shown, is showing, or has written into the calendar. Filter the list by what is open today, or look back at what has closed.</p>
+<dl class="head-meta">
+<div class="fact"><dt>Seasons listed</dt><dd>Spring 2025 to spring 2027</dd></div>
+<div class="fact"><dt>Rooms in use</dt><dd>Six, and the courtyard</dd></div>
+<div class="fact"><dt>Entry</dt><dd>Open to everyone, no booking</dd></div>
+</dl>
+</section>
+
+<section class="section" id="calendar" aria-labelledby="calendar-title">
+<div class="section-head">
+<span class="label">The calendar</span>
+<h2 id="calendar-title">Filter what is listed</h2>
+<p class="meta">Dates shown are the first and last day a room is open for that entry.</p>
+</div>
+<div class="controls">
+<div class="control-group" role="group" aria-label="Filter the programme">
+<span class="label">Show</span>
+<button type="button" data-filter="all" aria-pressed="true">All</button>
+<button type="button" data-filter="on-now" aria-pressed="false">On now</button>
+<button type="button" data-filter="upcoming" aria-pressed="false">Upcoming</button>
+<button type="button" data-filter="past" aria-pressed="false">Past</button>
+</div>
+<div class="control-group" role="group" aria-label="Change the view">
+<span class="label">View</span>
+<button type="button" data-view-mode="list" aria-pressed="true">List</button>
+<button type="button" data-view-mode="grid" aria-pressed="false">Grid</button>
+</div>
+<p class="control-count" id="programme-count" role="status">Showing 10 entries, all</p>
+</div>
+<div class="programme" data-view="list" data-filter="all">
+<article class="entry" data-state="on-now">
+<div class="entry-state"><span class="tag">On now</span><span class="label">Exhibition</span></div>
+<div class="entry-body">
+<h3><a href="field-notation.html">Field Notation</a></h3>
+<p class="body">Drawings made by counting: a wall marked once a day, twelve sheets of ruled paper, and a folded field held down with pins.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">5 September to 22 November 2026</p>
+<p class="entry-room">Rooms 1 and 2</p>
+</div>
+</article>
+<article class="entry" data-state="on-now">
+<div class="entry-state"><span class="tag">On now</span><span class="label">Sound</span></div>
+<div class="entry-body">
+<h3>Slow Signals</h3>
+<p class="body">One tone crosses the hall over an afternoon. Stand at either end and it arrives at a different time.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">12 August to 4 October 2026</p>
+<p class="entry-room">Upper Hall</p>
+</div>
+</article>
+<article class="entry" data-state="on-now">
+<div class="entry-state"><span class="tag">On now</span><span class="label">Wall drawing</span></div>
+<div class="entry-body">
+<h3>A Line Repeated</h3>
+<p class="body">The same line drawn until the hand changes it. The wall fills from the bottom up and the last hour is left empty.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">1 September to 18 October 2026</p>
+<p class="entry-room">Room 3</p>
+</div>
+</article>
+<article class="entry" data-state="upcoming">
+<div class="entry-state"><span class="tag">Upcoming</span><span class="label">Exhibition</span></div>
+<div class="entry-body">
+<h3>Ground Plane</h3>
+<p class="body">Flat things seen at an angle: five stacked planes, a hatched floor and a plaster step you are allowed to stand on.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">5 December 2026 to 14 March 2027</p>
+<p class="entry-room">Rooms 1 and 2</p>
+</div>
+</article>
+<article class="entry" data-state="upcoming">
+<div class="entry-state"><span class="tag">Upcoming</span><span class="label">Workshop series</span></div>
+<div class="entry-body">
+<h3>Twelve Ways to Fold a Sheet</h3>
+<p class="body">Six evenings of folding, measuring and starting again. Paper is provided, and the results stay in the study room until March.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">16 January to 7 March 2027</p>
+<p class="entry-room">Study Room</p>
+</div>
+</article>
+<article class="entry" data-state="upcoming">
+<div class="entry-state"><span class="tag">Upcoming</span><span class="label">Standing display</span></div>
+<div class="entry-body">
+<h3>The Quiet Room</h3>
+<p class="body">A bench, the light from the courtyard, and nothing else. It is listed here because leaving a room empty is a decision like any other.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">From 21 November 2026</p>
+<p class="entry-room">Room 3</p>
+</div>
+</article>
+<article class="entry" data-state="past">
+<div class="entry-state"><span class="tag">Closed</span><span class="label">Exhibition</span></div>
+<div class="entry-body">
+<h3>Weight and Counterweight</h3>
+<p class="body">Objects that hold each other up, arranged so that removing one of them would end the exhibition early.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">7 February to 24 May 2026</p>
+<p class="entry-room">Rooms 1 and 2</p>
+</div>
+</article>
+<article class="entry" data-state="past">
+<div class="entry-state"><span class="tag">Closed</span><span class="label">Sound</span></div>
+<div class="entry-body">
+<h3>Low Frequency</h3>
+<p class="body">A winter piece for the upper hall, felt in the floor more often than it was heard in the air.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">15 November 2025 to 25 January 2026</p>
+<p class="entry-room">Upper Hall</p>
+</div>
+</article>
+<article class="entry" data-state="past">
+<div class="entry-state"><span class="tag">Closed</span><span class="label">Wall drawing</span></div>
+<div class="entry-body">
+<h3>Grid, Interrupted</h3>
+<p class="body">A ruled grid taken across three walls and stopped where the plaster changed, then left that way for the summer.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">3 May to 26 July 2025</p>
+<p class="entry-room">Room 3</p>
+</div>
+</article>
+<article class="entry" data-state="past">
+<div class="entry-state"><span class="tag">Closed</span><span class="label">Exhibition</span></div>
+<div class="entry-body">
+<h3>Paper Rooms</h3>
+<p class="body">Six rooms folded at one to twenty, set on a long table so that visitors read the plan before they read the building.</p>
+</div>
+<div class="entry-side">
+<p class="entry-dates">12 October to 30 November 2025</p>
+<p class="entry-room">Study Room</p>
+</div>
+</article>
+</div>
+</section>
+
+<section class="section" id="next" aria-labelledby="next-title">
+<div class="section-head">
+<span class="label">Opening next</span>
+<h2 id="next-title">Ground Plane</h2>
+<p class="meta">Rooms 1 and 2, from 5 December 2026.</p>
+</div>
+<div class="two-column">
+<div class="col-a">
+<figure class="mark-figure">
+<img src="assets/mark-ground-plane.svg" width="600" height="600" alt="Mark for Ground Plane: five stacked planes seen at an angle with the middle one filled red, above a band of diagonal hatching" loading="lazy">
+</figure>
+</div>
+<div class="col-b">
+<p class="body">Ground Plane takes the floor as the subject. The rooms are emptied of everything above knee height, five plaster planes are set at a shallow angle, and the hatching that usually stays on a drawing is carried onto the boards.</p>
+<p class="body">The work is installed over two weeks in November. The rooms stay open while it happens, so the first thing the exhibition shows is itself being put together.</p>
+<a class="big-link" href="mailto:hello@example.com">Ask about the opening</a>
+</div>
+</div>
+</section>
+
+<section class="band band-ash" aria-label="About this template">
+<span class="label band-label">Please note</span>
+<p class="band-text">Plinth is an illustrative art space written for this template. The entries, dates, rooms and descriptions on this page are examples, not a real programme.</p>
+</section>
+</main>
+<footer class="site-footer" id="contact">
+<div class="footer-top">
+<p class="footer-line meta">Write to the programme office about a visit, a proposal or access.</p>
+<a class="footer-mail" href="mailto:hello@example.com">hello@example.com</a>
+</div>
+<a class="footer-wordmark" href="index.html" aria-label="Plinth home">plinth</a>
+<div class="footer-bottom">
+<span>Plinth, a Plotform studio edition. An illustrative art space.</span>
+<nav aria-label="Footer"><a href="credits.html">Credits and source</a><a href="visit.html">Opening hours</a><a href="#top">Back to top</a></nav>
+</div>
+</footer>
+</body>
+</html>

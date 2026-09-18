@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" role="img" aria-label="Abstract composition: a ruled field of vertical strokes, an outlined circle, a tilted grey panel and a large red quarter disc">
+<rect x="0" y="0" width="1200" height="560" fill="#f3f0e9"/>
+<rect x="610" y="46" width="470" height="320" fill="#d5cfc0" transform="rotate(-3.5 845 206)"/>
+<path d="M1200 560 L1200 140 A420 420 0 0 0 780 560 Z" fill="#d93a1e"/>
+<line x1="60" y1="70" x2="60" y2="370" stroke="#16150f" stroke-width="2"/>
+<line x1="69.15" y1="70" x2="69.15" y2="364" stroke="#16150f" stroke-width="2"/>
+<line x1="80.6" y1="70" x2="80.6" y2="358" stroke="#16150f" stroke-width="2"/>
+<line x1="94.35" y1="70" x2="94.35" y2="352" stroke="#16150f" stroke-width="2"/>
+<line x1="110.4" y1="70" x2="110.4" y2="346" stroke="#16150f" stroke-width="2"/>
+<line x1="128.75" y1="70" x2="128.75" y2="340" stroke="#16150f" stroke-width="2"/>
+<line x1="149.4" y1="70" x2="149.4" y2="334" stroke="#16150f" stroke-width="2"/>
+<line x1="172.35" y1="70" x2="172.35" y2="328" stroke="#16150f" stroke-width="2"/>
+<line x1="197.6" y1="70" x2="197.6" y2="322" stroke="#16150f" stroke-width="2"/>
+<line x1="225.15" y1="70" x2="225.15" y2="316" stroke="#16150f" stroke-width="2"/>
+<line x1="255" y1="70" x2="255" y2="310" stroke="#16150f" stroke-width="2"/>
+<line x1="287.15" y1="70" x2="287.15" y2="304" stroke="#16150f" stroke-width="2"/>
+<line x1="321.6" y1="70" x2="321.6" y2="298" stroke="#16150f" stroke-width="2"/>
+<line x1="358.35" y1="70" x2="358.35" y2="292" stroke="#16150f" stroke-width="2"/>
+<line x1="397.4" y1="70" x2="397.4" y2="286" stroke="#16150f" stroke-width="2"/>
+<line x1="438.75" y1="70" x2="438.75" y2="280" stroke="#16150f" stroke-width="2"/>
+<line x1="482.4" y1="70" x2="482.4" y2="274" stroke="#16150f" stroke-width="2"/>
+<line x1="528.35" y1="70" x2="528.35" y2="268" stroke="#16150f" stroke-width="2"/>
+<line x1="576.6" y1="70" x2="576.6" y2="262" stroke="#16150f" stroke-width="2"/>
+<line x1="627.15" y1="70" x2="627.15" y2="256" stroke="#16150f" stroke-width="2"/>
+<line x1="680" y1="70" x2="680" y2="250" stroke="#16150f" stroke-width="2"/>
+<line x1="0" y1="470" x2="1200" y2="196" stroke="#16150f" stroke-width="3"/>
+<circle cx="352" cy="404" r="86" fill="none" stroke="#16150f" stroke-width="3"/>
+<rect x="60" y="480" width="232" height="18" fill="#16150f"/>
+</svg>

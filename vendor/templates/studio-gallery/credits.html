@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" id="top">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Where the Plinth studio edition comes from: the AstroPaper foundation, the drawn marks and floor plan, the Inter typeface and the complete source download.">
+<title>Plinth · Credits and source</title>
+<link rel="preload" href="assets/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<a class="wordmark" href="index.html" aria-label="Plinth home">plinth</a>
+<nav class="site-nav" aria-label="Main navigation"><a href="index.html">Now</a><a href="programme.html">Programme</a><a href="field-notation.html">Field Notation</a><a href="visit.html">Visit</a></nav>
+<a class="pill header-mail" href="mailto:hello@example.com">Write to us</a>
+<button class="pill menu-toggle" type="button" aria-haspopup="dialog" aria-controls="menu">Menu</button>
+</header>
+<dialog class="menu" id="menu" aria-label="Main navigation">
+<div class="menu-top"><span class="wordmark">plinth</span><button class="pill menu-close" type="button">Close</button></div>
+<nav><a href="index.html">Now</a><a href="programme.html">Programme</a><a href="field-notation.html">Field Notation</a><a href="visit.html">Visit</a></nav>
+<a class="menu-mail" href="mailto:hello@example.com">hello@example.com</a>
+</dialog>
+<main id="main">
+<section class="page-head" aria-labelledby="page-title">
+<span class="label">Credits and source</span>
+<h1 id="page-title">Everything here is accounted for.</h1>
+<p class="lead">Plinth is a Plotform studio edition: an authored adaptation of an open-source foundation, labelled as one, with every borrowed part written down.</p>
+</section>
+
+<section class="credits" aria-label="Credits and source">
+<div class="credit-group">
+<h2>Foundation</h2>
+<p>Adapted from AstroPaper by Sat Naing, MIT licensed, pinned at commit 35cfa7fbe0b897306d27670d3819e55d5205f3dd. Its type first page architecture (a wordmark header with a short navigation, a heading and standfirst block, a dated list of entries with tag pills, and a rule bounded footer) and its CSS custom property theme, rewritten as the token set at the top of the stylesheet, are the parts that carried over.</p>
+<a class="text-link" href="https://github.com/satnaing/astro-paper">The AstroPaper repository</a>
+<p>The layout, the twelve column offset grid, the typography, the copy, the drawn marks, the floor plan and the JavaScript are new work for this edition, licensed MIT. Astro, Tailwind, the search index, the blog content and the social images were not reused.</p>
+</div>
+<div class="credit-group">
+<h2>Drawings and geometry</h2>
+<p>There is no photography in this edition. Every graphic is an SVG file written by hand: five abstract marks and one floor plan, all built from rules, circles, arcs and flat fields in the same three colours. The diagonal bands between sections are CSS gradients rather than images.</p>
+<p>The drawings are produced by a small dependency free Node script in the source archive, so you can change the geometry and redraw them, or delete them and put photographs in their place.</p>
+</div>
+<div class="credit-group">
+<h2>Typeface</h2>
+<p>Inter, by Rasmus Andersson and the Inter Project Authors, under the SIL Open Font License, bundled locally as a variable font file. One family does all the work here: the identity comes from scale, weight and letter spacing rather than from a second typeface.</p>
+<p>No remote fonts, scripts, trackers or form services are loaded on any page. Contact links open your email application with an example address, which you should replace before publishing.</p>
+</div>
+<div class="credit-group">
+<h2>Content</h2>
+<p>Plinth, its rooms, its programme, its works, its address and its opening hours are illustrative. Nothing on these pages is a real institution, a real exhibition, a real artwork or a real visitor figure, and no prices, awards, sponsors or testimonials appear anywhere.</p>
+</div>
+<div class="credit-group">
+<h2>Source and licenses</h2>
+<a class="text-link" href="source.zip" download>Download the complete source, this adaptation and the upstream repository</a>
+<a class="text-link" href="LICENSE">The MIT license for this edition</a>
+<a class="text-link" href="licenses/astro-paper-MIT.txt">The AstroPaper MIT notice</a>
+<a class="text-link" href="licenses/inter-OFL.txt">The Inter Open Font License</a>
+</div>
+<div class="credit-group">
+<h2>Making it yours</h2>
+<p>The pages are plain HTML, one stylesheet and one small script. Change the wordmark in the header and footer, swap the marks for your own drawings or photographs, and edit the programme entries in place. The filter reads the state written on each entry, so a new entry only needs the right value to join the right view.</p>
+<a class="text-link" href="programme.html">Back to the programme</a>
+</div>
+</section>
+</main>
+<footer class="site-footer" id="contact">
+<div class="footer-top">
+<p class="footer-line meta">Write to the programme office about a visit, a proposal or access.</p>
+<a class="footer-mail" href="mailto:hello@example.com">hello@example.com</a>
+</div>
+<a class="footer-wordmark" href="index.html" aria-label="Plinth home">plinth</a>
+<div class="footer-bottom">
+<span>Plinth, a Plotform studio edition. An illustrative art space.</span>
+<nav aria-label="Footer"><a href="credits.html">Credits and source</a><a href="visit.html">Opening hours</a><a href="#top">Back to top</a></nav>
+</div>
+</footer>
+</body>
+</html>

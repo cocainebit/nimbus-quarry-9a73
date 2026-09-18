@@ -1,0 +1,15 @@
+{
+  "repo": "satnaing/astro-paper",
+  "commit": "35cfa7fbe0b897306d27670d3819e55d5205f3dd",
+  "sourceUrl": "https://github.com/satnaing/astro-paper/tree/35cfa7fbe0b897306d27670d3819e55d5205f3dd",
+  "license": "MIT",
+  "copyright": "2023 Sat Naing",
+  "archive": "astro-paper-35cfa7fb-source.zip",
+  "note": "Same pinned source as vendor/templates/modern-astro-paper, archived here so the studio-gallery adaptation carries its own upstream copy.",
+  "excludedFromArchive": [
+    "public/pagefind/ (generated search index, a build artefact)",
+    "public/default-og.jpg and src/assets/images/ (upstream screenshots and social images, none of which this adaptation uses)",
+    "src/content/posts/*/assets/ (screenshots inside the demo blog posts)"
+  ],
+  "excludedWhy": "Binary artefacts and demo screenshots only. Every source file of the upstream theme, its licence, its configuration and its demo markdown are included unchanged; the complete original remains available at the pinned commit above."
+}

@@ -1,0 +1,72 @@
+{
+  "id": "studio-gallery",
+  "name": "Plinth",
+  "kind": "Plotform-authored adaptation",
+  "adaptationLabel": "Adapted from AstroPaper",
+  "adaptedFrom": {
+    "name": "AstroPaper",
+    "url": "https://github.com/satnaing/astro-paper",
+    "commit": "35cfa7fbe0b897306d27670d3819e55d5205f3dd",
+    "license": "MIT",
+    "copyright": "2023 Sat Naing",
+    "licenseFile": "licenses/astro-paper-MIT.txt",
+    "vendoredAt": "vendor/templates/modern-astro-paper",
+    "archivedAt": "upstream/astro-paper-35cfa7fb-source.zip",
+    "reused": [
+      "Type first page architecture: a wordmark header with a short navigation, a heading and standfirst block, a dated list of entries and a rule bounded footer",
+      "The dated entry list with tag pills (src/components/Card.astro, Datetime.astro, Tag.astro), rebuilt as the programme entry blocks",
+      "The CSS custom-property token approach (src/styles/theme.css and global.css), rewritten as the :root token set in style.css",
+      "The skip link and the single-column reading measure discipline (src/components/Header.astro, Main.astro)"
+    ],
+    "notReused": [
+      "Astro, Tailwind, pagefind and the npm toolchain",
+      "The light and dark theme switcher, the search page, pagination, RSS and the OG image generator",
+      "All AstroPaper copy, blog content, screenshots and social images",
+      "Every image file in the upstream repository"
+    ]
+  },
+  "images": [
+    {
+      "file": "assets/mark-plinth.svg",
+      "origin": "Authored for this edition: the house mark, a ruled field with an outlined circle, a tilted panel and a quarter disc, written by tools/make-marks.mjs",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/mark-field-notation.svg",
+      "origin": "Authored for this edition: a tick grid with one carried row, for the illustrative exhibition Field Notation",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/mark-slow-signals.svg",
+      "origin": "Authored for this edition: rings spreading from one corner, for the illustrative sound piece Slow Signals",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/mark-a-line-repeated.svg",
+      "origin": "Authored for this edition: rules that tighten towards the foot, for the illustrative wall drawing A Line Repeated",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/mark-ground-plane.svg",
+      "origin": "Authored for this edition: stacked planes over a hatched band, for the illustrative exhibition Ground Plane",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/floor-plan.svg",
+      "origin": "Authored for this edition: a plan of the illustrative building, six spaces around a hatched courtyard with a stair run and an entrance threshold. It carries no text, so the room numbers stay editable HTML on the visit page",
+      "license": "MIT"
+    }
+  ],
+  "photography": "None. This edition contains no photographs, no generated images and no assets taken from any reference site. Every graphic is an SVG file written by hand; the diagonal section rules are CSS gradients.",
+  "fonts": [
+    {
+      "file": "assets/inter.woff2",
+      "family": "Inter",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/inter-OFL.txt",
+      "origin": "@fontsource-variable/inter, latin subset with the weight axis, copied from public/templates/_plotform-fonts"
+    }
+  ],
+  "referenceDirection": "A contemporary art institution read as typography and geometry: an oversized lowercase wordmark, a twelve column grid whose entries step across it, exhibition entries as typographic blocks with dates and rooms, flat colour fields in paper, ink and vermilion, and a drawn floor plan. No reference site code, imagery or branding copied.",
+  "demoContent": "Plinth, its rooms, programme, works, address and opening hours are illustrative examples, not a real institution. No prices, visitor numbers, awards, sponsors or testimonials appear anywhere."
+}
