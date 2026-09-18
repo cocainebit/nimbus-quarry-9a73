@@ -1,0 +1,72 @@
+{
+  "id": "studio-signal",
+  "name": "Overtone",
+  "kind": "Plotform-authored adaptation",
+  "adaptationLabel": "Adapted from Kinetic Type Page Transition",
+  "adaptedFrom": {
+    "name": "Kinetic Type Page Transition",
+    "url": "https://github.com/codrops/KineticTypePageTransition",
+    "commit": "ebe926e2f1de42950c36ff8a678321155280c1af",
+    "license": "MIT",
+    "copyright": "2009 to 2021 Codrops (https://tympanus.net/codrops)",
+    "licenseFile": "licenses/kinetic-type-MIT.txt",
+    "vendoredAt": "vendor/templates/studio-signal/tools (upstream archived inside source.zip under upstream/)",
+    "reused": [
+      "The kinetic type layer: a fixed field of oversized repeated words set behind the content at low contrast (.type and .type__line in src/css/base.css), rewritten here as .kinetic and .kinetic-line",
+      "The custom-property colour theme declared on the page root, rewritten as the :root token set in style.css",
+      "The frame style header, a wordmark on one side and links on the other, rewritten as .site-header",
+      "The flat single-colour field treatment with heavy uppercase type and no photographic chrome",
+      "The focus-visible handling and the reset for unstyled buttons (.unbutton)"
+    ],
+    "notReused": [
+      "GSAP and imagesloaded, and with them the whole page transition timeline. GSAP is not MIT and this edition has no dependencies at all: the drift, the ticker and the waveform are CSS animations",
+      "Parcel and the npm build",
+      "The four demo photographs in src/img and the prebuilt dist directory",
+      "The article overlay, the staggered item carousel and the back control",
+      "All upstream copy"
+    ]
+  },
+  "images": [
+    {
+      "file": "assets/cover-ovt-003.svg through assets/cover-ovt-014.svg",
+      "origin": "Authored for this edition: twelve flat geometric sleeves, one construction each (rotated squares, sine stack, bar field, rings, hatch with a cut, stair, spokes, dot grid, overlapping circles, rule stack, triangle tiling, arcs), written by tools/make-art.mjs",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/spectrum.svg",
+      "origin": "Authored for this edition: a band of vertical bars drawn as a level meter, written by tools/make-art.mjs",
+      "license": "MIT"
+    },
+    {
+      "file": "assets/signal-path.svg",
+      "origin": "Authored for this edition: a routing diagram of boxes, lines and one dashed return, written by tools/make-art.mjs",
+      "license": "MIT"
+    },
+    {
+      "file": "the waveform on release-tessellate.html",
+      "origin": "Authored for this edition: forty eight inline SVG bars written by tools/build-pages.mjs. It is a drawing, not a rendering of an audio file, and the edition ships no audio",
+      "license": "MIT"
+    }
+  ],
+  "photography": "None. The edition contains no photographs of people or places, no generated imagery and no asset taken from a reference site. Every visual is CSS or SVG written for it.",
+  "fonts": [
+    {
+      "file": "assets/manrope.woff2",
+      "family": "Manrope",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/manrope-OFL.txt",
+      "origin": "@fontsource-variable/manrope, latin subset with the weight axis, copied from public/templates/_plotform-fonts"
+    },
+    {
+      "file": "assets/inter.woff2",
+      "family": "Inter",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/inter-OFL.txt",
+      "origin": "@fontsource-variable/inter, latin subset with the weight axis, copied from public/templates/_plotform-fonts"
+    }
+  ],
+  "typography": "Manrope for display and Inter for text. Track numbers, lengths and years are set in Inter with tabular figures, so nothing needs a monospace face.",
+  "referenceDirection": "Abstract and dark: kinetic typography behind the content, geometric sleeves, a waveform and a routing diagram drawn as SVG, and heavy type on flat colour fields. No reference site code, imagery or branding copied.",
+  "interaction": "Two, both without a carousel. The catalogue filters twelve entries by format and by year at once, with a live count and an empty state. The release page has a play state toggle that switches a drawn waveform between two states, with no audio file, nothing preloaded and nothing autoplaying, and it holds still under prefers-reduced-motion.",
+  "demoContent": "Overtone is an illustrative label. The catalogue numbers, titles, formats, dates and track lengths are examples rather than real records. No performer is named and no chart position, sales figure, price, award or review appears anywhere."
+}

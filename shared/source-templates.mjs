@@ -5,6 +5,7 @@ import studioLaunch from "./source-templates-studio-launch.json" with { type: "j
 import studioPractice from "./source-templates-studio-practice.json" with { type: "json" };
 import studioRetreat from "./source-templates-studio-retreat.json" with { type: "json" };
 import studioGallery from "./source-templates-studio-gallery.json" with { type: "json" };
+import studioSignal from "./source-templates-studio-signal.json" with { type: "json" };
 import bootstrap from "./source-templates-bootstrap.json" with { type: "json" };
 import html5up from "./source-templates-html5up.json" with { type: "json" };
 import astro from "./source-templates-modern-astro.json" with { type: "json" };
@@ -20,6 +21,7 @@ export const sourceTemplates = [
   ...studioPractice,
   ...studioRetreat,
   ...studioGallery,
+  ...studioSignal,
   ...curated,
   ...react,
   ...astro,
