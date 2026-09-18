@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { unzipSync, strFromU8 } from "fflate";
 import { sourceTemplates } from "../../shared/source-templates.mjs";
 
-test("original source catalogue shows20 real designs and edits, saves, and exports the original files", async ({
+test("original source catalogue shows 20 real designs and edits, saves, and exports the original files", async ({
   page,
 }) => {
   test.setTimeout(120000);
@@ -100,7 +100,7 @@ test("original source catalogue shows20 real designs and edits, saves, and expor
   ).toHaveCount(1);
 });
 
-test("all20 original template entry pages load local styles and meaningful content", async ({
+test("all 20 original template entry pages load local styles and meaningful content", async ({
   page,
 }) => {
   test.setTimeout(180000);
