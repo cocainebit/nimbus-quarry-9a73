@@ -1,0 +1,59 @@
+{
+  "edition": "studio-workshop",
+  "note": "Every third party piece this edition was built from, archived here so the whole thing can be rebuilt offline from pinned bytes.",
+  "archives": [
+    {
+      "file": "papercss-b341c160-source.zip",
+      "role": "The foundation this edition is adapted from",
+      "repo": "papercss/papercss",
+      "commit": "b341c1606fca5b3880307d779414f43a5ccbc9b6",
+      "sourceUrl": "https://github.com/papercss/papercss/tree/b341c1606fca5b3880307d779414f43a5ccbc9b6",
+      "license": "ISC",
+      "copyright": "2017 to 2018 Rhyne Vlaservich",
+      "sha256": "866f854323c04af53d4bafcf58c030544a6dfad674553653506b28694c26021e",
+      "excludedFromArchive": [
+        "img/ (2.8 MB of screenshots and social images for the PaperCSS documentation site, none of which this adaptation uses)",
+        "package-lock.json (a 208 KB lockfile for a build pipeline this adaptation does not run)",
+        ".github/"
+      ],
+      "excludedWhy": "Documentation screenshots and build metadata only. Every source file of the library, its dist stylesheet, its licence, its README and its documentation pages are included unchanged; the complete original remains available at the pinned commit above."
+    },
+    {
+      "file": "roughjs-4.6.6.tgz",
+      "role": "Draws the hand drawn graphics at build time",
+      "package": "roughjs@4.6.6",
+      "sourceUrl": "https://github.com/rough-stuff/rough",
+      "license": "MIT",
+      "copyright": "2019 Preet Shihn",
+      "sha256": "373873b2c3f1b7ddba878525c774816057c5818029780c7fba081f06018ba78c",
+      "refetch": "npm pack roughjs@4.6.6",
+      "note": "The bundled ES module from this tarball is vendored directly at tools/vendor/rough.esm.js, so tools/make-art.mjs runs with no install step."
+    },
+    {
+      "file": "react-peeps-0.1.10.tgz",
+      "role": "The machine readable copy of the Open Peeps artwork",
+      "package": "react-peeps@0.1.10",
+      "sourceUrl": "https://github.com/CeamKrier/react-peeps",
+      "license": "MIT for the wrapper code, copyright 2020 to present Emre Cakir. The artwork it carries is Open Peeps by Pablo Stanley, CC0.",
+      "sha256": "530ee345a6fa99aaf597087e07a5fe64b4d019576d0ba8df0c5eb377c4437152",
+      "refetch": "npm pack react-peeps@0.1.10",
+      "note": "tools/make-people.mjs unpacks this archive, renders the figures once with react-dom/server, and writes static SVG files into assets/."
+    },
+    {
+      "file": "fontsource-bricolage-grotesque-5.3.0.tgz",
+      "role": "The typeface",
+      "package": "@fontsource-variable/bricolage-grotesque@5.3.0",
+      "sourceUrl": "https://github.com/ateliertriay/bricolage",
+      "license": "SIL Open Font License 1.1",
+      "copyright": "2022 The Bricolage Grotesque Project Authors",
+      "sha256": "6e99e0d844f7bc152bb3b007f9b1493c53e60cc0744cc681bb744e0b5f14665e",
+      "refetch": "npm pack @fontsource-variable/bricolage-grotesque@5.3.0",
+      "note": "assets/bricolage-grotesque.woff2 is files/bricolage-grotesque-latin-wght-normal.woff2 from this tarball, unmodified."
+    }
+  ],
+  "notInSourceZip": [
+    "react-peeps-0.1.10.tgz (956 KB)",
+    "fontsource-bricolage-grotesque-5.3.0.tgz (528 KB)"
+  ],
+  "notInSourceZipWhy": "Both are large binary npm tarballs whose output already ships inside the archive: the eleven Open Peeps SVG figures and the woff2 file are in assets/, with their licences in licenses/. Each is pinned by version and sha256 above and can be refetched with the npm pack command given. They are kept in full in the Plotform repository at vendor/templates/studio-workshop/upstream/."
+}

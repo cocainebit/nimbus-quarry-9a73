@@ -1,0 +1,220 @@
+{
+  "id": "studio-workshop",
+  "name": "Fettle",
+  "kind": "Plotform-authored adaptation",
+  "adaptationLabel": "Adapted from PaperCSS",
+  "adaptedFrom": {
+    "name": "PaperCSS",
+    "url": "https://github.com/papercss/papercss",
+    "commit": "b341c1606fca5b3880307d779414f43a5ccbc9b6",
+    "license": "ISC",
+    "copyright": "2017 to 2018 Rhyne Vlaservich",
+    "licenseFile": "licenses/papercss-ISC.txt",
+    "archivedAt": "upstream/papercss-b341c160-source.zip",
+    "reused": [
+      "The irregular border radius technique that makes a plain rectangle read as a drawn one (src/core/_mixins.scss, the border-style mixin), rewritten as the six --edge tokens at the top of style.css",
+      "Cycling those variants across sibling elements so no two neighbours share a wobble (src/utilities/_borders.scss, the child-borders rules), rewritten as the nth-child(6n + N) blocks in style.css",
+      "The flat offset shadow rather than a blurred one (src/utilities/_shadows.scss and the shadow mixin), rewritten as the --shadow and --shadow-deep tokens",
+      "The idea the whole library rests on: that a sketchbook surface can be built from borders, radii and shadows, with no images at all"
+    ],
+    "notReused": [
+      "The stylesheet itself. Nothing from dist/paper.css or src/ is shipped here; the cues above were re-implemented",
+      "Its remote font import. Line 1 of src/core/_config.scss pulls Neucha and Patrick Hand SC from fonts.googleapis.com, which would make every visitor of every site built from this template request a third party host. This edition bundles one OFL typeface locally instead",
+      "Its palette, its typography, its form kit, its navbar, modals, popovers, tabs, alerts, badges and progress bars",
+      "Sass, npm and its build pipeline",
+      "Every word of PaperCSS documentation copy, and every image in its repository"
+    ]
+  },
+  "images": [
+    {
+      "file": "assets/mark-fettle.svg",
+      "origin": "Authored for this edition: the house drawing, a workbench with a vice, a half carved spoon and a pegboard of tools, written by tools/make-art.mjs with Rough.js at build time",
+      "license": "MIT, and Rough.js MIT for the library that roughened the strokes"
+    },
+    {
+      "file": "assets/plan.svg",
+      "origin": "Authored for this edition: the floor plan of the illustrative workshop, ten benches, a machine bay, a timber store, a sharpening corner and a yard. It carries no text of its own, so the room names stay editable HTML in the key on space.html",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/chart-benches.svg",
+      "origin": "Authored for this edition: a bar chart of benches taken across an illustrative week. It carries no numbers or labels of its own; the same figures appear as an HTML table beside it on space.html",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/rule.svg",
+      "origin": "Authored for this edition: the drawn double rule between sections, a curve through a fixed sequence of drifting points. Used as a CSS background",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/rule-thin.svg",
+      "origin": "Authored for this edition: the single drawn rule used as a divider inside cards and the footer. Used as a CSS background",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/underline.svg",
+      "origin": "Authored for this edition: the ochre swash under every section heading. Used as a CSS background",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/frame.svg",
+      "origin": "Authored for this edition: a drawn rectangle sliced as a CSS border-image, so its four corners keep their weight around a box of any size",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/frame-double.svg",
+      "origin": "Authored for this edition: the double drawn frame around the floor plan, sliced as a CSS border-image",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/note-frame.svg",
+      "origin": "Authored for this edition: the callout frame with a red margin rule, sliced as a CSS border-image",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/pin.svg",
+      "origin": "Authored for this edition: the drawing pin that holds each callout to the page. Used as a CSS background",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/tool-knife.svg",
+      "origin": "Authored for this edition: a carving knife, for the what to bring list",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/tool-gouge.svg",
+      "origin": "Authored for this edition: a hook gouge",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/tool-apron.svg",
+      "origin": "Authored for this edition: a workshop apron",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/tool-notebook.svg",
+      "origin": "Authored for this edition: a notebook with a pencil across it",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/tool-glasses.svg",
+      "origin": "Authored for this edition: a pair of safety glasses",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/tool-log.svg",
+      "origin": "Authored for this edition: a split log showing its growth rings",
+      "license": "MIT, and Rough.js MIT"
+    },
+    {
+      "file": "assets/person-nour.svg",
+      "origin": "Open Peeps artwork, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/person-wes.svg",
+      "origin": "Open Peeps artwork, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/person-ada.svg",
+      "origin": "Open Peeps artwork, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/person-ivor.svg",
+      "origin": "Open Peeps artwork, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/person-fen.svg",
+      "origin": "Open Peeps artwork, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/person-tam.svg",
+      "origin": "Open Peeps artwork, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/person-jo.svg",
+      "origin": "Open Peeps artwork, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/person-bram.svg",
+      "origin": "Open Peeps artwork, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/figure-bench.svg",
+      "origin": "Open Peeps artwork, a whole standing figure, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/figure-wheels.svg",
+      "origin": "Open Peeps artwork, a whole figure using a wheelchair, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    },
+    {
+      "file": "assets/figure-showing.svg",
+      "origin": "Open Peeps artwork, a whole figure pointing and explaining, composed and written to a static file by tools/make-people.mjs",
+      "license": "CC0 1.0, public domain"
+    }
+  ],
+  "libraries": [
+    {
+      "name": "Rough.js",
+      "version": "4.6.6",
+      "url": "https://github.com/rough-stuff/rough",
+      "license": "MIT",
+      "copyright": "2019 Preet Shihn",
+      "licenseFile": "licenses/roughjs-MIT.txt",
+      "vendoredAt": "tools/vendor/rough.esm.js",
+      "archivedAt": "upstream/roughjs-4.6.6.tgz",
+      "sha256": "373873b2c3f1b7ddba878525c774816057c5818029780c7fba081f06018ba78c",
+      "usedFor": "Draws the rules, the frames, the callout, the tool sketches, the floor plan and the chart. Runs once at build time in tools/make-art.mjs, which writes static SVG files into assets/. Every call passes an explicit seed, so re-running the script writes the same bytes.",
+      "shipsToBrowser": false
+    },
+    {
+      "name": "Open Peeps",
+      "author": "Pablo Stanley",
+      "url": "https://www.openpeeps.com",
+      "license": "CC0 1.0",
+      "licenseStatement": "openpeeps.com states: \"The library is in the public domain under the CC0 License. This means you can copy, modify, distribute, remix, burn, and use the work, even for commercial purposes, without asking permission.\" Verified against the live page on 2026-09-17. No attribution is required; it is credited on credits.html and in SOURCE.json anyway.",
+      "usedFor": "Every person on the site. It is how this edition shows a room full of people without one photograph.",
+      "shipsToBrowser": "As the eleven static SVG figures in assets/",
+      "licenseFile": "licenses/open-peeps-CC0.txt"
+    },
+    {
+      "name": "react-peeps",
+      "version": "0.1.10",
+      "author": "Emre Cakir",
+      "url": "https://github.com/CeamKrier/react-peeps",
+      "license": "MIT",
+      "copyright": "2020 to present Emre Cakir",
+      "licenseFile": "licenses/react-peeps-MIT.txt",
+      "archivedAt": "upstream/react-peeps-0.1.10.tgz",
+      "sha256": "530ee345a6fa99aaf597087e07a5fe64b4d019576d0ba8df0c5eb377c4437152",
+      "usedFor": "The machine readable copy of the Open Peeps artwork. tools/make-people.mjs renders its components once at build time into the static SVG figures in assets/.",
+      "shipsToBrowser": false
+    }
+  ],
+  "photography": "None. This edition contains no photographs, no generated images, and no assets taken from any reference site. Every graphic is an SVG file written by a script in tools/: the drawn furniture by Rough.js, the people from Open Peeps.",
+  "remoteRequests": "None. No remote scripts, fonts, trackers, maps, analytics or form services. The one typeface is bundled locally, both scripts run at build time, and every contact link is a mailto: link to an example address. The only http and https strings anywhere in this folder are inside licence and provenance files, pointing at the upstream projects credited above.",
+  "fonts": [
+    {
+      "file": "assets/bricolage-grotesque.woff2",
+      "family": "Bricolage Grotesque",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/bricolage-grotesque-OFL.txt",
+      "copyright": "2022 The Bricolage Grotesque Project Authors",
+      "url": "https://github.com/ateliertriay/bricolage",
+      "origin": "@fontsource-variable/bricolage-grotesque 5.3.0, the latin subset with the weight axis, archived at upstream/fontsource-bricolage-grotesque-5.3.0.tgz",
+      "sha256": "6e99e0d844f7bc152bb3b007f9b1493c53e60cc0744cc681bb744e0b5f14665e",
+      "why": "Bricolage Grotesque is a grotesque assembled out of parts that do not quite agree: flared terminals, uneven joins, a slightly heavy waist, and an optical size axis that was designed to be pushed. It carries a drawn page without pretending to be a handwriting face, which would be unreadable at body size and would fight the actual drawings. It has no reserved font name, so it can be modified and redistributed inside an exported site with no renaming duty. One family across the whole edition, with the weight axis carrying every level of hierarchy."
+    }
+  ],
+  "referenceDirection": "A community workshop and class programme drawn rather than photographed: squared paper under everything, a workbench in elevation as the house drawing, cards with the uneven corners of a rectangle sketched by hand, rules that drift, a floor plan and a bar chart in pencil, and a class full of people who are all illustrations. No reference site code, imagery or branding copied.",
+  "demoContent": "Fettle, its classes, tutors, timetable, bench numbers, address, opening hours and fees are illustrative examples, not a real organisation. Every fee on the page is marked illustrative where it appears. No visitor numbers, awards, sponsors, client names or testimonials appear anywhere, and nothing on the site can take a booking or a payment."
+}

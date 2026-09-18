@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" id="top">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Where every part of the Fettle studio edition comes from, what it is licensed under, and where to get the complete adapted source.">
+<title>Credits and source, Fettle</title>
+<link rel="preload" href="assets/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<a class="wordmark" href="index.html" aria-label="Fettle home">fettle</a>
+<nav class="site-nav" aria-label="Main navigation"><a href="index.html">Workshop</a><a href="programme.html">Programme</a><a href="class-spoon-carving.html">Spoon carving</a><a href="space.html">The space</a><a href="join.html">Join</a></nav>
+<a class="pill header-mail" href="mailto:hello@example.com">Write to us</a>
+<button class="pill menu-toggle" type="button" aria-haspopup="dialog" aria-controls="menu">Menu</button>
+</header>
+<dialog class="menu" id="menu" aria-label="Main navigation">
+<div class="menu-top"><span class="wordmark">fettle</span><button class="pill menu-close" type="button">Close</button></div>
+<nav><a href="index.html">Workshop</a><a href="programme.html">Programme</a><a href="class-spoon-carving.html">Spoon carving</a><a href="space.html">The space</a><a href="join.html">Join</a></nav>
+<a class="menu-mail" href="mailto:hello@example.com">hello@example.com</a>
+</dialog>
+<main id="main">
+<section class="page-head" aria-labelledby="credits-title">
+<span class="eyebrow">Everything borrowed, and on what terms</span>
+<h1 id="credits-title">Credits and source</h1>
+<p class="lead">Fettle is a Plotform studio edition, adapted from PaperCSS. It is not an unchanged upstream template. Every third party piece is listed below with its terms and the licence file that ships inside this folder.</p>
+<a class="button" href="source.zip">Download the complete source</a>
+</section>
+
+<div class="rule" role="presentation"></div>
+
+<section class="section" aria-labelledby="pieces-title">
+<div class="section-head">
+<span class="kicker">01</span>
+<h2 id="pieces-title">What is in here, and whose it is</h2>
+<p class="meta">Full provenance, per asset, is in SOURCE.json next to these pages.</p>
+</div>
+<ul class="credit-list">
+<li class="credit">
+<h3 class="credit-name">PaperCSS</h3>
+<p class="credit-what">The foundation this edition is adapted from: a sketchbook component layer whose irregular border radii and offset shadows are the reason a plain rectangle can look drawn. Its ideas were rewritten rather than its stylesheet vendored, partly so the edition could drop its remote Google Fonts import.</p>
+<p class="credit-terms">ISC Licence, copyright 2017 to 2018 Rhyne Vlaservich</p>
+<a class="credit-link" href="licenses/papercss-ISC.txt">licenses/papercss-ISC.txt</a>
+<a class="credit-link" href="https://github.com/papercss/papercss">https://github.com/papercss/papercss</a>
+</li>
+<li class="credit">
+<h3 class="credit-name">Rough.js</h3>
+<p class="credit-what">Draws every hand drawn graphic here: the rules, the frames, the pinned note, the tool sketches, the floor plan and the chart. It runs once at build time in tools/make-art.mjs and writes static SVG files, so nothing is redrawn in the browser and no stroke ever moves.</p>
+<p class="credit-terms">MIT Licence, copyright 2019 Preet Shihn</p>
+<a class="credit-link" href="licenses/roughjs-MIT.txt">licenses/roughjs-MIT.txt</a>
+<a class="credit-link" href="https://github.com/rough-stuff/rough">https://github.com/rough-stuff/rough</a>
+</li>
+<li class="credit">
+<h3 class="credit-name">Open Peeps</h3>
+<p class="credit-what">Every person on this site. A hand drawn illustration library by Pablo Stanley, which openpeeps.com places in the public domain under CC0, so no attribution is required. It is credited here anyway. It is the reason this edition can show a room full of people without one photograph.</p>
+<p class="credit-terms">CC0 1.0, public domain, no attribution required</p>
+<a class="credit-link" href="licenses/open-peeps-CC0.txt">licenses/open-peeps-CC0.txt</a>
+<a class="credit-link" href="https://www.openpeeps.com">https://www.openpeeps.com</a>
+</li>
+<li class="credit">
+<h3 class="credit-name">react-peeps</h3>
+<p class="credit-what">The machine readable copy of the Open Peeps artwork, by Emre Cakir. tools/make-people.mjs renders its components once at build time into the static SVG figures in the assets folder. No React reaches the browser.</p>
+<p class="credit-terms">MIT Licence, copyright 2020 to present Emre Cakir</p>
+<a class="credit-link" href="licenses/react-peeps-MIT.txt">licenses/react-peeps-MIT.txt</a>
+<a class="credit-link" href="https://github.com/CeamKrier/react-peeps">https://github.com/CeamKrier/react-peeps</a>
+</li>
+<li class="credit">
+<h3 class="credit-name">Bricolage Grotesque</h3>
+<p class="credit-what">The one typeface on the site, by Atelier Triay, bundled as a local variable woff2 with the weight axis. Nothing is requested from a font service.</p>
+<p class="credit-terms">SIL Open Font License 1.1, copyright 2022 the Bricolage Grotesque Project Authors</p>
+<a class="credit-link" href="licenses/bricolage-grotesque-OFL.txt">licenses/bricolage-grotesque-OFL.txt</a>
+<a class="credit-link" href="https://github.com/ateliertriay/bricolage">https://github.com/ateliertriay/bricolage</a>
+</li>
+</ul>
+</section>
+
+<div class="rule" role="presentation"></div>
+
+<section class="section split" aria-labelledby="images-title">
+<div class="split-a">
+<h2 id="images-title">On the pictures</h2>
+<p class="body">There is no photography on this site, and no generated images. Every graphic is an SVG file written by a script in tools/: the drawn furniture by Rough.js, the people by Open Peeps. Nothing was taken from any reference site.</p>
+<p class="body">Both scripts run once, at build time, and write files. Rough.js re-rolls its strokes on every render, so drawing in the browser would make the page jitter and would break the source editor's hold on whatever leaf you had selected. Every call passes an explicit seed, so running the scripts again writes the same bytes.</p>
+<p class="body">Nothing on any page requests anything from another host. No scripts, no fonts, no trackers, no maps and no form services.</p>
+</div>
+<div class="split-b">
+<figure class="framed">
+<img src="assets/tool-gouge.svg" width="220" height="220" alt="A hand drawn hook gouge with a curved blade">
+<figcaption class="caption">Drawn by tools/make-art.mjs, like everything else on this site that is not a person.</figcaption>
+</figure>
+</div>
+</section>
+
+<section class="note-card" aria-label="About this template">
+<span class="note-label">On the content</span>
+<p class="note-text">Fettle is an illustrative workshop written for this template. The classes, tutors, timetable, bench numbers, address and fees are examples rather than a real organisation, and nothing here can be booked. Replace all of it before publishing.</p>
+</section>
+</main>
+<footer class="site-footer" id="contact">
+<div class="footer-top">
+<p class="footer-line">Write to the bench about a place, an induction or getting in through the yard.</p>
+<a class="footer-mail" href="mailto:hello@example.com">hello@example.com</a>
+</div>
+<a class="footer-wordmark" href="index.html" aria-label="Fettle home">fettle</a>
+<div class="footer-bottom">
+<span class="footer-small">Fettle, a Plotform studio edition. An illustrative workshop and class programme.</span>
+<nav aria-label="Footer"><a href="credits.html">Credits and source</a><a href="join.html">How to join</a><a href="#top">Back to top</a></nav>
+</div>
+</footer>
+</body>
+</html>

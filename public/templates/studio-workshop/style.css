@@ -1,0 +1,1377 @@
+/* Fettle, a Plotform studio edition.
+   Adapted from PaperCSS (ISC, Rhyne Vlaservich), whose notice is in
+   licenses/papercss-ISC.txt. What was taken from it is written down in
+   VENDOR-NOTES.md: the irregular border radius idea, the offset shadow, and
+   the notion that a component layer can look drawn without a single image.
+   What was not taken: its stylesheet, its palette, its component kit, and its
+   remote Google Fonts import, which would have made every page of every site
+   built from this template reach out to a third party.
+
+   One typeface, bundled locally. No remote anything. */
+
+/* ------------------------------------------------------------------ */
+/* Tokens                                                              */
+/* ------------------------------------------------------------------ */
+:root {
+  --paper: #f7f1e3;
+  --paper-2: #efe6d2;
+  --card: #fffaf0;
+  --ink: #26221d;
+  --ink-soft: #4a443b;
+  --pencil: #8a8272;
+  --ochre: #d8a12a;
+  --sap: #4f7a4a;
+  --brick: #bf4a2f;
+  --rule: #26221d;
+
+  --shell: min(1240px, 100% - 3rem);
+  --gap: clamp(1.25rem, 3vw, 2.5rem);
+  --step: clamp(3.5rem, 8vw, 6.5rem);
+
+  --shadow: 3px 3px 0 rgba(38, 34, 29, 0.16);
+  --shadow-deep: 6px 6px 0 rgba(38, 34, 29, 0.18);
+
+  /* PaperCSS's idea, redrawn: a box with wildly uneven corner radii reads as
+     a hand drawn rectangle. Six variants, cycled across sibling elements so
+     that no two neighbours share a wobble. */
+  --edge-1: 15px 255px 15px 225px / 255px 15px 225px 15px;
+  --edge-2: 125px 10px 20px 185px / 25px 205px 205px 25px;
+  --edge-3: 15px 255px 225px 15px / 225px 15px 15px 255px;
+  --edge-4: 15px 25px 155px 25px / 225px 150px 25px 115px;
+  --edge-5: 250px 25px 15px 20px / 15px 80px 105px 115px;
+  --edge-6: 28px 100px 20px 15px / 125px 30px 205px 225px;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("assets/bricolage-grotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reset and page ground                                               */
+/* ------------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  /* Squared paper, very faintly, so the drawn strokes have something to sit on. */
+  background-image:
+    linear-gradient(rgba(138, 130, 114, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 130, 114, 0.13) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--ink);
+  font-family: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  line-height: 1.6;
+  font-synthesis-weight: none;
+  overflow-wrap: break-word;
+}
+
+/* A hidden card is hidden, even though the cards are grids. The filter hides
+   with the hidden attribute so the list still reads without JavaScript. */
+[hidden] {
+  display: none !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol,
+dl {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brick);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.75rem 1.25rem;
+  z-index: 40;
+  text-decoration: none;
+}
+
+.skip:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Shared pieces                                                       */
+/* ------------------------------------------------------------------ */
+.eyebrow,
+.kicker,
+.band-label,
+.filter-label,
+.note-label,
+.tag,
+.tier-illustrative {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.meta,
+.caption {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.body,
+.lead {
+  color: var(--ink-soft);
+}
+
+.lead {
+  font-size: clamp(1.1rem, 1rem + 0.55vw, 1.4rem);
+  line-height: 1.45;
+  max-width: 34ch;
+  color: var(--ink);
+}
+
+.body {
+  max-width: 56ch;
+}
+
+.body + .body {
+  margin-top: 1rem;
+}
+
+.text-link {
+  display: inline-block;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--ochre);
+  padding-bottom: 2px;
+}
+
+.text-link:hover {
+  border-bottom-color: var(--brick);
+}
+
+.text-link.light {
+  color: var(--paper);
+  border-bottom-color: var(--ochre);
+}
+
+.button {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  background: var(--ochre);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  border-radius: var(--edge-1);
+  box-shadow: var(--shadow);
+}
+
+.button:hover {
+  background: var(--brick);
+  color: var(--paper);
+}
+
+.button.ghost {
+  background: var(--card);
+}
+
+.button.ghost:hover {
+  background: var(--ochre);
+  color: var(--ink);
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--edge-3);
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pill:hover {
+  background: var(--ochre);
+}
+
+/* The section rules are drawn SVG files, stretched horizontally only. */
+.rule {
+  width: var(--shell);
+  margin: var(--step) auto;
+  height: 30px;
+  background: url("assets/rule.svg") no-repeat center / 100% 100%;
+}
+
+/* ------------------------------------------------------------------ */
+/* Header                                                              */
+/* ------------------------------------------------------------------ */
+.site-header {
+  width: var(--shell);
+  margin: 0 auto;
+  padding: 1.5rem 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.75rem);
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.site-nav {
+  display: flex;
+  gap: clamp(0.75rem, 1.6vw, 1.5rem);
+  margin-right: auto;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover {
+  border-bottom-color: var(--ochre);
+}
+
+.site-nav a[aria-current="page"] {
+  border-bottom-color: var(--ink);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.menu {
+  width: min(24rem, 100vw - 2rem);
+  border: 2px solid var(--ink);
+  border-radius: var(--edge-2);
+  background: var(--card);
+  color: var(--ink);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-deep);
+}
+
+.menu::backdrop {
+  background: rgba(38, 34, 29, 0.42);
+}
+
+.menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.menu nav {
+  display: grid;
+  gap: 0.35rem;
+  margin: 1.5rem 0;
+}
+
+.menu nav a {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.4rem 0;
+  border-bottom: 2px dotted var(--pencil);
+}
+
+.menu-mail {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ */
+/* Front page hero                                                     */
+/* ------------------------------------------------------------------ */
+main {
+  display: block;
+}
+
+.hero {
+  width: var(--shell);
+  margin: clamp(1.5rem, 4vw, 3rem) auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: end;
+}
+
+.hero-words {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+.hero h1 {
+  font-size: clamp(2.9rem, 1.6rem + 5.4vw, 5.25rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.hero h1 .line {
+  display: block;
+}
+
+.hero h1 .indent {
+  margin-left: clamp(1rem, 4vw, 3.5rem);
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hero-figure {
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.hero-figure img {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------ */
+/* Page heads                                                          */
+/* ------------------------------------------------------------------ */
+.page-head {
+  width: var(--shell);
+  margin: clamp(1.5rem, 4vw, 3rem) auto 0;
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+.page-head h1 {
+  font-size: clamp(2.35rem, 1.2rem + 4.6vw, 4.6rem);
+  max-width: 18ch;
+}
+
+.page-head .lead {
+  max-width: 52ch;
+}
+
+/* ------------------------------------------------------------------ */
+/* Sections                                                            */
+/* ------------------------------------------------------------------ */
+.section {
+  width: var(--shell);
+  margin: var(--step) auto;
+  display: grid;
+  gap: var(--gap);
+}
+
+.section-head {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 52ch;
+}
+
+.section-head h2,
+.plan-title,
+.filters-title,
+.split-a h2 {
+  font-size: clamp(1.8rem, 1.2rem + 2.2vw, 3rem);
+  /* A drawn swash under every section heading, as a background rather than an
+     image element, so it never becomes a leaf the editor has to worry about. */
+  background: url("assets/underline.svg") no-repeat left bottom / auto 0.5em;
+  padding-bottom: 0.42em;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.kicker {
+  color: var(--brick);
+}
+
+.split {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.split-a {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.split-b {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+  align-content: start;
+}
+
+/* ------------------------------------------------------------------ */
+/* Cards, the PaperCSS cue                                             */
+/* ------------------------------------------------------------------ */
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--gap);
+}
+
+.card,
+.session,
+.tier,
+.step,
+.bring-item,
+.key-item,
+.credit,
+.framed {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow);
+  padding: 1.35rem 1.4rem 1.5rem;
+}
+
+.card-row > .card:nth-child(6n + 1),
+.programme > .session:nth-child(6n + 1),
+.tiers > .tier:nth-child(6n + 1),
+.steps > .step:nth-child(6n + 1),
+.bring > .bring-item:nth-child(6n + 1),
+.plan-key > .key-item:nth-child(6n + 1),
+.credit-list > .credit:nth-child(6n + 1),
+.framed {
+  border-radius: var(--edge-1);
+}
+
+.card-row > .card:nth-child(6n + 2),
+.programme > .session:nth-child(6n + 2),
+.tiers > .tier:nth-child(6n + 2),
+.steps > .step:nth-child(6n + 2),
+.bring > .bring-item:nth-child(6n + 2),
+.plan-key > .key-item:nth-child(6n + 2),
+.credit-list > .credit:nth-child(6n + 2) {
+  border-radius: var(--edge-2);
+}
+
+.card-row > .card:nth-child(6n + 3),
+.programme > .session:nth-child(6n + 3),
+.tiers > .tier:nth-child(6n + 3),
+.steps > .step:nth-child(6n + 3),
+.bring > .bring-item:nth-child(6n + 3),
+.plan-key > .key-item:nth-child(6n + 3),
+.credit-list > .credit:nth-child(6n + 3) {
+  border-radius: var(--edge-3);
+}
+
+.card-row > .card:nth-child(6n + 4),
+.programme > .session:nth-child(6n + 4),
+.tiers > .tier:nth-child(6n + 4),
+.steps > .step:nth-child(6n + 4),
+.bring > .bring-item:nth-child(6n + 4),
+.plan-key > .key-item:nth-child(6n + 4),
+.credit-list > .credit:nth-child(6n + 4) {
+  border-radius: var(--edge-4);
+}
+
+.card-row > .card:nth-child(6n + 5),
+.programme > .session:nth-child(6n + 5),
+.tiers > .tier:nth-child(6n + 5),
+.steps > .step:nth-child(6n + 5),
+.bring > .bring-item:nth-child(6n + 5),
+.plan-key > .key-item:nth-child(6n + 5),
+.credit-list > .credit:nth-child(6n + 5) {
+  border-radius: var(--edge-5);
+}
+
+.card-row > .card:nth-child(6n + 6),
+.programme > .session:nth-child(6n + 6),
+.tiers > .tier:nth-child(6n + 6),
+.steps > .step:nth-child(6n + 6),
+.bring > .bring-item:nth-child(6n + 6),
+.plan-key > .key-item:nth-child(6n + 6),
+.credit-list > .credit:nth-child(6n + 6) {
+  border-radius: var(--edge-6);
+}
+
+.card {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.card-title {
+  font-size: 1.35rem;
+}
+
+.card-title a {
+  text-decoration: none;
+  border-bottom: 2px solid var(--ochre);
+}
+
+.card-when {
+  font-weight: 700;
+}
+
+.card-tutor,
+.card-note {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.card-free {
+  margin-top: 0.35rem;
+  font-weight: 700;
+  color: var(--sap);
+}
+
+.tag {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--edge-4);
+  background: var(--paper-2);
+}
+
+.tag-first {
+  background: #f2dfae;
+}
+
+.tag-improver {
+  background: #cfdfcb;
+}
+
+.tag-open {
+  background: #eccdc2;
+}
+
+/* ------------------------------------------------------------------ */
+/* People                                                              */
+/* ------------------------------------------------------------------ */
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--gap);
+}
+
+.person {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+}
+
+.person img {
+  width: 100%;
+  background: var(--paper-2);
+  border: 2px solid var(--ink);
+  border-radius: var(--edge-2);
+  box-shadow: var(--shadow);
+}
+
+.person:nth-child(even) img {
+  border-radius: var(--edge-5);
+}
+
+.person-name {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.person-role {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* ------------------------------------------------------------------ */
+/* Bands                                                               */
+/* ------------------------------------------------------------------ */
+.band {
+  width: var(--shell);
+  margin: var(--step) auto;
+  background: var(--ink);
+  color: var(--paper);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border-radius: var(--edge-6);
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+}
+
+.band-label {
+  color: var(--ochre);
+}
+
+.band-text {
+  font-size: clamp(1.15rem, 1rem + 0.9vw, 1.7rem);
+  line-height: 1.35;
+  max-width: 42ch;
+}
+
+/* ------------------------------------------------------------------ */
+/* Steps and lists with drawings                                       */
+/* ------------------------------------------------------------------ */
+.steps,
+.bring {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--gap);
+}
+
+.step,
+.bring-item {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.step img,
+.bring-item img {
+  width: 5.5rem;
+  height: auto;
+}
+
+.step-number {
+  font-weight: 800;
+  color: var(--brick);
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+}
+
+.step-title,
+.bring-title {
+  font-size: 1.15rem;
+}
+
+.step-text,
+.bring-text {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Programme filter                                                    */
+/* ------------------------------------------------------------------ */
+.filters {
+  width: var(--shell);
+  margin: var(--step) auto calc(var(--step) / 2);
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 2px solid var(--ink);
+  border-radius: var(--edge-2);
+  background: var(--card);
+  box-shadow: var(--shadow-deep);
+}
+
+.filter-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  color: var(--ink-soft);
+  min-width: 4.5rem;
+}
+
+.chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.4rem 0.95rem;
+  background: var(--paper-2);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  cursor: pointer;
+}
+
+.chips .chip:nth-child(5n + 1) {
+  border-radius: var(--edge-1);
+}
+.chips .chip:nth-child(5n + 2) {
+  border-radius: var(--edge-3);
+}
+.chips .chip:nth-child(5n + 3) {
+  border-radius: var(--edge-5);
+}
+.chips .chip:nth-child(5n + 4) {
+  border-radius: var(--edge-2);
+}
+.chips .chip:nth-child(5n + 5) {
+  border-radius: var(--edge-6);
+}
+
+.chip:hover {
+  background: #f2dfae;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.count {
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding-top: 0.9rem;
+  background: url("assets/rule-thin.svg") no-repeat top left / 100% 12px;
+}
+
+.empty {
+  width: var(--shell);
+  margin: 0 auto var(--step);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.programme {
+  width: var(--shell);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: var(--gap);
+  align-items: start;
+}
+
+.session {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.session-top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.session-when {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.session-title {
+  font-size: 1.28rem;
+}
+
+.session-title a {
+  text-decoration: none;
+  border-bottom: 2px solid var(--ochre);
+}
+
+.session-tutor {
+  font-weight: 600;
+}
+
+.session-note {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.session-foot {
+  margin-top: 0.4rem;
+  padding-top: 0.6rem;
+  border-top: 2px dotted var(--pencil);
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.session-free {
+  font-weight: 700;
+  color: var(--sap);
+}
+
+.session[data-free="0"] .session-free {
+  color: var(--brick);
+}
+
+.session-fee {
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------ */
+/* Class page                                                          */
+/* ------------------------------------------------------------------ */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.75rem 1.5rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  padding-top: 1.4rem;
+  background: url("assets/rule-thin.svg") no-repeat top left / 100% 14px;
+}
+
+.fact {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.fact-key {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.fact-value {
+  font-weight: 700;
+}
+
+.class-figures {
+  width: var(--shell);
+  margin: var(--step) auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--gap);
+  align-items: end;
+}
+
+.class-figure {
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.class-figure img {
+  max-height: 22rem;
+  width: auto;
+}
+
+.timeline {
+  display: grid;
+  gap: 0;
+  border-left: 3px solid var(--ink);
+  padding-left: clamp(1rem, 3vw, 2rem);
+}
+
+.beat {
+  padding: 1.1rem 0;
+  border-bottom: 2px dotted var(--pencil);
+  display: grid;
+  gap: 0.25rem;
+}
+
+.beat:last-child {
+  border-bottom: 0;
+}
+
+.beat-time {
+  font-weight: 800;
+  color: var(--brick);
+}
+
+.beat-title {
+  font-size: 1.2rem;
+}
+
+.beat-text {
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+.framed {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: center;
+  margin: 0;
+  width: 100%;
+}
+
+.framed img {
+  max-width: min(100%, 16rem);
+}
+
+/* ------------------------------------------------------------------ */
+/* Space page                                                          */
+/* ------------------------------------------------------------------ */
+.plan-section {
+  width: var(--shell);
+  margin: var(--step) auto;
+  display: grid;
+  gap: var(--gap);
+}
+
+.plan {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+  padding: clamp(0.5rem, 1.5vw, 1rem);
+  border: 28px solid transparent;
+  border-image: url("assets/frame-double.svg") 40 fill / 28px / 0 stretch;
+}
+
+.plan img {
+  width: 100%;
+}
+
+.plan-key {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--gap);
+}
+
+.key-item {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+}
+
+.key-number {
+  font-weight: 800;
+  color: var(--brick);
+}
+
+.key-name {
+  font-size: 1.1rem;
+}
+
+.key-text {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.chart-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: start;
+}
+
+.chart {
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.chart img {
+  width: 100%;
+}
+
+.chart-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px solid var(--ink);
+  border-radius: var(--edge-4);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.chart-caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.chart-table th,
+.chart-table td {
+  padding: 0.5rem 0.9rem;
+  text-align: left;
+  border-bottom: 2px dotted var(--pencil);
+  font-size: 0.95rem;
+}
+
+.chart-table thead th {
+  border-bottom: 2px solid var(--ink);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chart-table tbody tr:last-child th,
+.chart-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.hours {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.35rem 1.5rem;
+  width: 100%;
+  max-width: 24rem;
+  align-items: baseline;
+}
+
+.hours-day {
+  font-weight: 700;
+}
+
+.hours-time {
+  margin: 0;
+  text-align: right;
+  color: var(--ink-soft);
+}
+
+.address {
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------ */
+/* Join page                                                           */
+/* ------------------------------------------------------------------ */
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--gap);
+  align-items: start;
+}
+
+.tier {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+}
+
+.tier-name {
+  font-size: 1.3rem;
+}
+
+.tier-price {
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.tier-illustrative {
+  color: var(--brick);
+}
+
+.tier-text {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.tier-list {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.6rem 0;
+  padding-top: 0.6rem;
+  border-top: 2px dotted var(--pencil);
+}
+
+.tier-item,
+.plain-item {
+  padding-left: 1.35rem;
+  position: relative;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.tier-item::before,
+.plain-item::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  font-weight: 800;
+  color: var(--ochre);
+}
+
+.plain-list {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 52ch;
+}
+
+/* ------------------------------------------------------------------ */
+/* Credits                                                             */
+/* ------------------------------------------------------------------ */
+.credit-list {
+  display: grid;
+  gap: var(--gap);
+}
+
+.credit {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: start;
+}
+
+.credit-name {
+  font-size: 1.35rem;
+}
+
+.credit-what {
+  color: var(--ink-soft);
+  max-width: 72ch;
+}
+
+.credit-terms {
+  font-weight: 700;
+}
+
+.credit-link {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------------ */
+/* The pinned note                                                     */
+/* ------------------------------------------------------------------ */
+/* The callout sits inside a drawn frame, sliced from one 400 by 400 SVG so
+   that its four corners keep their weight at any width, with a drawing pin
+   holding it to the page. Both are background layers rather than image
+   elements, so the only leaves inside the card are its two lines of text. */
+.note-card {
+  position: relative;
+  width: min(var(--shell), 46rem);
+  margin: calc(var(--step) + 1.25rem) auto var(--step);
+  transform: rotate(-0.35deg);
+  padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.5rem, 4vw, 3rem) clamp(1.75rem, 4vw, 2.5rem);
+  border: 26px solid transparent;
+  border-image: url("assets/note-frame.svg") 40 fill / 26px / 0 stretch;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+
+.note-card::before {
+  content: "";
+  position: absolute;
+  top: -1.4rem;
+  left: clamp(2rem, 8vw, 6rem);
+  width: 2.6rem;
+  height: 2.6rem;
+  background: url("assets/pin.svg") no-repeat center / contain;
+}
+
+.note-label {
+  color: var(--brick);
+}
+
+.note-text {
+  max-width: 62ch;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------ */
+/* Footer                                                              */
+/* ------------------------------------------------------------------ */
+.site-footer {
+  width: var(--shell);
+  margin: var(--step) auto 0;
+  padding: var(--gap) 0 2.5rem;
+  border-top: 3px solid var(--ink);
+  display: grid;
+  gap: 1.5rem;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-line {
+  max-width: 40ch;
+  color: var(--ink-soft);
+}
+
+.footer-mail {
+  font-size: clamp(1.2rem, 1rem + 1.2vw, 2rem);
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 3px solid var(--ochre);
+  overflow-wrap: anywhere;
+}
+
+.footer-wordmark {
+  font-size: clamp(4rem, 14vw, 11rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  text-decoration: none;
+  color: var(--ink);
+  display: block;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding-top: 1.4rem;
+  background: url("assets/rule-thin.svg") no-repeat top left / 100% 12px;
+}
+
+.footer-small {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.site-footer nav {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.site-footer nav a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--ochre);
+}
+
+/* ------------------------------------------------------------------ */
+/* Narrower screens                                                    */
+/* ------------------------------------------------------------------ */
+@media (max-width: 62rem) {
+  :root {
+    --shell: min(1240px, 100% - 2.5rem);
+  }
+
+  .hero,
+  .split,
+  .chart-block {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero {
+    align-items: start;
+  }
+
+  .hero-figure {
+    order: -1;
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --shell: min(1240px, 100% - 2rem);
+  }
+
+  .site-nav,
+  .header-mail {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-block;
+    margin-left: auto;
+  }
+
+  .site-header {
+    padding-bottom: 1rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 26rem) {
+  :root {
+    --shell: min(1240px, 100% - 1.5rem);
+  }
+
+  body {
+    background-size: 22px 22px;
+  }
+
+  .hero h1 .indent {
+    margin-left: 0.75rem;
+  }
+
+  .note-card {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion                                                              */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
