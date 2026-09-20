@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { api } from "./backend-api";
 export default function AccountForm({
   member = false,
@@ -10,6 +11,7 @@ export default function AccountForm({
   const [mode, setMode] = useState<"sign-in" | "sign-up" | "reset">("sign-in");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const prefix = member ? "/api/member-auth" : "/api/auth";
   // Owners can use the account they already have in the other products.
   const [sharedAccount, setSharedAccount] = useState(false);
@@ -38,7 +40,7 @@ export default function AccountForm({
   }
   return (
     <form
-      className="backend-form"
+      className="backend-form auth-card"
       onSubmit={async (e) => {
         e.preventDefault();
         const f = new FormData(e.currentTarget);
@@ -71,11 +73,18 @@ export default function AccountForm({
         }
       }}
     >
+      <h3>
+        {mode === "sign-up"
+          ? "Create your account"
+          : mode === "reset"
+            ? "Reset password"
+            : "Welcome back"}
+      </h3>
       {sharedAccount && mode !== "reset" && (
         <div className="shared-account">
           <button
             type="button"
-            className="dark-button"
+            className="secondary"
             disabled={busy}
             onClick={() => void continueWithSharedAccount()}
           >
@@ -90,38 +99,52 @@ export default function AccountForm({
           </span>
         </div>
       )}
-      <h3>
-        {mode === "sign-up"
-          ? "Create an account"
-          : mode === "reset"
-            ? "Reset password"
-            : "Sign in"}
-      </h3>
       {mode === "sign-up" && (
-        <label>
-          Name
-          <input name="name" required maxLength={100} />
-        </label>
+        <input
+          name="name"
+          aria-label="Name"
+          placeholder="Your name..."
+          required
+          maxLength={100}
+        />
       )}
-      <label>
-        Email
-        <input name="email" type="email" required autoComplete="email" />
-      </label>
+      <input
+        name="email"
+        type="email"
+        aria-label="Email"
+        placeholder="Email address..."
+        required
+        autoComplete="email"
+      />
       {mode !== "reset" && (
-        <label>
-          Password
+        <div className="auth-password">
           <input
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
+            aria-label="Password"
+            placeholder={
+              mode === "sign-up" ? "Password, 12 characters or more..." : "Password..."
+            }
             minLength={12}
             required
             autoComplete={
               mode === "sign-up" ? "new-password" : "current-password"
             }
           />
-        </label>
+          <button
+            type="button"
+            className="auth-eye"
+            aria-label={showPassword ? "Hide what you typed" : "Show what you typed"}
+            onClick={() => setShowPassword((v) => !v)}
+          >
+            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+          </button>
+        </div>
       )}
-      <button disabled={busy} className="dark-button">
+      <button
+        disabled={busy}
+        className={member ? "dark-button auth-submit" : "primary auth-submit"}
+      >
         {busy
           ? "Please wait…"
           : mode === "sign-up"
@@ -130,7 +153,7 @@ export default function AccountForm({
               ? "Send reset link"
               : "Sign in"}
       </button>
-      <div className="backend-actions">
+      <div className="auth-links">
         <button
           type="button"
           onClick={() => {

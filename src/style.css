@@ -2772,3 +2772,196 @@ button {
     padding-left: 13px;
   }
 }
+
+/* Sign in and sign up: a narrow card inside a hairline frame whose rules run
+   past the corners and fade, with a square dot on each corner. */
+.backend-form.auth-card {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  gap: 12px;
+  text-align: center;
+}
+.backend-form.auth-card h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 440;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.backend-form.auth-card input:not([type="checkbox"]) {
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: var(--press);
+  font-size: 14px;
+  line-height: 20px;
+}
+.backend-form.auth-card input:not([type="checkbox"])::placeholder {
+  color: var(--ink-2);
+}
+.backend-form.auth-card input:not([type="checkbox"]):focus {
+  border-color: var(--accent);
+  background: var(--bg-raised);
+}
+.auth-password {
+  position: relative;
+}
+.backend-form.auth-card .auth-password input {
+  padding-right: 36px;
+}
+.backend-form.auth-card button.auth-eye {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  color: var(--ink-2);
+}
+.backend-form.auth-card button.auth-eye:hover {
+  background: var(--hover);
+}
+.backend-form.auth-card button.auth-submit {
+  width: 100%;
+  min-height: 32px;
+  margin-top: 12px;
+  padding: 0 12px;
+  border-color: transparent;
+}
+.backend-form.auth-card .shared-account {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+.backend-form.auth-card .shared-account button {
+  width: 100%;
+  min-height: 32px;
+  padding: 0 12px;
+}
+.auth-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.backend-form.auth-card .auth-links button,
+.backend-panel button.auth-session {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  text-decoration: underline dotted var(--accent) 1.5px;
+  text-underline-offset: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--ink-2);
+}
+.backend-form.auth-card .auth-links button:hover,
+.backend-panel button.auth-session:hover {
+  color: var(--ink);
+  text-decoration-style: solid;
+}
+.backend-form.auth-card [role="status"] {
+  margin: 0;
+  font-size: 12px;
+}
+
+.backend-panel.auth-panel {
+  position: fixed;
+  inset: 0;
+  width: auto;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  border-radius: 0;
+  background: var(--bg);
+  box-shadow: none;
+}
+.auth-panel > .backend-actions {
+  align-self: stretch;
+  margin: 0;
+}
+.auth-panel > .backend-actions h2 {
+  margin: 0 0 0 8px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.backend-panel.auth-panel > .backend-actions button {
+  min-height: 32px;
+  padding: 0 12px;
+  border-color: transparent;
+  background: var(--bg-raised);
+  font-size: 14px;
+}
+.auth-panel > p {
+  order: 3;
+  max-width: 348px;
+  margin: 0 0 24px;
+  font-size: 12px;
+  text-align: center;
+  color: var(--ink-4);
+}
+.auth-panel > p[role] {
+  order: 1;
+  margin: 24px 0 0;
+  color: var(--ink-2);
+}
+.auth-frame {
+  order: 2;
+  position: relative;
+  width: min(348px, 100%);
+  margin: auto 0;
+  padding: 40px 24px 28px;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+.auth-frame::before,
+.auth-frame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border: 0 solid #fff;
+}
+.auth-frame::before {
+  inset: 0 -160px;
+  border-width: 1px 0;
+  mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+}
+.auth-frame::after {
+  inset: -140px 0;
+  border-width: 0 1px;
+  mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+}
+.auth-frame > i {
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  background:
+    linear-gradient(#fff, #fff) left top,
+    linear-gradient(#fff, #fff) right top,
+    linear-gradient(#fff, #fff) left bottom,
+    linear-gradient(#fff, #fff) right bottom;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+.auth-frame .backend-form.auth-card {
+  margin: 0;
+}
+@media (max-height: 640px) {
+  .backend-panel.auth-panel {
+    overflow: auto;
+  }
+  .auth-frame::after {
+    inset: -24px 0;
+  }
+}

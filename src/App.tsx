@@ -704,7 +704,11 @@ export default function App() {
       {accountOpen && (
         <div className="modal-backdrop">
           <section
-            className="backend-panel"
+            className={
+              workspace === "server"
+                ? "backend-panel"
+                : "backend-panel auth-panel"
+            }
             role="dialog"
             aria-modal="true"
             aria-label="Account and server projects"
@@ -785,10 +789,16 @@ export default function App() {
               </>
             ) : (
               <>
-                <AccountForm onDone={() => void finishAccount()} />
-                <button onClick={() => void finishAccount()}>
-                  Load projects with current session
-                </button>
+                <div className="auth-frame">
+                  <i aria-hidden="true" />
+                  <AccountForm onDone={() => void finishAccount()} />
+                  <button
+                    className="auth-session"
+                    onClick={() => void finishAccount()}
+                  >
+                    Load projects with current session
+                  </button>
+                </div>
               </>
             )}
           </section>
