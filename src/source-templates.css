@@ -1,6 +1,6 @@
 .source-collection {
   margin: 48px 0 64px;
-  color: #242723;
+  color: var(--ink);
 }
 .source-collection > header {
   display: flex;
@@ -9,28 +9,32 @@
   gap: 24px;
 }
 .source-eyebrow {
-  font-size: 10px;
-  letter-spacing: 2px;
-  font-weight: 700;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  color: var(--accent);
 }
 .source-collection h2 {
   font-size: clamp(30px, 4vw, 52px);
-  font-weight: 500;
-  letter-spacing: -2px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   margin: 12px 0;
 }
 .source-collection > header p {
   font-size: 14px;
   max-width: 580px;
   line-height: 1.7;
-  color: #667064;
+  color: var(--ink-3);
 }
 .source-total {
   white-space: nowrap;
+  font-family: var(--mono);
   font-size: 12px;
-  border: 1px solid #d8dcd5;
-  padding: 10px 14px;
-  border-radius: 20px;
+  background: var(--surface);
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  color: var(--ink-2);
 }
 .source-toolbar {
   display: flex;
@@ -43,7 +47,7 @@
   gap: 12px;
   flex: 1;
   background: white;
-  border: 1px solid #d7dcd3;
+  border: 1px solid var(--line);
   padding: 0 15px;
   border-radius: 8px;
 }
@@ -57,7 +61,7 @@
 }
 .source-toolbar select {
   padding: 12px;
-  border: 1px solid #d7dcd3;
+  border: 1px solid var(--line);
   border-radius: 8px;
   background: white;
   color: inherit;
@@ -75,8 +79,8 @@
   display: block;
   width: 100%;
   aspect-ratio: 1.48;
-  border: 1px solid #d7ddd3;
-  background: #e7e9e3;
+  border: 1px solid var(--line);
+  background: var(--bg-sunken);
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
@@ -98,12 +102,12 @@
   right: 16px;
   padding: 10px 15px;
   border-radius: 30px;
-  background: #fff;
+  background: var(--bg-raised);
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #222;
-  font-size: 12px;
+  color: var(--ink);
+  font-size: 13px;
   box-shadow: 0 3px 15px #0002;
 }
 .source-card-meta {
@@ -113,25 +117,26 @@
   margin-top: 16px;
 }
 .source-card-meta small {
-  font-size: 10px;
-  letter-spacing: 1px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  font-family: var(--mono);
   text-transform: uppercase;
-  color: #63705f;
+  color: var(--ink-3);
 }
 .source-card h3 {
   font-size: 25px;
-  font-weight: 550;
-  letter-spacing: -0.8px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   margin: 5px 0;
 }
 .source-card-meta > span {
-  font-size: 11px;
-  color: #6a7465;
+  font-size: 12px;
+  color: var(--ink-3);
 }
 .source-card > p {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.7;
-  color: #697263;
+  color: var(--ink-3);
   min-height: 44px;
   margin: 5px 0 12px;
 }
@@ -139,18 +144,18 @@
   display: flex;
   gap: 12px;
   justify-content: space-between;
-  border-top: 1px solid #dfe3da;
+  border-top: 1px solid var(--line);
   padding-top: 10px;
-  font-size: 10px;
-  color: #64705f;
+  font-size: 12px;
+  color: var(--ink-3);
 }
 .source-card a {
   color: inherit;
 }
 .source-note {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.8;
-  color: #687362;
+  color: var(--ink-3);
   margin-top: 30px;
   max-width: 850px;
 }
@@ -167,7 +172,7 @@
 .source-dialog {
   width: min(1500px, 100%);
   height: 95vh;
-  background: #f1f2ec;
+  background: var(--bg);
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -188,19 +193,19 @@
   gap: 4px;
 }
 .source-dialog > header span {
-  font-size: 11px;
-  color: #71796a;
+  font-size: 12px;
+  color: var(--ink-3);
 }
 .source-dialog button {
-  border: 1px solid #dce0d6;
+  border: 1px solid var(--line);
   padding: 9px 14px;
-  background: #fff;
+  background: var(--bg-raised);
   border-radius: 7px;
   cursor: pointer;
-  color: #252b22;
+  color: var(--ink);
 }
 .source-dialog button[aria-pressed="true"] {
-  background: #283126;
+  background: var(--ink);
   color: white;
 }
 .source-preview-device {
@@ -222,13 +227,13 @@
   max-width: 390px;
 }
 .source-dialog > footer label {
-  font-size: 11px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   gap: 12px;
 }
 .source-dialog > footer input {
-  border: 1px solid #d4dacf;
+  border: 1px solid var(--line);
   padding: 9px;
   border-radius: 6px;
   color: inherit;
@@ -236,12 +241,12 @@
 }
 .source-dialog > footer small {
   display: block;
-  color: #737e6b;
-  font-size: 10px;
+  color: var(--ink-3);
+  font-size: 12px;
   margin-top: 5px;
 }
 .source-dialog .source-use {
-  background: #25321f;
+  background: var(--ink);
   color: white;
   display: flex;
   align-items: center;
@@ -300,29 +305,32 @@
   }
 }
 .source-collection-tabs {
-  display: flex;
-  gap: 6px;
+  display: inline-flex;
+  gap: 2px;
   flex-wrap: wrap;
   margin: 26px 0 0;
-  border-bottom: 1px solid #d6dbd3;
-  padding-bottom: 12px;
+  padding: 2px;
+  border-radius: 8px;
+  background: var(--bg-strong);
 }
 .source-collection-tabs button {
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--radius);
   background: transparent;
-  padding: 11px 17px;
-  color: #66715f;
-  font-size: 12px;
+  padding: 4px 12px;
+  min-height: 28px;
+  color: var(--ink-3);
+  font-size: 14px;
   cursor: pointer;
 }
 .source-collection-tabs button[aria-pressed="true"] {
-  color: white;
-  background: #252e21;
+  color: var(--ink);
+  background: var(--bg-raised);
+  box-shadow: 0 1px 2px rgba(16, 16, 16, 0.08);
 }
 .source-collection-context {
-  color: #63705a;
-  font-size: 13px;
+  color: var(--ink-3);
+  font-size: 14px;
   line-height: 1.7;
   margin: 18px 0 0;
 }

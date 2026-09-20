@@ -1,8 +1,8 @@
 .layout-library {
   margin: 20px 0;
   padding: 16px 0;
-  border-top: 1px solid #e4e1d9;
-  border-bottom: 1px solid #e4e1d9;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   min-width: 0;
 }
 .layout-library-heading {
@@ -12,39 +12,39 @@
   gap: 10px;
 }
 .layout-library-heading strong {
-  font-size: 13px;
-  color: #30392f;
+  font-size: 14px;
+  color: var(--ink);
 }
 .layout-library-heading > span {
-  font-size: 10px;
+  font-size: 12px;
   white-space: nowrap;
-  color: #6a7564;
-  background: #edf2e9;
+  color: var(--ink-3);
+  background: var(--bg);
   border-radius: 12px;
   padding: 4px 7px;
 }
 .layout-library-intro,
 .layout-library-footnote {
-  font-size: 10px !important;
+  font-size: 12px !important;
   line-height: 1.65 !important;
-  color: #74766e;
+  color: var(--ink-3);
   margin: 10px 0 14px;
 }
 .layout-library > label {
   display: grid !important;
   gap: 6px;
-  font-size: 11px !important;
+  font-size: 12px !important;
   margin-top: 10px !important;
 }
 .layout-library input,
 .layout-library select {
   min-width: 0;
-  font-size: 12px !important;
+  font-size: 13px !important;
 }
 .layout-library-viewports {
   display: flex;
   gap: 3px;
-  background: #eeeee8;
+  background: var(--bg);
   padding: 3px;
   border-radius: 7px;
   margin: 14px 0 12px;
@@ -56,13 +56,13 @@
   border: 0;
   border-radius: 5px;
   padding: 7px 4px;
-  font-size: 10px;
+  font-size: 12px;
   text-transform: capitalize;
-  color: #6e7268;
+  color: var(--ink-3);
   cursor: pointer;
 }
 .layout-library-viewports > button[aria-pressed="true"] {
-  color: #2f4b37;
+  color: var(--ink-2);
   background: white;
   box-shadow: 0 1px 3px #0001;
 }
@@ -71,12 +71,12 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 6px;
-  color: #777c70;
-  font-size: 9px;
+  color: var(--ink-3);
+  font-size: 11px;
   margin-bottom: 10px;
 }
 .layout-library-count > span:last-child {
-  color: #3a5940;
+  color: var(--ink-2);
 }
 .layout-library-grid {
   display: grid;
@@ -95,7 +95,7 @@
   align-items: stretch;
   gap: 7px;
   padding: 9px;
-  border: 1px solid #dddeda;
+  border: 1px solid var(--line);
   background: white;
   border-radius: 8px;
   text-align: left;
@@ -106,34 +106,34 @@
     box-shadow 0.15s;
 }
 .layout-library-card:hover {
-  border-color: #90a78d;
+  border-color: var(--line-strong);
 }
 .layout-library-card[aria-pressed="true"] {
-  border-color: #3e5d44;
+  border-color: var(--ink);
   box-shadow: 0 0 0 1px #3e5d44;
 }
 .layout-library-card:focus-visible,
 .layout-library-viewports > button:focus-visible {
-  outline: 3px solid #8aaf8a;
+  outline: 3px solid var(--line-strong);
   outline-offset: 2px;
 }
 .layout-library-card > strong {
-  font-size: 11px;
-  color: #333b32;
+  font-size: 12px;
+  color: var(--ink);
   line-height: 1.4;
 }
 .layout-library-card > small {
-  font-size: 9px;
-  color: #787b72;
+  font-size: 11px;
+  color: var(--ink-3);
   line-height: 1.5;
   min-height: 40px;
 }
 .layout-library-category {
-  font-size: 8px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.55px;
-  color: #718368;
-  border-top: 1px solid #eef0ea;
+  color: var(--ink-3);
+  border-top: 1px solid var(--line);
   padding-top: 6px;
 }
 .layout-miniature-frame {
@@ -142,8 +142,8 @@
   justify-content: center;
   width: 100%;
   height: 110px;
-  background: #f1f3ed;
-  border: 1px solid #e5e9df;
+  background: var(--bg);
+  border: 1px solid var(--line);
   border-radius: 5px;
   padding: 6px;
   overflow: hidden;
@@ -171,15 +171,15 @@
   min-height: 0;
   padding: 4px;
   border-radius: 3px;
-  background: #fff;
-  border: 1px solid #dfe5d8;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
   overflow: hidden;
 }
 .layout-miniature-slot > span {
   font-size: 6px;
   line-height: 1;
-  font-weight: 600;
-  color: #687961;
+  font-weight: 500;
+  color: var(--ink-3);
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -190,25 +190,25 @@
   height: 2px;
   min-height: 2px;
   width: 75%;
-  background: #d5ddce;
+  background: var(--bg-strong);
   border-radius: 2px;
 }
 .layout-miniature-slot > i:last-child {
   width: 45%;
 }
 .layout-slot-heading {
-  background: #e0e9d8;
-  border-color: #cbd9c0;
+  background: var(--bg-sunken);
+  border-color: var(--line);
 }
 .layout-slot-heading > span {
-  color: #455d3d;
+  color: var(--ink-2);
 }
 .layout-slot-widgets {
-  background: #eef2e8;
+  background: var(--bg);
 }
 .layout-slot-actions {
   background: #5d7551;
-  border-color: #5d7551;
+  border-color: var(--line-strong);
 }
 .layout-slot-actions > span {
   color: #fff;
@@ -225,12 +225,12 @@
 .layout-library-empty {
   padding: 16px 10px;
   text-align: center;
-  background: #f4f5f0;
+  background: var(--bg);
   border-radius: 7px;
 }
 .layout-library-empty button {
-  font-size: 11px;
-  border: 1px solid #d4dbce;
+  font-size: 12px;
+  border: 1px solid var(--line);
   background: white;
   border-radius: 5px;
   padding: 8px;

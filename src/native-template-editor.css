@@ -1,7 +1,7 @@
 .native-editor {
   height: 100vh;
-  background: #f3f2ee;
-  color: #272925;
+  background: var(--bg);
+  color: var(--ink);
   font-family: var(--font-sans, sans-serif);
   display: flex;
   flex-direction: column;
@@ -11,8 +11,8 @@
   align-items: center;
   gap: 14px;
   padding: 14px 22px;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--line);
 }
 .native-editor header label {
   display: flex;
@@ -30,11 +30,11 @@
 .native-editor input,
 .native-editor textarea {
   font: inherit;
-  border: 1px solid #d1d3cc;
+  border: 1px solid var(--line);
   border-radius: 7px;
   padding: 10px;
-  background: #fff;
-  color: #272925;
+  background: var(--bg-raised);
+  color: var(--ink);
 }
 .native-editor button {
   cursor: pointer;
@@ -52,21 +52,21 @@
 .native-editor aside {
   padding: 24px;
   overflow: auto;
-  background: #fafaf7;
-  border-right: 1px solid #ddd;
+  background: var(--bg);
+  border-right: 1px solid var(--line);
 }
 .native-editor h1 {
   font-size: 22px;
   line-height: 1.2;
 }
 .native-editor p {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 .native-editor label {
   display: grid;
   gap: 8px;
-  font-size: 12px;
+  font-size: 13px;
   margin: 18px 0;
 }
 .native-editor aside input,
@@ -81,12 +81,12 @@
 }
 .native-editor a {
   color: #5a408d;
-  font-size: 12px;
+  font-size: 13px;
 }
 .native-editor .native-note {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--line);
   padding-top: 18px;
-  color: #65665f;
+  color: var(--ink-3);
 }
 .native-editor main {
   overflow: auto;
@@ -97,7 +97,7 @@
   height: 100%;
   min-height: 600px;
   margin: auto;
-  background: #fff;
+  background: var(--bg-raised);
   box-shadow: 0 8px 30px #0001;
   transition: width 0.2s;
 }
@@ -125,7 +125,7 @@
   color: #862d23;
 }
 .native-editor header [role="status"] {
-  font-size: 12px;
+  font-size: 13px;
 }
 .native-editor :focus-visible {
   outline: 2px solid #7053a3;

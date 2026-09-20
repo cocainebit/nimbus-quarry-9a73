@@ -15,8 +15,13 @@ The screenshot documents the public wireframe interface; the authenticated curre
 Quiet warm-gray workspace, white panels, fine borders, dense controls and generous canvas. Top workflow tabs, floating controls, page artboards, small utilitarian type. Own Plotform identity and original content.
 
 ## Design Tokens
-Observed homepage tokens: Geist Variable, background #F1F0EE, ink #161616, bright accent #FF00F4, secondary border #DCDBD9, 4px spacing unit, 6–8px control radius. Public canvas screenshot uses a neutral background, monochrome wireframes, compact top tabs and device controls.
-Implementation approximations: 224px dashboard navigation, 280px inspector, 60px toolbar, 14px body, 12px metadata, 36px dashboard title. Magenta is reserved for generation and selection; dark buttons for primary workspace actions.
+Measured from the live relume.ai DOM on 2026-09-20 (computed styles and its `:root` variables, read with Playwright). They live as custom properties at the top of `src/style.css`.
+- Type: Geist Variable. Headings weight 400 with tracking -0.03em at 56px and -0.02em at 24 to 40px. Body 14px/1.5, lead 18px, meta 12px. Kickers are uppercase mono in the accent.
+- Neutrals: #101010 ink, #343434, #5c5c5c, #8a8a8a, #b9b9b9 disabled, #e4e2df, #ecebe9, #f1f0ee ground, #fff raised.
+- Lines: `rgba(27,25,25,.1)` hairline. States: hover `rgba(22,22,22,.08)`, surface `.06`, press `.12`.
+- Accent: #ff00f4, hover #ff29f6, tints #ffcfff and #ff9fff, subtle `rgba(255,223,255,.5)`, text-safe #cf00c0.
+- Controls: 32px high, 6px radius, 14px weight 400 labels. Primary is solid accent with white text, secondary is transparent with a hairline, fields are filled with the surface tint and turn white with an accent border on focus. Composer and dialogs use a 16px radius; tab groups are a #e4e2df pill with a white active segment.
+The signed-in Relume app is still uninspected: its login sits behind a Cloudflare human check. App-generated shells (`app-workspace.css`, `app-overview-layout.css`) keep their own theme variables and are not part of this theme.
 
 ## Components
 Dashboard: workspace navigation, brief composer, project cards with genuine miniature previews, search and template starters. Editor: project header, Sitemap / Wireframes / Style guide / Design tabs, draggable page nodes and edges, property inspector, zoom controls, responsive preview and export.
