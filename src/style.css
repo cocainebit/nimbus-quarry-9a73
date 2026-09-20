@@ -3057,3 +3057,181 @@ button {
     inset: -24px 0;
   }
 }
+
+/* Form system, after Relume's site settings: section cards on the ground colour,
+   12px labels over filled 32px fields, mono chips, 20px page titles. */
+.settings-block {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(241, 240, 238, 0.9);
+  padding: 32px;
+}
+.settings-eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.settings-block-head h2 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+}
+.settings-block-head p {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.settings-state,
+.provider-name em,
+.service-state {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.settings-state {
+  border: 0;
+  border-radius: 4px;
+  padding: 1px 6px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.settings-state.on {
+  background: #d5f89d;
+}
+.provider-name em {
+  background: #d5f89d;
+  color: var(--ink);
+  padding: 1px 6px;
+}
+.provider-card,
+.service-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: none;
+}
+.provider-card:hover {
+  background: var(--surface);
+}
+.provider-card.selected {
+  border-color: transparent;
+  background: #ffd7ff;
+  box-shadow: none;
+}
+.provider-name,
+.service-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+.provider-desc,
+.service-card p {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.provider-meta,
+.field-note {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.settings-field label,
+.modal label,
+.inspector label,
+.style-guide label,
+.backend-form label,
+.backend-panel > label {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--ink-2);
+}
+.field-row input,
+.modal label input,
+.modal label select,
+.modal label textarea,
+.inspector label input,
+.inspector label select,
+.inspector label textarea,
+.backend-form label input:not([type="checkbox"]),
+.backend-form label select,
+.backend-panel > label input {
+  margin-top: 4px;
+  min-height: 32px;
+  padding: 5px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink);
+}
+.field-row input {
+  margin-top: 0;
+}
+.field-row input:focus-visible,
+.modal label :is(input, select, textarea):focus,
+.inspector label :is(input, select, textarea):focus,
+.backend-form label :is(input, select):focus,
+.backend-panel > label input:focus {
+  border-color: var(--accent);
+  background: var(--bg-raised);
+  outline: none;
+  box-shadow: none;
+}
+.model-list {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+}
+.model-list li button.selected {
+  background: #ffd7ff;
+  color: var(--ink);
+}
+.model-list li button.selected em {
+  color: var(--ink-2);
+}
+.backend-panel {
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 0 0 1px var(--line), 0 24px 80px rgba(16, 16, 16, 0.2);
+}
+.backend-panel h2 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+}
+.backend-panel h3 {
+  font-size: 14px;
+  font-weight: 500;
+}
+.backend-panel p {
+  font-size: 14px;
+}
+.backend-panel button,
+.backend-page button {
+  min-height: 32px;
+  padding: 5px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.modal {
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--line), 0 24px 80px rgba(16, 16, 16, 0.2);
+}
+.modal h2 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+.modal-symbol {
+  padding: 8px;
+  border-radius: 8px;
+  background: #ffd7ff;
+}
