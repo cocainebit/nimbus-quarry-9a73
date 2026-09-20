@@ -802,7 +802,7 @@ export default function App() {
           onClick={() => !busy && setModal(false)}
         >
           <form
-            className="modal"
+            className="modal new-project"
             role="dialog"
             aria-modal="true"
             aria-labelledby="new-title"
@@ -821,138 +821,153 @@ export default function App() {
             >
               <X size={20} />
             </button>
-            <span className="modal-symbol">
-              <Sparkles size={24} />
-            </span>
-            <h2 id="new-title">Make room for your next idea.</h2>
-            <p>
-              Choose a working application or a marketing website. Each starts
-              with its own structure.
-            </p>
-            <label>
-              Project type
-              <select
-                aria-label="Project type"
-                value={projectType}
-                onChange={(e) => {
-                  setProjectType(e.target.value as ProjectType);
-                  setTypeChosen(true);
-                }}
-              >
-                <option value="portal">
-                  Client portal · projects, requests & documents
-                </option>
-                <option value="crm">
-                  CRM · contacts & sales opportunities
-                </option>
-                <option value="tracker">Workspace · projects & tasks</option>
-                <option value="website">
-                  Marketing website · pages & content
-                </option>
-              </select>
-            </label>
-            <label>
-              Project name
-              <input
-                autoFocus
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                maxLength={100}
-                placeholder="Your next big thing"
-              />
-            </label>
-            <label>
-              {projectType === "website" ? "Website brief" : "App brief"}
-              <textarea
-                value={brief}
-                onChange={(e) => {
-                  setBrief(e.target.value);
-                  if (!typeChosen)
-                    setProjectType(inferProjectType(e.target.value));
-                  if (!starterChosen)
-                    setWebsiteStarter(inferWebsiteStarter(e.target.value));
-                }}
-                maxLength={6000}
-                placeholder="Who is it for? What should it say? Include ‘Pages: Home, About, Contact’ to define your structure."
-              />
-            </label>
-            {projectType === "website" ? (
-              <>
+            <header className="np-head">
+              <h2 id="new-title">Make room for your next idea.</h2>
+              <p>
+                Choose a working application or a marketing website. Each starts
+                with its own structure.
+              </p>
+            </header>
+            <div className="np-body">
+              <div className="np-grid">
                 <label>
-                  Website starter
+                  Project type
                   <select
-                    aria-label="Website starter"
-                    value={websiteStarter}
+                    aria-label="Project type"
+                    value={projectType}
                     onChange={(e) => {
-                      setWebsiteStarter(e.target.value);
-                      setStarterChosen(true);
+                      setProjectType(e.target.value as ProjectType);
+                      setTypeChosen(true);
                     }}
                   >
-                    {websiteStarters.map((s) => (
-                      <option key={s.id} value={s.id}>
-                        {s.name}
-                      </option>
-                    ))}
+                    <option value="portal">
+                      Client portal · projects, requests & documents
+                    </option>
+                    <option value="crm">
+                      CRM · contacts & sales opportunities
+                    </option>
+                    <option value="tracker">
+                      Workspace · projects & tasks
+                    </option>
+                    <option value="website">
+                      Marketing website · pages & content
+                    </option>
                   </select>
                 </label>
-                <p className="mode-note">
-                  {
-                    websiteStarters.find((s) => s.id === websiteStarter)
-                      ?.description
-                  }
-                </p>
                 <label>
-                  Generation mode
-                  <select
-                    value={mode}
-                    onChange={(e) => setMode(e.target.value as "demo" | "ai")}
-                  >
-                    <option value="demo">
-                      Curated starter — no AI required
-                    </option>
-                    <option value="ai">
-                      AI generation —{" "}
-                      {connected
-                        ? `${providerName} connected`
-                        : `requires ${providerName} setup`}
-                    </option>
-                  </select>
+                  Project name
+                  <input
+                    autoFocus
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    maxLength={100}
+                    placeholder="Your next big thing"
+                  />
                 </label>
-                <small className="mode-note">
-                  {mode === "demo"
-                    ? "Uses the selected design and editable sample content with your page names. This is a curated starter, not AI generation."
-                    : "Uses your configured local model to create a plan and original copy."}
-                </small>
-              </>
-            ) : (
-              <p className="mode-note">
-                Creates a working{" "}
-                {projectType === "tracker" ? "project workspace" : projectType}{" "}
-                with member accounts, related database collections, and
-                connected screens. Your brief is saved for further development;
-                this installs the selected starter rather than generating custom
-                business logic.{" "}
-                {workspace !== "server" &&
-                  "Sign in on the next step to save the app and its database."}
-              </p>
-            )}
-            {error && (
-              <p role="alert" className="error">
-                {error}
-              </p>
-            )}
-            <button className="primary full" disabled={busy}>
-              {busy
-                ? "Creating your project…"
-                : projectType !== "website"
-                  ? workspace === "server"
-                    ? "Create working app"
-                    : "Sign in & create app"
-                  : mode === "demo"
-                    ? "Create demo website"
-                    : "Generate website"}
-              <Sparkles size={16} />
-            </button>
+              </div>
+              <label>
+                {projectType === "website" ? "Website brief" : "App brief"}
+                <textarea
+                  value={brief}
+                  onChange={(e) => {
+                    setBrief(e.target.value);
+                    if (!typeChosen)
+                      setProjectType(inferProjectType(e.target.value));
+                    if (!starterChosen)
+                      setWebsiteStarter(inferWebsiteStarter(e.target.value));
+                  }}
+                  maxLength={6000}
+                  placeholder="Who is it for? What should it say? Include ‘Pages: Home, About, Contact’ to define your structure."
+                />
+              </label>
+              {projectType === "website" ? (
+                <div className="np-grid">
+                  <div>
+                    <label>
+                      Website starter
+                      <select
+                        aria-label="Website starter"
+                        value={websiteStarter}
+                        onChange={(e) => {
+                          setWebsiteStarter(e.target.value);
+                          setStarterChosen(true);
+                        }}
+                      >
+                        {websiteStarters.map((s) => (
+                          <option key={s.id} value={s.id}>
+                            {s.name}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <p className="mode-note">
+                      {
+                        websiteStarters.find((s) => s.id === websiteStarter)
+                          ?.description
+                      }
+                    </p>
+                  </div>
+                  <div>
+                    <label>
+                      Generation mode
+                      <select
+                        value={mode}
+                        onChange={(e) =>
+                          setMode(e.target.value as "demo" | "ai")
+                        }
+                      >
+                        <option value="demo">
+                          Curated starter — no AI required
+                        </option>
+                        <option value="ai">
+                          AI generation —{" "}
+                          {connected
+                            ? `${providerName} connected`
+                            : `requires ${providerName} setup`}
+                        </option>
+                      </select>
+                    </label>
+                    <small className="mode-note">
+                      {mode === "demo"
+                        ? "Uses the selected design and editable sample content with your page names. This is a curated starter, not AI generation."
+                        : "Uses your configured local model to create a plan and original copy."}
+                    </small>
+                  </div>
+                </div>
+              ) : (
+                <p className="mode-note">
+                  Creates a working{" "}
+                  {projectType === "tracker"
+                    ? "project workspace"
+                    : projectType}{" "}
+                  with member accounts, related database collections, and
+                  connected screens. Your brief is saved for further
+                  development; this installs the selected starter rather than
+                  generating custom business logic.{" "}
+                  {workspace !== "server" &&
+                    "Sign in on the next step to save the app and its database."}
+                </p>
+              )}
+              {error && (
+                <p role="alert" className="error">
+                  {error}
+                </p>
+              )}
+            </div>
+            <footer className="np-foot">
+              <button className="primary" disabled={busy}>
+                {busy
+                  ? "Creating your project…"
+                  : projectType !== "website"
+                    ? workspace === "server"
+                      ? "Create working app"
+                      : "Sign in & create app"
+                    : mode === "demo"
+                      ? "Create demo website"
+                      : "Generate website"}
+                <Sparkles size={16} />
+              </button>
+            </footer>
           </form>
         </div>
       )}
