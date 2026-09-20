@@ -16,10 +16,11 @@
   color: var(--accent);
 }
 .source-collection h2 {
-  font-size: clamp(30px, 4vw, 52px);
+  font-size: clamp(24px, 2.6vw, 32px);
   font-weight: 400;
   letter-spacing: -0.02em;
-  margin: 12px 0;
+  line-height: 1.25;
+  margin: 8px 0;
 }
 .source-collection > header p {
   font-size: 14px;
@@ -38,38 +39,44 @@
 }
 .source-toolbar {
   display: flex;
-  gap: 14px;
-  margin: 28px 0;
+  gap: 8px;
+  margin: 16px 0 24px;
 }
 .source-toolbar label {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
   flex: 1;
-  background: white;
-  border: 1px solid var(--line);
-  padding: 0 15px;
-  border-radius: 8px;
+  min-height: 32px;
+  background: var(--surface);
+  border: 1px solid transparent;
+  padding: 0 8px;
+  border-radius: var(--radius);
+  color: var(--ink-2);
 }
 .source-toolbar input {
   width: 100%;
-  padding: 14px 0;
+  padding: 5px 0;
   background: transparent;
   border: 0;
   outline: 0;
-  color: inherit;
+  color: var(--ink);
+  font-size: 14px;
 }
 .source-toolbar select {
-  padding: 12px;
+  width: auto;
+  min-height: 32px;
+  padding: 0 10px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: white;
+  border-radius: var(--radius);
+  background: transparent;
   color: inherit;
+  font-size: 14px;
 }
 .source-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 34px 24px;
+  gap: 32px 16px;
 }
 .source-card {
   min-width: 0;
@@ -81,40 +88,49 @@
   aspect-ratio: 1.48;
   border: 1px solid var(--line);
   background: var(--bg-sunken);
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  padding: 0;
+  padding: 8px;
 }
 .source-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
-  transition: transform 0.35s;
+  border-radius: 12px;
+  background: var(--bg-raised);
+}
+.source-toolbar label:focus-within {
+  background: var(--bg-raised);
+  border-color: var(--accent);
+}
+.source-cover:hover {
+  border-color: var(--line-strong);
 }
 .source-cover:hover img {
-  transform: scale(1.025);
+  transform: none;
 }
 .source-cover > span {
   position: absolute;
   bottom: 16px;
   right: 16px;
-  padding: 10px 15px;
-  border-radius: 30px;
+  padding: 4px 10px;
+  min-height: 28px;
+  border-radius: var(--radius);
   background: var(--bg-raised);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   color: var(--ink);
   font-size: 13px;
-  box-shadow: 0 3px 15px #0002;
+  box-shadow: 0 0 0 1px var(--line), 0 2px 6px rgba(16, 16, 16, 0.08);
 }
 .source-card-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 12px;
 }
 .source-card-meta small {
   font-size: 12px;
@@ -124,10 +140,11 @@
   color: var(--ink-3);
 }
 .source-card h3 {
-  font-size: 25px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
   letter-spacing: -0.02em;
-  margin: 5px 0;
+  margin: 4px 0;
 }
 .source-card-meta > span {
   font-size: 12px;

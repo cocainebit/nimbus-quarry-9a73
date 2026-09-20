@@ -340,6 +340,7 @@ export default function App() {
           </button>
         </nav>
         <div className="sidebar-bottom">
+          {workspace === "server" && <AccountChip userId={user?.id} />}
           <button
             className="profile"
             title={
@@ -367,27 +368,6 @@ export default function App() {
         </div>
       </aside>
       <main className="dashboard-main">
-        <header className="dash-top">
-          <span>
-            Workspace <span className="slash">/</span>{" "}
-            {view === "projects"
-              ? "All projects"
-              : view === "settings"
-                ? "Settings"
-                : "Starter templates"}
-          </span>
-          <span className="dash-top-right">
-            {workspace === "server" && <AccountChip userId={user?.id} />}
-            <span className="subtle">
-              <span className="status-dot" />
-              {connected
-                ? "AI connected"
-                : workspace === "server"
-                  ? "Server workspace"
-                  : "Local workspace"}
-            </span>
-          </span>
-        </header>
         <div className="dashboard-content">
           {view === "settings" && (
             <Suspense
@@ -561,31 +541,43 @@ export default function App() {
                             className="project-preview"
                             onClick={() => setActive(p.id)}
                             aria-label={`Open ${p.name}`}
-                            style={{ background: p.theme.accent }}
                           >
-                            <div className="mini-site">
-                              {p.nativeTemplate ? (
-                                <img
-                                  alt={`${p.name} source design`}
-                                  src={`/templates/${p.nativeTemplate.id}/plotform-preview.jpg`}
-                                  style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
-                                    objectPosition: "top",
-                                    pointerEvents: "none",
-                                  }}
-                                />
-                              ) : (
-                                <SitePage project={p} page={p.pages[0]} />
-                              )}
-                            </div>
+                            <span className="project-tile">
+                              <div className="mini-site">
+                                {p.nativeTemplate ? (
+                                  <img
+                                    alt={`${p.name} source design`}
+                                    src={`/templates/${p.nativeTemplate.id}/plotform-preview.jpg`}
+                                    style={{
+                                      width: "100%",
+                                      height: "100%",
+                                      objectFit: "cover",
+                                      objectPosition: "top",
+                                      pointerEvents: "none",
+                                    }}
+                                  />
+                                ) : (
+                                  <SitePage project={p} page={p.pages[0]} />
+                                )}
+                              </div>
+                            </span>
+                            <span
+                              className="project-swatch"
+                              style={{ background: p.theme.accent }}
+                            />
                             <span className="preview-open">
                               Open project <ArrowUpRight size={15} />
                             </span>
                           </button>
                           <div className="project-meta">
                             <div>
+                              <span className="project-kind">
+                                {p.app ? (
+                                  <LayoutGrid size={14} />
+                                ) : (
+                                  <LayoutTemplate size={14} />
+                                )}
+                              </span>
                               <button
                                 className="text-btn"
                                 onClick={() => setActive(p.id)}

@@ -370,14 +370,14 @@ small {
 }
 .dashboard-content {
   max-width: 1370px;
-  padding: 48px 58px 30px;
+  padding: 48px 32px 24px;
   margin: auto;
 }
 .heading-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 .heading-row .eyebrow {
   font-family: var(--mono);
@@ -394,24 +394,24 @@ small {
   letter-spacing: 0.04em;
 }
 .dashboard h1 {
-  font-size: clamp(36px, 4vw, 56px);
+  font-size: clamp(28px, 3vw, 40px);
   line-height: 1.2;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   font-weight: 400;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .intro {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--ink-2);
-  max-width: 760px;
-  margin-bottom: 32px;
+  max-width: 720px;
+  margin-bottom: 24px;
 }
 .brief-composer {
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--bg-raised);
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 20px;
+  border-radius: 12px;
+  padding: 16px;
 }
 .composer-label {
   display: flex;
@@ -509,19 +509,20 @@ small {
   background: var(--hover);
 }
 .project-section {
-  margin-top: 47px;
+  margin-top: 48px;
 }
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 .section-header h2 {
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
   letter-spacing: -0.02em;
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }
 .section-header h2 > span {
   font-family: var(--mono);
@@ -536,7 +537,7 @@ small {
 }
 .section-header p {
   font-size: 14px;
-  color: var(--ink-4);
+  color: var(--ink-3);
   margin: 0;
 }
 .project-actions {
@@ -577,28 +578,32 @@ small {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 16px;
 }
 .project-card {
-  border: 0;
-  box-shadow: inset 0 0 0 1px var(--line);
-  border-radius: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1px;
   overflow: hidden;
-  background: var(--bg-raised);
+  background: var(--bg);
+  transition: border-color 0.15s;
 }
 .project-preview {
   width: 100%;
-  height: 195px;
   position: relative;
-  overflow: hidden;
-  display: block;
-  padding: 22px 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  background: var(--bg-sunken);
+  border-radius: 6px 6px 0 0;
+  container-type: inline-size;
 }
 .mini-site {
   width: 1000px;
-  transform: scale(0.24);
+  scale: tan(atan2(100cqw, 1000px));
+  transform: none;
   transform-origin: top left;
-  box-shadow: 0 5px 30px #0003;
   pointer-events: none;
 }
 .mini-site .site-block h2 {
@@ -612,16 +617,16 @@ small {
 }
 .preview-open {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
+  bottom: 32px;
+  right: 16px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: white;
-  border-radius: 5px;
-  padding: 8px 10px;
-  font-size: 12px;
-  box-shadow: 0 2px 5px #0001;
+  gap: 6px;
+  background: var(--bg-raised);
+  border-radius: var(--radius);
+  padding: 4px 10px;
+  font-size: 13px;
+  box-shadow: 0 0 0 1px var(--line), 0 2px 6px rgba(16, 16, 16, 0.08);
   opacity: 0;
   transition: opacity 0.15s;
 }
@@ -629,71 +634,122 @@ small {
 .project-preview:focus-visible .preview-open {
   opacity: 1;
 }
+.project-card:hover {
+  border-color: var(--line-strong);
+}
+.project-tile {
+  display: block;
+  height: 211px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--bg-raised);
+}
+.project-swatch {
+  display: block;
+  height: 10px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.project-meta > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.project-kind {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--bg-raised);
+}
+.card-actions .icon-btn {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+}
+.project-meta small span {
+  margin: 0 3px;
+}
 .project-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 14px;
-  gap: 5px;
+  min-height: 34px;
+  padding: 4px 4px 4px 8px;
+  gap: 12px;
+  border-top: 1px solid var(--line);
 }
 .text-btn {
   padding: 0;
   font-size: 14px;
   font-weight: 500;
+  line-height: 20px;
   text-align: left;
+  white-space: nowrap;
 }
 .project-meta small {
   display: block;
   font-size: 12px;
-  color: var(--ink-4);
-  margin-top: 2px;
+  line-height: 18px;
+  color: var(--ink-2);
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .project-meta small span {
   margin: 0 5px;
 }
 .card-actions {
   display: flex;
-  color: var(--ink-4);
+  gap: 2px;
+  color: var(--ink);
 }
 .new-card {
   border: 1px dashed var(--line-strong);
-  border-radius: 12px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  min-height: 270px;
+  gap: 8px;
+  min-height: 240px;
   background: transparent;
 }
 .new-card > span {
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  color: var(--ink-4);
+  width: 80px;
+  height: 80px;
+  margin-bottom: 8px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink-2);
 }
 .new-card strong {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
 }
 .new-card small {
   font-size: 12px;
-  color: var(--ink-4);
+  color: var(--ink-2);
 }
 .new-card:hover {
   background: var(--surface);
 }
 .workflow-note {
   border-top: 1px solid var(--line);
-  margin-top: 36px;
-  padding-top: 20px;
+  margin-top: 48px;
+  padding-top: 16px;
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  color: var(--ink-4);
+  color: var(--ink-3);
 }
 .workflow-note > span {
   display: flex;
@@ -706,11 +762,11 @@ small {
   color: var(--ink-4);
 }
 .template-card {
-  padding: 25px;
+  padding: 16px;
   text-align: left;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--bg-sunken);
+  background: var(--bg);
 }
 .template-card h3 {
   margin-top: 22px;
@@ -1399,9 +1455,6 @@ small {
   .project-preview {
     height: 235px;
   }
-  .mini-site {
-    transform: scale(0.3);
-  }
 }
 @media (max-width: 1200px) {
   .dashboard-content {
@@ -1423,9 +1476,6 @@ small {
   .project-preview {
     padding: 20px 15px 0;
     height: 170px;
-  }
-  .mini-site {
-    transform: scale(0.2);
   }
   .card-actions {
     flex-direction: column;
@@ -1488,9 +1538,6 @@ small {
   }
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .mini-site {
-    transform: scale(0.25);
   }
   .project-preview {
     height: 200px;
@@ -1571,9 +1618,6 @@ small {
   }
   .project-preview {
     height: 210px;
-  }
-  .mini-site {
-    transform: scale(0.25);
   }
   .section-header h2 {
     font-size: 16px;
@@ -2602,15 +2646,13 @@ small {
   animation-delay: 0.2s;
 }
 .project-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--line);
-  box-shadow: 0 10px 30px #19171410;
+  border-color: var(--line-strong);
 }
 .project-card .mini-site {
   transition: transform var(--slow) var(--ease);
 }
 .project-card:hover .mini-site {
-  transform: scale(0.245) translateY(-6px);
+  transform: translateY(-24px);
 }
 
 /* The selected navigation item grows a rule rather than blinking into place. */
