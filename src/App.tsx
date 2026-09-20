@@ -7,13 +7,13 @@ import {
   Layers,
   LayoutGrid,
   Sparkles,
-  ChevronDown,
   Copy,
   Trash2,
   X,
   Folder,
   LayoutTemplate,
   SlidersHorizontal,
+  Server,
 } from "lucide-react";
 import { demoProject, normalizeProject, type Project } from "./model";
 import { SitePage } from "./blocks";
@@ -288,67 +288,82 @@ export default function App() {
   return (
     <div className="dashboard">
       <aside className="sidebar">
-        <a className="brand" href="#" onClick={(e) => e.preventDefault()}>
-          <span className="brand-mark">
-            <Layers size={21} />
-          </span>
-          plotform<span className="beta">BETA</span>
-        </a>
-        <div className="workspace">
-          <span className="avatar">S</span>
-          <div>
-            Personal workspace
-            <small>
-              {workspace === "server" ? "Server workspace" : "Local workspace"}
-            </small>
-          </div>
-          <ChevronDown size={14} />
+        <div className="sidebar-head">
+          <a className="brand" href="#" onClick={(e) => e.preventDefault()}>
+            <span className="brand-mark">
+              <Layers size={15} />
+            </span>
+            Plotform<span className="beta">BETA</span>
+          </a>
+          <button className="primary sidebar-create" onClick={() => start()}>
+            <Plus size={16} />
+            Create project
+          </button>
         </div>
-        <div className="nav-label">WORKSPACE</div>
-        <button
-          className={view === "projects" ? "nav-item selected" : "nav-item"}
-          onClick={() => setView("projects")}
-        >
-          <Folder size={17} />
-          All projects<span>{projects.length}</span>
-        </button>
-        <button
-          className={view === "templates" ? "nav-item selected" : "nav-item"}
-          onClick={() => setView("templates")}
-        >
-          <LayoutTemplate size={17} />
-          Starter templates
-        </button>
-        <button className="nav-item" onClick={() => setAccountOpen(true)}>
-          Account & server projects
-        </button>
-        <button
-          className={view === "settings" ? "nav-item selected" : "nav-item"}
-          onClick={() => setView("settings")}
-        >
-          <SlidersHorizontal size={17} />
-          Settings
-        </button>
+        <label className="sidebar-search">
+          <Search size={16} />
+          <input
+            aria-label="Find a project"
+            placeholder="Search"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setView("projects");
+            }}
+          />
+        </label>
+        <nav className="sidebar-nav" aria-label="Workspace">
+          <button
+            className={view === "projects" ? "nav-item selected" : "nav-item"}
+            onClick={() => setView("projects")}
+          >
+            <Folder size={16} />
+            All projects<span>{projects.length}</span>
+          </button>
+          <button
+            className={view === "templates" ? "nav-item selected" : "nav-item"}
+            onClick={() => setView("templates")}
+          >
+            <LayoutTemplate size={16} />
+            Starter templates
+          </button>
+          <button className="nav-item" onClick={() => setAccountOpen(true)}>
+            <Server size={16} />
+            Account & server projects
+          </button>
+          <button
+            className={view === "settings" ? "nav-item selected" : "nav-item"}
+            onClick={() => setView("settings")}
+          >
+            <SlidersHorizontal size={16} />
+            Settings
+          </button>
+        </nav>
         <div className="sidebar-bottom">
-          <div className="local-note">
-            <span className="status-dot" /> Your ideas, your workspace
-            <p>
-              {workspace === "server"
+          <button
+            className="profile"
+            title={
+              workspace === "server"
                 ? "Projects save to your account on this server."
-                : "Projects save in this browser. Sign in to sync them with your account."}
-            </p>
-          </div>
-          <div className="profile">
-            <span className="avatar dark">Y</span>
-            <div>
+                : "Projects save in this browser. Sign in to sync them with your account."
+            }
+            onClick={() => setAccountOpen(true)}
+          >
+            <span className="avatar dark">
+              {(user?.email || "You").slice(0, 2).toUpperCase()}
+            </span>
+            <span className="profile-name">
               {user?.email || "Your workspace"}
-              <small>
-                {workspace === "server"
-                  ? "Server saving enabled"
-                  : "Local drafts"}
-              </small>
-            </div>
-          </div>
+            </span>
+            <span className="profile-plan">
+              {workspace === "server" ? "Server" : "Local"}
+            </span>
+            <span className="profile-status">
+              {workspace === "server"
+                ? "Server saving enabled"
+                : "Local drafts"}
+            </span>
+          </button>
         </div>
       </aside>
       <main className="dashboard-main">
