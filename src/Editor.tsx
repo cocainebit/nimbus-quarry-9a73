@@ -33,7 +33,15 @@ import {
   PanelLeft,
   Layers,
   MousePointer2,
+  Play,
   ExternalLink,
+  Settings2,
+  Undo2,
+  Redo2,
+  Network,
+  LayoutList,
+  Palette,
+  PenTool,
 } from "lucide-react";
 import {
   makeSection,
@@ -228,9 +236,6 @@ export default function Editor({
           >
             <ArrowLeft size={18} />
           </button>
-          <span className="brand-mark small">
-            <Layers size={17} />
-          </span>
           <input
             aria-label="Project name"
             value={project.name}
@@ -249,6 +254,15 @@ export default function Editor({
                 className={view === v ? "active" : ""}
                 onClick={() => setView(v)}
               >
+                {v === "Sitemap" ? (
+                  <Network size={16} />
+                ) : v === "Wireframes" ? (
+                  <LayoutList size={16} />
+                ) : v === "Style guide" ? (
+                  <Palette size={16} />
+                ) : (
+                  <PenTool size={16} />
+                )}
                 {v}
               </button>
             ),
@@ -271,20 +285,29 @@ export default function Editor({
           <button className="secondary" onClick={() => setBackendOpen(true)}>
             App backend
           </button>
-          <button className="secondary" onClick={() => setSettings(true)}>
-            Site settings
+          <button
+            className="secondary square"
+            aria-label="Preview"
+            title="Preview"
+            onClick={() => setPreview(true)}
+          >
+            <Play size={16} />
           </button>
-          <button className="secondary" onClick={() => setPreview(true)}>
-            <ExternalLink size={14} />
-            Preview
+          <button
+            className="secondary square"
+            aria-label="Site settings"
+            title="Site settings"
+            onClick={() => setSettings(true)}
+          >
+            <Settings2 size={16} />
           </button>
           <div className="export-wrap">
             <button
-              className="dark-button"
+              className="primary"
               onClick={() => setExportMenu(!exportMenu)}
             >
-              <Download size={14} />
               Export
+              <Download size={16} />
             </button>
             {exportMenu && (
               <div className="export-menu">
@@ -328,10 +351,10 @@ export default function Editor({
             title="Toggle page inspector"
             onClick={() => setInspector(!inspector)}
           >
-            <PanelLeft size={19} />
+            <PanelLeft size={16} />
           </button>
           <button className="icon-btn" title="Add page" onClick={addPage}>
-            <Plus size={22} />
+            <Plus size={16} />
           </button>
           <button
             className="icon-btn"
@@ -346,7 +369,7 @@ export default function Editor({
               }
             }}
           >
-            <ArrowLeft size={18} />
+            <Undo2 size={16} />
           </button>
           <button
             className="icon-btn"
@@ -362,7 +385,7 @@ export default function Editor({
               }
             }}
           >
-            ↪
+            <Redo2 size={16} />
           </button>
           <span className="rail-bottom">
             <MousePointer2 size={17} />
