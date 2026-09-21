@@ -3669,8 +3669,8 @@ select:not([multiple]) {
   }
 }
 
-/* A placeholder that changes its line: two stacked lines trade places. Timing and
-   colour as measured on Relume's composer (opacity and transform, 0.3s linear). */
+/* A placeholder that changes its line. Each line is typed a character at a time, rests
+   as a sentence, then fades for the next. Colour and size as on Relume's composer. */
 .composer-field {
   position: relative;
   display: grid;
@@ -3680,27 +3680,25 @@ select:not([multiple]) {
 }
 .rotating-placeholder {
   grid-area: 1 / 1;
-  position: relative;
   pointer-events: none;
   margin: 8px 4px;
   font-size: 16px;
   line-height: 1.5;
+  white-space: pre-wrap;
   color: rgba(92, 92, 92, 0.72);
   overflow: hidden;
+  transition: opacity 0.3s linear;
 }
-.rotating-placeholder > span {
-  position: absolute;
-  inset: 0;
-  transition:
-    opacity 0.3s linear,
-    transform 0.3s linear;
-}
-.rotating-placeholder > .back {
+.rotating-placeholder.leaving {
   opacity: 0;
-  transform: translateY(6px);
 }
-@media (prefers-reduced-motion: reduce) {
-  .rotating-placeholder > span {
-    transition: none;
+.rotating-placeholder.typing > span {
+  opacity: 0;
+  animation: placeholder-character 0.14s linear forwards;
+  animation-delay: calc(var(--i) * 28ms);
+}
+@keyframes placeholder-character {
+  to {
+    opacity: 1;
   }
 }

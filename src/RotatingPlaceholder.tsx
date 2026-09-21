@@ -1,45 +1,64 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
-// Two stacked lines that trade places, as a placeholder the field does not own.
+// A placeholder the field does not own: each line arrives a character at a time,
+// rests as a whole sentence, fades, and the next one starts.
+const PER_CHARACTER = 28;
+const REST = 2400;
+const FADE = 300;
+
 export default function RotatingPlaceholder({
   phrases,
   hidden,
-  hold = 3300,
 }: {
   phrases: string[];
   hidden: boolean;
-  hold?: number;
 }) {
-  const [slots, setSlots] = useState({
-    a: 0,
-    b: 1 % phrases.length,
-    front: "a",
-  });
+  const [at, setAt] = useState(0);
+  const [leaving, setLeaving] = useState(false);
+  const still =
+    typeof matchMedia === "function" &&
+    matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const phrase = phrases[at % phrases.length];
+
   useEffect(() => {
-    if (hidden || phrases.length < 2) return;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = setInterval(() => {
-      if (document.hidden) return;
-      setSlots((s) => {
-        const showing = s.front === "a" ? s.a : s.b;
-        const next = (showing + 1) % phrases.length;
-        // The line at the back takes the next phrase, then comes forward.
-        return s.front === "a"
-          ? { ...s, b: next, front: "b" }
-          : { ...s, a: next, front: "a" };
-      });
-    }, hold);
-    return () => clearInterval(timer);
-  }, [hidden, hold, phrases.length]);
+    if (hidden || still || phrases.length < 2) return;
+    const typed = phrase.length * PER_CHARACTER;
+    const leave = setTimeout(() => setLeaving(true), typed + REST);
+    const next = setTimeout(
+      () => {
+        setLeaving(false);
+        setAt((i) => (i + 1) % phrases.length);
+      },
+      typed + REST + FADE,
+    );
+    return () => {
+      clearTimeout(leave);
+      clearTimeout(next);
+    };
+  }, [at, hidden, still, phrase, phrases.length]);
+
   if (hidden) return null;
+  if (still)
+    return (
+      <span className="rotating-placeholder" aria-hidden="true">
+        {phrases[0]}
+      </span>
+    );
   return (
-    <span className="rotating-placeholder" aria-hidden="true">
-      <span className={slots.front === "a" ? "front" : "back"}>
-        {phrases[slots.a]}
-      </span>
-      <span className={slots.front === "b" ? "front" : "back"}>
-        {phrases[slots.b]}
-      </span>
+    <span
+      key={at}
+      className={`rotating-placeholder typing${leaving ? " leaving" : ""}`}
+      aria-hidden="true"
+    >
+      {[...phrase].map((character, i) => (
+        <span
+          key={i}
+          style={{ "--i": i } as CSSProperties}
+          data-last={i === phrase.length - 1 ? "" : undefined}
+        >
+          {character}
+        </span>
+      ))}
     </span>
   );
 }
