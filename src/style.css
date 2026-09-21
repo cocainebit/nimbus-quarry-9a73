@@ -3318,3 +3318,105 @@ select:not([multiple]) {
     padding-right: 20px;
   }
 }
+
+/* Dropdown lists. Every select stays a real select; where the browser supports the
+   customizable select, the open list is drawn by us instead of the operating system.
+   Elsewhere the native list remains. */
+@supports (appearance: base-select) {
+  select:not([multiple]):not([size]),
+  select:not([multiple]):not([size])::picker(select) {
+    appearance: base-select;
+  }
+  select:not([multiple]):not([size]) {
+    align-items: center;
+    cursor: pointer;
+  }
+  select::picker-icon {
+    display: none;
+  }
+  select:open {
+    border-color: var(--accent);
+    background-color: var(--bg-raised);
+  }
+  select::picker(select) {
+    position-area: block-end span-inline-end;
+    position-try-order: normal;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+    margin: 4px 0;
+    padding: 4px;
+    min-width: anchor-size(width);
+    max-height: min(320px, 50vh);
+    overflow-y: auto;
+    border: 0;
+    border-radius: 8px;
+    background: #fff;
+    color: #101010;
+    font-family: "Geist Variable", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    box-shadow:
+      0 0 0 1px rgba(27, 25, 25, 0.1),
+      0 12px 32px rgba(16, 16, 16, 0.14);
+    opacity: 0;
+    translate: 0 -4px;
+    transition:
+      opacity 0.12s ease,
+      translate 0.12s ease,
+      overlay 0.12s allow-discrete,
+      display 0.12s allow-discrete;
+  }
+  select::picker(select):popover-open {
+    opacity: 1;
+    translate: 0 0;
+  }
+  @starting-style {
+    select::picker(select):popover-open {
+      opacity: 0;
+      translate: 0 -4px;
+    }
+  }
+  select option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 32px;
+    padding: 0 8px;
+    border-radius: 6px;
+    font-weight: 400;
+    cursor: pointer;
+    outline: none;
+  }
+  select option + option {
+    margin-top: 2px;
+  }
+  select option:hover,
+  select option:focus-visible {
+    background: rgba(22, 22, 22, 0.08);
+  }
+  select option:checked {
+    background: #ffd7ff;
+    font-weight: 500;
+  }
+  .application-shell select option:checked {
+    background: rgba(22, 22, 22, 0.08);
+  }
+  select option::checkmark {
+    order: 1;
+    margin-left: auto;
+    padding-left: 12px;
+    content: "";
+    width: 16px;
+    height: 16px;
+    box-sizing: content-box;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23101010' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") right center / 16px no-repeat;
+  }
+  select option:disabled {
+    color: #b9b9b9;
+    cursor: not-allowed;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    select::picker(select) {
+      transition: none;
+    }
+  }
+}
