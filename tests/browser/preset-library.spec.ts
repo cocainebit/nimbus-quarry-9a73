@@ -34,6 +34,7 @@ test("upstream dark theme, typography and inbox layout preserve live app collect
   expect(registered.ok(), await registered.text()).toBeTruthy();
   await page.goto("/");
   await page.getByRole("button", { name: "Account & server projects" }).click();
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
   await page
     .getByRole("button", { name: "Load projects with current session" })
     .click();

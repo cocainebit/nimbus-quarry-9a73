@@ -14,6 +14,10 @@ import {
   Folder,
   LayoutTemplate,
   SlidersHorizontal,
+  RefreshCw,
+  Import,
+  LogIn,
+  LogOut,
 } from "lucide-react";
 import { demoProject, normalizeProject, type Project } from "./model";
 import { SitePage } from "./blocks";
@@ -81,6 +85,31 @@ export default function App() {
     saveNow,
   } = useProjects();
   const [accountOpen, setAccountOpen] = useState(false);
+  const [accountMenu, setAccountMenu] = useState(false);
+  const accountMenuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!accountMenu) return;
+    accountMenuRef.current
+      ?.querySelector<HTMLButtonElement>(".account-menu button")
+      ?.focus();
+    const away = (e: PointerEvent) => {
+      if (!accountMenuRef.current?.contains(e.target as Node))
+        setAccountMenu(false);
+    };
+    const key = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setAccountMenu(false);
+      accountMenuRef.current
+        ?.querySelector<HTMLButtonElement>(".profile")
+        ?.focus();
+    };
+    document.addEventListener("pointerdown", away);
+    document.addEventListener("keydown", key);
+    return () => {
+      document.removeEventListener("pointerdown", away);
+      document.removeEventListener("keydown", key);
+    };
+  }, [accountMenu]);
   const [accountError, setAccountError] = useState("");
   const [importError, setImportError] = useState("");
   const [active, setActive] = useState<string | null>(null);
@@ -335,17 +364,111 @@ export default function App() {
             Settings
           </button>
         </nav>
-        <div className="sidebar-bottom">
+        <div className="sidebar-bottom" ref={accountMenuRef}>
           {workspace === "server" && <AccountChip userId={user?.id} />}
+          {accountMenu && (
+            <div
+              className="account-menu"
+              role="group"
+              aria-label="Your workspace"
+            >
+              <div className="account-menu-head">
+                <span className="avatar dark">
+                  {(user?.email || "You").slice(0, 2).toUpperCase()}
+                </span>
+                <div>
+                  <strong>{user?.email || "Your workspace"}</strong>
+                  <small>
+                    {workspace === "server"
+                      ? "Server saving enabled"
+                      : "Local drafts"}
+                  </small>
+                </div>
+              </div>
+              <div className="account-menu-group">
+                {workspace === "server" ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        setAccountMenu(false);
+                        setAccountError("");
+                        void saveNow()
+                          .then(() => connectServer())
+                          .catch((e) => {
+                            setAccountError(e.message);
+                            setAccountOpen(true);
+                          });
+                      }}
+                    >
+                      <RefreshCw size={16} />
+                      Save and refresh projects
+                    </button>
+                    <button
+                      onClick={() => {
+                        setAccountMenu(false);
+                        setAccountError("");
+                        void importLocal().catch((e) => {
+                          setAccountError(e.message);
+                          setAccountOpen(true);
+                        });
+                      }}
+                    >
+                      <Import size={16} />
+                      Import local drafts as copies
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    className="accent"
+                    onClick={() => {
+                      setAccountMenu(false);
+                      setAccountError("");
+                      setAccountOpen(true);
+                    }}
+                  >
+                    <LogIn size={16} />
+                    Sign in
+                  </button>
+                )}
+                <button
+                  onClick={() => {
+                    setAccountMenu(false);
+                    setView("settings");
+                  }}
+                >
+                  <SlidersHorizontal size={16} />
+                  Settings
+                </button>
+              </div>
+              {workspace === "server" && (
+                <div className="account-menu-group">
+                  <button
+                    onClick={() => {
+                      setAccountMenu(false);
+                      void disconnect().catch((e) => {
+                        setAccountError(e.message);
+                        setAccountOpen(true);
+                      });
+                    }}
+                  >
+                    <LogOut size={16} />
+                    Save and sign out
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
           <button
             className="profile"
             aria-label="Account & server projects"
+            aria-haspopup="true"
+            aria-expanded={accountMenu}
             title={
               workspace === "server"
                 ? "Projects save to your account on this server."
                 : "Projects save in this browser. Sign in to sync them with your account."
             }
-            onClick={() => setAccountOpen(true)}
+            onClick={() => setAccountMenu((open) => !open)}
           >
             <span className="avatar dark">
               {(user?.email || "You").slice(0, 2).toUpperCase()}

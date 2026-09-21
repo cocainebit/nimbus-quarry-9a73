@@ -10,6 +10,7 @@ test("catalogue client portal: persisted projects, related requests, board statu
   await page
     .getByRole("button", { name: "Account & server projects", exact: true })
     .click();
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
   const account = page.getByRole("dialog", {
     name: "Account and server projects",
   });

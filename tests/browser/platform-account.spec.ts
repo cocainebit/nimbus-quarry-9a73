@@ -18,6 +18,7 @@ test("an owner signs in to Plotform with the shared account and sees it in the h
   const email = `owner.${Date.now()}@example.test`;
   await page.goto("/");
   await page.getByRole("button", { name: "Account & server projects" }).click();
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
   await page.getByRole("button", { name: "Continue with your account" }).click();
 
   await page.waitForURL(`${PLATFORM}/sign-in**`);

@@ -43,6 +43,7 @@ test("inspect and restore project history through the UI, preserve app records, 
   );
   await page.goto("/");
   await page.getByRole("button", { name: "Account & server projects" }).click();
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
   await page
     .getByRole("button", { name: "Load projects with current session" })
     .click();

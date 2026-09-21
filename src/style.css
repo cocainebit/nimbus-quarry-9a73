@@ -3568,3 +3568,103 @@ select:not([multiple]) {
     animation: none;
   }
 }
+
+/* Account menu: rises from the account row at the foot of the sidebar. */
+.sidebar-bottom {
+  position: relative;
+}
+.account-menu {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: calc(100% - 4px);
+  z-index: 20;
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 12px 32px rgba(16, 16, 16, 0.14);
+  animation: account-menu-in 0.14s ease;
+}
+.account-menu-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  min-width: 0;
+}
+.account-menu-head .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.account-menu-head > div {
+  min-width: 0;
+}
+.account-menu-head strong,
+.account-menu-head small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.account-menu-head strong {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.account-menu-head small {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ink-2);
+}
+.account-menu-group {
+  display: grid;
+  gap: 2px;
+  padding: 6px;
+  border-top: 1px solid var(--line);
+}
+.account-menu-group button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 32px;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+  color: var(--ink);
+}
+.account-menu-group button:hover,
+.account-menu-group button:focus-visible {
+  background: var(--hover);
+  outline: none;
+}
+.account-menu-group button.accent {
+  color: var(--accent);
+  font-weight: 500;
+}
+.profile[aria-expanded="true"] {
+  background: var(--hover);
+}
+@keyframes account-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+@media (max-width: 900px) {
+  .account-menu {
+    right: auto;
+    width: 248px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .account-menu {
+    animation: none;
+  }
+}

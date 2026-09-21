@@ -2,6 +2,7 @@ import { test, expect, type Page } from "./runtime-fixture";
 const password = "Browser-cloud-password-123";
 async function account(page: Page, email: string, signup = false) {
   await page.getByRole("button", { name: "Account & server projects" }).click();
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
   const modal = page.getByRole("dialog", {
     name: "Account and server projects",
   });
