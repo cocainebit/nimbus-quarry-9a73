@@ -3687,20 +3687,18 @@ select:not([multiple]) {
   white-space: pre-wrap;
   color: rgba(92, 92, 92, 0.72);
   overflow: hidden;
+  transition: opacity 0.3s linear;
 }
-.rotating-placeholder .caret {
-  display: inline-block;
-  width: 1.5px;
-  height: 1.15em;
-  margin-left: 1px;
-  vertical-align: text-bottom;
-  background: var(--accent);
+.rotating-placeholder.leaving {
+  opacity: 0;
 }
-.rotating-placeholder .caret.resting {
-  animation: placeholder-caret 1s steps(1) infinite;
+.rotating-placeholder.typing > span {
+  opacity: 0;
+  animation: placeholder-character 0.14s linear forwards;
+  animation-delay: calc(var(--i) * 28ms);
 }
-@keyframes placeholder-caret {
-  50% {
-    opacity: 0;
+@keyframes placeholder-character {
+  to {
+    opacity: 1;
   }
 }
