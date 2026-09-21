@@ -14,7 +14,6 @@ import {
   Folder,
   LayoutTemplate,
   SlidersHorizontal,
-  Server,
 } from "lucide-react";
 import { demoProject, normalizeProject, type Project } from "./model";
 import { SitePage } from "./blocks";
@@ -328,10 +327,6 @@ export default function App() {
             <LayoutTemplate size={16} />
             Starter templates
           </button>
-          <button className="nav-item" onClick={() => setAccountOpen(true)}>
-            <Server size={16} />
-            Account & server projects
-          </button>
           <button
             className={view === "settings" ? "nav-item selected" : "nav-item"}
             onClick={() => setView("settings")}
@@ -344,6 +339,7 @@ export default function App() {
           {workspace === "server" && <AccountChip userId={user?.id} />}
           <button
             className="profile"
+            aria-label="Account & server projects"
             title={
               workspace === "server"
                 ? "Projects save to your account on this server."
@@ -380,9 +376,6 @@ export default function App() {
           {view !== "settings" && (
             <>
               <section className="dash-hero">
-                <div className="eyebrow">
-                  A LITTLE STRUCTURE. A LOT OF POSSIBILITY.
-                </div>
                 <h1>
                   Build a working app.
                   <br />
