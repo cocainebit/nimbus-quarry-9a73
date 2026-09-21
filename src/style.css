@@ -3668,37 +3668,3 @@ select:not([multiple]) {
     animation: none;
   }
 }
-
-/* A placeholder that changes its line. Each line is typed a character at a time, rests
-   as a sentence, then fades for the next. Colour and size as on Relume's composer. */
-.composer-field {
-  position: relative;
-  display: grid;
-}
-.composer-field textarea {
-  grid-area: 1 / 1;
-}
-.rotating-placeholder {
-  grid-area: 1 / 1;
-  pointer-events: none;
-  margin: 8px 4px;
-  font-size: 16px;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  color: rgba(92, 92, 92, 0.72);
-  overflow: hidden;
-  transition: opacity 0.3s linear;
-}
-.rotating-placeholder.leaving {
-  opacity: 0;
-}
-.rotating-placeholder.typing > span {
-  opacity: 0;
-  animation: placeholder-character 0.14s linear forwards;
-  animation-delay: calc(var(--i) * 28ms);
-}
-@keyframes placeholder-character {
-  to {
-    opacity: 1;
-  }
-}
