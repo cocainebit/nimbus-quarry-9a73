@@ -1,3 +1,4 @@
+import { confirmDialog } from "./dialogs";
 import { useEffect, useState, useRef } from "react";
 import { api } from "./backend-api";
 export default function RuntimeFiles({ base }: { base: string }) {
@@ -87,7 +88,13 @@ export default function RuntimeFiles({ base }: { base: string }) {
               <button
                 disabled={busy}
                 onClick={async () => {
-                  if (!confirm(`Delete ${f.name}?`)) return;
+                  if (
+                    !(await confirmDialog(`Delete ${f.name}?`, {
+                      confirmLabel: "Delete",
+                      danger: true,
+                    }))
+                  )
+                    return;
                   try {
                     await api(`${base}/files/${f.id}`, undefined, "DELETE");
                     await load();

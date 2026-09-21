@@ -1,3 +1,4 @@
+import { alertDialog } from "./dialogs";
 import { useState, useMemo, useCallback, useEffect } from "react";
 import {
   ReactFlow,
@@ -912,7 +913,7 @@ export default function Editor({
                 onClick={project.app ? undefined : navigateSite}
                 onSubmit={(e) => {
                   e.preventDefault();
-                  window.alert(
+                  void alertDialog(
                     "Preview only. Export and run the included server to collect messages.",
                   );
                 }}

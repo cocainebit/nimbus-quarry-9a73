@@ -1,3 +1,4 @@
+import { alertDialog, confirmDialog } from "./dialogs";
 import { useRef } from "react";
 import { Puck, type Config, type Data } from "@puckeditor/core";
 import { ArrowLeft } from "lucide-react";
@@ -142,7 +143,7 @@ export default function PageDesigner({
       dirty.current = false;
       onClose();
     } catch {
-      window.alert(
+      void alertDialog(
         "Some links or images are invalid. Fix their addresses before saving.",
       );
     }
@@ -152,10 +153,13 @@ export default function PageDesigner({
       <div className="puck-top">
         <button
           className="secondary"
-          onClick={() => {
+          onClick={async () => {
             if (
               !dirty.current ||
-              window.confirm("Discard unsaved visual-editor changes?")
+              (await confirmDialog("Discard unsaved visual-editor changes?", {
+                confirmLabel: "Discard",
+                danger: true,
+              }))
             )
               onClose();
           }}
@@ -167,12 +171,13 @@ export default function PageDesigner({
         {onChooseDesign && (
           <button
             className="secondary"
-            onClick={() => {
+            onClick={async () => {
               if (
                 !dirty.current ||
-                window.confirm(
+                (await confirmDialog(
                   "Discard unsaved visual-editor changes before choosing a design?",
-                )
+                  { confirmLabel: "Discard", danger: true },
+                ))
               )
                 onChooseDesign();
             }}

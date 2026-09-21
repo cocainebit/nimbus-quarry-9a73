@@ -1,3 +1,4 @@
+import { confirmDialog } from "./dialogs";
 import { useEffect, useState, useRef } from "react";
 import {
   LayoutDashboard,
@@ -1043,7 +1044,13 @@ export default function AppWorkspace({
                     type="button"
                     disabled={busy}
                     onClick={async () => {
-                      if (!confirm("Delete this record?")) return;
+                      if (
+                        !(await confirmDialog("Delete this record?", {
+                          confirmLabel: "Delete",
+                          danger: true,
+                        }))
+                      )
+                        return;
                       setBusy(true);
                       try {
                         await api(

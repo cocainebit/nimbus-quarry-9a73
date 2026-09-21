@@ -1,3 +1,4 @@
+import { DialogHost } from "./dialogs";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "@fontsource-variable/geist";
@@ -15,6 +16,7 @@ import PublishedApp from "./PublishedApp";
 import { ResetPassword } from "./AccountForm";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <DialogHost />
     {location.pathname.startsWith("/sites/") ? (
       <PublishedApp />
     ) : location.pathname === "/reset-password" ? (

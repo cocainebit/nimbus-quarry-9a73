@@ -3504,3 +3504,67 @@ select:not([multiple]) {
     flex-basis: 100%;
   }
 }
+
+/* Questions and notices the app asks itself, in place of the browser's own boxes. */
+.ask-backdrop {
+  z-index: 300;
+  animation: ask-fade 0.12s ease;
+}
+.ask {
+  width: min(400px, 100%);
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  color: #101010;
+  font-family: "Geist Variable", Arial, sans-serif;
+  text-align: left;
+  box-shadow:
+    0 0 0 1px rgba(27, 25, 25, 0.1),
+    0 24px 80px rgba(16, 16, 16, 0.25);
+  animation: ask-rise 0.16s ease;
+}
+.ask-body {
+  padding: 24px 24px 20px;
+}
+.ask h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+.ask p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #343434;
+}
+.ask-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 24px;
+  border-top: 1px solid rgba(27, 25, 25, 0.1);
+  background: rgba(241, 240, 238, 0.9);
+}
+.ask-actions button {
+  font-weight: 500;
+}
+@keyframes ask-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes ask-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ask,
+  .ask-backdrop {
+    animation: none;
+  }
+}

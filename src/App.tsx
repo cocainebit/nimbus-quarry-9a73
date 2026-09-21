@@ -1,3 +1,4 @@
+import { confirmDialog } from "./dialogs";
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import {
   ArrowUpRight,
@@ -625,12 +626,19 @@ export default function App() {
                               <button
                                 className="icon-btn"
                                 title={`Delete ${p.name}`}
-                                onClick={() => {
+                                onClick={async () => {
                                   if (
-                                    window.confirm(
+                                    await confirmDialog(
                                       workspace === "server"
                                         ? `Archive ${p.name}? Its published app will go offline; its data will be retained.`
                                         : `Delete ${p.name}? Export it first if you want a backup.`,
+                                      {
+                                        confirmLabel:
+                                          workspace === "server"
+                                            ? "Archive"
+                                            : "Delete",
+                                        danger: true,
+                                      },
                                     )
                                   )
                                     void removeProject(p.id).catch((e) =>
