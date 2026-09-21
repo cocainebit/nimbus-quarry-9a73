@@ -35,7 +35,6 @@
   overscroll-behavior: contain;
   padding: 2px 4px 4px 2px;
   align-items: start;
-  scrollbar-width: thin;
 }
 .preset-gallery-card {
   min-width: 0;
