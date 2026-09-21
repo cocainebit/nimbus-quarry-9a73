@@ -8,7 +8,8 @@ export function connectDatabase(connectionString = process.env.DATABASE_URL) {
     );
   return new pg.Pool({
     connectionString,
-    max: 10,
+    // A serverless host opens one pool per warm instance, so it asks for fewer.
+    max: Number(process.env.PG_POOL_MAX) || 10,
     connectionTimeoutMillis: 5000,
     idleTimeoutMillis: 30000,
   });

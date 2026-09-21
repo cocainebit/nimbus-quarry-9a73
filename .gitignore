@@ -10,3 +10,4 @@ playwright-report/
 
 # Local operator settings, including provider API keys.
 .local/
+.vercel
