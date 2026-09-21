@@ -2664,17 +2664,19 @@ small {
   }
 }
 
-/* Each dashboard view arrives rather than appearing. */
+/* Each dashboard view arrives rather than appearing. These fill backwards only: an
+   animation on transform that keeps filling forwards makes its element the containing
+   block for fixed descendants, which trapped the template preview inside the catalogue. */
 .settings-page,
 .project-section,
 .source-collection {
-  animation: rise var(--base) var(--ease) both;
+  animation: rise var(--base) var(--ease) backwards;
 }
 
 /* The project grid deals itself out. Only the first rows are staggered: past
    that the delay would be noticed as slowness rather than read as sequence. */
 .project-card {
-  animation: pop var(--base) var(--ease) both;
+  animation: pop var(--base) var(--ease) backwards;
   transition:
     transform var(--base) var(--ease),
     box-shadow var(--base) var(--ease),
@@ -2747,12 +2749,12 @@ small {
   transform: translateY(0);
 }
 .provider-name em {
-  animation: pop var(--base) var(--ease) both;
+  animation: pop var(--base) var(--ease) backwards;
 }
 
 /* The model list opens, and its rows arrive in order. */
 .model-list {
-  animation: rise var(--base) var(--ease) both;
+  animation: rise var(--base) var(--ease) backwards;
 }
 .model-list li {
   animation: fade var(--base) var(--ease) both;
@@ -2801,7 +2803,7 @@ small {
   transition: background var(--slow) var(--ease);
 }
 .provider-detail {
-  animation: rise var(--base) var(--ease) both;
+  animation: rise var(--base) var(--ease) backwards;
 }
 
 /* Dialogs: the backdrop fades, the panel rises into it. */
@@ -2811,7 +2813,7 @@ small {
 .modal,
 .payment-modal,
 .app-record-modal {
-  animation: pop var(--base) var(--ease) both;
+  animation: pop var(--base) var(--ease) backwards;
 }
 
 /* Buttons acknowledge the press. Disabled controls stay still. */
