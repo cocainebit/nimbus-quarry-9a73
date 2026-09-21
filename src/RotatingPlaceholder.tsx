@@ -1,10 +1,11 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState } from "react";
 
-// A placeholder the field does not own: each line arrives a character at a time,
-// rests as a whole sentence, fades, and the next one starts.
-const PER_CHARACTER = 28;
-const REST = 2400;
-const FADE = 300;
+// A placeholder the field does not own, written by a typewriter: a caret types the
+// line, rests on the finished sentence, backspaces it away and types the next.
+const TYPE = 42;
+const ERASE = 16;
+const REST = 1900;
+const PAUSE = 380;
 
 export default function RotatingPlaceholder({
   phrases,
@@ -14,51 +15,40 @@ export default function RotatingPlaceholder({
   hidden: boolean;
 }) {
   const [at, setAt] = useState(0);
-  const [leaving, setLeaving] = useState(false);
+  const [shown, setShown] = useState(0);
+  const [erasing, setErasing] = useState(false);
   const still =
     typeof matchMedia === "function" &&
     matchMedia("(prefers-reduced-motion: reduce)").matches;
   const phrase = phrases[at % phrases.length];
+  const resting = !erasing && shown === phrase.length;
 
   useEffect(() => {
-    if (hidden || still || phrases.length < 2) return;
-    const typed = phrase.length * PER_CHARACTER;
-    const leave = setTimeout(() => setLeaving(true), typed + REST);
-    const next = setTimeout(
-      () => {
-        setLeaving(false);
-        setAt((i) => (i + 1) % phrases.length);
-      },
-      typed + REST + FADE,
-    );
-    return () => {
-      clearTimeout(leave);
-      clearTimeout(next);
-    };
-  }, [at, hidden, still, phrase, phrases.length]);
+    if (hidden || still) return;
+    let wait: number;
+    if (erasing) wait = shown > 0 ? ERASE : PAUSE;
+    else if (shown < phrase.length)
+      // A person does not type evenly, and lingers a little after punctuation.
+      wait =
+        TYPE + Math.random() * 38 + (/[,.…]/.test(phrase[shown - 1]) ? 160 : 0);
+    else wait = REST;
+    const timer = setTimeout(() => {
+      if (erasing) {
+        if (shown > 0) return setShown(shown - 1);
+        setErasing(false);
+        return setAt((i) => (i + 1) % phrases.length);
+      }
+      if (shown < phrase.length) return setShown(shown + 1);
+      if (phrases.length > 1) setErasing(true);
+    }, wait);
+    return () => clearTimeout(timer);
+  }, [at, shown, erasing, hidden, still, phrase, phrases.length]);
 
   if (hidden) return null;
-  if (still)
-    return (
-      <span className="rotating-placeholder" aria-hidden="true">
-        {phrases[0]}
-      </span>
-    );
   return (
-    <span
-      key={at}
-      className={`rotating-placeholder typing${leaving ? " leaving" : ""}`}
-      aria-hidden="true"
-    >
-      {[...phrase].map((character, i) => (
-        <span
-          key={i}
-          style={{ "--i": i } as CSSProperties}
-          data-last={i === phrase.length - 1 ? "" : undefined}
-        >
-          {character}
-        </span>
-      ))}
+    <span className="rotating-placeholder" aria-hidden="true">
+      {still ? phrases[0] : phrase.slice(0, shown)}
+      {!still && <i className={resting ? "caret resting" : "caret"} />}
     </span>
   );
 }
