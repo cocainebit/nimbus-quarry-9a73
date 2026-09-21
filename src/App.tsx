@@ -378,63 +378,63 @@ export default function App() {
           )}
           {view !== "settings" && (
             <>
-              <div className="heading-row">
+              <section className="dash-hero">
                 <div className="eyebrow">
                   A LITTLE STRUCTURE. A LOT OF POSSIBILITY.
+                </div>
+                <h1>
+                  Build a working app.
+                  <br />
+                  Design a distinctive website.
+                </h1>
+                <p className="intro">
+                  Build portals, CRMs, and workspaces with real databases. For
+                  websites, choose from {sourceTemplates.length} original
+                  open-source designs and edit their actual source.
+                </p>
+                <div className="brief-composer">
+                  <div className="composer-label">
+                    <Sparkles size={17} /> What are we creating?
+                  </div>
+                  <textarea
+                    aria-label="Website brief"
+                    value={brief}
+                    onChange={(e) => setBrief(e.target.value)}
+                    placeholder="A website for an architecture studio that designs thoughtful, sustainable spaces…"
+                    maxLength={6000}
+                  />
+                  <div className="composer-footer">
+                    <span>Start with a brief. Shape every detail.</span>
+                    <button className="secondary" onClick={browseOriginals}>
+                      Create a website <ArrowUp size={16} />
+                    </button>
+                    <button
+                      className="primary"
+                      onClick={() =>
+                        start(
+                          brief,
+                          inferProjectType(brief) === "website"
+                            ? "tracker"
+                            : inferProjectType(brief),
+                        )
+                      }
+                    >
+                      Build an app <ArrowUp size={16} />
+                    </button>
+                  </div>
                 </div>
                 <span className="mini-label">
                   YOUR NEXT APP OR WEBSITE STARTS HERE ↗
                 </span>
-              </div>
-              <h1>
-                Build a working app.
-                <br />
-                Design a distinctive website.
-              </h1>
-              <p className="intro">
-                Build portals, CRMs, and workspaces with real databases. For
-                websites, choose from {sourceTemplates.length} original
-                open-source designs and edit their actual source.
-              </p>
-              <div className="brief-composer">
-                <div className="composer-label">
-                  <Sparkles size={17} /> What are we creating?
-                </div>
-                <textarea
-                  aria-label="Website brief"
-                  value={brief}
-                  onChange={(e) => setBrief(e.target.value)}
-                  placeholder="A website for an architecture studio that designs thoughtful, sustainable spaces…"
-                  maxLength={6000}
-                />
-                <div className="composer-footer">
-                  <span>Start with a brief. Shape every detail.</span>
-                  <button className="secondary" onClick={browseOriginals}>
-                    Create a website <ArrowUp size={16} />
+                <div className="starter-row">
+                  <button onClick={browseOriginals}>
+                    Browse original source templates <ArrowUpRight size={13} />
                   </button>
-                  <button
-                    className="primary"
-                    onClick={() =>
-                      start(
-                        brief,
-                        inferProjectType(brief) === "website"
-                          ? "tracker"
-                          : inferProjectType(brief),
-                      )
-                    }
-                  >
-                    Build an app <ArrowUp size={16} />
+                  <button onClick={() => start(brief, "website")}>
+                    Build with editable blocks
                   </button>
                 </div>
-              </div>
-              <div className="starter-row">
-                <button onClick={browseOriginals}>
-                  Browse original source templates <ArrowUpRight size={13} />
-                </button>
-                <button onClick={() => start(brief, "website")}>
-                  Build with editable blocks
-                </button>
-              </div>
+              </section>
             </>
           )}
           {view === "templates" && (

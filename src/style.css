@@ -379,7 +379,7 @@ small {
   align-items: center;
   margin-bottom: 12px;
 }
-.heading-row .eyebrow {
+.dash-hero .eyebrow {
   font-family: var(--mono);
   font-size: 13px;
   letter-spacing: 0.02em;
@@ -1637,8 +1637,8 @@ small {
     font-size: 36px;
     letter-spacing: -0.02em;
   }
-  .heading-row .eyebrow {
-    font-size: 7px;
+  .dash-hero .eyebrow {
+    font-size: 11px;
   }
   .intro {
     font-size: 12px;
@@ -3418,5 +3418,89 @@ select:not([multiple]) {
     select::picker(select) {
       transition: none;
     }
+  }
+}
+
+/* Dashboard hero, after Relume's intake screen: everything on the centre line, a
+   narrow composer, and tall enough that the project list starts below the fold. */
+.dash-hero {
+  min-height: calc(100vh - 48px);
+  min-height: calc(100dvh - 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 8vh;
+  text-align: center;
+}
+.dash-hero .eyebrow {
+  margin-bottom: 20px;
+}
+.dashboard .dash-hero h1 {
+  font-size: clamp(26px, 2.6vw, 32px);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.dash-hero .intro {
+  max-width: 560px;
+  margin: 0 0 32px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.dash-hero .brief-composer {
+  width: min(680px, 100%);
+  padding: 12px;
+  text-align: left;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(16, 16, 16, 0.04);
+}
+.dash-hero .brief-composer:focus-within {
+  border-color: var(--line-strong);
+}
+.dash-hero .composer-label {
+  padding: 4px 4px 0;
+}
+.dash-hero .brief-composer textarea {
+  min-height: 96px;
+  padding: 8px 4px;
+}
+.dash-hero .composer-footer {
+  gap: 8px;
+}
+.dash-hero .composer-footer > span {
+  margin-right: auto;
+  padding-left: 4px;
+}
+.dash-hero .composer-footer button {
+  font-weight: 500;
+}
+.dash-hero .mini-label {
+  margin-top: 32px;
+  text-transform: none;
+}
+.dash-hero .starter-row {
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.dash-hero .starter-row button {
+  min-height: 26px;
+  padding: 2px 8px;
+  font-weight: 500;
+  color: var(--ink);
+}
+@media (max-width: 1200px) {
+  .dash-hero .mini-label {
+    display: block;
+  }
+}
+@media (max-width: 640px) {
+  .dash-hero .composer-footer {
+    flex-wrap: wrap;
+  }
+  .dash-hero .composer-footer > span {
+    flex-basis: 100%;
   }
 }
