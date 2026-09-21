@@ -3668,3 +3668,39 @@ select:not([multiple]) {
     animation: none;
   }
 }
+
+/* A placeholder that changes its line: two stacked lines trade places. Timing and
+   colour as measured on Relume's composer (opacity and transform, 0.3s linear). */
+.composer-field {
+  position: relative;
+  display: grid;
+}
+.composer-field textarea {
+  grid-area: 1 / 1;
+}
+.rotating-placeholder {
+  grid-area: 1 / 1;
+  position: relative;
+  pointer-events: none;
+  margin: 8px 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(92, 92, 92, 0.72);
+  overflow: hidden;
+}
+.rotating-placeholder > span {
+  position: absolute;
+  inset: 0;
+  transition:
+    opacity 0.3s linear,
+    transform 0.3s linear;
+}
+.rotating-placeholder > .back {
+  opacity: 0;
+  transform: translateY(6px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rotating-placeholder > span {
+    transition: none;
+  }
+}

@@ -27,6 +27,7 @@ import SourceTemplateCatalogue from "./SourceTemplateCatalogue";
 import { sourceTemplates } from "../shared/source-templates.mjs";
 import { useProjects } from "./storage";
 import AccountForm from "./AccountForm";
+import RotatingPlaceholder from "./RotatingPlaceholder";
 import AccountChip from "./AccountChip";
 const SettingsPage = lazy(() => import("./Settings"));
 import AppCatalogue from "./AppCatalogue";
@@ -51,6 +52,13 @@ function inferProjectType(value: string): ProjectType {
   return "website";
 }
 
+// The composer's placeholder lines: the app's own starter copy, one at a time.
+const composerPrompts = [
+  "A website for an architecture studio that designs thoughtful, sustainable spaces…",
+  "A productivity platform for creative teams…",
+  "A client portal for projects, requests and documents…",
+  "An independent wellness studio helping people slow down…",
+];
 const starters = [
   {
     name: "Architecture studio",
@@ -513,13 +521,18 @@ export default function App() {
                   <div className="composer-label">
                     <Sparkles size={17} /> What are we creating?
                   </div>
-                  <textarea
-                    aria-label="Website brief"
-                    value={brief}
-                    onChange={(e) => setBrief(e.target.value)}
-                    placeholder="A website for an architecture studio that designs thoughtful, sustainable spaces…"
-                    maxLength={6000}
-                  />
+                  <div className="composer-field">
+                    <textarea
+                      aria-label="Website brief"
+                      value={brief}
+                      onChange={(e) => setBrief(e.target.value)}
+                      maxLength={6000}
+                    />
+                    <RotatingPlaceholder
+                      hidden={Boolean(brief)}
+                      phrases={composerPrompts}
+                    />
+                  </div>
                   <div className="composer-footer">
                     <span>Start with a brief. Shape every detail.</span>
                     <button className="secondary" onClick={browseOriginals}>
