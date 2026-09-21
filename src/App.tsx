@@ -686,10 +686,6 @@ export default function App() {
                                 )}
                               </div>
                             </span>
-                            <span
-                              className="project-swatch"
-                              style={{ background: p.theme.accent }}
-                            />
                             <span className="preview-open">
                               Open project <ArrowUpRight size={15} />
                             </span>
