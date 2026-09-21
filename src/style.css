@@ -639,7 +639,7 @@ small {
 }
 .project-tile {
   display: block;
-  height: 211px;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 12px;
   background: var(--bg-raised);
