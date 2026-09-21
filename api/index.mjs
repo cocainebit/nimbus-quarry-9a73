@@ -18,7 +18,17 @@ function boot() {
   ready ??= (async () => {
     const pool = connectDatabase();
     const auth = createAuth(pool);
-    await migrate(pool, auth);
+    // Migrations hold a session level advisory lock, which a transaction pooler such as
+    // Neon's does not keep on one connection. Given a direct URL, migrate over that.
+    const direct = process.env.DATABASE_URL_UNPOOLED;
+    if (direct) {
+      const migrationPool = connectDatabase(direct);
+      try {
+        await migrate(migrationPool, createAuth(migrationPool));
+      } finally {
+        await migrationPool.end();
+      }
+    } else await migrate(pool, auth);
     const platform = platformConfig();
     const billing = platform
       ? createBilling({
